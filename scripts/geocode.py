@@ -9,9 +9,7 @@ from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 
 CACHE_FILE = "public/geocode-cache.json"
 DATA_FILE = "public/graffiti-lookups.json"
-
-# Street type patterns to match
-STREET_TYPES = r"(STREET|ST|AVENUE|AVE|ROAD|RD|DRIVE|DR|PLACE|PL|BOULEVARD|BLVD|LANE|LN|COURT|CT|WAY|TERRACE|TER)"
+STREET_TYPES = r"(STREET|ST|AVENUE|AVE|ROAD|RD|DRIVE|DR|PLACE|PL|BOULEVARD|BLVD|LANE|LN|COURT|CT|WAY|TERRACE|TER)"  # noqa: E501
 
 
 def get_ordinal_suffix(number):

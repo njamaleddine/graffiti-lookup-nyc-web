@@ -44,7 +44,7 @@ To generate graffiti data and geocode addresses locally:
 pip install -r scripts/requirements.txt
 
 # Generate graffiti data (replace with your IDs)
-graffiti-lookup-nyc --ids "G261910,G261911" --file-path public/graffiti-lookups.json --file-type json
+graffiti-lookup-nyc --ids "G258700,G258801,G258900" --file-path public/graffiti-lookups.json --file-type json
 
 # Geocode addresses
 python scripts/geocode.py
@@ -72,7 +72,7 @@ The GitHub Actions workflow (`.github/workflows/build-and-deploy.yml`) runs dail
 
 2. **Add Repository Variable**:
    - Go to Settings → Secrets and variables → Actions → Variables
-   - Add a variable named `GRAFFITI_IDS` with comma-separated graffiti lookup IDs (e.g., `G261910,G261911`)
+   - Add a variable named `GRAFFITI_IDS` with comma-separated graffiti lookup IDs (e.g., `G258700,G258801,G258900`)
 
 ### Manual Deployment
 

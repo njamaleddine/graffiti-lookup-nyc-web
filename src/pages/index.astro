@@ -15,10 +15,10 @@ const items = [...graffitiLookups].sort((a, b) =>
   </header>
   <div class="content-layout">
     <aside class="sidebar">
-      <ListView :items="items" client:load />
+      <ListView items={items} client:load />
     </aside>
     <section class="main-content">
-      <MapView :items="items" client:load />
+      <MapView items={items} client:load />
     </section>
   </div>
 </Layout>
@@ -45,21 +45,15 @@ const items = [...graffitiLookups].sort((a, b) =>
   .content-layout {
     display: flex;
     gap: 24px;
-    flex: 1;
-    min-height: 0;
+    align-items: flex-start;
   }
   .sidebar {
     width: 360px;
     flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
   }
   .main-content {
     flex: 1;
     min-width: 0;
-    display: flex;
-    flex-direction: column;
   }
   @media (max-width: 900px) {
     .content-layout {

@@ -157,6 +157,7 @@ onUnmounted(() => {
 <style scoped>
 .map-section {
   width: 100%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
 }
@@ -171,21 +172,28 @@ onUnmounted(() => {
 }
 .map-root {
   width: 100%;
+  min-width: 0;
   height: calc(100vh - 180px);
   max-height: 600px;
   border-radius: 8px;
   border: 1px solid #e0e0e0;
   overflow: hidden;
   background: #fff;
+  box-sizing: border-box;
 }
 :deep(.highlighted-marker) {
   filter: hue-rotate(120deg) saturate(1.5) brightness(1.1);
   transition: all 0.2s ease;
 }
 @media (max-width: 900px) {
+  .map-section {
+    width: 100%;
+  }
   .map-root {
+    width: 100%;
     height: 350px;
     max-height: none;
+    border-radius: 8px;
   }
 }
 </style>

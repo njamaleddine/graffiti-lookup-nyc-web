@@ -44,11 +44,12 @@ function addMarkersToMap(items) {
   items.forEach(item => {
     if (item.latitude && item.longitude) {
       const isSelected = selectedItem.value?.service_request === item.service_request;
+      const indexLabel = item._index ? `<span style="background:#e8f0fe;color:#1a73e8;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;">${item._index}</span> ` : '';
       const marker = leafletInstance.marker([item.latitude, item.longitude], {
         icon: isSelected ? highlightIcon : defaultIcon,
         zIndexOffset: isSelected ? 1000 : 0
       }).addTo(leafletMap)
-        .bindPopup(`<b>${item.address}</b><br>${item.status}`);
+        .bindPopup(`${indexLabel}<b>${item.address}</b><br><span style="color:#5f6368;font-size:11px;">#${item.service_request}</span><br>${item.status}`);
       
       markerMap[item.service_request] = marker;
       
@@ -94,10 +95,11 @@ function getWindowedItems(centerItems) {
   const PAGE_SIZE = 50;
   // Find the index of the first visible item in the full list
   const firstIdx = props.items.findIndex(item => item.service_request === centerItems[0]?.service_request);
-  if (firstIdx === -1) return centerItems;
+  if (firstIdx === -1) return centerItems.slice(0, PAGE_SIZE);
   const start = Math.max(0, firstIdx - Math.floor(PAGE_SIZE / 2));
   const end = Math.min(props.items.length, start + PAGE_SIZE);
-  return props.items.slice(start, end);
+  // Include original index for each item
+  return props.items.slice(start, end).map((item, i) => ({ ...item, _index: start + i + 1 }));
 }
 
 function handleVisibleItemsChanged(event) {
@@ -135,11 +137,9 @@ onMounted(async () => {
   // Wait for map container to be properly sized before adding markers
   setTimeout(() => {
     leafletMap.invalidateSize();
-    // Add markers for initial visible items if already received, otherwise use first 50 from props
-    if (visibleItems.value.length > 0) {
-      addMarkersToMap(visibleItems.value);
-    } else if (props.items && props.items.length > 0) {
-      const initialItems = props.items.slice(0, 50);
+    // Always add first 50 markers with their index
+    if (props.items && props.items.length > 0) {
+      const initialItems = props.items.slice(0, 50).map((item, i) => ({ ...item, _index: i + 1 }));
       addMarkersToMap(initialItems);
     }
   }, 100);

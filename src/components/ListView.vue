@@ -3,14 +3,18 @@
     <h2 class="list-title">Graffiti Reports <span class="count">({{ visibleItems.length }} of {{ items?.length || 0 }})</span></h2>
     <ul class="report-list" ref="listRef" @scroll="handleScroll">
       <li 
-        v-for="item in visibleItems" 
+        v-for="(item, index) in visibleItems" 
         :key="item.service_request" 
         :ref="el => setItemRef(item.service_request, el)"
         class="report-card"
       >
         <div class="card-content" @click="selectItem(item)">
           <div class="card-header">
+            <span class="index-label">{{ index + 1 }}</span>
+            <span class="id-label">#{{ item.service_request }}</span>
             <span class="address">{{ item.address }}</span>
+          </div>
+          <div class="card-status">
             <span class="status-chip" :class="getStatusClass(item.status)">{{ item.status || 'Unknown' }}</span>
           </div>
           <div class="card-meta">
@@ -194,16 +198,43 @@ onMounted(() => {
 .card-header {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
   margin-bottom: 6px;
-  gap: 6px;
+  gap: 8px;
+}
+.index-label {
+  background: #e8f0fe;
+  color: #1a73e8;
+  border-radius: 4px;
+  min-width: 24px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+  padding: 0 4px;
+}
+.id-label {
+  background: #f1f3f4;
+  color: #5f6368;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .address {
   font-weight: 500;
   font-size: 13px;
   color: #202124;
   line-height: 1.4;
+  flex: 1;
+}
+.card-status {
+  margin-bottom: 6px;
 }
 .status-chip {
   border-radius: 4px;
@@ -211,7 +242,6 @@ onMounted(() => {
   font-size: 10px;
   font-weight: 500;
   white-space: nowrap;
-  flex-shrink: 0;
 }
 
 /* Status color variations */

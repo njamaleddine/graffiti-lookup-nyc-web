@@ -1,0 +1,84 @@
+---
+import ListView from '../components/ListView.vue';
+import MapView from '../components/MapView.vue';
+import Layout from '../layouts/Layout.astro';
+import graffitiLookups from '../../public/graffiti-lookups.json';
+
+const items = [...graffitiLookups].sort((a, b) => 
+  new Date(b.last_updated).getTime() - new Date(a.last_updated).getTime()
+);
+---
+<Layout>
+  <header class="page-header">
+    <h1>NYC Graffiti Lookup</h1>
+    <p>Explore recent graffiti removal requests across New York City</p>
+  </header>
+  <div class="content-layout">
+    <aside class="sidebar">
+      <ListView :items="items" client:load />
+    </aside>
+    <section class="main-content">
+      <MapView :items="items" client:load />
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .page-header {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .page-header h1 {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #202124;
+    margin: 0 0 8px 0;
+  }
+  .page-header p {
+    font-size: 15px;
+    color: #5f6368;
+    margin: 0;
+    font-weight: 400;
+  }
+  .content-layout {
+    display: flex;
+    gap: 24px;
+    flex: 1;
+    min-height: 0;
+  }
+  .sidebar {
+    width: 360px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .main-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  @media (max-width: 900px) {
+    .content-layout {
+      flex-direction: column;
+      gap: 20px;
+    }
+    .sidebar {
+      width: 100%;
+      max-height: 300px;
+    }
+    .page-header {
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+    }
+    .page-header h1 {
+      font-size: 22px;
+    }
+    .page-header p {
+      font-size: 14px;
+    }
+  }
+</style>

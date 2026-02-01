@@ -1,14 +1,21 @@
 <template>
   <section class="map-section">
-    <h2 class="map-title">Map View</h2>
-    <div id="map" class="map-root"></div>
+    <h2 class="map-title">
+      Map View
+    </h2>
+    <div
+      id="map"
+      class="map-root"
+    />
   </section>
 </template>
 <script setup>
 
 import { onMounted, onUnmounted, ref } from 'vue';
 
-const props = defineProps({ items: Array });
+const props = defineProps({
+  items: { type: Array, default: () => [] }
+});
 let leafletMap;
 let markerMap = {}; // service_request -> marker
 let leafletInstance = null;

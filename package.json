@@ -4,12 +4,19 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "astro": "^5.0.0",
     "@astrojs/vue": "^5.0.0",
     "vue": "^3.4.0",
     "leaflet": "^1.9.4"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "eslint-plugin-vue": "^9.0.0",
+    "eslint-plugin-astro": "^1.0.0"
   }
 }

@@ -41,13 +41,13 @@ To generate graffiti data and geocode addresses locally:
 
 ```bash
 # Install Python dependencies
-pip install -r scripts/geocode/requirements.txt
+pip install -r geocode/requirements.txt
 
 # Generate graffiti data (replace with your IDs)
 graffiti-lookup-nyc --ids "G258700,G258801,G258900" --file-path public/graffiti-lookups.json --file-type json
 
 # Geocode addresses
-python -m scripts.geocode
+python -m geocode
 ```
 
 ## Deployment

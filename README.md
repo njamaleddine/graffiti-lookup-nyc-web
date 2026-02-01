@@ -41,13 +41,13 @@ To generate graffiti data and geocode addresses locally:
 
 ```bash
 # Install Python dependencies
-pip install -r scripts/requirements.txt
+pip install -r scripts/geocode/requirements.txt
 
 # Generate graffiti data (replace with your IDs)
 graffiti-lookup-nyc --ids "G258700,G258801,G258900" --file-path public/graffiti-lookups.json --file-type json
 
 # Geocode addresses
-python scripts/geocode.py
+python -m scripts.geocode
 ```
 
 ## Deployment
@@ -81,20 +81,38 @@ You can trigger a manual deployment from the Actions tab by running the "Build a
 ## Project Structure
 
 ```
+├── .github/
+│   └── workflows/
+│       ├── build-and-deploy.yml  # Daily data fetch & deploy
+│       ├── codeql.yml            # Security analysis
+│       ├── lint-js.yml           # ESLint for Vue/Astro
+│       ├── lint-python.yml       # Black & flake8 for Python
+│       └── test.yml              # Python tests with coverage
 ├── public/
-│   └── graffiti-lookups.json  # Generated graffiti data
+│   ├── geocode-cache.json        # Cached geocoding results
+│   └── graffiti-lookups.json     # Generated graffiti data
 ├── scripts/
-│   ├── geocode.py             # Address geocoding script
-│   └── requirements.txt       # Python dependencies
+│   └── geocode/                  # Python geocoding package
+│       ├── __init__.py
+│       ├── __main__.py           # Entry point
+│       ├── geocoder.py           # Geocoding logic
+│       ├── logger.py             # Logging setup
+│       ├── sanitize.py           # Address normalization
+│       ├── requirements.txt      # Python dependencies
+│       ├── requirements-dev.txt  # Dev dependencies (pytest)
+│       └── tests/                # Test suite
 ├── src/
 │   ├── components/
-│   │   ├── ListView.vue       # Scrollable list of reports
-│   │   └── MapView.vue        # Leaflet map component
+│   │   ├── ListItem.vue          # Individual report card
+│   │   ├── ListView.vue          # Scrollable list container
+│   │   ├── MapView.vue           # Leaflet map component
+│   │   └── StatusChip.vue        # Status badge component
 │   ├── layouts/
-│   │   └── Layout.astro       # Base HTML layout
+│   │   └── Layout.astro          # Base HTML layout
 │   └── pages/
-│       └── index.astro        # Main page
-├── astro.config.mjs           # Astro configuration
+│       └── index.astro           # Main page
+├── astro.config.mjs              # Astro configuration
+├── eslint.config.js              # ESLint configuration
 └── package.json
 ```
 

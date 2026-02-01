@@ -4,17 +4,19 @@ An interactive web application to explore graffiti removal requests across New Y
 
 ## Features
 
-- **Interactive Map** - View graffiti reports on a Leaflet map powered by OpenStreetMap
+- **Interactive Map** - View graffiti reports on a Leaflet map with CARTO basemaps
 - **Searchable List** - Browse 100+ graffiti removal requests sorted by last updated
+- **Click to Highlight** - Click markers or list items to sync selection between views
 - **Daily Updates** - Data refreshed automatically via GitHub Actions using [graffiti-lookup-nyc](https://pypi.org/project/graffiti-lookup-nyc/)
 - **Geocoded Addresses** - Addresses automatically converted to map coordinates
+- **Mobile Responsive** - Optimized for mobile viewports (fits without scrolling)
 
 ## Tech Stack
 
 - [Astro](https://astro.build/) - Static site generator
 - [Vue 3](https://vuejs.org/) - Interactive components
-- [Leaflet](https://leafletjs.com/) - Map library
-- [geopy](https://geopy.readthedocs.io/) - Address geocoding
+- [Leaflet](https://leafletjs.com/) - Map library with [CARTO](https://carto.com/) tiles
+- [geopy](https://geopy.readthedocs.io/) - Address geocoding via Nominatim
 
 ## Local Development
 
@@ -88,19 +90,18 @@ You can trigger a manual deployment from the Actions tab by running the "Build a
 │       ├── lint-js.yml           # ESLint for Vue/Astro
 │       ├── lint-python.yml       # Black & flake8 for Python
 │       └── test.yml              # Python tests with coverage
+├── geocode/                      # Python geocoding package
+│   ├── __init__.py
+│   ├── __main__.py               # Entry point (python -m geocode)
+│   ├── geocoder.py               # Geocoding logic with caching
+│   ├── logger.py                 # Logging setup
+│   ├── sanitize.py               # Address normalization
+│   ├── requirements.txt          # Python dependencies
+│   ├── requirements-dev.txt      # Dev dependencies (pytest)
+│   └── tests/                    # Test suite
 ├── public/
 │   ├── geocode-cache.json        # Cached geocoding results
 │   └── graffiti-lookups.json     # Generated graffiti data
-├── scripts/
-│   └── geocode/                  # Python geocoding package
-│       ├── __init__.py
-│       ├── __main__.py           # Entry point
-│       ├── geocoder.py           # Geocoding logic
-│       ├── logger.py             # Logging setup
-│       ├── sanitize.py           # Address normalization
-│       ├── requirements.txt      # Python dependencies
-│       ├── requirements-dev.txt  # Dev dependencies (pytest)
-│       └── tests/                # Test suite
 ├── src/
 │   ├── components/
 │   │   ├── ListItem.vue          # Individual report card
@@ -113,6 +114,7 @@ You can trigger a manual deployment from the Actions tab by running the "Build a
 │       └── index.astro           # Main page
 ├── astro.config.mjs              # Astro configuration
 ├── eslint.config.js              # ESLint configuration
+├── setup.cfg                     # Python tool config (flake8, pytest)
 └── package.json
 ```
 

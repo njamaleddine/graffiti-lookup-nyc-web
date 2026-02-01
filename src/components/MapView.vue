@@ -189,7 +189,7 @@ function initializeMap() {
     .setView(calculateInitialCenter(), DEFAULT_ZOOM);
 
   leaflet
-    .tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+    .tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png', {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>',
       maxZoom: MAX_ZOOM

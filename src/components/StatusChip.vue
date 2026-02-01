@@ -60,7 +60,8 @@ const displayText = computed(() => props.status || 'Unknown');
   padding: 2px 6px;
   font-size: 10px;
   font-weight: 500;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .status-cleaned {

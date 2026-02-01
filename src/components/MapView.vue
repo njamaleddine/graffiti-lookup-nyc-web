@@ -46,6 +46,7 @@ const ICON_CONFIG = {
 let map = null;
 let leaflet = null;
 let markerMap = {};
+let currentFilteredItems = null; // Track filtered items when filtering is active
 
 const visibleItems = ref([]);
 const selectedItem = ref(null);
@@ -138,12 +139,15 @@ function highlightMarker(item) {
 }
 
 function getWindowedItems(centerItems) {
-  if (!props.items || centerItems.length === 0) {
+  // Use filtered items as source if filtering is active
+  const sourceItems = currentFilteredItems || props.items;
+  
+  if (!sourceItems || centerItems.length === 0) {
     return [];
   }
 
   const firstVisibleId = centerItems[0]?.service_request;
-  const firstIndex = props.items.findIndex(
+  const firstIndex = sourceItems.findIndex(
     (item) => item.service_request === firstVisibleId
   );
 
@@ -153,9 +157,9 @@ function getWindowedItems(centerItems) {
 
   const halfPage = Math.floor(PAGE_SIZE / 2);
   const start = Math.max(0, firstIndex - halfPage);
-  const end = Math.min(props.items.length, start + PAGE_SIZE);
+  const end = Math.min(sourceItems.length, start + PAGE_SIZE);
 
-  return props.items
+  return sourceItems
     .slice(start, end)
     .map((item, i) => ({ ...item, _index: start + i + 1 }));
 }
@@ -213,6 +217,14 @@ function onVisibleItemsChanged(event) {
   addMarkers(windowed);
 }
 
+function onFilteredItemsChanged(event) {
+  const items = event.detail;
+  // Store the full filtered list for windowing during scroll
+  currentFilteredItems = items;
+  // Show first page of filtered items
+  addMarkers(items.slice(0, PAGE_SIZE));
+}
+
 function onItemSelected(event) {
   const item = event.detail;
   selectedItem.value = item;
@@ -235,12 +247,14 @@ onMounted(async () => {
 
   window.addEventListener('resize', onWindowResize);
   window.addEventListener('visible-items-changed', onVisibleItemsChanged);
+  window.addEventListener('filtered-items-changed', onFilteredItemsChanged);
   window.addEventListener('item-selected', onItemSelected);
 });
 
 onUnmounted(() => {
   window.removeEventListener('resize', onWindowResize);
   window.removeEventListener('visible-items-changed', onVisibleItemsChanged);
+  window.removeEventListener('filtered-items-changed', onFilteredItemsChanged);
   window.removeEventListener('item-selected', onItemSelected);
 });
 </script>

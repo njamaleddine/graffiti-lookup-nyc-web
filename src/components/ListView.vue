@@ -3,8 +3,21 @@
     <header class="list-header">
       <h2 class="list-title">
         Graffiti Reports
-        <span class="count">({{ visibleItems.length }} of {{ totalCount }})</span>
+        <span class="count">({{ filteredItems.length }} of {{ totalCount }})</span>
       </h2>
+      <div class="filter-row">
+        <SearchBar
+          v-model="searchQuery"
+          placeholder="Search by ID or address..."
+          class="search-bar"
+        />
+        <StatusFilter
+          v-model="selectedStatus"
+          :options="uniqueStatuses"
+          placeholder="All statuses"
+          class="status-filter"
+        />
+      </div>
     </header>
 
     <ul
@@ -28,12 +41,21 @@
       >
         Loading more...
       </li>
+
+      <li
+        v-if="filteredItems.length === 0 && (searchQuery || selectedStatus)"
+        class="no-results"
+      >
+        No results found
+      </li>
     </ul>
   </section>
 </template>
 
 <script setup>
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue';
+import SearchBar from './SearchBar.vue';
+import StatusFilter from './StatusFilter.vue';
 import ListItem from './ListItem.vue';
 
 const props = defineProps({
@@ -50,15 +72,48 @@ const displayCount = ref(PAGE_SIZE);
 const itemRefs = ref({});
 const isMounted = ref(false);
 const selectedItem = ref(null);
+const searchQuery = ref('');
+const selectedStatus = ref('');
 
 const totalCount = computed(() => props.items?.length ?? 0);
 
+const uniqueStatuses = computed(() => {
+  const statuses = new Set();
+  (props.items ?? []).forEach((item) => {
+    if (item.status) {
+      statuses.add(item.status);
+    }
+  });
+  return Array.from(statuses).sort();
+});
+
+const filteredItems = computed(() => {
+  let items = props.items ?? [];
+  
+  // Filter by status
+  if (selectedStatus.value) {
+    items = items.filter((item) => item.status === selectedStatus.value);
+  }
+  
+  // Filter by search query (ID or address)
+  if (searchQuery.value.trim()) {
+    const query = searchQuery.value.toLowerCase().trim();
+    items = items.filter((item) => {
+      const id = (item.service_request || '').toLowerCase();
+      const address = (item.address || '').toLowerCase();
+      return id.includes(query) || address.includes(query);
+    });
+  }
+  
+  return items;
+});
+
 const visibleItems = computed(() =>
-  props.items?.slice(0, displayCount.value) ?? []
+  filteredItems.value.slice(0, displayCount.value)
 );
 
 const hasMore = computed(() =>
-  displayCount.value < totalCount.value
+  displayCount.value < filteredItems.value.length
 );
 
 function registerItemRef(id, el) {
@@ -127,10 +182,33 @@ function loadMoreIfNeeded() {
   if (distanceFromBottom < SCROLL_THRESHOLD) {
     displayCount.value = Math.min(
       displayCount.value + PAGE_SIZE,
-      totalCount.value
+      filteredItems.value.length
     );
   }
 }
+
+function onFilterChange() {
+  displayCount.value = PAGE_SIZE;
+  itemRefs.value = {};
+}
+
+function emitFilteredItems() {
+  if (!isMounted.value || typeof window === 'undefined') return;
+  
+  // Send all filtered items with indices for the map to use
+  const allFiltered = filteredItems.value
+    .map((item, i) => ({ ...item, _index: i + 1 }));
+  
+  window.dispatchEvent(
+    new CustomEvent('filtered-items-changed', {
+      detail: allFiltered
+    })
+  );
+}
+
+watch(filteredItems, () => {
+  emitFilteredItems();
+});
 
 watch(
   () => props.items,
@@ -184,6 +262,24 @@ onUnmounted(() => {
   letter-spacing: normal;
 }
 
+.filter-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  align-items: stretch;
+}
+
+.search-bar {
+  flex: 2;
+  min-width: 120px;
+  display: flex;
+}
+
+.status-filter {
+  flex: 1;
+  max-width: 160px;
+}
+
 .report-list {
   list-style: none;
   padding: 0;
@@ -207,12 +303,33 @@ onUnmounted(() => {
   color: #5f6368;
 }
 
+.no-results {
+  background: #f8f9fa;
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #5f6368;
+}
+
 @media (max-width: 900px) {
   .list-container {
     height: 100%;
   }
   .list-title {
     margin-bottom: 8px;
+  }
+  .filter-row {
+    flex-direction: row;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .search-bar {
+    flex: 2;
+    min-width: 100px;
+  }
+  .status-filter {
+    flex: 1;
+    max-width: 120px;
   }
 }
 </style>

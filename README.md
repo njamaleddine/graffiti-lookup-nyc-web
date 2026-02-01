@@ -4,19 +4,21 @@ An interactive web application to explore graffiti removal requests across New Y
 
 ## Features
 
-- **Interactive Map** - View graffiti reports on a Leaflet map with CARTO basemaps
-- **Searchable List** - Browse 100+ graffiti removal requests sorted by last updated
+- **Interactive Map** - View graffiti reports on a Leaflet map with CARTO Voyager basemaps
+- **Search & Filter** - Search by ID or address, filter by status with dropdown
 - **Click to Highlight** - Click markers or list items to sync selection between views
+- **Live Map Updates** - Map markers update in real-time as you filter or scroll
 - **Daily Updates** - Data refreshed automatically via GitHub Actions using [graffiti-lookup-nyc](https://pypi.org/project/graffiti-lookup-nyc/)
-- **Geocoded Addresses** - Addresses automatically converted to map coordinates
-- **Mobile Responsive** - Optimized for mobile viewports (fits without scrolling)
+- **Geocoded Addresses** - Addresses automatically converted to map coordinates with caching
+- **Mobile Responsive** - Optimized for mobile viewports with side-by-side filters
 
 ## Tech Stack
 
 - [Astro](https://astro.build/) - Static site generator
-- [Vue 3](https://vuejs.org/) - Interactive components
-- [Leaflet](https://leafletjs.com/) - Map library with [CARTO](https://carto.com/) tiles
+- [Vue 3](https://vuejs.org/) - Interactive components with Composition API
+- [Leaflet](https://leafletjs.com/) - Map library with [CARTO Voyager](https://carto.com/) tiles
 - [geopy](https://geopy.readthedocs.io/) - Address geocoding via Nominatim
+- [graffiti-lookup-nyc](https://pypi.org/project/graffiti-lookup-nyc/) - NYC 311 graffiti data CLI
 
 ## Local Development
 
@@ -105,13 +107,15 @@ You can trigger a manual deployment from the Actions tab by running the "Build a
 ├── src/
 │   ├── components/
 │   │   ├── ListItem.vue          # Individual report card
-│   │   ├── ListView.vue          # Scrollable list container
-│   │   ├── MapView.vue           # Leaflet map component
-│   │   └── StatusChip.vue        # Status badge component
+│   │   ├── ListView.vue          # Scrollable list with search & filter
+│   │   ├── MapView.vue           # Leaflet map with dynamic markers
+│   │   ├── SearchBar.vue         # Reusable search input component
+│   │   ├── StatusChip.vue        # Status badge with color coding
+│   │   └── StatusFilter.vue      # Reusable status dropdown filter
 │   ├── layouts/
-│   │   └── Layout.astro          # Base HTML layout
+│   │   └── Layout.astro          # Base HTML layout (100dvh viewport)
 │   └── pages/
-│       └── index.astro           # Main page
+│       └── index.astro           # Main page with flex layout
 ├── astro.config.mjs              # Astro configuration
 ├── eslint.config.js              # ESLint configuration
 ├── setup.cfg                     # Python tool config (flake8, pytest)

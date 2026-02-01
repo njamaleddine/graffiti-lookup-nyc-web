@@ -1,4 +1,4 @@
-name: Lint Geocode Python Scripts
+name: Lint Python
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: Test
+name: Test Python
 
 on:
   push:
@@ -6,13 +6,13 @@ on:
     paths:
       - 'geocode/**'
       - 'setup.cfg'
-      - '.github/workflows/test.yml'
+      - '.github/workflows/test-python.yml'
   pull_request:
     branches: [main]
     paths:
       - 'geocode/**'
       - 'setup.cfg'
-      - '.github/workflows/test.yml'
+      - '.github/workflows/test-python.yml'
 
 jobs:
   test:

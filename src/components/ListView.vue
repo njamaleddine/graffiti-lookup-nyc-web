@@ -35,35 +35,19 @@
 import { ref, computed, watch, onMounted } from 'vue';
 import ListItem from './ListItem.vue';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Props
-// ─────────────────────────────────────────────────────────────────────────────
-
 const props = defineProps({
   items: { type: Array, default: () => [] }
 });
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Constants
-// ─────────────────────────────────────────────────────────────────────────────
 
 const PAGE_SIZE = 50;
 const SCROLL_THRESHOLD = 100;
 const VIEWPORT_DEBOUNCE_MS = 50;
 const INITIAL_DELAY_MS = 100;
 
-// ─────────────────────────────────────────────────────────────────────────────
-// State
-// ─────────────────────────────────────────────────────────────────────────────
-
 const listRef = ref(null);
 const displayCount = ref(PAGE_SIZE);
 const itemRefs = ref({});
 const isMounted = ref(false);
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Computed
-// ─────────────────────────────────────────────────────────────────────────────
 
 const totalCount = computed(() => props.items?.length ?? 0);
 
@@ -75,19 +59,11 @@ const hasMore = computed(() =>
   displayCount.value < totalCount.value
 );
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Ref Registration (for viewport tracking)
-// ─────────────────────────────────────────────────────────────────────────────
-
 function registerItemRef(id, el) {
   if (el?.$el) {
     itemRefs.value[id] = el.$el;
   }
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Viewport Calculation
-// ─────────────────────────────────────────────────────────────────────────────
 
 function getViewportItems() {
   if (!listRef.value || !isMounted.value) return [];
@@ -112,10 +88,6 @@ function emitViewportItems() {
     })
   );
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Event Handlers
-// ─────────────────────────────────────────────────────────────────────────────
 
 function onItemSelect(item) {
   if (!isMounted.value || typeof window === 'undefined') return;
@@ -144,10 +116,6 @@ function loadMoreIfNeeded() {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Watchers
-// ─────────────────────────────────────────────────────────────────────────────
-
 watch(
   () => props.items,
   () => {
@@ -159,10 +127,6 @@ watch(
 watch(visibleItems, () => {
   setTimeout(emitViewportItems, VIEWPORT_DEBOUNCE_MS);
 });
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Lifecycle
-// ─────────────────────────────────────────────────────────────────────────────
 
 onMounted(() => {
   isMounted.value = true;

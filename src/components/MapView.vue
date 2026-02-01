@@ -24,78 +24,76 @@ const BOUNDS_PADDING = 0.1;
 const PAGE_SIZE = 50;
 const INIT_DELAY_MS = 100;
 
-const MARKER_ICON_URL = 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png';
-
 const ICON_CONFIG = {
   default: {
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34]
+    radius: 8,
+    fillColor: '#1a73e8',
+    color: '#fff',
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.9
   },
   highlighted: {
-    iconSize: [35, 57],
-    iconAnchor: [17, 57],
-    popupAnchor: [1, -48],
-    className: 'highlighted-marker'
+    radius: 10,
+    fillColor: '#7c4dff',
+    color: '#fff',
+    weight: 2,
+    opacity: 1,
+    fillOpacity: 1
   }
 };
 
 let map = null;
 let leaflet = null;
-let defaultIcon = null;
-let highlightIcon = null;
 let markerMap = {};
 
 const visibleItems = ref([]);
 const selectedItem = ref(null);
 
-function createIcons() {
-  if (!leaflet) return;
-
-  defaultIcon = leaflet.icon({
-    iconUrl: MARKER_ICON_URL,
-    ...ICON_CONFIG.default
-  });
-
-  highlightIcon = leaflet.icon({
-    iconUrl: MARKER_ICON_URL,
-    ...ICON_CONFIG.highlighted
-  });
-}
-
-function createPopupContent(item) {
-  const indexBadge = item._index
-    ? `<span style="background:#e8f0fe;color:#1a73e8;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;">${item._index}</span> `
-    : '';
-
-  return `
-    ${indexBadge}<b>${item.address}</b><br>
-    <span style="color:#5f6368;font-size:11px;">#${item.service_request}</span><br>
-    ${item.status}
-  `.trim();
-}
-
-function clearMarkers() {
-  Object.values(markerMap).forEach((marker) => marker.remove());
-  markerMap = {};
-}
-
-function createMarker(item) {
-  const isSelected = selectedItem.value?.service_request === item.service_request;
+function createMarker(item, isSelected = false) {
+  const config = isSelected ? ICON_CONFIG.highlighted : ICON_CONFIG.default;
 
   const marker = leaflet
-    .marker([item.latitude, item.longitude], {
-      icon: isSelected ? highlightIcon : defaultIcon,
-      zIndexOffset: isSelected ? 1000 : 0
-    })
+    .circleMarker([item.latitude, item.longitude], config)
     .addTo(map)
-    .bindPopup(createPopupContent(item));
+    .bindPopup(createPopupContent(item))
+    .on('click', () => onMarkerClick(item));
 
   if (isSelected) {
     marker.openPopup();
   }
 
   return marker;
+}
+
+function onMarkerClick(item) {
+  selectedItem.value = item;
+  highlightMarker(item);
+
+  window.dispatchEvent(
+    new CustomEvent('marker-selected', { detail: item })
+  );
+}
+
+function createPopupContent(item) {
+  const indexBadge = item._index
+    ? `<span style="background:#e8f0fe;color:#1a73e8;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;min-width:24px;text-align:center;display:inline-block;">${item._index}</span>`
+    : '';
+
+  const idBadge = `<span style="background:#f1f3f4;color:#5f6368;border-radius:4px;padding:2px 6px;font-size:10px;font-weight:500;">#${item.service_request}</span>`;
+
+  return `
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+      ${indexBadge}${idBadge}
+    </div>
+    <div style="font-weight:600;margin-bottom:4px;">${item.address}</div>
+    <div style="color:#5f6368;font-size:12px;">${item.status}</div>
+  `.trim();
+}
+
+function clearMarkers() {
+  Object.values(markerMap).forEach((marker) => marker.remove());
+  markerMap = {};
 }
 
 function addMarkers(items) {
@@ -106,7 +104,8 @@ function addMarkers(items) {
   items
     .filter((item) => item.latitude && item.longitude)
     .forEach((item) => {
-      markerMap[item.service_request] = createMarker(item);
+      const isSelected = selectedItem.value?.service_request === item.service_request;
+      markerMap[item.service_request] = createMarker(item, isSelected);
     });
 
   fitBoundsToMarkers();
@@ -123,11 +122,13 @@ function fitBoundsToMarkers() {
 function highlightMarker(item) {
   Object.entries(markerMap).forEach(([id, marker]) => {
     const isTarget = id === item.service_request;
+    const config = isTarget ? ICON_CONFIG.highlighted : ICON_CONFIG.default;
 
-    marker.setIcon(isTarget ? highlightIcon : defaultIcon);
-    marker.setZIndexOffset(isTarget ? 1000 : 0);
+    marker.setStyle(config);
+    marker.setRadius(config.radius);
 
     if (isTarget) {
+      marker.bringToFront();
       marker.openPopup();
       if (item.latitude && item.longitude) {
         map.panTo([item.latitude, item.longitude]);
@@ -225,7 +226,6 @@ function onWindowResize() {
 onMounted(async () => {
   leaflet = (await import('leaflet')).default;
 
-  createIcons();
   initializeMap();
 
   setTimeout(() => {
@@ -276,7 +276,6 @@ onUnmounted(() => {
 }
 
 :deep(.highlighted-marker) {
-  filter: hue-rotate(120deg) saturate(1.5) brightness(1.1);
   transition: all 0.2s ease;
 }
 

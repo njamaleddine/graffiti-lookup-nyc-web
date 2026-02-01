@@ -18,6 +18,7 @@
         :ref="(el) => registerItemRef(item.service_request, el)"
         :item="item"
         :index="index + 1"
+        :is-selected="selectedItem?.service_request === item.service_request"
         @select="onItemSelect"
       />
 
@@ -32,7 +33,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue';
 import ListItem from './ListItem.vue';
 
 const props = defineProps({
@@ -48,6 +49,7 @@ const listRef = ref(null);
 const displayCount = ref(PAGE_SIZE);
 const itemRefs = ref({});
 const isMounted = ref(false);
+const selectedItem = ref(null);
 
 const totalCount = computed(() => props.items?.length ?? 0);
 
@@ -92,9 +94,23 @@ function emitViewportItems() {
 function onItemSelect(item) {
   if (!isMounted.value || typeof window === 'undefined') return;
 
+  selectedItem.value = item;
   window.dispatchEvent(
     new CustomEvent('item-selected', { detail: item })
   );
+}
+
+function onMarkerSelected(event) {
+  const item = event.detail;
+  selectedItem.value = item;
+  scrollToItem(item);
+}
+
+function scrollToItem(item) {
+  const el = itemRefs.value[item.service_request];
+  if (el && listRef.value) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 }
 
 function onScroll() {
@@ -131,6 +147,11 @@ watch(visibleItems, () => {
 onMounted(() => {
   isMounted.value = true;
   setTimeout(emitViewportItems, INITIAL_DELAY_MS);
+  window.addEventListener('marker-selected', onMarkerSelected);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('marker-selected', onMarkerSelected);
 });
 </script>
 

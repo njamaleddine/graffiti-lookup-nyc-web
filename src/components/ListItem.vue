@@ -1,5 +1,8 @@
 <template>
-  <li class="report-card">
+  <li
+    class="report-card"
+    :class="{ selected: isSelected }"
+  >
     <div
       class="card-content"
       @click="$emit('select', item)"
@@ -34,6 +37,10 @@ defineProps({
   index: {
     type: Number,
     required: true
+  },
+  isSelected: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -60,6 +67,11 @@ defineEmits(['select']);
 
 .report-card:hover {
   background: #e8f0fe;
+}
+
+.report-card.selected {
+  background: #e8f0fe;
+  box-shadow: inset 3px 0 0 #1a73e8;
 }
 
 .card-content {

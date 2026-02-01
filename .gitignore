@@ -4,3 +4,4 @@ public/
 .env
 .astro/
 __pycache__/
+.pytest_cache/

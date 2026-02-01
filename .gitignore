@@ -1,5 +1,5 @@
 node_modules/
 dist/
-public/*.json
+public/
 .env
-.astro/*
+.astro/

@@ -2,38 +2,46 @@ name: Build and Deploy
 
 on:
   schedule:
-    - cron: '0 5 * * *'  # 12am EST
+    - cron: '0 0 * * *'  # 7pm ET (midnight UTC)
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Ensure public directory exists
-        run: mkdir -p public
       - uses: actions/checkout@v4
+
+      - name: Create public directory
+        run: mkdir -p public
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: scripts/requirements.txt
 
-      - name: Install graffiti-lookup-nyc
-        run: pip install graffiti-lookup-nyc
+      - name: Install Python dependencies
+        run: pip install -r scripts/requirements.txt
 
       - name: Generate graffiti lookup data
         run: |
           graffiti-lookup-nyc --ids "${{ vars.GRAFFITI_IDS }}" --file-path public/graffiti-lookups.json --file-type json
 
+      - name: Restore geocode cache
+        uses: actions/cache@v4
+        with:
+          path: public/geocode-cache.json
+          key: geocode-cache
+
       - name: Geocode addresses
-        run: |
-          pip install -r scripts/requirements.txt
-          python scripts/geocode.py
+        run: python -m scripts.geocode
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci

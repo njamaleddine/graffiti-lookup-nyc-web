@@ -160,8 +160,8 @@ onUnmounted(() => {
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 180px);
-  max-height: 600px;
+  height: 100%;
+  min-height: 0;
 }
 
 .list-header {
@@ -209,7 +209,10 @@ onUnmounted(() => {
 
 @media (max-width: 900px) {
   .list-container {
-    max-height: 300px;
+    height: 100%;
+  }
+  .list-title {
+    margin-bottom: 8px;
   }
 }
 </style>

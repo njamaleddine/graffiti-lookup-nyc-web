@@ -1,0 +1,37 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'setup.cfg'
+      - '.github/workflows/test.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'setup.cfg'
+      - '.github/workflows/test.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: scripts/geocode/requirements-dev.txt
+
+      - name: Install dependencies
+        run: pip install -r scripts/geocode/requirements-dev.txt
+
+      - name: Run tests with coverage
+        run: pytest scripts/geocode/tests -v --cov=scripts/geocode --cov-report=term-missing
+
+      - name: Check coverage threshold
+        run: pytest scripts/geocode/tests --cov=scripts/geocode --cov-fail-under=80

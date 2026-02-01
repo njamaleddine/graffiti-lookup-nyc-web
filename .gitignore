@@ -3,3 +3,4 @@ dist/
 public/
 .env
 .astro/
+__pycache__/

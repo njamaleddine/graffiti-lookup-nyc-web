@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Main script to geocode graffiti lookup addresses."""
+
 import json
 
 from geocode.geocoder import geocode_addresses

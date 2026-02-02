@@ -122,6 +122,50 @@ You can trigger a manual deployment from the Actions tab by running the "Build a
 └── package.json
 ```
 
+## Architecture Diagram
+
+The diagram below shows the high-level architecture: scheduled data generation (GitHub Actions + Python), public data assets, and the Astro/Vue frontend with event flows between the list and map views. 
+
+```mermaid
+flowchart LR
+  %% Backend / data pipeline
+  GH[GitHub Actions]
+  CLI["graffiti-lookup-nyc (Python)"]
+  GEOPY["geocode (Python)"]
+
+  GH --> CLI
+  GH --> GEOPY
+
+  CLI --> PUBLIC_JSON["public/graffiti-lookups.json"]
+  GEOPY --> GEOCACHE["public/geocode-cache.json"]
+  GEOCACHE -.-> CLI
+
+  %% Site build & deploy
+  GH --> ASTRO["Astro build"]
+  ASTRO --> DIST["dist/ (static site)"]
+  DIST --> GH_PAGES["GitHub Pages"]
+
+  %% Frontend app
+  ASTRO --> PAGE["index.astro"]
+  PAGE --> LAYOUT["Layout.astro"]
+  LAYOUT --> LIST["ListView.vue"]
+  LAYOUT --> MAP["MapView.vue"]
+  LIST --> ITEM["ListItem.vue"]
+  LIST --> SEARCH["SearchBar.vue"]
+  LIST --> FILTER["StatusFilter.vue"]
+  LIST --> CHIP["StatusChip.vue"]
+
+  %% Event flows between list and map
+  LIST -->|filtered-items-changed| MAP
+  LIST -->|visible-items-changed| MAP
+  LIST -->|item-selected-user| MAP
+  MAP -->|marker-selected-click| LIST
+
+  %% Data flow into frontend
+  PUBLIC_JSON --> ASTRO
+  ASTRO --> PAGE
+```
+
 ## License
 
 MIT

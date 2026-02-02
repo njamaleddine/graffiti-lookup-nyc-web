@@ -2,7 +2,8 @@ name: Build and Deploy
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 7pm ET (midnight UTC)
+    # Run at 00:00 UTC Monday through Friday. This corresponds to 7pm ET (winter) / 8pm ET (summer).
+    - cron: '0 0 * * 1-5'
   workflow_dispatch:
 
 permissions:

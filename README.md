@@ -122,6 +122,62 @@ You can trigger a manual deployment from the Actions tab by running the "Build a
 └── package.json
 ```
 
+## Architecture Diagram
+
+The diagram below shows the high-level architecture: scheduled data generation (GitHub Actions + Python), public data assets, and the Astro/Vue frontend with event flows between the list and map views. This Mermaid graph will render as an SVG on GitHub.
+
+```mermaid
+flowchart LR
+   %% Backend / data pipeline
+   subgraph CI[GitHub Actions]
+      direction TB
+      GH[Build & Deploy workflow]
+      GH -->|runs graffiti-lookup-nyc CLI| CLI[graffiti-lookup-nyc (Python)]
+      GH -->|runs geocode| GEOPY[geocode Python package]
+   end
+
+   CLI --> |writes| PUBLIC_JSON[public/graffiti-lookups.json]
+   GEOPY --> |reads/writes| GEOCACHE[public/geocode-cache.json]
+   GEOCACHE -.-> |cached coords| CLI
+
+   %% Site build & deploy
+   GH --> |npm run build| ASTRO[Astro build]
+   ASTRO --> DIST[dist/ (static site)]
+   DIST --> |deployed to| GH_PAGES[GitHub Pages]
+
+   %% Frontend app
+   subgraph Frontend[Client (browser)]
+      direction TB
+      PAGE[index.astro]
+      LAYOUT[Layout.astro]
+      PAGE --> LAYOUT
+      subgraph Components[Vue Components]
+         direction LR
+         LIST[ListView.vue]
+         MAP[MapView.vue]
+         ITEM[ListItem.vue]
+         SEARCH[SearchBar.vue]
+         FILTER[StatusFilter.vue]
+         CHIP[StatusChip.vue]
+      end
+      LAYOUT --> Components
+   end
+
+   %% Event flows between list and map
+   LIST -->|filtered-items-changed| MAP
+   LIST -->|visible-items-changed| MAP
+   LIST -->|item-selected (user)| MAP
+   MAP -->|marker-selected (click)| LIST
+
+   %% Data flow into frontend
+   PUBLIC_JSON --> |fetched at build or runtime| ASTRO
+   ASTRO --> Frontend
+
+   classDef infra fill:#f8f9fa,stroke:#bfc7d6;
+   class CI,CLI,GEOPY,ASTRO,DIST,GH_PAGES,PUBLIC_JSON,GEOCACHE infra;
+   class Frontend,Components,LIST,MAP,ITEM,SEARCH,FILTER,CHIP infra;
+``` 
+
 ## License
 
 MIT

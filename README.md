@@ -124,7 +124,7 @@ You can trigger a manual deployment from the Actions tab by running the "Build a
 
 ## Architecture Diagram
 
-The diagram below shows the high-level architecture: scheduled data generation (GitHub Actions + Python), public data assets, and the Astro/Vue frontend with event flows between the list and map views. This Mermaid graph will render as an SVG on GitHub.
+The diagram below shows the high-level architecture: scheduled data generation (GitHub Actions + Python), public data assets, and the Astro/Vue frontend with event flows between the list and map views. 
 
 ```mermaid
 flowchart LR
@@ -158,8 +158,8 @@ flowchart LR
   %% Event flows between list and map
   LIST -->|filtered-items-changed| MAP
   LIST -->|visible-items-changed| MAP
-  LIST -->|item-selected (user)| MAP
-  MAP -->|marker-selected (click)| LIST
+  LIST -->|item-selected-user| MAP
+  MAP -->|marker-selected-click| LIST
 
   %% Data flow into frontend
   PUBLIC_JSON --> ASTRO

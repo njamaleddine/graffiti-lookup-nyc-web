@@ -53,7 +53,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted, onUnmounted } from 'vue';
+import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue';
 import SearchBar from './SearchBar.vue';
 import StatusFilter from './StatusFilter.vue';
 import ListItem from './ListItem.vue';
@@ -75,6 +75,45 @@ const selectedItem = ref(null);
 const searchQuery = ref('');
 const selectedStatus = ref('');
 
+function initFromUrlParams() {
+  if (typeof window === 'undefined') return;
+  const params = new URLSearchParams(window.location.search);
+  const search = params.get('search');
+  const status = params.get('status');
+  const id = params.get('id');
+  if (search) searchQuery.value = search;
+  if (status) selectedStatus.value = status;
+  if (id) {
+    const item = props.items.find((i) => i.service_request === id);
+    if (item) {
+      selectedItem.value = item;
+      setTimeout(() => scrollToItem(item), 150);
+    }
+  }
+}
+
+function updateUrlParams() {
+  if (typeof window === 'undefined') return;
+  const params = new URLSearchParams();
+  if (searchQuery.value.trim()) {
+    params.set('search', searchQuery.value.trim());
+  }
+  if (selectedStatus.value) {
+    params.set('status', selectedStatus.value);
+  }
+  if (selectedItem.value?.service_request) {
+    params.set('id', selectedItem.value.service_request);
+  }
+  const newUrl = params.toString()
+    ? `${window.location.pathname}?${params.toString()}`
+    : window.location.pathname;
+  window.history.replaceState({}, '', newUrl);
+}
+
+if (typeof window !== 'undefined') {
+  initFromUrlParams();
+}
+
 const totalCount = computed(() => props.items?.length ?? 0);
 
 const uniqueStatuses = computed(() => {
@@ -89,13 +128,11 @@ const uniqueStatuses = computed(() => {
 
 const filteredItems = computed(() => {
   let items = props.items ?? [];
-  
-  // Filter by status
+
   if (selectedStatus.value) {
     items = items.filter((item) => item.status === selectedStatus.value);
   }
-  
-  // Filter by search query (ID or address)
+
   if (searchQuery.value.trim()) {
     const query = searchQuery.value.toLowerCase().trim();
     items = items.filter((item) => {
@@ -149,16 +186,38 @@ function emitViewportItems() {
 function onItemSelect(item) {
   if (!isMounted.value || typeof window === 'undefined') return;
 
-  selectedItem.value = item;
-  window.dispatchEvent(
-    new CustomEvent('item-selected', { detail: item })
-  );
+  if (selectedItem.value?.service_request === item.service_request) {
+    selectedItem.value = null;
+    window.dispatchEvent(
+      new CustomEvent('item-selected', { detail: null })
+    );
+  } else {
+    selectedItem.value = item;
+    window.dispatchEvent(
+      new CustomEvent('item-selected', { detail: item })
+    );
+  }
 }
 
 function onMarkerSelected(event) {
   const item = event.detail;
   selectedItem.value = item;
-  scrollToItem(item);
+  ensureItemVisibleAndScroll(item);
+}
+
+function ensureItemVisibleAndScroll(item) {
+  const itemIndex = filteredItems.value.findIndex(
+    (i) => i.service_request === item.service_request
+  );
+
+  if (itemIndex === -1) return;
+
+  if (itemIndex >= displayCount.value) {
+    displayCount.value = itemIndex + PAGE_SIZE;
+    nextTick(() => scrollToItem(item));
+  } else {
+    scrollToItem(item);
+  }
 }
 
 function scrollToItem(item) {
@@ -194,8 +253,7 @@ function onFilterChange() {
 
 function emitFilteredItems() {
   if (!isMounted.value || typeof window === 'undefined') return;
-  
-  // Send all filtered items with indices for the map to use
+
   const allFiltered = filteredItems.value
     .map((item, i) => ({ ...item, _index: i + 1 }));
   
@@ -206,9 +264,9 @@ function emitFilteredItems() {
   );
 }
 
-watch(filteredItems, () => {
-  emitFilteredItems();
-});
+watch(filteredItems, emitFilteredItems);
+
+watch([searchQuery, selectedStatus, selectedItem], updateUrlParams);
 
 watch(
   () => props.items,

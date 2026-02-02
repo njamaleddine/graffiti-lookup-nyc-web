@@ -138,10 +138,17 @@ function highlightMarker(item) {
   });
 }
 
+function clearHighlight() {
+  Object.values(markerMap).forEach((marker) => {
+    marker.setStyle(ICON_CONFIG.default);
+    marker.setRadius(ICON_CONFIG.default.radius);
+    marker.closePopup();
+  });
+}
+
 function getWindowedItems(centerItems) {
-  // Use filtered items as source if filtering is active
   const sourceItems = currentFilteredItems || props.items;
-  
+
   if (!sourceItems || centerItems.length === 0) {
     return [];
   }
@@ -218,17 +225,18 @@ function onVisibleItemsChanged(event) {
 }
 
 function onFilteredItemsChanged(event) {
-  const items = event.detail;
-  // Store the full filtered list for windowing during scroll
-  currentFilteredItems = items;
-  // Show first page of filtered items
-  addMarkers(items.slice(0, PAGE_SIZE));
+  currentFilteredItems = event.detail;
+  addMarkers(currentFilteredItems.slice(0, PAGE_SIZE));
 }
 
 function onItemSelected(event) {
   const item = event.detail;
   selectedItem.value = item;
-  highlightMarker(item);
+  if (item) {
+    highlightMarker(item);
+  } else {
+    clearHighlight();
+  }
 }
 
 function onWindowResize() {

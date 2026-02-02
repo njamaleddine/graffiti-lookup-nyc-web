@@ -4,7 +4,9 @@
     class="status-select"
     @change="$emit('update:modelValue', $event.target.value)"
   >
-    <option value="">{{ placeholder }}</option>
+    <option value="">
+      {{ placeholder }}
+    </option>
     <option
       v-for="option in options"
       :key="option"

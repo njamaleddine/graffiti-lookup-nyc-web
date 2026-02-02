@@ -6,12 +6,12 @@
       class="search-input"
       :placeholder="placeholder"
       @input="$emit('update:modelValue', $event.target.value)"
-    />
+    >
     <button
       v-if="modelValue"
       class="clear-button"
-      @click="$emit('update:modelValue', '')"
       aria-label="Clear search"
+      @click="$emit('update:modelValue', '')"
     >
       ×
     </button>

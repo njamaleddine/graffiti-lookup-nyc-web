@@ -110,10 +110,6 @@ function updateUrlParams() {
   window.history.replaceState({}, '', newUrl);
 }
 
-if (typeof window !== 'undefined') {
-  initFromUrlParams();
-}
-
 const totalCount = computed(() => props.items?.length ?? 0);
 
 const uniqueStatuses = computed(() => {
@@ -281,6 +277,7 @@ watch(visibleItems, () => {
 });
 
 onMounted(() => {
+  initFromUrlParams();
   isMounted.value = true;
   setTimeout(emitViewportItems, INITIAL_DELAY_MS);
   window.addEventListener('marker-selected', onMarkerSelected);

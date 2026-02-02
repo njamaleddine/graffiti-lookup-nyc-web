@@ -128,55 +128,43 @@ The diagram below shows the high-level architecture: scheduled data generation (
 
 ```mermaid
 flowchart LR
-   %% Backend / data pipeline
-   subgraph CI[GitHub Actions]
-      direction TB
-      GH[Build & Deploy workflow]
-      GH -->|runs graffiti-lookup-nyc CLI| CLI[graffiti-lookup-nyc (Python)]
-      GH -->|runs geocode| GEOPY[geocode Python package]
-   end
+  %% Backend / data pipeline
+  GH[GitHub Actions]
+  CLI["graffiti-lookup-nyc (Python)"]
+  GEOPY["geocode (Python)"]
 
-   CLI --> |writes| PUBLIC_JSON[public/graffiti-lookups.json]
-   GEOPY --> |reads/writes| GEOCACHE[public/geocode-cache.json]
-   GEOCACHE -.-> |cached coords| CLI
+  GH --> CLI
+  GH --> GEOPY
 
-   %% Site build & deploy
-   GH --> |npm run build| ASTRO[Astro build]
-   ASTRO --> DIST[dist/ (static site)]
-   DIST --> |deployed to| GH_PAGES[GitHub Pages]
+  CLI --> PUBLIC_JSON["public/graffiti-lookups.json"]
+  GEOPY --> GEOCACHE["public/geocode-cache.json"]
+  GEOCACHE -.-> CLI
 
-   %% Frontend app
-   subgraph Frontend[Client (browser)]
-      direction TB
-      PAGE[index.astro]
-      LAYOUT[Layout.astro]
-      PAGE --> LAYOUT
-      subgraph Components[Vue Components]
-         direction LR
-         LIST[ListView.vue]
-         MAP[MapView.vue]
-         ITEM[ListItem.vue]
-         SEARCH[SearchBar.vue]
-         FILTER[StatusFilter.vue]
-         CHIP[StatusChip.vue]
-      end
-      LAYOUT --> Components
-   end
+  %% Site build & deploy
+  GH --> ASTRO["Astro build"]
+  ASTRO --> DIST["dist/ (static site)"]
+  DIST --> GH_PAGES["GitHub Pages"]
 
-   %% Event flows between list and map
-   LIST -->|filtered-items-changed| MAP
-   LIST -->|visible-items-changed| MAP
-   LIST -->|item-selected (user)| MAP
-   MAP -->|marker-selected (click)| LIST
+  %% Frontend app
+  ASTRO --> PAGE["index.astro"]
+  PAGE --> LAYOUT["Layout.astro"]
+  LAYOUT --> LIST["ListView.vue"]
+  LAYOUT --> MAP["MapView.vue"]
+  LIST --> ITEM["ListItem.vue"]
+  LIST --> SEARCH["SearchBar.vue"]
+  LIST --> FILTER["StatusFilter.vue"]
+  LIST --> CHIP["StatusChip.vue"]
 
-   %% Data flow into frontend
-   PUBLIC_JSON --> |fetched at build or runtime| ASTRO
-   ASTRO --> Frontend
+  %% Event flows between list and map
+  LIST -->|filtered-items-changed| MAP
+  LIST -->|visible-items-changed| MAP
+  LIST -->|item-selected (user)| MAP
+  MAP -->|marker-selected (click)| LIST
 
-   classDef infra fill:#f8f9fa,stroke:#bfc7d6;
-   class CI,CLI,GEOPY,ASTRO,DIST,GH_PAGES,PUBLIC_JSON,GEOCACHE infra;
-   class Frontend,Components,LIST,MAP,ITEM,SEARCH,FILTER,CHIP infra;
-``` 
+  %% Data flow into frontend
+  PUBLIC_JSON --> ASTRO
+  ASTRO --> PAGE
+```
 
 ## License
 

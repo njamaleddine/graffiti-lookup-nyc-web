@@ -278,12 +278,12 @@ onUnmounted(() => {
 }
 
 .map-title {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   margin-bottom: 12px;
-  color: #5f6368;
+  color: #6b7280;
   flex-shrink: 0;
 }
 
@@ -292,15 +292,28 @@ onUnmounted(() => {
   min-width: 0;
   flex: 1;
   min-height: 0;
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
   overflow: hidden;
-  background: #fff;
+  background: #f9fafb;
   box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  animation: fadeIn 0.4s ease-out;
 }
 
-:deep(.highlighted-marker) {
-  transition: all 0.2s ease;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+:deep(.leaflet-popup-content-wrapper) {
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+:deep(.leaflet-popup-content) {
+  margin: 12px 14px;
+  font-family: inherit;
 }
 
 @media (max-width: 900px) {
@@ -313,7 +326,7 @@ onUnmounted(() => {
     width: 100%;
     flex: 1;
     min-height: 0;
-    border-radius: 8px;
+    border-radius: 10px;
   }
 
   .map-title {

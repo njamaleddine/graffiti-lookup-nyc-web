@@ -3,6 +3,7 @@
     class="status-chip"
     :class="statusClass"
   >
+    <span class="status-emoji">{{ statusEmoji }}</span>
     {{ displayText }}
   </span>
 </template>
@@ -52,65 +53,92 @@ const statusClass = computed(() => {
 });
 
 const displayText = computed(() => props.status || 'Unknown');
+
+const EMOJI_MAP = {
+  'status-cleaned': '✨',
+  'status-no-graffiti': '✅',
+  'status-pending': '⏳',
+  'status-notice': '📋',
+  'status-notified': '📬',
+  'status-inaccessible': '🚫',
+  'status-intentional': '🏷️',
+  'status-ineligible': '❌',
+  'status-scheduled': '📅',
+  'status-default': '📍'
+};
+
+const statusEmoji = computed(() => EMOJI_MAP[statusClass.value] || '📍');
 </script>
 
 <style scoped>
 .status-chip {
-  border-radius: 4px;
-  padding: 2px 6px;
-  font-size: 10px;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
   font-weight: 500;
   white-space: normal;
   word-break: break-word;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: transform 0.15s ease;
+}
+
+.status-chip:hover {
+  transform: scale(1.02);
+}
+
+.status-emoji {
+  font-size: 10px;
 }
 
 .status-cleaned {
-  background: #e6f4ea;
-  color: #137333;
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  color: #065f46;
 }
 
 .status-no-graffiti {
-  background: #e6f4ea;
-  color: #0d652d;
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  color: #047857;
 }
 
 .status-pending {
-  background: #fef7e0;
-  color: #b45309;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  color: #92400e;
 }
 
 .status-notice {
-  background: #fff3cd;
-  color: #856404;
+  background: linear-gradient(135deg, #fef9c3 0%, #fde047 100%);
+  color: #854d0e;
 }
 
 .status-notified {
-  background: #e0f2fe;
-  color: #0369a1;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1e40af;
 }
 
 .status-inaccessible {
-  background: #fce4ec;
-  color: #c62828;
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: #b91c1c;
 }
 
 .status-intentional {
-  background: #f3e5f5;
-  color: #7b1fa2;
+  background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+  color: #7c3aed;
 }
 
 .status-ineligible {
-  background: #eceff1;
-  color: #546e7a;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  color: #475569;
 }
 
 .status-scheduled {
-  background: #e1f5fe;
-  color: #0277bd;
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  color: #0369a1;
 }
 
 .status-default {
-  background: #e8f0fe;
-  color: #1a73e8;
+  background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+  color: #6d28d9;
 }
 </style>

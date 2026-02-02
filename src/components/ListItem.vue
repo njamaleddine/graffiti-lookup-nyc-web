@@ -53,25 +53,38 @@ defineEmits(['select']);
   padding: 12px 14px;
   display: flex;
   flex-direction: column;
-  transition: background-color 0.15s ease;
+  transition: all 0.2s ease;
   cursor: pointer;
+  animation: slideIn 0.3s ease-out;
+  animation-fill-mode: backwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .report-card:first-child {
-  border-radius: 8px 8px 0 0;
+  border-radius: 10px 10px 0 0;
 }
 
 .report-card:last-child {
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 10px 10px;
 }
 
 .report-card:hover {
-  background: #e8f0fe;
+  background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 100%);
 }
 
 .report-card.selected {
-  background: #e8f0fe;
-  box-shadow: inset 3px 0 0 #1a73e8;
+  background: linear-gradient(135deg, #ede9fe 0%, #e0e7ff 100%);
+  box-shadow: inset 3px 0 0 #7c4dff;
 }
 
 .card-content {
@@ -87,35 +100,41 @@ defineEmits(['select']);
 }
 
 .index-badge {
-  background: #e8f0fe;
-  color: #1a73e8;
-  border-radius: 4px;
-  min-width: 24px;
-  height: 20px;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1d4ed8;
+  border-radius: 6px;
+  min-width: 26px;
+  height: 22px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 11px;
   font-weight: 600;
   flex-shrink: 0;
-  padding: 0 4px;
+  padding: 0 6px;
+  transition: transform 0.15s ease;
+}
+
+.report-card:hover .index-badge {
+  transform: scale(1.05);
 }
 
 .id-badge {
-  background: #f1f3f4;
-  color: #5f6368;
-  border-radius: 4px;
-  padding: 2px 6px;
+  background: #f3f4f6;
+  color: #6b7280;
+  border-radius: 5px;
+  padding: 3px 7px;
   font-size: 10px;
   font-weight: 500;
   white-space: nowrap;
   flex-shrink: 0;
+  font-family: ui-monospace, monospace;
 }
 
 .address {
   font-weight: 500;
   font-size: 13px;
-  color: #202124;
+  color: #1f2937;
   line-height: 1.4;
   flex: 1;
 }

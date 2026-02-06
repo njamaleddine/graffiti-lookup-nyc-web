@@ -30,7 +30,7 @@ jobs:
 
       - name: Generate graffiti lookup data
         run: |
-          ids=$(python geocode/filter_service_requests.py)
+          ids=$(python -m geocode.filter_service_requests)
           graffiti-lookup-nyc --ids "$ids" --timeout 30 --file-path public/graffiti-lookups.json --file-type json
 
       - name: Restore geocode cache

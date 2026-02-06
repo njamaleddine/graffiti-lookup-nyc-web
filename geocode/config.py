@@ -1,8 +1,5 @@
 import os
 
-GRAFFITI_RECENT_REQUEST_DAYS = int(os.environ.get("GRAFFITI_RECENT_REQUEST_DAYS", 365))
-GEOCODE_CACHE_FILE = "public/geocode-cache.json"
-GRAFFITI_LOOKUPS_FILE = "public/graffiti-lookups.json"
 
 GRAFFITI_COMPLETE_STATUSES = [
     "CityOwnedIneligible",
@@ -12,6 +9,13 @@ GRAFFITI_COMPLETE_STATUSES = [
     "Graffiti is intentional.",
     "Graffiti on property is inaccessible to graffiti cleaning staff.",
 ]
+GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS = (
+    os.environ.get("GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS", "False") == "True"
+)
+GRAFFITI_RECENT_REQUEST_DAYS = int(os.environ.get("GRAFFITI_RECENT_REQUEST_DAYS", 365))
+
+GRAFFITI_LOOKUPS_FILE = "public/graffiti-lookups.json"
+GEOCODE_CACHE_FILE = "public/geocode-cache.json"
 
 REQUEST_USER_AGENT = "graffiti-lookup-nyc-web"
 REQUEST_TIMEOUT = int(os.environ.get("REQUEST_TIMEOUT", 10))

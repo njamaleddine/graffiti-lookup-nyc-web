@@ -1,13 +1,15 @@
 from datetime import datetime, timedelta
-import os
+import argparse
 
 from geocode.logger import get_logger
 from geocode.storages import JsonFile
 from geocode.config import (
-    GRAFFITI_LOOKUPS_FILE,
     GRAFFITI_COMPLETE_STATUSES,
+    GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS,
+    GRAFFITI_LOOKUPS_FILE,
     GRAFFITI_RECENT_REQUEST_DAYS,
 )
+
 
 logger = get_logger(__name__)
 
@@ -41,19 +43,21 @@ def get_active_service_requests(service_requests, days=GRAFFITI_RECENT_REQUEST_D
 
 
 def print_graffiti_service_request_ids(
-    json_path, enable_filter=os.getenv("FILTER_ACTIVE_SERVICE_REQUESTS") == "True"
+    json_path,
+    enable_filter=False,
+    days=GRAFFITI_RECENT_REQUEST_DAYS,
 ):
     """
     Prints active graffiti service_request IDs as a comma-separated string.
     """
-    active_service_requests = JsonFile(json_path).load()
+    active_requests = JsonFile(json_path).load()
 
     if enable_filter:
-        active_service_requests = get_active_service_requests(active_service_requests)
+        active_requests = get_active_service_requests(active_requests, days)
 
     ids = [
         request["service_request"]
-        for request in active_service_requests
+        for request in active_requests
         if "service_request" in request
     ]
 
@@ -61,4 +65,30 @@ def print_graffiti_service_request_ids(
 
 
 if __name__ == "__main__":
-    print_graffiti_service_request_ids(GRAFFITI_LOOKUPS_FILE)
+
+    parser = argparse.ArgumentParser(description="Print graffiti service request IDs.")
+    parser.add_argument(
+        "--filter-active",
+        action="store_true",
+        default=GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS,
+        help="Filter only active service requests",
+    )
+    parser.add_argument(
+        "--days",
+        type=int,
+        default=GRAFFITI_RECENT_REQUEST_DAYS,
+        help="Number of days for recency filter",
+    )
+    parser.add_argument(
+        "--json-path",
+        type=str,
+        default=GRAFFITI_LOOKUPS_FILE,
+        help="Path to graffiti service requests JSON file",
+    )
+    args = parser.parse_args()
+
+    print_graffiti_service_request_ids(
+        args.json_path,
+        enable_filter=args.filter_active,
+        days=args.days,
+    )

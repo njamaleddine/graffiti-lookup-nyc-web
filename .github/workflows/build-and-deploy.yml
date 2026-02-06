@@ -37,7 +37,11 @@ jobs:
 
       - name: Generate graffiti lookup data
         run: |
-          ids=$(python -m geocode.filter_service_requests)
+          if [ "${{ vars.GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS }}" = "False" ]; then
+            ids="${{ vars.GRAFFITI_IDS }}"
+          else
+            ids=$(python -m geocode.filter_service_requests)
+          fi
           graffiti-lookup-nyc --ids "$ids" --timeout 30 --file-path public/graffiti-lookups.json --file-type json
 
       - name: Geocode addresses

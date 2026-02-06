@@ -32,6 +32,8 @@ jobs:
         run: |
           git fetch origin gh-pages
           git checkout origin/gh-pages -- graffiti-lookups.json geocode-cache.json
+          mv graffiti-lookups.json public/
+          mv geocode-cache.json public/
 
       - name: Generate graffiti lookup data
         run: |

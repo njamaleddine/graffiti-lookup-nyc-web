@@ -3,7 +3,7 @@
 
 from geocode.geocoder import geocode_addresses
 from geocode.logger import get_logger
-from geocode.constants import GRAFFITI_LOOKUPS_FILE
+from geocode.config import GRAFFITI_LOOKUPS_FILE
 from geocode.storages.json import JsonFile
 
 logger = get_logger(__name__)

@@ -4,7 +4,7 @@ from geocode.filter_service_requests import (
     was_recently_updated,
     get_active_service_requests,
 )
-from geocode.constants import GRAFFITI_COMPLETE_STATUSES
+from geocode.config import GRAFFITI_COMPLETE_STATUSES
 
 
 class TestWasRecentlyUpdated:

@@ -3,7 +3,7 @@ import os
 
 from geocode.logger import get_logger
 from geocode.storages import JsonFile
-from geocode.constants import (
+from geocode.config import (
     GRAFFITI_LOOKUPS_FILE,
     GRAFFITI_COMPLETE_STATUSES,
     GRAFFITI_RECENT_REQUEST_DAYS,

@@ -7,7 +7,7 @@ from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 from geocode.logger import get_logger
 from geocode.sanitize import normalize_street_name
 from geocode.storages import JsonFile
-from geocode.constants import (
+from geocode.config import (
     GEOCODE_CACHE_FILE,
     REQUEST_USER_AGENT,
     REQUEST_TIMEOUT,

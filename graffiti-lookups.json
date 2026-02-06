@@ -2356,7 +2356,9 @@
     "address": "21-83 STEINWAY STREET, QUEENS",
     "created": "2024-03-08",
     "last_updated": "2024-04-15",
-    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received."
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7728236,
+    "longitude": -73.9057427
   },
   {
     "service_request": "G262852",
@@ -2489,7 +2491,9 @@
     "address": "21-83 STEINWAY STREET, QUEENS",
     "created": "2024-05-17",
     "last_updated": "2024-06-24",
-    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received."
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7728236,
+    "longitude": -73.9057427
   },
   {
     "service_request": "G271318",

@@ -1,36 +1,29 @@
 #!/usr/bin/env python3
 """Main script to geocode graffiti lookup addresses."""
 
-import json
-
 from geocode.geocoder import geocode_addresses
 from geocode.logger import get_logger
+from geocode.constants import GRAFFITI_LOOKUPS_FILE
+from geocode.storages.json import JsonFile
 
 logger = get_logger(__name__)
-
-DATA_FILE = "public/graffiti-lookups.json"
-
-
-def load_service_requests(data_file=DATA_FILE):
-    with open(data_file) as file:
-        return json.load(file)
-
-
-def save_service_requests(data, data_file=DATA_FILE):
-    with open(data_file, "w") as file:
-        json.dump(data, file, indent=2)
 
 
 def main():
     logger.info("Starting geocoding process")
-    data = load_service_requests()
 
-    logger.info(f"Loaded {len(data)} service requests")
+    graffiti_service_requests_cache = JsonFile(GRAFFITI_LOOKUPS_FILE)
+    service_requests = graffiti_service_requests_cache.load()
 
-    geocode_addresses(data)
-    save_service_requests(data)
+    logger.info(f"Loaded {len(service_requests)} service requests")
 
-    logger.info("Geocoding complete")
+    try:
+        geocode_addresses(service_requests)
+        graffiti_service_requests_cache.save(service_requests)
+    except Exception as e:
+        logger.error(f"Error during geocoding or saving: {e}")
+    finally:
+        logger.info("Geocoding complete")
 
 
 if __name__ == "__main__":

@@ -12,7 +12,7 @@ logger = get_logger(__name__)
 def main():
     logger.info("Starting geocoding process")
 
-    graffiti_service_requests_cache = JsonFile(GRAFFITI_LOOKUPS_FILE)
+    graffiti_service_requests_cache = JsonFile(GRAFFITI_LOOKUPS_FILE, default_data=[])
     service_requests = graffiti_service_requests_cache.load()
 
     logger.info(f"Loaded {len(service_requests)} service requests")

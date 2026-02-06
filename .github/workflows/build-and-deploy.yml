@@ -28,16 +28,15 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r geocode/requirements.txt
 
+      - name: Download graffiti-lookups.json and geocode-cache.json from gh-pages
+        run: |
+          git fetch origin gh-pages
+          git checkout origin/gh-pages -- public/graffiti-lookups.json public/geocode-cache.json
+
       - name: Generate graffiti lookup data
         run: |
           ids=$(python -m geocode.filter_service_requests)
           graffiti-lookup-nyc --ids "$ids" --timeout 30 --file-path public/graffiti-lookups.json --file-type json
-
-      - name: Restore geocode cache
-        uses: actions/cache@v4
-        with:
-          path: public/geocode-cache.json
-          key: geocode-cache
 
       - name: Geocode addresses
         run: python -m geocode

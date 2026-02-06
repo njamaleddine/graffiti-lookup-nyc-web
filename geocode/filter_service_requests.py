@@ -10,7 +10,6 @@ from geocode.config import (
     GRAFFITI_RECENT_REQUEST_DAYS,
 )
 
-
 logger = get_logger(__name__)
 
 

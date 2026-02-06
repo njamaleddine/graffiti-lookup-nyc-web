@@ -1,6 +1,5 @@
 import os
 
-
 GRAFFITI_COMPLETE_STATUSES = [
     "CityOwnedIneligible",
     "Cleaning crew dispatched.  Property cleaned.",

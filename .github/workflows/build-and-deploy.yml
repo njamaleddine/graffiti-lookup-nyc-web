@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   schedule:
     # Run at 00:00 UTC Monday through Friday. This corresponds to 7pm ET (winter) / 8pm ET (summer).
-    - cron: '0 0 * * 1-5'
+    - cron: "0 0 * * 1-5"
   workflow_dispatch:
 
 permissions:
@@ -21,8 +21,8 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-          cache: 'pip'
+          python-version: "3.12"
+          cache: "pip"
           cache-dependency-path: geocode/requirements.txt
 
       - name: Install Python dependencies
@@ -42,7 +42,19 @@ jobs:
           else
             ids=$(python -m geocode.filter_service_requests)
           fi
-          graffiti-lookup-nyc --ids "$ids" --timeout 30 --file-path public/graffiti-lookups.json --file-type json
+          timeout=${{ vars.GRAFFITI_LOOKUP_TIMEOUT }}
+          if [ -z "$timeout" ]; then
+            timeout=10
+          fi
+          max_connections=${{ vars.GRAFFITI_LOOKUP_MAX_CONNECTIONS }}
+          if [ -z "$max_connections" ]; then
+            max_connections=10
+          fi
+          max_keepalive_connections=${{ vars.GRAFFITI_LOOKUP_MAX_KEEPALIVE_CONNECTIONS }}
+          if [ -z "$max_keepalive_connections" ]; then
+            max_keepalive_connections=5
+          fi
+          graffiti-lookup-nyc --ids "$ids" --timeout "$timeout" --max-connections="$max_connections" --max-keepalive-connections="$max_keepalive_connections" --file-path public/graffiti-lookups.json --file-type json
 
       - name: Geocode addresses
         run: python -m geocode
@@ -50,8 +62,8 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci

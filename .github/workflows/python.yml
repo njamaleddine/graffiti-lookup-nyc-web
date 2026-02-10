@@ -1,4 +1,4 @@
-name: Test Python
+name: Lint and Test Python
 
 on:
   push:
@@ -6,16 +6,39 @@ on:
     paths:
       - 'geocode/**'
       - 'setup.cfg'
-      - '.github/workflows/test-python.yml'
+      - '.github/workflows/python.yml'
   pull_request:
     branches: [main]
     paths:
       - 'geocode/**'
       - 'setup.cfg'
-      - '.github/workflows/test-python.yml'
+      - '.github/workflows/python.yml'
 
 jobs:
+  lint:
+    name: Lint Python
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: geocode/requirements-dev.txt
+
+      - name: Install dependencies
+        run: pip install -r geocode/requirements-dev.txt
+
+      - name: Check code formatting with Black
+        run: black --check geocode
+
+      - name: Run flake8
+        run: flake8 geocode
+
   test:
+    name: Test Python
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

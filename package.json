@@ -6,17 +6,25 @@
     "build": "astro build",
     "preview": "astro preview",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "test": "vitest --run",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
-    "astro": "^5.0.0",
     "@astrojs/vue": "^5.0.0",
-    "vue": "^3.4.0",
-    "leaflet": "^1.9.4"
+    "astro": "^5.0.0",
+    "leaflet": "^1.9.4",
+    "vue": "^3.4.0"
   },
   "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.4",
+    "@vitest/ui": "^4.0.18",
+    "@vue/test-utils": "^2.4.6",
     "eslint": "^9.0.0",
+    "eslint-plugin-astro": "^1.0.0",
     "eslint-plugin-vue": "^9.0.0",
-    "eslint-plugin-astro": "^1.0.0"
+    "jsdom": "^28.0.0",
+    "vitest": "^4.0.18",
+    "vue-tsc": "^3.2.4"
   }
 }

@@ -81,11 +81,34 @@ function createPopupContent(item) {
     ? `<span style="background:#e8f0fe;color:#1a73e8;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;min-width:24px;text-align:center;display:inline-block;">${item._index}</span>`
     : '';
 
-  const idBadge = `<span style="background:#f1f3f4;color:#5f6368;border-radius:4px;padding:2px 6px;font-size:10px;font-weight:500;">#${item.service_request}</span>`;
+  const idBadge = `<span style="background:#f1f3f4;color:#5f6368;border-radius:4px;padding:2px 6px;font-size:11px;font-weight:500;">#${item.service_request}</span>`;
+
+  // Ensure address includes 'NY, USA'
+  let address = item.address || '';
+  if (!address.match(/NY,?\s*USA$/i)) {
+    // If address already ends with NY (with or without comma), append 'USA'
+    if (address.match(/NY$/i)) {
+      address += ', USA';
+    } else {
+      address += ', NY, USA';
+    }
+  }
+
+  const googleMapsUrl = `https://www.google.com/maps/place/${encodeURIComponent(address)}`;
 
   return `
     <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-      ${indexBadge}${idBadge}
+      ${indexBadge}
+      ${idBadge}
+      <a
+        href="${googleMapsUrl}"
+        target="_blank"
+        rel="noopener"
+        style="align-items:center;padding:2px 6px;background:linear-gradient(135deg,#e0f2fe 0%,#bae6fd 100%);color:#0369a1;border-radius:5px;font-size:11px;font-weight:500;text-decoration:none;box-shadow:0 1px 4px rgba(26,115,232,0.08);transition:background 0.2s;min-width:0;"
+      >
+        <span style="font-size:11px;">Google Maps</span> <span style="font-size:11px;">↗️</span>
+      </a>
+
     </div>
     <div style="font-weight:600;margin-bottom:4px;">${item.address}</div>
     <div style="color:#5f6368;font-size:12px;">${item.status}</div>

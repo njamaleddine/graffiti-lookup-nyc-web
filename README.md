@@ -127,47 +127,45 @@ You can trigger a manual deployment from the Actions tab by running the "Build a
 Below is a high level architecture diagram showing the main data flow and core components:
 
 ```mermaid
-flowchart TD
-   subgraph Data_Pipeline
+flowchart LR
+   subgraph "Data Acquisition & Processing (Python)"
       CLI["graffiti-lookup-nyc CLI"]
-      FILTER["filter_service_requests.py (optional)"]
+      FILTER["filter_service_requests.py"]
       GEOCODE["geocode/geocoder.py"]
-      CACHE["geocode-cache.json"]
-      LOOKUPS["graffiti-lookups.json"]
       CLI --> FILTER
-      FILTER --> LOOKUPS
+      FILTER --> LOOKUPS["graffiti-lookups.json"]
       CLI --> LOOKUPS
       LOOKUPS --> GEOCODE
-      GEOCODE --> CACHE
+      GEOCODE --> CACHE["geocode-cache.json"]
       GEOCODE --> LOOKUPS
    end
 
-   subgraph Artifacts
-      LOOKUPS
-      CACHE
+   subgraph "Artifact Versioning"
+      LOOKUPS -.->|commit/update| DATA_CACHE["data-cache branch (Git)"]
+      CACHE -.->|commit/update| DATA_CACHE
    end
 
-   subgraph CI_CD
+   subgraph "Build & Deployment (CI/CD)"
       GH_ACTIONS["GitHub Actions"]
-      GH_ACTIONS --> Data_Pipeline
-      Data_Pipeline --> Artifacts
-      GH_ACTIONS --> ASTRO["Astro Build"]
-      ASTRO --> DIST["Static Site"]
+      GH_ACTIONS -->|runs| CLI
+      GH_ACTIONS -->|runs| GEOCODE
+      GH_ACTIONS -->|publishes| PUBLIC["public/ (artifacts)"]
+      PUBLIC --> ASTRO["Astro Build"]
+      ASTRO --> DIST["dist/ (static site)"]
       DIST --> GH_PAGES["GitHub Pages"]
    end
 
-   subgraph Frontend
-      GH_PAGES --> ASTRO
-      ASTRO --> VUE["Vue Components"]
-      VUE --> USER["User"]
+   subgraph "Frontend (Astro + Vue)"
+      GH_PAGES -->|serves| USER["User (browser)"]
+      DIST -->|static assets| USER
    end
 ```
 
 **Legend:**
-- **Data_Pipeline**: Python scripts and CLI for data acquisition, filtering, and geocoding.
-- **Artifacts**: JSON files in `public/`, versioned for reproducibility.
-- **CI_CD**: GitHub Actions jobs for orchestration, build, and deployment.
-- **Frontend**: Astro static site, Vue UI, served via GitHub Pages.
+- **Data Acquisition & Processing (Python):** CLI and scripts for fetching, filtering, and geocoding graffiti data.
+- **Artifact Versioning:** All data artifacts are versioned in a dedicated branch for reproducibility.
+- **Build & Deployment (CI/CD):** GitHub Actions orchestrates the pipeline, builds the static site, and deploys to GitHub Pages.
+- **Frontend (Astro + Vue):** Static site served to users, with all data precomputed and embedded.
 
 ## License
 

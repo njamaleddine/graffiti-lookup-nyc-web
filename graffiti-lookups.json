@@ -50,8 +50,8 @@
     "created": "2023-12-16",
     "last_updated": "2024-01-22",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7304076,
-    "longitude": -73.9263229
+    "latitude": 40.7274613,
+    "longitude": -73.9291189
   },
   {
     "service_request": "G258683",
@@ -140,8 +140,8 @@
     "created": "2023-12-22",
     "last_updated": "2024-01-10",
     "status": "Graffiti on property is inaccessible to graffiti cleaning staff.",
-    "latitude": 40.7621382,
-    "longitude": -73.8706561
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G261915",
@@ -149,8 +149,8 @@
     "created": "2024-02-18",
     "last_updated": "2024-03-04",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7621382,
-    "longitude": -73.8706561
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G258971",
@@ -158,8 +158,8 @@
     "created": "2023-12-22",
     "last_updated": "2024-01-05",
     "status": "Cleaning crew dispatched. No graffiti on property.",
-    "latitude": 40.7639002,
-    "longitude": -73.8868881
+    "latitude": 40.766249,
+    "longitude": -73.8876034
   },
   {
     "service_request": "G258975",
@@ -167,8 +167,8 @@
     "created": "2023-12-23",
     "last_updated": "2024-01-30",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7706819,
-    "longitude": -73.9169993
+    "latitude": 40.7677135,
+    "longitude": -73.9013744
   },
   {
     "service_request": "G261916",
@@ -176,8 +176,8 @@
     "created": "2024-02-18",
     "last_updated": "2024-03-26",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7706819,
-    "longitude": -73.9169993
+    "latitude": 40.7677135,
+    "longitude": -73.9013744
   },
   {
     "service_request": "G258974",
@@ -256,14 +256,18 @@
     "address": "27-01 BQE WEST, QUEENS",
     "created": "2023-12-28",
     "last_updated": "2024-02-08",
-    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received."
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7608165,
+    "longitude": -73.9011886
   },
   {
     "service_request": "G263238",
     "address": "27-01 BQE WEST, QUEENS",
     "created": "2024-03-17",
     "last_updated": "2024-04-22",
-    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received."
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7608165,
+    "longitude": -73.9011886
   },
   {
     "service_request": "G259282",
@@ -280,8 +284,8 @@
     "created": "2023-12-28",
     "last_updated": "2024-01-09",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7618652,
-    "longitude": -73.9106584
+    "latitude": 40.7689574,
+    "longitude": -73.9257824
   },
   {
     "service_request": "G259284",
@@ -289,15 +293,17 @@
     "created": "2023-12-28",
     "last_updated": "2024-02-08",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7746896,
-    "longitude": -73.933322
+    "latitude": 40.7724374,
+    "longitude": -73.79998
   },
   {
     "service_request": "G259285",
     "address": "26-10 BQE, QUEENS",
     "created": "2023-12-28",
     "last_updated": "2024-01-29",
-    "status": "Cleaning crew dispatched.  Property cleaned."
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7619185,
+    "longitude": -73.9024731
   },
   {
     "service_request": "G259764",
@@ -656,8 +662,8 @@
     "created": "2024-01-18",
     "last_updated": "2024-02-26",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7649166,
-    "longitude": -73.8869905
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G263268",
@@ -665,8 +671,8 @@
     "created": "2024-03-17",
     "last_updated": "2024-04-22",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7649166,
-    "longitude": -73.8869905
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G260246",
@@ -755,8 +761,8 @@
     "created": "2024-01-18",
     "last_updated": "2024-02-26",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7644092,
-    "longitude": -73.8738536
+    "latitude": 40.7752277,
+    "longitude": -73.8080208
   },
   {
     "service_request": "G263262",
@@ -809,8 +815,8 @@
     "created": "2024-01-18",
     "last_updated": "2024-02-26",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7717671,
-    "longitude": -73.9244072
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G263260",
@@ -818,8 +824,8 @@
     "created": "2024-03-17",
     "last_updated": "2024-04-22",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7717671,
-    "longitude": -73.9244072
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G260804",
@@ -836,8 +842,8 @@
     "created": "2024-01-28",
     "last_updated": "2024-01-31",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7639002,
-    "longitude": -73.8868881
+    "latitude": 40.766249,
+    "longitude": -73.8876034
   },
   {
     "service_request": "G260806",
@@ -971,8 +977,8 @@
     "created": "2024-01-28",
     "last_updated": "2024-01-30",
     "status": "Cleaning crew dispatched. No graffiti on property.",
-    "latitude": 40.7612576,
-    "longitude": -73.8654829
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G263254",
@@ -980,8 +986,8 @@
     "created": "2024-03-17",
     "last_updated": "2024-03-25",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7612576,
-    "longitude": -73.8654829
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G260818",
@@ -1106,8 +1112,8 @@
     "created": "2024-02-03",
     "last_updated": "2024-03-12",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7564653,
-    "longitude": -73.8782136
+    "latitude": 40.7564584,
+    "longitude": -73.8781799
   },
   {
     "service_request": "G263244",
@@ -1115,8 +1121,8 @@
     "created": "2024-03-17",
     "last_updated": "2024-04-22",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7564653,
-    "longitude": -73.8782136
+    "latitude": 40.7564584,
+    "longitude": -73.8781799
   },
   {
     "service_request": "G261207",
@@ -1196,8 +1202,8 @@
     "created": "2024-02-10",
     "last_updated": "2024-02-28",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G261454",
@@ -1232,8 +1238,8 @@
     "created": "2024-02-10",
     "last_updated": "2024-02-27",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7612576,
-    "longitude": -73.8654829
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G261458",
@@ -1259,8 +1265,8 @@
     "created": "2024-02-10",
     "last_updated": "2024-02-17",
     "status": "Cleaning crew dispatched. No graffiti on property.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G261462",
@@ -1268,8 +1274,8 @@
     "created": "2024-02-10",
     "last_updated": "2024-03-20",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7649166,
-    "longitude": -73.8869905
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G261463",
@@ -1304,8 +1310,8 @@
     "created": "2024-02-10",
     "last_updated": "2024-03-20",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7627128,
-    "longitude": -73.8731052
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G261467",
@@ -1412,8 +1418,8 @@
     "created": "2024-02-10",
     "last_updated": "2024-02-21",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7612576,
-    "longitude": -73.8654829
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G261487",
@@ -1511,8 +1517,8 @@
     "created": "2024-02-10",
     "last_updated": "2024-03-12",
     "status": "Graffiti is intentional.",
-    "latitude": 40.7717671,
-    "longitude": -73.9244072
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G261499",
@@ -1547,8 +1553,8 @@
     "created": "2024-02-10",
     "last_updated": "2024-03-20",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7650237,
-    "longitude": -73.8867149
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G261503",
@@ -1592,8 +1598,8 @@
     "created": "2024-02-10",
     "last_updated": "2024-02-17",
     "status": "Cleaning crew dispatched. No graffiti on property.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G261508",
@@ -1691,8 +1697,8 @@
     "created": "2024-02-10",
     "last_updated": "2024-03-19",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7578992,
-    "longitude": -73.8553917
+    "latitude": 40.6772936,
+    "longitude": -73.8245104
   },
   {
     "service_request": "G261519",
@@ -1916,8 +1922,8 @@
     "created": "2024-02-22",
     "last_updated": "2024-03-29",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7594522,
-    "longitude": -73.8839388
+    "latitude": 40.7612598,
+    "longitude": -73.8665499
   },
   {
     "service_request": "G262064",
@@ -2042,8 +2048,8 @@
     "created": "2024-02-22",
     "last_updated": "2024-02-29",
     "status": "Cleaning crew dispatched. No graffiti on property.",
-    "latitude": 40.7621382,
-    "longitude": -73.8706561
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G262078",
@@ -2303,8 +2309,8 @@
     "created": "2024-03-04",
     "last_updated": "2024-03-22",
     "status": "Cleaning crew dispatched. No graffiti on property.",
-    "latitude": 40.7621382,
-    "longitude": -73.8706561
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G262846",
@@ -2375,8 +2381,8 @@
     "created": "2024-03-08",
     "last_updated": "2024-04-15",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G270619",
@@ -2384,8 +2390,8 @@
     "created": "2024-05-07",
     "last_updated": "2024-06-12",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G262854",
@@ -2518,7 +2524,9 @@
     "address": "27-01 BQE WEST, QUEENS",
     "created": "2024-05-17",
     "last_updated": "2024-06-24",
-    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received."
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7608165,
+    "longitude": -73.9011886
   },
   {
     "service_request": "G271321",
@@ -2616,8 +2624,8 @@
     "created": "2024-05-17",
     "last_updated": "2024-06-24",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7649166,
-    "longitude": -73.8869905
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G270769",
@@ -2670,8 +2678,8 @@
     "created": "2024-05-17",
     "last_updated": "2024-06-24",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7717671,
-    "longitude": -73.9244072
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G271337",
@@ -2733,8 +2741,8 @@
     "created": "2024-05-17",
     "last_updated": "2024-06-24",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7564653,
-    "longitude": -73.8782136
+    "latitude": 40.7564584,
+    "longitude": -73.8781799
   },
   {
     "service_request": "G271345",
@@ -2958,8 +2966,8 @@
     "created": "2024-05-17",
     "last_updated": "2024-05-18",
     "status": "The property owner\u2019s name cannot be determined.",
-    "latitude": 40.7634867,
-    "longitude": -73.8706355
+    "latitude": 40.6549618,
+    "longitude": -73.8330346
   },
   {
     "service_request": "G280568",
@@ -3012,8 +3020,8 @@
     "created": "2024-08-19",
     "last_updated": "2024-09-24",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G280578",
@@ -3057,8 +3065,8 @@
     "created": "2024-09-08",
     "last_updated": "2024-10-16",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7621382,
-    "longitude": -73.8706561
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G282020",
@@ -3102,8 +3110,8 @@
     "created": "2024-09-28",
     "last_updated": "2024-11-04",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G282944",
@@ -3138,8 +3146,8 @@
     "created": "2024-09-28",
     "last_updated": "2024-11-04",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7650237,
-    "longitude": -73.8867149
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G282948",
@@ -3174,8 +3182,8 @@
     "created": "2024-10-16",
     "last_updated": "2024-11-21",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7706819,
-    "longitude": -73.9169993
+    "latitude": 40.7677135,
+    "longitude": -73.9013744
   },
   {
     "service_request": "G284791",
@@ -3192,8 +3200,8 @@
     "created": "2024-10-16",
     "last_updated": "2024-11-21",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7401486,
-    "longitude": -73.942642
+    "latitude": 40.7796047,
+    "longitude": -73.9108826
   },
   {
     "service_request": "G284793",
@@ -3309,8 +3317,8 @@
     "created": "2024-10-16",
     "last_updated": "2024-11-21",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7650237,
-    "longitude": -73.8867149
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G284808",
@@ -3525,8 +3533,8 @@
     "created": "2024-10-28",
     "last_updated": "2024-10-31",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7612576,
-    "longitude": -73.8654829
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G286389",
@@ -3534,8 +3542,8 @@
     "created": "2024-10-28",
     "last_updated": "2024-12-03",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7627128,
-    "longitude": -73.8731052
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G286390",
@@ -3543,8 +3551,8 @@
     "created": "2024-10-28",
     "last_updated": "2024-12-03",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7717671,
-    "longitude": -73.9244072
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G286391",
@@ -3579,8 +3587,8 @@
     "created": "2024-10-28",
     "last_updated": "2024-12-03",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7649166,
-    "longitude": -73.8869905
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G286395",
@@ -3597,8 +3605,8 @@
     "created": "2024-10-28",
     "last_updated": "2024-10-31",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7649166,
-    "longitude": -73.8869905
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G286397",
@@ -3606,8 +3614,8 @@
     "created": "2024-10-28",
     "last_updated": "2024-12-03",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7717671,
-    "longitude": -73.9244072
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G286398",
@@ -3624,8 +3632,8 @@
     "created": "2024-11-05",
     "last_updated": "2024-11-12",
     "status": "Cleaning crew dispatched. No graffiti on property.",
-    "latitude": 40.7621382,
-    "longitude": -73.8706561
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G286894",
@@ -3669,8 +3677,8 @@
     "created": "2024-12-01",
     "last_updated": "2024-12-05",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7621382,
-    "longitude": -73.8706561
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G288527",
@@ -3696,8 +3704,8 @@
     "created": "2024-12-01",
     "last_updated": "2025-01-06",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7650237,
-    "longitude": -73.8867149
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G288530",
@@ -3759,8 +3767,8 @@
     "created": "2024-12-01",
     "last_updated": "2025-01-06",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7706819,
-    "longitude": -73.9169993
+    "latitude": 40.7677135,
+    "longitude": -73.9013744
   },
   {
     "service_request": "G288542",
@@ -3804,8 +3812,8 @@
     "created": "2025-01-11",
     "last_updated": "2025-01-30",
     "status": "Cleaning crew dispatched. No graffiti on property.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G292588",
@@ -3831,8 +3839,8 @@
     "created": "2025-01-11",
     "last_updated": "2025-02-17",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7650237,
-    "longitude": -73.8867149
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G292591",
@@ -3840,8 +3848,8 @@
     "created": "2025-01-11",
     "last_updated": "2025-02-17",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7627128,
-    "longitude": -73.8731052
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G292592",
@@ -3993,8 +4001,8 @@
     "created": "2025-02-04",
     "last_updated": "2025-02-11",
     "status": "Cleaning crew dispatched. No graffiti on property.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G293644",
@@ -4029,8 +4037,8 @@
     "created": "2025-02-23",
     "last_updated": "2025-03-04",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7621382,
-    "longitude": -73.8706561
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G294703",
@@ -4038,8 +4046,8 @@
     "created": "2025-02-23",
     "last_updated": "2025-03-06",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G294704",
@@ -4101,8 +4109,8 @@
     "created": "2025-02-23",
     "last_updated": "2025-03-31",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7650237,
-    "longitude": -73.8867149
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G294711",
@@ -4191,8 +4199,8 @@
     "created": "2025-05-17",
     "last_updated": "2025-06-24",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G299425",
@@ -4380,8 +4388,8 @@
     "created": "2025-08-20",
     "last_updated": "2025-08-22",
     "status": "Cleaning crew dispatched. No graffiti on property.",
-    "latitude": 40.7639002,
-    "longitude": -73.8868881
+    "latitude": 40.766249,
+    "longitude": -73.8876034
   },
   {
     "service_request": "G304874",
@@ -4389,8 +4397,8 @@
     "created": "2025-08-20",
     "last_updated": "2025-09-25",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7650237,
-    "longitude": -73.8867149
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G304875",
@@ -4497,8 +4505,8 @@
     "created": "2025-08-20",
     "last_updated": "2025-09-25",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7627128,
-    "longitude": -73.8731052
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G304887",
@@ -4515,8 +4523,8 @@
     "created": "2025-08-20",
     "last_updated": "2025-09-25",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7649166,
-    "longitude": -73.8869905
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G304889",
@@ -4542,8 +4550,8 @@
     "created": "2025-08-20",
     "last_updated": "2025-09-30",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G304892",
@@ -4587,8 +4595,8 @@
     "created": "2025-10-13",
     "last_updated": "2025-10-15",
     "status": "Cleaning crew dispatched. No graffiti on property.",
-    "latitude": 40.7639002,
-    "longitude": -73.8868881
+    "latitude": 40.766249,
+    "longitude": -73.8876034
   },
   {
     "service_request": "G308547",
@@ -4605,8 +4613,8 @@
     "created": "2025-10-13",
     "last_updated": "2025-11-18",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7650237,
-    "longitude": -73.8867149
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G308549",
@@ -4659,8 +4667,8 @@
     "created": "2025-10-13",
     "last_updated": "2025-11-18",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7717671,
-    "longitude": -73.9244072
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G308555",
@@ -4677,8 +4685,8 @@
     "created": "2025-10-13",
     "last_updated": "2025-10-17",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7649166,
-    "longitude": -73.8869905
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G308557",
@@ -4686,8 +4694,8 @@
     "created": "2025-10-13",
     "last_updated": "2025-11-18",
     "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
-    "latitude": 40.7649166,
-    "longitude": -73.8869905
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G308772",
@@ -4704,8 +4712,8 @@
     "created": "2025-10-20",
     "last_updated": "2025-10-25",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7679615,
-    "longitude": -73.9236669
+    "latitude": 40.7689574,
+    "longitude": -73.9257824
   },
   {
     "service_request": "G308943",
@@ -4785,8 +4793,8 @@
     "created": "2025-11-02",
     "last_updated": "2025-11-02",
     "status": "Notice of Intent to Clean and Forever graffiti free form sent",
-    "latitude": 40.7650237,
-    "longitude": -73.8867149
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G310562",
@@ -4812,8 +4820,8 @@
     "created": "2025-11-17",
     "last_updated": "2025-11-17",
     "status": "Notice of Intent to Clean and Forever graffiti free form sent",
-    "latitude": 40.7706819,
-    "longitude": -73.9169993
+    "latitude": 40.7677135,
+    "longitude": -73.9013744
   },
   {
     "service_request": "G311360",
@@ -4893,8 +4901,8 @@
     "created": "2025-11-21",
     "last_updated": "2025-11-28",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G311640",
@@ -4938,8 +4946,8 @@
     "created": "2026-01-14",
     "last_updated": "2026-01-17",
     "status": "Cleaning crew dispatched.  Property cleaned.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.760166,
+    "longitude": -73.8603485
   },
   {
     "service_request": "G315024",
@@ -4983,8 +4991,8 @@
     "created": "2026-01-14",
     "last_updated": "2026-01-14",
     "status": "Notice of Intent to Clean and Forever graffiti free form sent",
-    "latitude": 40.7594522,
-    "longitude": -73.8839388
+    "latitude": 40.7612598,
+    "longitude": -73.8665499
   },
   {
     "service_request": "G315029",
@@ -5010,8 +5018,8 @@
     "created": "2026-01-14",
     "last_updated": "2026-01-14",
     "status": "Notice of Intent to Clean and Forever graffiti free form sent",
-    "latitude": 40.7627128,
-    "longitude": -73.8731052
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G315032",
@@ -5019,8 +5027,8 @@
     "created": "2026-01-14",
     "last_updated": "2026-01-14",
     "status": "Notice of Intent to Clean and Forever graffiti free form sent",
-    "latitude": 40.7717671,
-    "longitude": -73.9244072
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G315033",
@@ -5073,8 +5081,8 @@
     "created": "2026-01-14",
     "last_updated": "2026-01-14",
     "status": "Notice of Intent to Clean and Forever graffiti free form sent",
-    "latitude": 40.7649166,
-    "longitude": -73.8869905
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
   },
   {
     "service_request": "G315039",
@@ -5145,8 +5153,8 @@
     "created": "2026-01-14",
     "last_updated": "2026-01-16",
     "status": "Cleaning crew dispatched. No graffiti on property.",
-    "latitude": 40.7648953,
-    "longitude": -73.8859673
+    "latitude": 40.7650237,
+    "longitude": -73.8867149
   },
   {
     "service_request": "G315047",

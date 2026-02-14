@@ -36,6 +36,13 @@ class TestGetOrdinalSuffix:
 
 
 class TestNormalizeStreetName:
+    def test_does_not_ordinalize_house_number_with_dash(self):
+        # Should not ordinalize house numbers like 21-83
+        assert (
+            normalize_street_name("22-44 WILLOW STREET, BRONX")
+            == "22-44 WILLOW STREET, BRONX"
+        )
+
     def test_converts_3_street_to_3rd_street(self):
         assert normalize_street_name("3 STREET") == "3RD STREET"
 

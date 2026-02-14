@@ -1,40 +1,29 @@
 """Geocoding functionality using Nominatim."""
 
-import json
-import os
-
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
 from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 
 from geocode.logger import get_logger
 from geocode.sanitize import normalize_street_name
+from geocode.storages import JsonFile
+from geocode.config import (
+    GEOCODE_CACHE_FILE,
+    REQUEST_USER_AGENT,
+    REQUEST_TIMEOUT,
+    REQUEST_MIN_DELAY_SECONDS,
+    REQUEST_MAX_RETRIES,
+    REQUEST_ERROR_WAIT_SECONDS,
+)
 
 logger = get_logger(__name__)
 
 
-CACHE_FILE = "public/geocode-cache.json"
-USER_AGENT = "graffiti-lookup-nyc-web"
-TIMEOUT = 10
-MIN_DELAY_SECONDS = 1.5
-MAX_RETRIES = 3
-ERROR_WAIT_SECONDS = 5.0
-
-
-def load_geocode_cache(cache_file):
-    if os.path.exists(cache_file):
-        with open(cache_file) as file:
-            return json.load(file)
-    return {}
-
-
-def save_geocode_cache(cache, cache_file):
-    with open(cache_file, "w") as file:
-        json.dump(cache, file, indent=2)
-
-
 def geocode_address(address, geocode_fn, cache):
     """Geocode a single address, using cache if available."""
+    if not isinstance(address, str) or not address.strip():
+        return (None, None)
+
     if address in cache:
         cached = cache[address]
         logger.debug(f"Cache hit: {address} -> {cached}")
@@ -58,17 +47,17 @@ def geocode_address(address, geocode_fn, cache):
     except (GeocoderTimedOut, GeocoderUnavailable) as error:
         logger.error(f"Geocoding error: {error}")
 
-    return None, None
+    return (None, None)
 
 
 def geocode_addresses(
     service_requests,
-    cache_file=CACHE_FILE,
-    user_agent=USER_AGENT,
-    timeout=TIMEOUT,
-    min_delay_seconds=MIN_DELAY_SECONDS,
-    max_retries=MAX_RETRIES,
-    error_wait_seconds=ERROR_WAIT_SECONDS,
+    cache_file=GEOCODE_CACHE_FILE,
+    user_agent=REQUEST_USER_AGENT,
+    timeout=REQUEST_TIMEOUT,
+    min_delay_seconds=REQUEST_MIN_DELAY_SECONDS,
+    max_retries=REQUEST_MAX_RETRIES,
+    error_wait_seconds=REQUEST_ERROR_WAIT_SECONDS,
 ):
     """
     Geocode addresses in a list of service request dictionaries.
@@ -85,7 +74,8 @@ def geocode_addresses(
     Returns:
         Updated service_requests with latitude/longitude added
     """
-    cache = load_geocode_cache(cache_file)
+    geocode_cache = JsonFile(cache_file)
+    geocode_data = geocode_cache.load()
 
     geolocator = Nominatim(user_agent=user_agent, timeout=timeout)
     geocode_fn = RateLimiter(
@@ -95,15 +85,23 @@ def geocode_addresses(
         error_wait_seconds=error_wait_seconds,
     )
 
-    for service_request in service_requests:
-        if "latitude" not in service_request or "longitude" not in service_request:
-            latitude, longitude = geocode_address(
-                service_request["address"], geocode_fn, cache
-            )
+    addresses_geocoded = False
 
-            if latitude and longitude:
+    for service_request in service_requests:
+        # Only geocode if 'latitude' and 'longitude' are missing
+        if (
+            isinstance(service_request, dict)
+            and "latitude" not in service_request
+            and "longitude" not in service_request
+        ):
+            address = service_request.get("address")
+            latitude, longitude = geocode_address(address, geocode_fn, geocode_data)
+
+            if latitude is not None and longitude is not None:
                 service_request["latitude"] = latitude
                 service_request["longitude"] = longitude
+                addresses_geocoded = True
 
-    save_geocode_cache(cache, cache_file)
+    if addresses_geocoded:
+        geocode_cache.save(geocode_data)
     return service_requests

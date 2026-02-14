@@ -1,4 +1,4 @@
-name: Lint JavaScript
+name: JavaScript Lint and Test
 
 on:
   push:
@@ -7,17 +7,20 @@ on:
       - 'src/**'
       - 'package.json'
       - 'eslint.config.js'
-      - '.github/workflows/lint-js.yml'
+      - 'vitest.config.json'
+      - '.github/workflows/test-js.yml'
   pull_request:
     branches: [main]
     paths:
       - 'src/**'
       - 'package.json'
       - 'eslint.config.js'
-      - '.github/workflows/lint-js.yml'
+      - 'vitest.config.json'
+      - '.github/workflows/test-js.yml'
 
 jobs:
   lint:
+    name: Lint JavaScript
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,3 +36,21 @@ jobs:
 
       - name: Run ESLint
         run: npm run lint
+
+  test:
+    name: Test JavaScript
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Tests
+        run: npm run test

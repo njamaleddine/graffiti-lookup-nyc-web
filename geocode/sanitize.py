@@ -16,7 +16,9 @@ def get_ordinal_suffix(number):
 
 def normalize_street_name(address):
     """Convert '3 STREET' to '3RD STREET', etc."""
-    pattern = rf"(\d+)\s+{STREET_TYPES}"
+    # Only match numbers that are not part of a house number with a dash (e.g., 21-83)
+    # Use negative lookbehind to ensure the number is not preceded by a dash and more digits
+    pattern = rf"(?<![\d]-)(\b\d+)\s+{STREET_TYPES}"
 
     def replace_match(match):
         number = match.group(1)

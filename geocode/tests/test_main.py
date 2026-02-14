@@ -1,85 +1,100 @@
-import json
-from unittest.mock import patch
-
-import pytest
-from geocode.__main__ import load_service_requests, save_service_requests, main
+from unittest.mock import patch, Mock
+from geocode.__main__ import main
 
 
-class TestLoadServiceRequests:
-    def test_returns_parsed_json_data_from_file(self, tmp_path):
-        data_file = tmp_path / "data.json"
-        data = [{"address": "123 MAIN ST", "id": 1}]
-        data_file.write_text(json.dumps(data))
+@patch("geocode.__main__.get_logger")
+@patch("geocode.__main__.JsonFile")
+@patch("geocode.__main__.geocode_addresses")
+def test_main_loads_geocodes_and_saves(mock_geocode, mock_jsonfile, mock_logger):
+    logger_mock = Mock()
+    mock_cache = Mock()
+    mock_jsonfile.return_value = mock_cache
+    mock_cache.load.return_value = [{"address": "123 MAIN ST"}]
 
-        result = load_service_requests(str(data_file))
+    from geocode import __main__
 
-        assert result == data
-
-    def test_raises_file_not_found_error_when_file_does_not_exist(self, tmp_path):
-        data_file = tmp_path / "nonexistent.json"
-
-        with pytest.raises(FileNotFoundError):
-            load_service_requests(str(data_file))
-
-
-class TestSaveServiceRequests:
-    def test_writes_service_requests_to_json_file(self, tmp_path):
-        data_file = tmp_path / "data.json"
-        data = [{"address": "123 MAIN ST", "latitude": 40.7128, "longitude": -74.0060}]
-
-        save_service_requests(data, str(data_file))
-
-        with open(data_file) as f:
-            saved = json.load(f)
-        assert saved == data
-
-    def test_formats_output_json_with_indentation(self, tmp_path):
-        data_file = tmp_path / "data.json"
-        data = [{"address": "123 MAIN ST"}]
-
-        save_service_requests(data, str(data_file))
-
-        content = data_file.read_text()
-        assert "\n" in content
-
-
-class TestMain:
-    @patch("geocode.__main__.geocode_addresses")
-    @patch("geocode.__main__.save_service_requests")
-    @patch("geocode.__main__.load_service_requests")
-    def test_calls_load_geocode_and_save_in_sequence(
-        self, mock_load, mock_save, mock_geocode
-    ):
-        mock_load.return_value = [{"address": "123 MAIN ST"}]
-
+    with patch.object(__main__, "logger", logger_mock):
         main()
 
-        mock_load.assert_called_once()
-        mock_geocode.assert_called_once()
-        mock_save.assert_called_once()
+    mock_cache.load.assert_called_once()
+    mock_geocode.assert_called_once_with(mock_cache.load.return_value)
+    mock_cache.save.assert_called_once_with(mock_cache.load.return_value)
+    logger_mock.info.assert_any_call("Starting geocoding process")
+    logger_mock.info.assert_any_call("Loaded 1 service requests")
+    logger_mock.info.assert_any_call("Geocoding complete")
 
-    @patch("geocode.__main__.geocode_addresses")
-    @patch("geocode.__main__.save_service_requests")
-    @patch("geocode.__main__.load_service_requests")
-    def test_passes_loaded_service_requests_to_geocode_addresses(
-        self, mock_load, mock_save, mock_geocode
-    ):
-        data = [{"address": "123 MAIN ST"}]
-        mock_load.return_value = data
 
+@patch("geocode.__main__.get_logger")
+@patch("geocode.__main__.JsonFile")
+@patch("geocode.__main__.geocode_addresses")
+def test_main_handles_empty_service_requests(mock_geocode, mock_jsonfile, mock_logger):
+    mock_logger.return_value = Mock()
+    mock_cache = Mock()
+    mock_jsonfile.return_value = mock_cache
+    mock_cache.load.return_value = []
+
+    main()
+
+    mock_geocode.assert_called_once_with([])
+    mock_cache.save.assert_called_once_with([])
+
+
+@patch("geocode.__main__.get_logger")
+@patch("geocode.__main__.JsonFile")
+@patch("geocode.__main__.geocode_addresses")
+def test_main_handles_malformed_service_requests(
+    mock_geocode, mock_jsonfile, mock_logger
+):
+    mock_logger.return_value = Mock()
+    mock_cache = Mock()
+    mock_jsonfile.return_value = mock_cache
+    malformed = [{"foo": "bar"}]
+    mock_cache.load.return_value = malformed
+
+    main()
+
+    mock_geocode.assert_called_once_with(malformed)
+    mock_cache.save.assert_called_once_with(malformed)
+
+
+@patch("geocode.__main__.get_logger")
+@patch("geocode.__main__.JsonFile")
+@patch("geocode.__main__.geocode_addresses")
+def test_main_geocode_addresses_raises_exception(
+    mock_geocode, mock_jsonfile, mock_logger
+):
+    logger_mock = Mock()
+    mock_cache = Mock()
+    mock_jsonfile.return_value = mock_cache
+    mock_cache.load.return_value = [{"address": "123 MAIN ST"}]
+    mock_geocode.side_effect = Exception("geocode error")
+
+    from geocode import __main__
+
+    with patch.object(__main__, "logger", logger_mock):
+        try:
+            main()
+        except Exception:
+            pass
+
+    logger_mock.info.assert_any_call("Starting geocoding process")
+    logger_mock.info.assert_any_call("Loaded 1 service requests")
+
+
+@patch("geocode.__main__.get_logger")
+@patch("geocode.__main__.JsonFile")
+@patch("geocode.__main__.geocode_addresses")
+def test_main_save_fails(mock_geocode, mock_jsonfile, mock_logger):
+    logger_mock = Mock()
+    mock_cache = Mock()
+    mock_jsonfile.return_value = mock_cache
+    mock_cache.load.return_value = [{"address": "123 MAIN ST"}]
+    mock_cache.save.side_effect = Exception("save error")
+
+    from geocode import __main__
+
+    with patch.object(__main__, "logger", logger_mock):
         main()
 
-        mock_geocode.assert_called_once_with(data)
-
-    @patch("geocode.__main__.geocode_addresses")
-    @patch("geocode.__main__.save_service_requests")
-    @patch("geocode.__main__.load_service_requests")
-    def test_saves_service_requests_after_geocoding(
-        self, mock_load, mock_save, mock_geocode
-    ):
-        data = [{"address": "123 MAIN ST"}]
-        mock_load.return_value = data
-
-        main()
-
-        mock_save.assert_called_once_with(data)
+    logger_mock.info.assert_any_call("Starting geocoding process")
+    logger_mock.info.assert_any_call("Loaded 1 service requests")

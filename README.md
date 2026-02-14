@@ -156,7 +156,6 @@ flowchart LR
       GH_ACTIONS -->|runs| GEOCODE
       GH_ACTIONS -->|publishes| PUBLIC["public/ (artifacts)"]
       LOOKUPS -.->|used by| ASTRO["Astro Build"]
-      CACHE -.->|used by| ASTRO
       PUBLIC --> ASTRO
       ASTRO --> DIST["dist/ (static site)"]
       DIST --> GH_PAGES["GitHub Pages"]
@@ -171,15 +170,17 @@ flowchart LR
 
 
 
+
 **Legend:**
 - **Data Acquisition & Processing (Python):** CLI and scripts for fetching, filtering, and geocoding graffiti data. If the environment variable `GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS` is `True`, `filter_service_requests.py` filters the graffiti-lookups.json; otherwise, IDs are taken from the `GRAFFITI_IDS` env var.
-- **Data Caching & Reuse:** All data artifacts are cached in a dedicated branch (`data-cache`) to store geocoding results and graffiti lookup data, enabling reproducible builds and efficient filtering without redundant computation.
+- **Data Caching & Reuse:** All data artifacts are cached in a dedicated branch (`data-cache`) to store geocoding results and graffiti lookup data. `geocode-cache.json` is only used by the GitHub Action for geocoding, not by the Astro build.
 - **Build & Deployment (CI/CD):** GitHub Actions orchestrates the pipeline, builds the static site, and deploys to GitHub Pages.
 - **Frontend (Astro + Vue):** Static site served to users, with all data precomputed and embedded.
 
 
+
 > **Note:**
-> The `data-cache` branch is a persistent cache for both geocode results and graffiti lookup data. This ensures that geocoding is not repeated unnecessarily, and that the same data is available for the Astro build and for filtering operations (e.g., in `filter_service_requests`).
+> The `data-cache` branch is a persistent cache for both geocode results and graffiti lookup data. `geocode-cache.json` is only used by the GitHub Action to avoid redundant geocoding, and is not consumed by the Astro build. The same data is available for the Astro build and for filtering operations (e.g., in `filter_service_requests`).
 >
 > The workflow uses `filter_service_requests.py` to filter graffiti-lookups.json only if the environment variable `GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS` is set to `True`. Otherwise, the IDs are taken from the `GRAFFITI_IDS` environment variable.
 

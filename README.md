@@ -158,10 +158,12 @@ flowchart TD
    LOOKUPS -.-> DATA_CACHE
    CACHE -.-> DATA_CACHE
 
+   %% public/ (artifacts) is created after JSONs
+   LOOKUPS --> PUBLIC
+   CACHE --> PUBLIC
+
    GH_ACTIONS --> CLI
    GH_ACTIONS --> GEOCODE
-   GH_ACTIONS --> PUBLIC
-   LOOKUPS -.-> ASTRO
    PUBLIC --> ASTRO
    ASTRO --> DIST
    DIST --> GH_PAGES

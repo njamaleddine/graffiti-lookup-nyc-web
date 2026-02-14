@@ -149,10 +149,12 @@ flowchart TD
 
    %% Rigid, grid-like layout
    CLI --> FILTER
+   LOOKUPS --> FILTER
    FILTER --> LOOKUPS
    IDS -.-> LOOKUPS
    CLI -.-> LOOKUPS
    LOOKUPS --> GEOCODE
+   CACHE --> GEOCODE
    GEOCODE --> CACHE
    GEOCODE -- update --> LOOKUPS
    LOOKUPS -.-> DATA_CACHE

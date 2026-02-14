@@ -1,1 +1,5250 @@
-[]
+[
+  {
+    "service_request": "G258679",
+    "address": "80-02 ASTORIA BLVD, QUEENS",
+    "created": "2023-12-16",
+    "last_updated": "2024-01-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651176,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G261910",
+    "address": "80-02 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-18",
+    "last_updated": "2024-03-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651176,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G273556",
+    "address": "80-02 ASTORIA BLVD, QUEENS",
+    "created": "2024-06-07",
+    "last_updated": "2024-07-15",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651176,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G258680",
+    "address": "80-02 24 AVENUE, QUEENS",
+    "created": "2023-12-16",
+    "last_updated": "2024-01-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7645581,
+    "longitude": -73.8886802
+  },
+  {
+    "service_request": "G261394",
+    "address": "80-02 24 AVENUE, QUEENS",
+    "created": "2024-02-09",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7645581,
+    "longitude": -73.8886802
+  },
+  {
+    "service_request": "G258681",
+    "address": "25-65 BROOKLYN QUEENS EXPRESSWAY, QUEENS",
+    "created": "2023-12-16",
+    "last_updated": "2024-01-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7304076,
+    "longitude": -73.9263229
+  },
+  {
+    "service_request": "G258683",
+    "address": "77-01 30TH AVE, QUEENS",
+    "created": "2023-12-17",
+    "last_updated": "2024-01-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7609719,
+    "longitude": -73.8909335
+  },
+  {
+    "service_request": "G258905",
+    "address": "30-01 83 STREET, QUEENS",
+    "created": "2023-12-21",
+    "last_updated": "2024-01-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611993,
+    "longitude": -73.8852121
+  },
+  {
+    "service_request": "G261911",
+    "address": "30-01 83 STREET, QUEENS",
+    "created": "2024-02-18",
+    "last_updated": "2024-03-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611993,
+    "longitude": -73.8852121
+  },
+  {
+    "service_request": "G258907",
+    "address": "25-01 83RD ST, QUEENS",
+    "created": "2023-12-21",
+    "last_updated": "2024-01-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7630491,
+    "longitude": -73.8855282
+  },
+  {
+    "service_request": "G263235",
+    "address": "25-01 83RD ST, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-03-28",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7630491,
+    "longitude": -73.8855282
+  },
+  {
+    "service_request": "G258909",
+    "address": "80-10 ASTORIA BLVD, QUEENS",
+    "created": "2023-12-21",
+    "last_updated": "2024-01-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7649927,
+    "longitude": -73.8885537
+  },
+  {
+    "service_request": "G261912",
+    "address": "80-10 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-18",
+    "last_updated": "2024-03-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7649927,
+    "longitude": -73.8885537
+  },
+  {
+    "service_request": "G258911",
+    "address": "80-12 ASTORIA BOULEVARD, QUEENS",
+    "created": "2023-12-21",
+    "last_updated": "2024-01-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7650373,
+    "longitude": -73.8884697
+  },
+  {
+    "service_request": "G261913",
+    "address": "80-12 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-18",
+    "last_updated": "2024-02-21",
+    "status": "The property owner will be notified within 90 days of the obligation to have the graffiti removed from the property.",
+    "latitude": 40.7650373,
+    "longitude": -73.8884697
+  },
+  {
+    "service_request": "G258970",
+    "address": "81-07 ASTORIA BOULEVARD, QUEENS",
+    "created": "2023-12-22",
+    "last_updated": "2024-01-10",
+    "status": "Graffiti on property is inaccessible to graffiti cleaning staff.",
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
+  },
+  {
+    "service_request": "G261915",
+    "address": "81-07 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-18",
+    "last_updated": "2024-03-04",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
+  },
+  {
+    "service_request": "G258971",
+    "address": "24-02 82 STREET, QUEENS",
+    "created": "2023-12-22",
+    "last_updated": "2024-01-05",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7639002,
+    "longitude": -73.8868881
+  },
+  {
+    "service_request": "G258975",
+    "address": "72-05 ASTORIA BLVD N, QUEENS",
+    "created": "2023-12-23",
+    "last_updated": "2024-01-30",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7706819,
+    "longitude": -73.9169993
+  },
+  {
+    "service_request": "G261916",
+    "address": "72-05 ASTORIA BLVD N, QUEENS",
+    "created": "2024-02-18",
+    "last_updated": "2024-03-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7706819,
+    "longitude": -73.9169993
+  },
+  {
+    "service_request": "G258974",
+    "address": "22-38 73RD ST, QUEENS",
+    "created": "2023-12-23",
+    "last_updated": "2024-01-30",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7670783,
+    "longitude": -73.8961967
+  },
+  {
+    "service_request": "G259118",
+    "address": "73-01 25TH AVENUE, QUEENS",
+    "created": "2023-12-27",
+    "last_updated": "2024-01-31",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7632745,
+    "longitude": -73.8947632
+  },
+  {
+    "service_request": "G263236",
+    "address": "73-01 25TH AVENUE, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7632745,
+    "longitude": -73.8947632
+  },
+  {
+    "service_request": "G259119",
+    "address": "25-14 71 STREET, QUEENS",
+    "created": "2023-12-27",
+    "last_updated": "2024-01-10",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7615474,
+    "longitude": -73.8971504
+  },
+  {
+    "service_request": "G259120",
+    "address": "76-02 25 AVENUE, QUEENS",
+    "created": "2023-12-27",
+    "last_updated": "2024-01-31",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622425,
+    "longitude": -73.8921173
+  },
+  {
+    "service_request": "G263237",
+    "address": "76-02 25 AVENUE, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622425,
+    "longitude": -73.8921173
+  },
+  {
+    "service_request": "G259280",
+    "address": "30-02 85 STREET, QUEENS",
+    "created": "2023-12-28",
+    "last_updated": "2024-02-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7613396,
+    "longitude": -73.8838848
+  },
+  {
+    "service_request": "G261728",
+    "address": "30-02 85 STREET, QUEENS",
+    "created": "2024-02-16",
+    "last_updated": "2024-03-26",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7613396,
+    "longitude": -73.8838848
+  },
+  {
+    "service_request": "G259281",
+    "address": "27-01 BQE WEST, QUEENS",
+    "created": "2023-12-28",
+    "last_updated": "2024-02-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received."
+  },
+  {
+    "service_request": "G263238",
+    "address": "27-01 BQE WEST, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received."
+  },
+  {
+    "service_request": "G259282",
+    "address": "58-09 28 AVENUE, QUEENS",
+    "created": "2023-12-28",
+    "last_updated": "2024-01-29",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7602345,
+    "longitude": -73.901964
+  },
+  {
+    "service_request": "G259283",
+    "address": "61-05 30 AVENUE, QUEENS",
+    "created": "2023-12-28",
+    "last_updated": "2024-01-09",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7618652,
+    "longitude": -73.9106584
+  },
+  {
+    "service_request": "G259284",
+    "address": "60-06 27TH AVE, QUEENS",
+    "created": "2023-12-28",
+    "last_updated": "2024-02-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7746896,
+    "longitude": -73.933322
+  },
+  {
+    "service_request": "G259285",
+    "address": "26-10 BQE, QUEENS",
+    "created": "2023-12-28",
+    "last_updated": "2024-01-29",
+    "status": "Cleaning crew dispatched.  Property cleaned."
+  },
+  {
+    "service_request": "G259764",
+    "address": "31-49 76 STREET, QUEENS",
+    "created": "2024-01-06",
+    "last_updated": "2024-01-11",
+    "status": "Graffiti on property is inaccessible to graffiti cleaning staff.",
+    "latitude": 40.7572557,
+    "longitude": -73.8911193
+  },
+  {
+    "service_request": "G263240",
+    "address": "31-49 76 STREET, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-03-22",
+    "status": "Graffiti on property is inaccessible to graffiti cleaning staff.",
+    "latitude": 40.7572557,
+    "longitude": -73.8911193
+  },
+  {
+    "service_request": "G259765",
+    "address": "32-01 77 STREET, QUEENS",
+    "created": "2024-01-06",
+    "last_updated": "2024-01-12",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7570916,
+    "longitude": -73.8901345
+  },
+  {
+    "service_request": "G260142",
+    "address": "32-01 77 STREET, QUEENS",
+    "created": "2024-01-14",
+    "last_updated": "2024-01-24",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7570916,
+    "longitude": -73.8901345
+  },
+  {
+    "service_request": "G261209",
+    "address": "32-01 77 STREET, QUEENS",
+    "created": "2024-02-03",
+    "last_updated": "2024-02-08",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7570916,
+    "longitude": -73.8901345
+  },
+  {
+    "service_request": "G260143",
+    "address": "32-01 76 STREET, QUEENS",
+    "created": "2024-01-14",
+    "last_updated": "2024-02-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7569843,
+    "longitude": -73.8910803
+  },
+  {
+    "service_request": "G263281",
+    "address": "32-01 76 STREET, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7569843,
+    "longitude": -73.8910803
+  },
+  {
+    "service_request": "G259766",
+    "address": "31-52 77TH STREET, QUEENS",
+    "created": "2024-01-06",
+    "last_updated": "2024-01-20",
+    "status": "The property owner will be notified within 90 days of the obligation to have the graffiti removed from the property.",
+    "latitude": 40.7573058,
+    "longitude": -73.8906637
+  },
+  {
+    "service_request": "G259767",
+    "address": "32-02 78 STREET, QUEENS",
+    "created": "2024-01-06",
+    "last_updated": "2024-02-12",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7571296,
+    "longitude": -73.8896783
+  },
+  {
+    "service_request": "G263280",
+    "address": "32-02 78 STREET, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7571296,
+    "longitude": -73.8896783
+  },
+  {
+    "service_request": "G259768",
+    "address": "32-02 81 STREET, QUEENS",
+    "created": "2024-01-06",
+    "last_updated": "2024-02-12",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7574133,
+    "longitude": -73.8869016
+  },
+  {
+    "service_request": "G263279",
+    "address": "32-02 81 STREET, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7574133,
+    "longitude": -73.8869016
+  },
+  {
+    "service_request": "G260144",
+    "address": "32-01 75 STREET, QUEENS",
+    "created": "2024-01-14",
+    "last_updated": "2024-02-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7568871,
+    "longitude": -73.8919383
+  },
+  {
+    "service_request": "G263278",
+    "address": "32-01 75 STREET, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7568871,
+    "longitude": -73.8919383
+  },
+  {
+    "service_request": "G259769",
+    "address": "126-02 NORTHERN BOULEVARD, QUEENS",
+    "created": "2024-01-06",
+    "last_updated": "2024-01-06",
+    "status": "CityOwnedIneligible",
+    "latitude": 40.7605329,
+    "longitude": -73.8455091
+  },
+  {
+    "service_request": "G260007",
+    "address": "126-12 NORTHERN BOULEVARD, QUEENS",
+    "created": "2024-01-12",
+    "last_updated": "2024-02-17",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7605589,
+    "longitude": -73.8452833
+  },
+  {
+    "service_request": "G260008",
+    "address": "126-16 NORTHERN BOULEVARD, QUEENS",
+    "created": "2024-01-12",
+    "last_updated": "2024-02-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7605133,
+    "longitude": -73.8451431
+  },
+  {
+    "service_request": "G263277",
+    "address": "126-16 NORTHERN BOULEVARD, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7605133,
+    "longitude": -73.8451431
+  },
+  {
+    "service_request": "G260002",
+    "address": "30-50 77 STREET, QUEENS",
+    "created": "2024-01-12",
+    "last_updated": "2024-02-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7589861,
+    "longitude": -73.8910792
+  },
+  {
+    "service_request": "G260003",
+    "address": "78-03 31 AVENUE, QUEENS",
+    "created": "2024-01-12",
+    "last_updated": "2024-01-24",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7591054,
+    "longitude": -73.8896438
+  },
+  {
+    "service_request": "G260139",
+    "address": "25-39 BOODY ST, QUEENS",
+    "created": "2024-01-14",
+    "last_updated": "2024-02-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611159,
+    "longitude": -73.8974022
+  },
+  {
+    "service_request": "G263276",
+    "address": "25-39 BOODY ST, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611159,
+    "longitude": -73.8974022
+  },
+  {
+    "service_request": "G260140",
+    "address": "25-16 71 STREET, QUEENS",
+    "created": "2024-01-14",
+    "last_updated": "2024-02-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7614579,
+    "longitude": -73.8970752
+  },
+  {
+    "service_request": "G263275",
+    "address": "25-16 71 STREET, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7614579,
+    "longitude": -73.8970752
+  },
+  {
+    "service_request": "G260141",
+    "address": "25-02 76TH ST, QUEENS",
+    "created": "2024-01-14",
+    "last_updated": "2024-02-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622774,
+    "longitude": -73.8925434
+  },
+  {
+    "service_request": "G263274",
+    "address": "25-02 76TH ST, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622774,
+    "longitude": -73.8925434
+  },
+  {
+    "service_request": "G260236",
+    "address": "25-59 76 STREET, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7607931,
+    "longitude": -73.891751
+  },
+  {
+    "service_request": "G263273",
+    "address": "25-59 76 STREET, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7607931,
+    "longitude": -73.891751
+  },
+  {
+    "service_request": "G260238",
+    "address": "30-45 75TH ST, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7592369,
+    "longitude": -73.8923846
+  },
+  {
+    "service_request": "G263272",
+    "address": "30-45 75TH ST, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7592369,
+    "longitude": -73.8923846
+  },
+  {
+    "service_request": "G260239",
+    "address": "80-18 31 AVENUE, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-26",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7589624,
+    "longitude": -73.88721
+  },
+  {
+    "service_request": "G263271",
+    "address": "31-08 81 STREET, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7588947,
+    "longitude": -73.8871385
+  },
+  {
+    "service_request": "G260240",
+    "address": "31-08 81 STREET, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7588947,
+    "longitude": -73.8871385
+  },
+  {
+    "service_request": "G260241",
+    "address": "82-16 31 AVENUE, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7590972,
+    "longitude": -73.8853249
+  },
+  {
+    "service_request": "G263270",
+    "address": "82-16 31 AVENUE, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7590972,
+    "longitude": -73.8853249
+  },
+  {
+    "service_request": "G260242",
+    "address": "31-06 83 STREET, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-01-23",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7590543,
+    "longitude": -73.8851824
+  },
+  {
+    "service_request": "G260243",
+    "address": "86-03 25 AVENUE, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7636179,
+    "longitude": -73.8827483
+  },
+  {
+    "service_request": "G263269",
+    "address": "86-03 25 AVENUE, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7636179,
+    "longitude": -73.8827483
+  },
+  {
+    "service_request": "G260244",
+    "address": "87-01 25 AVENUE, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.763669,
+    "longitude": -73.881928
+  },
+  {
+    "service_request": "G260245",
+    "address": "89-10 ASTORIA BLVD, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7649166,
+    "longitude": -73.8869905
+  },
+  {
+    "service_request": "G263268",
+    "address": "89-10 ASTORIA BLVD, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7649166,
+    "longitude": -73.8869905
+  },
+  {
+    "service_request": "G260246",
+    "address": "89-01 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-21",
+    "status": "The property owner will be notified within 90 days of the obligation to have the graffiti removed from the property.",
+    "latitude": 40.7640562,
+    "longitude": -73.87989
+  },
+  {
+    "service_request": "G260247",
+    "address": "89-15 ASTORIA BLVD, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7640067,
+    "longitude": -73.8796239
+  },
+  {
+    "service_request": "G263267",
+    "address": "89-15 ASTORIA BLVD, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7640067,
+    "longitude": -73.8796239
+  },
+  {
+    "service_request": "G260251",
+    "address": "91-07 25 AVENUE, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G263265",
+    "address": "91-07 25 AVENUE, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G260248",
+    "address": "91-08 25 AVENUE, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G263264",
+    "address": "91-08 25 AVENUE, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G260249",
+    "address": "91-16 25TH AVE, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G263263",
+    "address": "91-16 25TH AVE, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G260250",
+    "address": "91-17 25TH AVE, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G263262",
+    "address": "91-11 25TH AVE, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G260252",
+    "address": "26-13 91 STREET, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-01-23",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7629984,
+    "longitude": -73.8779571
+  },
+  {
+    "service_request": "G260254",
+    "address": "90-28 ASTORIA BLVD, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-03-22",
+    "status": "The property owner will be notified within 90 days of the obligation to have the graffiti removed from the property.",
+    "latitude": 40.7633521,
+    "longitude": -73.8784769
+  },
+  {
+    "service_request": "G263261",
+    "address": "90-28 ASTORIA BLVD, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7633521,
+    "longitude": -73.8784769
+  },
+  {
+    "service_request": "G260255",
+    "address": "25-57 89 STREET, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-01-29",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.762068,
+    "longitude": -73.8796829
+  },
+  {
+    "service_request": "G260256",
+    "address": "85-05 ASTORIA BLVD, QUEENS",
+    "created": "2024-01-18",
+    "last_updated": "2024-02-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7717671,
+    "longitude": -73.9244072
+  },
+  {
+    "service_request": "G263260",
+    "address": "85-05 ASTORIA BLVD, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7717671,
+    "longitude": -73.9244072
+  },
+  {
+    "service_request": "G260804",
+    "address": "81-18 24TH AVE, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-03-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7645275,
+    "longitude": -73.8871746
+  },
+  {
+    "service_request": "G260805",
+    "address": "24-02 82 STREET, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-01-31",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7639002,
+    "longitude": -73.8868881
+  },
+  {
+    "service_request": "G260806",
+    "address": "84-15 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-03-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7649124,
+    "longitude": -73.8847576
+  },
+  {
+    "service_request": "G260807",
+    "address": "24-02 86 STREET, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-01-31",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7651148,
+    "longitude": -73.883581
+  },
+  {
+    "service_request": "G260808",
+    "address": "24-01 86 STREET, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-03-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651695,
+    "longitude": -73.8830562
+  },
+  {
+    "service_request": "G263259",
+    "address": "24-01 86 STREET, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-03-28",
+    "status": "Graffiti is intentional.",
+    "latitude": 40.7651695,
+    "longitude": -73.8830562
+  },
+  {
+    "service_request": "G260809",
+    "address": "24-03 86TH ST, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-03-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651185,
+    "longitude": -73.8830256
+  },
+  {
+    "service_request": "G263258",
+    "address": "24-03 86TH ST, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651185,
+    "longitude": -73.8830256
+  },
+  {
+    "service_request": "G260810",
+    "address": "24-02 87 STREET, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-03-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7652113,
+    "longitude": -73.8826574
+  },
+  {
+    "service_request": "G263257",
+    "address": "24-02 87 STREET, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7652113,
+    "longitude": -73.8826574
+  },
+  {
+    "service_request": "G260811",
+    "address": "24-34 87 STREET, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-02-26",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7644722,
+    "longitude": -73.8825096
+  },
+  {
+    "service_request": "G260812",
+    "address": "24-01 87TH ST, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-03-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7652617,
+    "longitude": -73.882125
+  },
+  {
+    "service_request": "G263256",
+    "address": "24-01 87TH ST, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7652617,
+    "longitude": -73.882125
+  },
+  {
+    "service_request": "G260815",
+    "address": "91-18 ASTORIA BLVD, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-02-15",
+    "status": "The property owner will be notified within 90 days of the obligation to have the graffiti removed from the property.",
+    "latitude": 40.7631127,
+    "longitude": -73.8774728
+  },
+  {
+    "service_request": "G260816",
+    "address": "26-04 93RD ST, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-03-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7629006,
+    "longitude": -73.8764061
+  },
+  {
+    "service_request": "G263255",
+    "address": "26-04 93RD ST, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7629006,
+    "longitude": -73.8764061
+  },
+  {
+    "service_request": "G260817",
+    "address": "93-12 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-01-30",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7612576,
+    "longitude": -73.8654829
+  },
+  {
+    "service_request": "G263254",
+    "address": "93-12 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-03-25",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7612576,
+    "longitude": -73.8654829
+  },
+  {
+    "service_request": "G260818",
+    "address": "26-07 94TH STREET, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-03-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7626194,
+    "longitude": -73.8750884
+  },
+  {
+    "service_request": "G263253",
+    "address": "26-07 94TH STREET, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-05-31",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7626194,
+    "longitude": -73.8750884
+  },
+  {
+    "service_request": "G260819",
+    "address": "30-33 93RD ST, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-03-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7604673,
+    "longitude": -73.8755992
+  },
+  {
+    "service_request": "G263250",
+    "address": "30-33 93RD ST, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7604673,
+    "longitude": -73.8755992
+  },
+  {
+    "service_request": "G260820",
+    "address": "93-09 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-01-28",
+    "last_updated": "2024-03-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.763326,
+    "longitude": -73.8758497
+  },
+  {
+    "service_request": "G263249",
+    "address": "93-09 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-17",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.763326,
+    "longitude": -73.8758497
+  },
+  {
+    "service_request": "G261186",
+    "address": "77-13 25 AVENUE, QUEENS",
+    "created": "2024-02-03",
+    "last_updated": "2024-02-08",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7627275,
+    "longitude": -73.8908947
+  },
+  {
+    "service_request": "G261187",
+    "address": "80-01 30 AVENUE, QUEENS",
+    "created": "2024-02-03",
+    "last_updated": "2024-02-28",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7612558,
+    "longitude": -73.8881492
+  },
+  {
+    "service_request": "G261188",
+    "address": "75-81 31 AVENUE, QUEENS",
+    "created": "2024-02-03",
+    "last_updated": "2024-02-07",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7602304,
+    "longitude": -73.8911652
+  },
+  {
+    "service_request": "G263239",
+    "address": "30-50 77 STREET, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7589861,
+    "longitude": -73.8910792
+  },
+  {
+    "service_request": "G261189",
+    "address": "26-49 96 STREET, QUEENS",
+    "created": "2024-02-03",
+    "last_updated": "2024-03-12",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611185,
+    "longitude": -73.872813
+  },
+  {
+    "service_request": "G263245",
+    "address": "26-49 96 STREET, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611185,
+    "longitude": -73.872813
+  },
+  {
+    "service_request": "G263248",
+    "address": "77-13 25 AVENUE, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-03-28",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7627275,
+    "longitude": -73.8908947
+  },
+  {
+    "service_request": "G261190",
+    "address": "89-19 NORTHERN BOULEVARD, QUEENS",
+    "created": "2024-02-03",
+    "last_updated": "2024-03-12",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7564653,
+    "longitude": -73.8782136
+  },
+  {
+    "service_request": "G263244",
+    "address": "89-19 NORTHERN BOULEVARD, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7564653,
+    "longitude": -73.8782136
+  },
+  {
+    "service_request": "G261207",
+    "address": "31-02 75TH ST, QUEENS",
+    "created": "2024-02-03",
+    "last_updated": "2024-03-12",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7583702,
+    "longitude": -73.8927636
+  },
+  {
+    "service_request": "G263243",
+    "address": "31-02 75TH ST, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7583702,
+    "longitude": -73.8927636
+  },
+  {
+    "service_request": "G261208",
+    "address": "30-53 82ND ST, QUEENS",
+    "created": "2024-02-03",
+    "last_updated": "2024-03-12",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.759664,
+    "longitude": -73.88586
+  },
+  {
+    "service_request": "G263242",
+    "address": "30-53 82ND ST, QUEENS",
+    "created": "2024-03-17",
+    "last_updated": "2024-04-22",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.759664,
+    "longitude": -73.88586
+  },
+  {
+    "service_request": "G261210",
+    "address": "58-02 NORTHERN BOULEVARD, QUEENS",
+    "created": "2024-02-03",
+    "last_updated": "2024-02-08",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7535927,
+    "longitude": -73.9026295
+  },
+  {
+    "service_request": "G261450",
+    "address": "82-01 25 AVENUE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7632486,
+    "longitude": -73.8866185
+  },
+  {
+    "service_request": "G261451",
+    "address": "102-23 29TH AVE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7620694,
+    "longitude": -73.8667713
+  },
+  {
+    "service_request": "G261452",
+    "address": "103-01 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7616244,
+    "longitude": -73.8660278
+  },
+  {
+    "service_request": "G261453",
+    "address": "102-21 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-28",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G261454",
+    "address": "101-15 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-27",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7618964,
+    "longitude": -73.8676259
+  },
+  {
+    "service_request": "G261455",
+    "address": "101-24 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7613951,
+    "longitude": -73.8674151
+  },
+  {
+    "service_request": "G261456",
+    "address": "101-18 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-29",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7615026,
+    "longitude": -73.8676269
+  },
+  {
+    "service_request": "G261457",
+    "address": "101-06 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-27",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7612576,
+    "longitude": -73.8654829
+  },
+  {
+    "service_request": "G261458",
+    "address": "100-15 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-22",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7620874,
+    "longitude": -73.8687679
+  },
+  {
+    "service_request": "G261459",
+    "address": "100-11 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7621111,
+    "longitude": -73.8688949
+  },
+  {
+    "service_request": "G261460",
+    "address": "99-10 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-17",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G261462",
+    "address": "99-07 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7649166,
+    "longitude": -73.8869905
+  },
+  {
+    "service_request": "G261463",
+    "address": "98-19 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-27",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7624025,
+    "longitude": -73.8706067
+  },
+  {
+    "service_request": "G261464",
+    "address": "98-17 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-12-14",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7624679,
+    "longitude": -73.8707012
+  },
+  {
+    "service_request": "G261465",
+    "address": "98-15 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7624445,
+    "longitude": -73.8708509
+  },
+  {
+    "service_request": "G261466",
+    "address": "98-13 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7627128,
+    "longitude": -73.8731052
+  },
+  {
+    "service_request": "G261467",
+    "address": "98-09 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7625141,
+    "longitude": -73.8709993
+  },
+  {
+    "service_request": "G261468",
+    "address": "98-16 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7619295,
+    "longitude": -73.8706412
+  },
+  {
+    "service_request": "G261469",
+    "address": "98-01 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-17",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7625776,
+    "longitude": -73.8712408
+  },
+  {
+    "service_request": "G261470",
+    "address": "25-74 98 STREET, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-27",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7626538,
+    "longitude": -73.8715437
+  },
+  {
+    "service_request": "G261471",
+    "address": "25-48 96TH ST, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7630403,
+    "longitude": -73.8735631
+  },
+  {
+    "service_request": "G261472",
+    "address": "25-47 96TH ST, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7631163,
+    "longitude": -73.8731076
+  },
+  {
+    "service_request": "G261473",
+    "address": "95-13 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-21",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7629559,
+    "longitude": -73.8736789
+  },
+  {
+    "service_request": "G261474",
+    "address": "94-15 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7631251,
+    "longitude": -73.8746198
+  },
+  {
+    "service_request": "G261475",
+    "address": "94-11 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7632087,
+    "longitude": -73.8747805
+  },
+  {
+    "service_request": "G261476",
+    "address": "94-09 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7631801,
+    "longitude": -73.8748488
+  },
+  {
+    "service_request": "G261486",
+    "address": "94-07 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7631825,
+    "longitude": -73.8749217
+  },
+  {
+    "service_request": "G261488",
+    "address": "93-12 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-21",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7612576,
+    "longitude": -73.8654829
+  },
+  {
+    "service_request": "G261487",
+    "address": "93-13 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7633144,
+    "longitude": -73.8756982
+  },
+  {
+    "service_request": "G261491",
+    "address": "94-12 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7626483,
+    "longitude": -73.8747475
+  },
+  {
+    "service_request": "G261489",
+    "address": "94-10 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7626506,
+    "longitude": -73.8748136
+  },
+  {
+    "service_request": "G261490",
+    "address": "94-08 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7626675,
+    "longitude": -73.8748815
+  },
+  {
+    "service_request": "G261492",
+    "address": "94-20 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7626708,
+    "longitude": -73.8745007
+  },
+  {
+    "service_request": "G261493",
+    "address": "95-06 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-21",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7624551,
+    "longitude": -73.8737853
+  },
+  {
+    "service_request": "G261494",
+    "address": "95-16 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7624005,
+    "longitude": -73.8734938
+  },
+  {
+    "service_request": "G261495",
+    "address": "90-13 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-21",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7637849,
+    "longitude": -73.8785819
+  },
+  {
+    "service_request": "G261496",
+    "address": "89-07 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7640411,
+    "longitude": -73.8797541
+  },
+  {
+    "service_request": "G261497",
+    "address": "25-01 88 STREET, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-22",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7635228,
+    "longitude": -73.8809226
+  },
+  {
+    "service_request": "G261498",
+    "address": "88-20 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-12",
+    "status": "Graffiti is intentional.",
+    "latitude": 40.7717671,
+    "longitude": -73.9244072
+  },
+  {
+    "service_request": "G261499",
+    "address": "24-22 86TH ST, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7646029,
+    "longitude": -73.8834273
+  },
+  {
+    "service_request": "G261500",
+    "address": "23-53 83RD ST, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7656009,
+    "longitude": -73.8860253
+  },
+  {
+    "service_request": "G261501",
+    "address": "83-03 24TH AVE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7652264,
+    "longitude": -73.8858733
+  },
+  {
+    "service_request": "G261502",
+    "address": "82-06 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7650237,
+    "longitude": -73.8867149
+  },
+  {
+    "service_request": "G261503",
+    "address": "22-48 74 STREET, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-26",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7669408,
+    "longitude": -73.895268
+  },
+  {
+    "service_request": "G261504",
+    "address": "22-38 73RD ST, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7670783,
+    "longitude": -73.8961967
+  },
+  {
+    "service_request": "G261505",
+    "address": "108-05 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-17",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7605924,
+    "longitude": -73.8607481
+  },
+  {
+    "service_request": "G261506",
+    "address": "110-24 DITMARS BLVD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7606448,
+    "longitude": -73.8601242
+  },
+  {
+    "service_request": "G261507",
+    "address": "105-14 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-17",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G261508",
+    "address": "103-14 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611017,
+    "longitude": -73.8657184
+  },
+  {
+    "service_request": "G261509",
+    "address": "101-16 31 AVENUE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7610325,
+    "longitude": -73.867612
+  },
+  {
+    "service_request": "G261510",
+    "address": "31-01 102 STREET, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-26",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7610985,
+    "longitude": -73.8669421
+  },
+  {
+    "service_request": "G261511",
+    "address": "100-22 31 AVENUE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-26",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7609044,
+    "longitude": -73.868246
+  },
+  {
+    "service_request": "G261512",
+    "address": "112-37 ROOSEVELT AVENUE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7525947,
+    "longitude": -73.853256
+  },
+  {
+    "service_request": "G261513",
+    "address": "112-45 ROOSEVELT AVENUE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7526039,
+    "longitude": -73.8530157
+  },
+  {
+    "service_request": "G261514",
+    "address": "112-47 ROOSEVELT AVENUE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7526231,
+    "longitude": -73.8529505
+  },
+  {
+    "service_request": "G261515",
+    "address": "112-51 ROOSEVELT AVENUE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7526608,
+    "longitude": -73.8528231
+  },
+  {
+    "service_request": "G261516",
+    "address": "38-26 114TH ST, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-11",
+    "status": "The property owner\u2019s name cannot be determined.",
+    "latitude": 40.7535095,
+    "longitude": -73.8532888
+  },
+  {
+    "service_request": "G261517",
+    "address": "112-52 38TH AVE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7539988,
+    "longitude": -73.8535202
+  },
+  {
+    "service_request": "G261518",
+    "address": "37-10 114TH ST, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7578992,
+    "longitude": -73.8553917
+  },
+  {
+    "service_request": "G261519",
+    "address": "111-32 37TH AVE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7541997,
+    "longitude": -73.8558587
+  },
+  {
+    "service_request": "G261520",
+    "address": "111-18 37 AVENUE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-11",
+    "status": "The property owner\u2019s name cannot be determined.",
+    "latitude": 40.7541669,
+    "longitude": -73.8564822
+  },
+  {
+    "service_request": "G261521",
+    "address": "111-17 37TH AVE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7544778,
+    "longitude": -73.8565624
+  },
+  {
+    "service_request": "G261522",
+    "address": "34-88 112TH ST, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7545183,
+    "longitude": -73.8560119
+  },
+  {
+    "service_request": "G261523",
+    "address": "37-06 111 STREET, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-21",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.753669,
+    "longitude": -73.8570615
+  },
+  {
+    "service_request": "G261524",
+    "address": "111-02 37TH AVE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7539849,
+    "longitude": -73.8569158
+  },
+  {
+    "service_request": "G261525",
+    "address": "109-01 37 AVENUE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-12",
+    "status": "The property owner will be notified within 90 days of the obligation to have the graffiti removed from the property.",
+    "latitude": 40.7541205,
+    "longitude": -73.8583245
+  },
+  {
+    "service_request": "G261526",
+    "address": "108-51 37TH DR, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7537918,
+    "longitude": -73.8581784
+  },
+  {
+    "service_request": "G261527",
+    "address": "108-48 37TH DR, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7526942,
+    "longitude": -73.8614608
+  },
+  {
+    "service_request": "G261528",
+    "address": "108-33 37TH DR, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7536457,
+    "longitude": -73.8588584
+  },
+  {
+    "service_request": "G261529",
+    "address": "108-28 37 AVENUE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7537684,
+    "longitude": -73.859156
+  },
+  {
+    "service_request": "G261530",
+    "address": "108-14 37TH AVE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7537647,
+    "longitude": -73.8595407
+  },
+  {
+    "service_request": "G261531",
+    "address": "108-16 37 AVENUE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-02-21",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7537796,
+    "longitude": -73.8594553
+  },
+  {
+    "service_request": "G261532",
+    "address": "108-06 37 AVENUE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7537914,
+    "longitude": -73.8598484
+  },
+  {
+    "service_request": "G261533",
+    "address": "37-05 108 STREET, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-03-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7537488,
+    "longitude": -73.8601005
+  },
+  {
+    "service_request": "G261534",
+    "address": "108-03 37 AVENUE, QUEENS",
+    "created": "2024-02-10",
+    "last_updated": "2024-12-14",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7597624,
+    "longitude": -73.9408112
+  },
+  {
+    "service_request": "G261907",
+    "address": "25-01 72ND ST, QUEENS",
+    "created": "2024-02-18",
+    "last_updated": "2024-03-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7619392,
+    "longitude": -73.8957212
+  },
+  {
+    "service_request": "G261908",
+    "address": "25-02 83 STREET, QUEENS",
+    "created": "2024-02-18",
+    "last_updated": "2024-03-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7630067,
+    "longitude": -73.8860143
+  },
+  {
+    "service_request": "G261909",
+    "address": "80-08 24TH AVE, QUEENS",
+    "created": "2024-02-18",
+    "last_updated": "2024-03-26",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7645328,
+    "longitude": -73.8885635
+  },
+  {
+    "service_request": "G262009",
+    "address": "30-38 92 STREET, QUEENS",
+    "created": "2024-02-21",
+    "last_updated": "2024-03-13",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7604661,
+    "longitude": -73.876911
+  },
+  {
+    "service_request": "G262010",
+    "address": "91-17 31ST AVE, QUEENS",
+    "created": "2024-02-21",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7603782,
+    "longitude": -73.8769857
+  },
+  {
+    "service_request": "G262011",
+    "address": "31-01 91 STREET, QUEENS",
+    "created": "2024-02-21",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7599936,
+    "longitude": -73.8774741
+  },
+  {
+    "service_request": "G262012",
+    "address": "91-05 31ST AVE, QUEENS",
+    "created": "2024-02-21",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7603352,
+    "longitude": -73.8774173
+  },
+  {
+    "service_request": "G262062",
+    "address": "31-02 89 STREET, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7597452,
+    "longitude": -73.8797815
+  },
+  {
+    "service_request": "G262063",
+    "address": "90-01 31 AVENUE, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7594522,
+    "longitude": -73.8839388
+  },
+  {
+    "service_request": "G262064",
+    "address": "88-15 31ST AVE, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7600036,
+    "longitude": -73.8799324
+  },
+  {
+    "service_request": "G262065",
+    "address": "30-56 88TH ST, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7602362,
+    "longitude": -73.8807363
+  },
+  {
+    "service_request": "G262066",
+    "address": "87-20 30 AVENUE, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-04",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7615614,
+    "longitude": -73.880935
+  },
+  {
+    "service_request": "G262067",
+    "address": "31-04 84 STREET, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-12-14",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7591943,
+    "longitude": -73.884336
+  },
+  {
+    "service_request": "G262068",
+    "address": "23-85 38 STREET, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-04",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7697165,
+    "longitude": -73.9110476
+  },
+  {
+    "service_request": "G262069",
+    "address": "23-81 38TH ST, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7697723,
+    "longitude": -73.9109016
+  },
+  {
+    "service_request": "G262070",
+    "address": "38-25 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7696505,
+    "longitude": -73.9104631
+  },
+  {
+    "service_request": "G262071",
+    "address": "37-17 24TH AVE, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-08",
+    "status": "The property owner will be notified within 90 days of the obligation to have the graffiti removed from the property.",
+    "latitude": 40.7698374,
+    "longitude": -73.9114649
+  },
+  {
+    "service_request": "G262072",
+    "address": "24-24 36 STREET, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7700264,
+    "longitude": -73.9135192
+  },
+  {
+    "service_request": "G262073",
+    "address": "33-29 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7702066,
+    "longitude": -73.9146905
+  },
+  {
+    "service_request": "G262074",
+    "address": "33-11 ASTORIA BLVD, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7702816,
+    "longitude": -73.9150664
+  },
+  {
+    "service_request": "G262075",
+    "address": "22-46 49 STREET, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7679336,
+    "longitude": -73.9017552
+  },
+  {
+    "service_request": "G262076",
+    "address": "22-19 HAZEN STREET, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7677064,
+    "longitude": -73.9000497
+  },
+  {
+    "service_request": "G262077",
+    "address": "70-11 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-02-29",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
+  },
+  {
+    "service_request": "G262078",
+    "address": "71-11 ASTORIA BOULEVARD NORTH, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7675488,
+    "longitude": -73.8972851
+  },
+  {
+    "service_request": "G262079",
+    "address": "71-04 DITMARS BLVD, QUEENS",
+    "created": "2024-02-22",
+    "last_updated": "2024-03-29",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7686846,
+    "longitude": -73.8816159
+  },
+  {
+    "service_request": "G262245",
+    "address": "71-11 AUSTIN STREET, QUEENS",
+    "created": "2024-02-25",
+    "last_updated": "2024-04-01",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7201166,
+    "longitude": -73.8441611
+  },
+  {
+    "service_request": "G262246",
+    "address": "43-08 BROADWAY, QUEENS",
+    "created": "2024-02-25",
+    "last_updated": "2024-04-01",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7575457,
+    "longitude": -73.9164588
+  },
+  {
+    "service_request": "G262565",
+    "address": "64-20 32ND AVE, QUEENS",
+    "created": "2024-03-02",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7560958,
+    "longitude": -73.8990364
+  },
+  {
+    "service_request": "G262566",
+    "address": "32-01 68 STREET, QUEENS",
+    "created": "2024-03-02",
+    "last_updated": "2024-03-12",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7561898,
+    "longitude": -73.898612
+  },
+  {
+    "service_request": "G262567",
+    "address": "80-10 32ND AVE, QUEENS",
+    "created": "2024-03-02",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7573087,
+    "longitude": -73.8871732
+  },
+  {
+    "service_request": "G262568",
+    "address": "32-05 81ST ST, QUEENS",
+    "created": "2024-03-02",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.757368,
+    "longitude": -73.8862712
+  },
+  {
+    "service_request": "G262569",
+    "address": "31-47 81 STREET, QUEENS",
+    "created": "2024-03-02",
+    "last_updated": "2024-03-28",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7577522,
+    "longitude": -73.8864692
+  },
+  {
+    "service_request": "G262570",
+    "address": "31-48 82 STREET, QUEENS",
+    "created": "2024-03-02",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7577941,
+    "longitude": -73.8860112
+  },
+  {
+    "service_request": "G262571",
+    "address": "31-39 82ND ST, QUEENS",
+    "created": "2024-03-02",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7581093,
+    "longitude": -73.8855872
+  },
+  {
+    "service_request": "G262572",
+    "address": "32-01 83RD ST, QUEENS",
+    "created": "2024-03-02",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7576655,
+    "longitude": -73.8845502
+  },
+  {
+    "service_request": "G262573",
+    "address": "83-09 32ND AVE, QUEENS",
+    "created": "2024-03-02",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7580081,
+    "longitude": -73.8844533
+  },
+  {
+    "service_request": "G262595",
+    "address": "31-50 84 STREET, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7579933,
+    "longitude": -73.8841393
+  },
+  {
+    "service_request": "G262596",
+    "address": "31-49 84 STREET, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7580403,
+    "longitude": -73.8836745
+  },
+  {
+    "service_request": "G262597",
+    "address": "32-02 85 STREET, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-03-12",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7578139,
+    "longitude": -73.8831683
+  },
+  {
+    "service_request": "G262598",
+    "address": "31-49 85TH ST, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7581438,
+    "longitude": -73.8827538
+  },
+  {
+    "service_request": "G262599",
+    "address": "32-01 86TH ST, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7579599,
+    "longitude": -73.8817809
+  },
+  {
+    "service_request": "G262600",
+    "address": "31-49 86TH ST, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7582373,
+    "longitude": -73.8817968
+  },
+  {
+    "service_request": "G262601",
+    "address": "32-01 87TH ST, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7580512,
+    "longitude": -73.8808639
+  },
+  {
+    "service_request": "G262602",
+    "address": "32-03 87TH ST, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7579957,
+    "longitude": -73.8808527
+  },
+  {
+    "service_request": "G262603",
+    "address": "88-01 32 AVENUE, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7585203,
+    "longitude": -73.8800725
+  },
+  {
+    "service_request": "G262604",
+    "address": "94-06 32 AVENUE, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-12-14",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7585165,
+    "longitude": -73.8742035
+  },
+  {
+    "service_request": "G262605",
+    "address": "99-17 32ND AVE, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7593027,
+    "longitude": -73.8693058
+  },
+  {
+    "service_request": "G262606",
+    "address": "101-12 32 AVENUE, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-03-12",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7591715,
+    "longitude": -73.8673078
+  },
+  {
+    "service_request": "G262607",
+    "address": "32-07 103RD ST, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7593498,
+    "longitude": -73.8658291
+  },
+  {
+    "service_request": "G262608",
+    "address": "105-04 32ND AVE, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7595125,
+    "longitude": -73.8638262
+  },
+  {
+    "service_request": "G262609",
+    "address": "106-11 32ND AVE, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-04-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7600077,
+    "longitude": -73.8627255
+  },
+  {
+    "service_request": "G262681",
+    "address": "70-11 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-03-04",
+    "last_updated": "2024-03-22",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
+  },
+  {
+    "service_request": "G262846",
+    "address": "21-83 46TH ST, QUEENS",
+    "created": "2024-03-08",
+    "last_updated": "2024-04-15",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.77028,
+    "longitude": -73.9021495
+  },
+  {
+    "service_request": "G262847",
+    "address": "46-20 DITMARS BOULEVARD, QUEENS",
+    "created": "2024-03-08",
+    "last_updated": "2024-03-26",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7698108,
+    "longitude": -73.9019876
+  },
+  {
+    "service_request": "G262848",
+    "address": "46-06 DITMARS BOULEVARD, QUEENS",
+    "created": "2024-03-08",
+    "last_updated": "2024-03-22",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7698693,
+    "longitude": -73.9024961
+  },
+  {
+    "service_request": "G262849",
+    "address": "42-01 DITMARS BLVD, QUEENS",
+    "created": "2024-03-08",
+    "last_updated": "2024-04-15",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7718835,
+    "longitude": -73.9042607
+  },
+  {
+    "service_request": "G262850",
+    "address": "41-12 DITMARS BOULEVARD, QUEENS",
+    "created": "2024-03-08",
+    "last_updated": "2024-04-15",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7719172,
+    "longitude": -73.9051061
+  },
+  {
+    "service_request": "G262851",
+    "address": "21-83 STEINWAY STREET, QUEENS",
+    "created": "2024-03-08",
+    "last_updated": "2024-04-15",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7728236,
+    "longitude": -73.9057427
+  },
+  {
+    "service_request": "G262852",
+    "address": "35-15 DITMARS BLVD, QUEENS",
+    "created": "2024-03-08",
+    "last_updated": "2024-04-15",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7746666,
+    "longitude": -73.9082288
+  },
+  {
+    "service_request": "G262853",
+    "address": "82-17 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-03-08",
+    "last_updated": "2024-04-15",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G270619",
+    "address": "82-17 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-05-07",
+    "last_updated": "2024-06-12",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G262854",
+    "address": "23-58 83 STREET, QUEENS",
+    "created": "2024-03-08",
+    "last_updated": "2024-04-15",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7654943,
+    "longitude": -73.8864449
+  },
+  {
+    "service_request": "G263062",
+    "address": "101-16 32ND AVE, QUEENS",
+    "created": "2024-03-13",
+    "last_updated": "2024-04-18",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7592082,
+    "longitude": -73.867161
+  },
+  {
+    "service_request": "G267902",
+    "address": "80-02 24 AVENUE, QUEENS",
+    "created": "2024-04-14",
+    "last_updated": "2024-05-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7645581,
+    "longitude": -73.8886802
+  },
+  {
+    "service_request": "G267903",
+    "address": "80-08 24TH AVE, QUEENS",
+    "created": "2024-04-14",
+    "last_updated": "2024-05-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7645328,
+    "longitude": -73.8885635
+  },
+  {
+    "service_request": "G267904",
+    "address": "30-01 81ST ST, QUEENS",
+    "created": "2024-04-14",
+    "last_updated": "2024-05-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7610095,
+    "longitude": -73.8870502
+  },
+  {
+    "service_request": "G267905",
+    "address": "30-01 83 STREET, QUEENS",
+    "created": "2024-04-14",
+    "last_updated": "2024-05-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611993,
+    "longitude": -73.8852121
+  },
+  {
+    "service_request": "G267906",
+    "address": "80-02 ASTORIA BLVD, QUEENS",
+    "created": "2024-04-14",
+    "last_updated": "2024-05-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651176,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G267907",
+    "address": "24-36 81 STREET, QUEENS",
+    "created": "2024-04-14",
+    "last_updated": "2024-05-09",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7636819,
+    "longitude": -73.888057
+  },
+  {
+    "service_request": "G267908",
+    "address": "30-02 85 STREET, QUEENS",
+    "created": "2024-04-14",
+    "last_updated": "2024-04-17",
+    "status": "Graffiti on property is inaccessible to graffiti cleaning staff.",
+    "latitude": 40.7613396,
+    "longitude": -73.8838848
+  },
+  {
+    "service_request": "G271315",
+    "address": "101-16 32ND AVE, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7592082,
+    "longitude": -73.867161
+  },
+  {
+    "service_request": "G271316",
+    "address": "23-58 83 STREET, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7654943,
+    "longitude": -73.8864449
+  },
+  {
+    "service_request": "G271317",
+    "address": "21-83 STEINWAY STREET, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7728236,
+    "longitude": -73.9057427
+  },
+  {
+    "service_request": "G271318",
+    "address": "73-01 25TH AVENUE, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7632745,
+    "longitude": -73.8947632
+  },
+  {
+    "service_request": "G271319",
+    "address": "76-02 25 AVENUE, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622425,
+    "longitude": -73.8921173
+  },
+  {
+    "service_request": "G271320",
+    "address": "27-01 BQE WEST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received."
+  },
+  {
+    "service_request": "G271321",
+    "address": "32-02 78 STREET, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7571296,
+    "longitude": -73.8896783
+  },
+  {
+    "service_request": "G271322",
+    "address": "32-02 81 STREET, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7574133,
+    "longitude": -73.8869016
+  },
+  {
+    "service_request": "G271323",
+    "address": "32-01 75 STREET, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7568871,
+    "longitude": -73.8919383
+  },
+  {
+    "service_request": "G271324",
+    "address": "126-16 NORTHERN BOULEVARD, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7605133,
+    "longitude": -73.8451431
+  },
+  {
+    "service_request": "G271325",
+    "address": "25-39 BOODY ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611159,
+    "longitude": -73.8974022
+  },
+  {
+    "service_request": "G271326",
+    "address": "25-16 71 STREET, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7614579,
+    "longitude": -73.8970752
+  },
+  {
+    "service_request": "G271327",
+    "address": "25-02 76TH ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622774,
+    "longitude": -73.8925434
+  },
+  {
+    "service_request": "G271328",
+    "address": "30-45 75TH ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7592369,
+    "longitude": -73.8923846
+  },
+  {
+    "service_request": "G271329",
+    "address": "82-16 31 AVENUE, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7590972,
+    "longitude": -73.8853249
+  },
+  {
+    "service_request": "G271330",
+    "address": "86-03 25 AVENUE, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7636179,
+    "longitude": -73.8827483
+  },
+  {
+    "service_request": "G271331",
+    "address": "89-10 ASTORIA BLVD, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7649166,
+    "longitude": -73.8869905
+  },
+  {
+    "service_request": "G270769",
+    "address": "89-15 ASTORIA BLVD, QUEENS",
+    "created": "2024-05-10",
+    "last_updated": "2024-05-31",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7640067,
+    "longitude": -73.8796239
+  },
+  {
+    "service_request": "G271332",
+    "address": "91-07 25 AVENUE, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G271333",
+    "address": "91-08 25 AVENUE, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G271334",
+    "address": "91-16 25TH AVE, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G271335",
+    "address": "91-11 25TH AVE, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G271336",
+    "address": "85-05 ASTORIA BLVD, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7717671,
+    "longitude": -73.9244072
+  },
+  {
+    "service_request": "G271337",
+    "address": "24-03 86TH ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651185,
+    "longitude": -73.8830256
+  },
+  {
+    "service_request": "G271338",
+    "address": "24-02 87 STREET, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7652113,
+    "longitude": -73.8826574
+  },
+  {
+    "service_request": "G271340",
+    "address": "30-33 93RD ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7604673,
+    "longitude": -73.8755992
+  },
+  {
+    "service_request": "G271341",
+    "address": "93-09 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-05-31",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.763326,
+    "longitude": -73.8758497
+  },
+  {
+    "service_request": "G271342",
+    "address": "30-50 77 STREET, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7589861,
+    "longitude": -73.8910792
+  },
+  {
+    "service_request": "G271343",
+    "address": "26-49 96 STREET, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611185,
+    "longitude": -73.872813
+  },
+  {
+    "service_request": "G271344",
+    "address": "89-19 NORTHERN BOULEVARD, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7564653,
+    "longitude": -73.8782136
+  },
+  {
+    "service_request": "G271345",
+    "address": "31-02 75TH ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7583702,
+    "longitude": -73.8927636
+  },
+  {
+    "service_request": "G271346",
+    "address": "30-53 82ND ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.759664,
+    "longitude": -73.88586
+  },
+  {
+    "service_request": "G271347",
+    "address": "21-83 46TH ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-05-30",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.77028,
+    "longitude": -73.9021495
+  },
+  {
+    "service_request": "G271348",
+    "address": "46-06 DITMARS BOULEVARD, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-05-30",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7698693,
+    "longitude": -73.9024961
+  },
+  {
+    "service_request": "G271349",
+    "address": "42-01 DITMARS BLVD, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7718835,
+    "longitude": -73.9042607
+  },
+  {
+    "service_request": "G271350",
+    "address": "41-12 DITMARS BOULEVARD, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-05-24",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7719172,
+    "longitude": -73.9051061
+  },
+  {
+    "service_request": "G271351",
+    "address": "31-50 84 STREET, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7579933,
+    "longitude": -73.8841393
+  },
+  {
+    "service_request": "G271352",
+    "address": "31-49 84 STREET, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7580403,
+    "longitude": -73.8836745
+  },
+  {
+    "service_request": "G271353",
+    "address": "32-02 85 STREET, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-05-31",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7578139,
+    "longitude": -73.8831683
+  },
+  {
+    "service_request": "G271354",
+    "address": "31-49 85TH ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7581438,
+    "longitude": -73.8827538
+  },
+  {
+    "service_request": "G271355",
+    "address": "32-01 86TH ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7579599,
+    "longitude": -73.8817809
+  },
+  {
+    "service_request": "G271356",
+    "address": "31-49 86TH ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7582373,
+    "longitude": -73.8817968
+  },
+  {
+    "service_request": "G271357",
+    "address": "32-01 87TH ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7580512,
+    "longitude": -73.8808639
+  },
+  {
+    "service_request": "G271358",
+    "address": "32-03 87TH ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7579957,
+    "longitude": -73.8808527
+  },
+  {
+    "service_request": "G271359",
+    "address": "88-01 32 AVENUE, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7585203,
+    "longitude": -73.8800725
+  },
+  {
+    "service_request": "G271360",
+    "address": "80-10 32ND AVE, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7573087,
+    "longitude": -73.8871732
+  },
+  {
+    "service_request": "G271361",
+    "address": "32-05 81ST ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.757368,
+    "longitude": -73.8862712
+  },
+  {
+    "service_request": "G271362",
+    "address": "32-01 83RD ST, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7576655,
+    "longitude": -73.8845502
+  },
+  {
+    "service_request": "G271363",
+    "address": "83-09 32ND AVE, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7580081,
+    "longitude": -73.8844533
+  },
+  {
+    "service_request": "G271364",
+    "address": "71-11 AUSTIN STREET, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7201166,
+    "longitude": -73.8441611
+  },
+  {
+    "service_request": "G271365",
+    "address": "43-08 BROADWAY, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7575457,
+    "longitude": -73.9164588
+  },
+  {
+    "service_request": "G271366",
+    "address": "98-55 63 ROAD, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7326054,
+    "longitude": -73.8574668
+  },
+  {
+    "service_request": "G271367",
+    "address": "98-53 63RD RD, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-06-12",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7326003,
+    "longitude": -73.8575349
+  },
+  {
+    "service_request": "G271368",
+    "address": "63-33 98 PLACE, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-05-30",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7321532,
+    "longitude": -73.8580406
+  },
+  {
+    "service_request": "G271369",
+    "address": "63-24 99 STREET, QUEENS",
+    "created": "2024-05-17",
+    "last_updated": "2024-05-18",
+    "status": "The property owner\u2019s name cannot be determined.",
+    "latitude": 40.7634867,
+    "longitude": -73.8706355
+  },
+  {
+    "service_request": "G280568",
+    "address": "80-02 ASTORIA BLVD, QUEENS",
+    "created": "2024-08-19",
+    "last_updated": "2024-09-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651176,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G280570",
+    "address": "83-09 32ND AVE, QUEENS",
+    "created": "2024-08-19",
+    "last_updated": "2024-09-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7580081,
+    "longitude": -73.8844533
+  },
+  {
+    "service_request": "G280571",
+    "address": "32-01 83RD ST, QUEENS",
+    "created": "2024-08-19",
+    "last_updated": "2024-09-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7576655,
+    "longitude": -73.8845502
+  },
+  {
+    "service_request": "G280572",
+    "address": "80-10 32ND AVE, QUEENS",
+    "created": "2024-08-19",
+    "last_updated": "2024-09-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7573087,
+    "longitude": -73.8871732
+  },
+  {
+    "service_request": "G280573",
+    "address": "30-01 83 STREET, QUEENS",
+    "created": "2024-08-19",
+    "last_updated": "2024-09-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611993,
+    "longitude": -73.8852121
+  },
+  {
+    "service_request": "G280574",
+    "address": "82-17 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-08-19",
+    "last_updated": "2024-09-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G280578",
+    "address": "80-02 24 AVENUE, QUEENS",
+    "created": "2024-08-19",
+    "last_updated": "2024-09-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7645581,
+    "longitude": -73.8886802
+  },
+  {
+    "service_request": "G281424",
+    "address": "73-01 25TH AVENUE, QUEENS",
+    "created": "2024-09-01",
+    "last_updated": "2024-10-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7632745,
+    "longitude": -73.8947632
+  },
+  {
+    "service_request": "G281425",
+    "address": "76-02 25 AVENUE, QUEENS",
+    "created": "2024-09-01",
+    "last_updated": "2024-10-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622425,
+    "longitude": -73.8921173
+  },
+  {
+    "service_request": "G281426",
+    "address": "31-08 81 STREET, QUEENS",
+    "created": "2024-09-01",
+    "last_updated": "2024-10-08",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7588947,
+    "longitude": -73.8871385
+  },
+  {
+    "service_request": "G282019",
+    "address": "81-07 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-09-08",
+    "last_updated": "2024-10-16",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
+  },
+  {
+    "service_request": "G282020",
+    "address": "75-81 31 AVENUE, QUEENS",
+    "created": "2024-09-08",
+    "last_updated": "2024-10-30",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7602304,
+    "longitude": -73.8911652
+  },
+  {
+    "service_request": "G282349",
+    "address": "80-01 31 AVENUE, QUEENS",
+    "created": "2024-09-14",
+    "last_updated": "2024-10-24",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7592702,
+    "longitude": -73.8877858
+  },
+  {
+    "service_request": "G282941",
+    "address": "80-02 ASTORIA BLVD, QUEENS",
+    "created": "2024-09-28",
+    "last_updated": "2024-11-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651176,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G282942",
+    "address": "80-02 24 AVENUE, QUEENS",
+    "created": "2024-09-28",
+    "last_updated": "2024-10-30",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7645581,
+    "longitude": -73.8886802
+  },
+  {
+    "service_request": "G282943",
+    "address": "82-17 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-09-28",
+    "last_updated": "2024-11-04",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G282944",
+    "address": "30-01 83 STREET, QUEENS",
+    "created": "2024-09-28",
+    "last_updated": "2024-11-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611993,
+    "longitude": -73.8852121
+  },
+  {
+    "service_request": "G282945",
+    "address": "80-10 32ND AVE, QUEENS",
+    "created": "2024-09-28",
+    "last_updated": "2024-11-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7573087,
+    "longitude": -73.8871732
+  },
+  {
+    "service_request": "G282946",
+    "address": "31-50 84 STREET, QUEENS",
+    "created": "2024-09-28",
+    "last_updated": "2024-11-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7579933,
+    "longitude": -73.8841393
+  },
+  {
+    "service_request": "G282947",
+    "address": "82-06 ASTORIA BLVD, QUEENS",
+    "created": "2024-09-28",
+    "last_updated": "2024-11-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7650237,
+    "longitude": -73.8867149
+  },
+  {
+    "service_request": "G282948",
+    "address": "82-16 31 AVENUE, QUEENS",
+    "created": "2024-09-28",
+    "last_updated": "2024-11-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7590972,
+    "longitude": -73.8853249
+  },
+  {
+    "service_request": "G282949",
+    "address": "31-01 82 STREET, QUEENS",
+    "created": "2024-09-28",
+    "last_updated": "2024-11-04",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7591223,
+    "longitude": -73.8857463
+  },
+  {
+    "service_request": "G284789",
+    "address": "22-38 73RD ST, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7670783,
+    "longitude": -73.8961967
+  },
+  {
+    "service_request": "G284790",
+    "address": "72-05 ASTORIA BLVD N, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7706819,
+    "longitude": -73.9169993
+  },
+  {
+    "service_request": "G284791",
+    "address": "22-46 49 STREET, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7679336,
+    "longitude": -73.9017552
+  },
+  {
+    "service_request": "G284792",
+    "address": "24-64 27 STREET, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7401486,
+    "longitude": -73.942642
+  },
+  {
+    "service_request": "G284793",
+    "address": "24-64 24 STREET, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7741501,
+    "longitude": -73.9216384
+  },
+  {
+    "service_request": "G284794",
+    "address": "24-19 19TH ST, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7768366,
+    "longitude": -73.9230116
+  },
+  {
+    "service_request": "G284795",
+    "address": "73-01 25TH AVENUE, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7632745,
+    "longitude": -73.8947632
+  },
+  {
+    "service_request": "G284796",
+    "address": "25-39 BOODY ST, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611159,
+    "longitude": -73.8974022
+  },
+  {
+    "service_request": "G284797",
+    "address": "25-02 76TH ST, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622774,
+    "longitude": -73.8925434
+  },
+  {
+    "service_request": "G284798",
+    "address": "76-02 25 AVENUE, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622425,
+    "longitude": -73.8921173
+  },
+  {
+    "service_request": "G284799",
+    "address": "24-36 81 STREET, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-07",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7636819,
+    "longitude": -73.888057
+  },
+  {
+    "service_request": "G284800",
+    "address": "80-08 24TH AVE, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7645328,
+    "longitude": -73.8885635
+  },
+  {
+    "service_request": "G284802",
+    "address": "82-01 25 AVENUE, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7632486,
+    "longitude": -73.8866185
+  },
+  {
+    "service_request": "G284804",
+    "address": "83-03 24TH AVE, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7652264,
+    "longitude": -73.8858733
+  },
+  {
+    "service_request": "G284805",
+    "address": "24-01 87TH ST, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7652617,
+    "longitude": -73.882125
+  },
+  {
+    "service_request": "G284806",
+    "address": "24-02 87 STREET, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7652113,
+    "longitude": -73.8826574
+  },
+  {
+    "service_request": "G284807",
+    "address": "88-15 ASTORIA BLVD, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7650237,
+    "longitude": -73.8867149
+  },
+  {
+    "service_request": "G284808",
+    "address": "91-17 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-10-19",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.763605,
+    "longitude": -73.8775932
+  },
+  {
+    "service_request": "G284809",
+    "address": "91-16 25TH AVE, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G284810",
+    "address": "91-08 25 AVENUE, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G284811",
+    "address": "91-07 25 AVENUE, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G284812",
+    "address": "30-01 81ST ST, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7610095,
+    "longitude": -73.8870502
+  },
+  {
+    "service_request": "G284813",
+    "address": "30-02 85 STREET, QUEENS",
+    "created": "2024-10-16",
+    "last_updated": "2024-10-19",
+    "status": "Graffiti on property is inaccessible to graffiti cleaning staff.",
+    "latitude": 40.7613396,
+    "longitude": -73.8838848
+  },
+  {
+    "service_request": "G284814",
+    "address": "86-03 25 AVENUE, QUEENS",
+    "created": "2024-10-17",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7636179,
+    "longitude": -73.8827483
+  },
+  {
+    "service_request": "G284815",
+    "address": "23-60 83RD ST, QUEENS",
+    "created": "2024-10-17",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7653993,
+    "longitude": -73.8864266
+  },
+  {
+    "service_request": "G284816",
+    "address": "23-58 83 STREET, QUEENS",
+    "created": "2024-10-17",
+    "last_updated": "2024-11-21",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7654943,
+    "longitude": -73.8864449
+  },
+  {
+    "service_request": "G284964",
+    "address": "30-02 85 STREET, QUEENS",
+    "created": "2024-10-20",
+    "last_updated": "2024-10-30",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7613396,
+    "longitude": -73.8838848
+  },
+  {
+    "service_request": "G286375",
+    "address": "77-13 25 AVENUE, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-14",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7627275,
+    "longitude": -73.8908947
+  },
+  {
+    "service_request": "G286376",
+    "address": "24-60 77TH STREET, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7626592,
+    "longitude": -73.8916511
+  },
+  {
+    "service_request": "G286377",
+    "address": "31-02 75TH ST, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7583702,
+    "longitude": -73.8927636
+  },
+  {
+    "service_request": "G286378",
+    "address": "25-57 89 STREET, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-10-31",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.762068,
+    "longitude": -73.8796829
+  },
+  {
+    "service_request": "G286379",
+    "address": "25-60 89TH ST, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7620248,
+    "longitude": -73.8801449
+  },
+  {
+    "service_request": "G286380",
+    "address": "25-56 89TH ST, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.762129,
+    "longitude": -73.8801838
+  },
+  {
+    "service_request": "G286381",
+    "address": "25-53 89TH ST, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.762186,
+    "longitude": -73.8797046
+  },
+  {
+    "service_request": "G286382",
+    "address": "26-48 92ND ST, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7618509,
+    "longitude": -73.8772912
+  },
+  {
+    "service_request": "G286383",
+    "address": "26-49 92ND ST, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7617583,
+    "longitude": -73.8767909
+  },
+  {
+    "service_request": "G286384",
+    "address": "26-49 96 STREET, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611185,
+    "longitude": -73.872813
+  },
+  {
+    "service_request": "G286385",
+    "address": "96-06 31 AVENUE, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-14",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7604195,
+    "longitude": -73.8725583
+  },
+  {
+    "service_request": "G286386",
+    "address": "31-17 97TH STREET, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7601855,
+    "longitude": -73.8716788
+  },
+  {
+    "service_request": "G286387",
+    "address": "101-24 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7613951,
+    "longitude": -73.8674151
+  },
+  {
+    "service_request": "G286388",
+    "address": "93-12 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-10-31",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7612576,
+    "longitude": -73.8654829
+  },
+  {
+    "service_request": "G286389",
+    "address": "98-13 ASTORIA BLVD, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7627128,
+    "longitude": -73.8731052
+  },
+  {
+    "service_request": "G286390",
+    "address": "98-11 ASTORIA BLVD, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7717671,
+    "longitude": -73.9244072
+  },
+  {
+    "service_request": "G286391",
+    "address": "98-09 ASTORIA BLVD, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7625141,
+    "longitude": -73.8709993
+  },
+  {
+    "service_request": "G286392",
+    "address": "98-07 ASTORIA BLVD, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.762535,
+    "longitude": -73.8710752
+  },
+  {
+    "service_request": "G286393",
+    "address": "95-13 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-14",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7629559,
+    "longitude": -73.8736789
+  },
+  {
+    "service_request": "G286394",
+    "address": "95-03 ASTORIA BLVD, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7649166,
+    "longitude": -73.8869905
+  },
+  {
+    "service_request": "G286395",
+    "address": "95-06 ASTORIA BLVD, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-10-30",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7624551,
+    "longitude": -73.8737853
+  },
+  {
+    "service_request": "G286396",
+    "address": "89-10 ASTORIA BLVD, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-10-31",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7649166,
+    "longitude": -73.8869905
+  },
+  {
+    "service_request": "G286397",
+    "address": "85-05 ASTORIA BLVD, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7717671,
+    "longitude": -73.9244072
+  },
+  {
+    "service_request": "G286398",
+    "address": "80-13 ASTORIA BLVD, QUEENS",
+    "created": "2024-10-28",
+    "last_updated": "2024-12-03",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7654393,
+    "longitude": -73.8884436
+  },
+  {
+    "service_request": "G286893",
+    "address": "81-07 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-11-05",
+    "last_updated": "2024-11-12",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
+  },
+  {
+    "service_request": "G286894",
+    "address": "80-02 ASTORIA BLVD, QUEENS",
+    "created": "2024-11-05",
+    "last_updated": "2024-12-11",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651176,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G286895",
+    "address": "75-81 31 AVENUE, QUEENS",
+    "created": "2024-11-05",
+    "last_updated": "2024-11-15",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7602304,
+    "longitude": -73.8911652
+  },
+  {
+    "service_request": "G286896",
+    "address": "30-01 83 STREET, QUEENS",
+    "created": "2024-11-05",
+    "last_updated": "2024-12-11",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611993,
+    "longitude": -73.8852121
+  },
+  {
+    "service_request": "G287722",
+    "address": "75-81 31 AVENUE, QUEENS",
+    "created": "2024-11-18",
+    "last_updated": "2024-11-21",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7602304,
+    "longitude": -73.8911652
+  },
+  {
+    "service_request": "G288526",
+    "address": "70-11 ASTORIA BOULEVARD, QUEENS",
+    "created": "2024-12-01",
+    "last_updated": "2024-12-05",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
+  },
+  {
+    "service_request": "G288527",
+    "address": "78-03 31 AVENUE, QUEENS",
+    "created": "2024-12-01",
+    "last_updated": "2024-12-05",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7591054,
+    "longitude": -73.8896438
+  },
+  {
+    "service_request": "G288528",
+    "address": "75-81 31 AVENUE, QUEENS",
+    "created": "2024-12-01",
+    "last_updated": "2024-12-05",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7602304,
+    "longitude": -73.8911652
+  },
+  {
+    "service_request": "G288529",
+    "address": "82-06 ASTORIA BLVD, QUEENS",
+    "created": "2024-12-01",
+    "last_updated": "2025-01-06",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7650237,
+    "longitude": -73.8867149
+  },
+  {
+    "service_request": "G288530",
+    "address": "24-15 82ND ST, QUEENS",
+    "created": "2024-12-01",
+    "last_updated": "2025-01-06",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644269,
+    "longitude": -73.8867332
+  },
+  {
+    "service_request": "G288531",
+    "address": "23-60 83RD ST, QUEENS",
+    "created": "2024-12-01",
+    "last_updated": "2025-01-06",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7653993,
+    "longitude": -73.8864266
+  },
+  {
+    "service_request": "G288532",
+    "address": "23-58 83 STREET, QUEENS",
+    "created": "2024-12-01",
+    "last_updated": "2025-01-06",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7654943,
+    "longitude": -73.8864449
+  },
+  {
+    "service_request": "G288533",
+    "address": "25-02 76TH ST, QUEENS",
+    "created": "2024-12-01",
+    "last_updated": "2025-01-06",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622774,
+    "longitude": -73.8925434
+  },
+  {
+    "service_request": "G288534",
+    "address": "76-02 25 AVENUE, QUEENS",
+    "created": "2024-12-01",
+    "last_updated": "2025-01-06",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622425,
+    "longitude": -73.8921173
+  },
+  {
+    "service_request": "G288536",
+    "address": "22-46 49 STREET, QUEENS",
+    "created": "2024-12-01",
+    "last_updated": "2025-01-06",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7679336,
+    "longitude": -73.9017552
+  },
+  {
+    "service_request": "G288539",
+    "address": "72-05 ASTORIA BLVD N, QUEENS",
+    "created": "2024-12-01",
+    "last_updated": "2025-01-06",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7706819,
+    "longitude": -73.9169993
+  },
+  {
+    "service_request": "G288542",
+    "address": "22-38 73RD ST, QUEENS",
+    "created": "2024-12-01",
+    "last_updated": "2025-01-06",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7670783,
+    "longitude": -73.8961967
+  },
+  {
+    "service_request": "G288549",
+    "address": "25-39 BOODY ST, QUEENS",
+    "created": "2024-12-01",
+    "last_updated": "2025-01-06",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611159,
+    "longitude": -73.8974022
+  },
+  {
+    "service_request": "G288551",
+    "address": "25-16 71 STREET, QUEENS",
+    "created": "2024-12-01",
+    "last_updated": "2025-01-06",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7614579,
+    "longitude": -73.8970752
+  },
+  {
+    "service_request": "G292586",
+    "address": "77-13 25 AVENUE, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-01-31",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7627275,
+    "longitude": -73.8908947
+  },
+  {
+    "service_request": "G292587",
+    "address": "82-17 ASTORIA BOULEVARD, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-01-30",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G292588",
+    "address": "23-60 83RD ST, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-02-17",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7653993,
+    "longitude": -73.8864266
+  },
+  {
+    "service_request": "G292589",
+    "address": "23-58 83 STREET, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-02-17",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7654943,
+    "longitude": -73.8864449
+  },
+  {
+    "service_request": "G292590",
+    "address": "82-06 ASTORIA BLVD, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-02-17",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7650237,
+    "longitude": -73.8867149
+  },
+  {
+    "service_request": "G292591",
+    "address": "82-20 ASTORIA BLVD, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-02-17",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7627128,
+    "longitude": -73.8731052
+  },
+  {
+    "service_request": "G292592",
+    "address": "80-02 ASTORIA BLVD, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-02-17",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651176,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G292593",
+    "address": "30-58 74TH STREET, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-01-24",
+    "status": "Graffiti is intentional.",
+    "latitude": 40.7588032,
+    "longitude": -73.8938263
+  },
+  {
+    "service_request": "G292594",
+    "address": "31-02 75TH ST, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-02-17",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7583702,
+    "longitude": -73.8927636
+  },
+  {
+    "service_request": "G292595",
+    "address": "32-01 76 STREET, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-02-14",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7569843,
+    "longitude": -73.8910803
+  },
+  {
+    "service_request": "G292596",
+    "address": "31-54 76TH ST, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-02-17",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7572077,
+    "longitude": -73.8915904
+  },
+  {
+    "service_request": "G292597",
+    "address": "32-01 75 STREET, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-02-17",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7568871,
+    "longitude": -73.8919383
+  },
+  {
+    "service_request": "G292598",
+    "address": "30-01 83 STREET, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-02-17",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611993,
+    "longitude": -73.8852121
+  },
+  {
+    "service_request": "G292599",
+    "address": "78-03 31 AVENUE, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-01-31",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7591054,
+    "longitude": -73.8896438
+  },
+  {
+    "service_request": "G292600",
+    "address": "32-02 82ND ST, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-02-17",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7575085,
+    "longitude": -73.8859421
+  },
+  {
+    "service_request": "G292601",
+    "address": "31-08 81 STREET, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-02-17",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7588947,
+    "longitude": -73.8871385
+  },
+  {
+    "service_request": "G292602",
+    "address": "82-16 31 AVENUE, QUEENS",
+    "created": "2025-01-11",
+    "last_updated": "2025-02-17",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7590972,
+    "longitude": -73.8853249
+  },
+  {
+    "service_request": "G292832",
+    "address": "91-16 25TH AVE, QUEENS",
+    "created": "2025-01-14",
+    "last_updated": "2025-02-18",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G292833",
+    "address": "91-08 25 AVENUE, QUEENS",
+    "created": "2025-01-14",
+    "last_updated": "2025-02-18",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G293640",
+    "address": "73-21 31ST AVE, QUEENS",
+    "created": "2025-02-04",
+    "last_updated": "2025-03-11",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7586593,
+    "longitude": -73.8936594
+  },
+  {
+    "service_request": "G293641",
+    "address": "77-13 25 AVENUE, QUEENS",
+    "created": "2025-02-04",
+    "last_updated": "2025-05-24",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7627275,
+    "longitude": -73.8908947
+  },
+  {
+    "service_request": "G293642",
+    "address": "78-03 31 AVENUE, QUEENS",
+    "created": "2025-02-04",
+    "last_updated": "2025-02-11",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7591054,
+    "longitude": -73.8896438
+  },
+  {
+    "service_request": "G293643",
+    "address": "82-17 ASTORIA BOULEVARD, QUEENS",
+    "created": "2025-02-04",
+    "last_updated": "2025-02-11",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G293644",
+    "address": "78-21 32 AVENUE, QUEENS",
+    "created": "2025-02-04",
+    "last_updated": "2025-02-11",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7575598,
+    "longitude": -73.8887197
+  },
+  {
+    "service_request": "G293645",
+    "address": "30-53 82ND ST, QUEENS",
+    "created": "2025-02-04",
+    "last_updated": "2025-03-11",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.759664,
+    "longitude": -73.88586
+  },
+  {
+    "service_request": "G294200",
+    "address": "31-38 79 STREET, QUEENS",
+    "created": "2025-02-13",
+    "last_updated": "2025-03-20",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7578218,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G294702",
+    "address": "81-07 ASTORIA BOULEVARD, QUEENS",
+    "created": "2025-02-23",
+    "last_updated": "2025-03-04",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7621382,
+    "longitude": -73.8706561
+  },
+  {
+    "service_request": "G294703",
+    "address": "82-17 ASTORIA BOULEVARD, QUEENS",
+    "created": "2025-02-23",
+    "last_updated": "2025-03-06",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G294704",
+    "address": "23-60 83RD ST, QUEENS",
+    "created": "2025-02-23",
+    "last_updated": "2025-03-31",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7653993,
+    "longitude": -73.8864266
+  },
+  {
+    "service_request": "G294705",
+    "address": "23-58 83 STREET, QUEENS",
+    "created": "2025-02-23",
+    "last_updated": "2025-03-31",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7654943,
+    "longitude": -73.8864449
+  },
+  {
+    "service_request": "G294706",
+    "address": "80-02 ASTORIA BLVD, QUEENS",
+    "created": "2025-02-23",
+    "last_updated": "2025-03-31",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651176,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G294707",
+    "address": "80-08 24TH AVE, QUEENS",
+    "created": "2025-02-23",
+    "last_updated": "2025-03-31",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7645328,
+    "longitude": -73.8885635
+  },
+  {
+    "service_request": "G294708",
+    "address": "24-36 81 STREET, QUEENS",
+    "created": "2025-02-23",
+    "last_updated": "2025-03-31",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7636819,
+    "longitude": -73.888057
+  },
+  {
+    "service_request": "G294709",
+    "address": "24-42 81ST ST, QUEENS",
+    "created": "2025-02-23",
+    "last_updated": "2025-03-31",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7635822,
+    "longitude": -73.8880522
+  },
+  {
+    "service_request": "G294710",
+    "address": "82-06 ASTORIA BLVD, QUEENS",
+    "created": "2025-02-23",
+    "last_updated": "2025-03-31",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7650237,
+    "longitude": -73.8867149
+  },
+  {
+    "service_request": "G294711",
+    "address": "82-01 25 AVENUE, QUEENS",
+    "created": "2025-02-23",
+    "last_updated": "2025-03-31",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7632486,
+    "longitude": -73.8866185
+  },
+  {
+    "service_request": "G294712",
+    "address": "30-01 83 STREET, QUEENS",
+    "created": "2025-02-23",
+    "last_updated": "2025-03-31",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611993,
+    "longitude": -73.8852121
+  },
+  {
+    "service_request": "G299416",
+    "address": "88-15 31ST AVE, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-23",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7600036,
+    "longitude": -73.8799324
+  },
+  {
+    "service_request": "G299417",
+    "address": "82-16 31 AVENUE, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-23",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7590972,
+    "longitude": -73.8853249
+  },
+  {
+    "service_request": "G299418",
+    "address": "77-10 30TH AVE, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-23",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7605431,
+    "longitude": -73.8906277
+  },
+  {
+    "service_request": "G299420",
+    "address": "25-60 90TH ST, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-23",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7621185,
+    "longitude": -73.8791967
+  },
+  {
+    "service_request": "G299421",
+    "address": "25-57 89 STREET, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-18",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.762068,
+    "longitude": -73.8796829
+  },
+  {
+    "service_request": "G299422",
+    "address": "30-01 83 STREET, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-23",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611993,
+    "longitude": -73.8852121
+  },
+  {
+    "service_request": "G299423",
+    "address": "82-01 25 AVENUE, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-23",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7632486,
+    "longitude": -73.8866185
+  },
+  {
+    "service_request": "G299424",
+    "address": "82-17 ASTORIA BOULEVARD, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-24",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G299425",
+    "address": "23-60 83RD ST, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-23",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7653993,
+    "longitude": -73.8864266
+  },
+  {
+    "service_request": "G299426",
+    "address": "23-58 83 STREET, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-23",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7654943,
+    "longitude": -73.8864449
+  },
+  {
+    "service_request": "G299427",
+    "address": "24-36 81 STREET, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-23",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7636819,
+    "longitude": -73.888057
+  },
+  {
+    "service_request": "G299428",
+    "address": "80-08 24TH AVE, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-23",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7645328,
+    "longitude": -73.8885635
+  },
+  {
+    "service_request": "G299429",
+    "address": "80-02 24 AVENUE, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-24",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7645581,
+    "longitude": -73.8886802
+  },
+  {
+    "service_request": "G299430",
+    "address": "31-08 81 STREET, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-23",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7588947,
+    "longitude": -73.8871385
+  },
+  {
+    "service_request": "G299431",
+    "address": "78-03 31 AVENUE, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-05-21",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7591054,
+    "longitude": -73.8896438
+  },
+  {
+    "service_request": "G299432",
+    "address": "24-60 77TH STREET, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-23",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7626592,
+    "longitude": -73.8916511
+  },
+  {
+    "service_request": "G299433",
+    "address": "76-02 25 AVENUE, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-23",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622425,
+    "longitude": -73.8921173
+  },
+  {
+    "service_request": "G299434",
+    "address": "25-02 76TH ST, QUEENS",
+    "created": "2025-05-17",
+    "last_updated": "2025-06-23",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622774,
+    "longitude": -73.8925434
+  },
+  {
+    "service_request": "G301084",
+    "address": "80-02 ASTORIA BLVD, QUEENS",
+    "created": "2025-06-06",
+    "last_updated": "2025-07-11",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651176,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G302996",
+    "address": "80-02 ASTORIA BLVD, QUEENS",
+    "created": "2025-07-14",
+    "last_updated": "2025-08-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651176,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G302997",
+    "address": "30-01 83 STREET, QUEENS",
+    "created": "2025-07-14",
+    "last_updated": "2025-08-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611993,
+    "longitude": -73.8852121
+  },
+  {
+    "service_request": "G302998",
+    "address": "88-15 31ST AVE, QUEENS",
+    "created": "2025-07-14",
+    "last_updated": "2025-08-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7600036,
+    "longitude": -73.8799324
+  },
+  {
+    "service_request": "G302999",
+    "address": "82-16 31 AVENUE, QUEENS",
+    "created": "2025-07-14",
+    "last_updated": "2025-08-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7590972,
+    "longitude": -73.8853249
+  },
+  {
+    "service_request": "G303000",
+    "address": "25-60 90TH ST, QUEENS",
+    "created": "2025-07-14",
+    "last_updated": "2025-08-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7621185,
+    "longitude": -73.8791967
+  },
+  {
+    "service_request": "G303001",
+    "address": "82-01 25 AVENUE, QUEENS",
+    "created": "2025-07-14",
+    "last_updated": "2025-08-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7632486,
+    "longitude": -73.8866185
+  },
+  {
+    "service_request": "G303002",
+    "address": "24-60 77TH STREET, QUEENS",
+    "created": "2025-07-14",
+    "last_updated": "2025-08-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7626592,
+    "longitude": -73.8916511
+  },
+  {
+    "service_request": "G303003",
+    "address": "25-02 76TH ST, QUEENS",
+    "created": "2025-07-14",
+    "last_updated": "2025-08-19",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622774,
+    "longitude": -73.8925434
+  },
+  {
+    "service_request": "G304872",
+    "address": "80-02 ASTORIA BLVD, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651176,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G304873",
+    "address": "24-02 82 STREET, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-08-22",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7639002,
+    "longitude": -73.8868881
+  },
+  {
+    "service_request": "G304874",
+    "address": "82-06 ASTORIA BLVD, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7650237,
+    "longitude": -73.8867149
+  },
+  {
+    "service_request": "G304875",
+    "address": "24-60 77TH STREET, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7626592,
+    "longitude": -73.8916511
+  },
+  {
+    "service_request": "G304876",
+    "address": "30-01 83 STREET, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611993,
+    "longitude": -73.8852121
+  },
+  {
+    "service_request": "G304877",
+    "address": "88-15 31ST AVE, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7600036,
+    "longitude": -73.8799324
+  },
+  {
+    "service_request": "G304878",
+    "address": "30-65 84TH ST, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7595812,
+    "longitude": -73.8840242
+  },
+  {
+    "service_request": "G304879",
+    "address": "82-16 31 AVENUE, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7590972,
+    "longitude": -73.8853249
+  },
+  {
+    "service_request": "G304880",
+    "address": "25-02 76TH ST, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622774,
+    "longitude": -73.8925434
+  },
+  {
+    "service_request": "G304881",
+    "address": "76-02 25 AVENUE, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622425,
+    "longitude": -73.8921173
+  },
+  {
+    "service_request": "G304882",
+    "address": "80-08 24TH AVE, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7645328,
+    "longitude": -73.8885635
+  },
+  {
+    "service_request": "G304883",
+    "address": "91-08 25 AVENUE, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G304884",
+    "address": "91-16 25TH AVE, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G304885",
+    "address": "98-07 ASTORIA BLVD, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.762535,
+    "longitude": -73.8710752
+  },
+  {
+    "service_request": "G304886",
+    "address": "98-13 ASTORIA BLVD, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7627128,
+    "longitude": -73.8731052
+  },
+  {
+    "service_request": "G304887",
+    "address": "98-15 ASTORIA BOULEVARD, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7624445,
+    "longitude": -73.8708509
+  },
+  {
+    "service_request": "G304888",
+    "address": "99-07 ASTORIA BLVD, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7649166,
+    "longitude": -73.8869905
+  },
+  {
+    "service_request": "G304889",
+    "address": "100-15 ASTORIA BOULEVARD, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-08-23",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7620874,
+    "longitude": -73.8687679
+  },
+  {
+    "service_request": "G304890",
+    "address": "101-24 ASTORIA BOULEVARD, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7613951,
+    "longitude": -73.8674151
+  },
+  {
+    "service_request": "G304891",
+    "address": "102-21 ASTORIA BOULEVARD, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-30",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G304892",
+    "address": "102-15 29TH AVE, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7618659,
+    "longitude": -73.8669434
+  },
+  {
+    "service_request": "G304894",
+    "address": "104-44 DITMARS BOULEVARD, QUEENS",
+    "created": "2025-08-20",
+    "last_updated": "2025-09-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7669224,
+    "longitude": -73.8658548
+  },
+  {
+    "service_request": "G308544",
+    "address": "30-46 86 ST, QUEENS",
+    "created": "2025-10-13",
+    "last_updated": "2025-11-18",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7602568,
+    "longitude": -73.8826427
+  },
+  {
+    "service_request": "G308545",
+    "address": "80-02 ASTORIA BLVD, QUEENS",
+    "created": "2025-10-13",
+    "last_updated": "2025-11-18",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7651176,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G308546",
+    "address": "24-02 82 STREET, QUEENS",
+    "created": "2025-10-13",
+    "last_updated": "2025-10-15",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7639002,
+    "longitude": -73.8868881
+  },
+  {
+    "service_request": "G308547",
+    "address": "24-12 82ND STREET, QUEENS",
+    "created": "2025-10-13",
+    "last_updated": "2025-11-20",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7644468,
+    "longitude": -73.8872595
+  },
+  {
+    "service_request": "G308548",
+    "address": "82-06 ASTORIA BLVD, QUEENS",
+    "created": "2025-10-13",
+    "last_updated": "2025-11-18",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7650237,
+    "longitude": -73.8867149
+  },
+  {
+    "service_request": "G308549",
+    "address": "30-01 83 STREET, QUEENS",
+    "created": "2025-10-13",
+    "last_updated": "2025-11-18",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7611993,
+    "longitude": -73.8852121
+  },
+  {
+    "service_request": "G308550",
+    "address": "82-16 31 AVENUE, QUEENS",
+    "created": "2025-10-13",
+    "last_updated": "2025-11-18",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7590972,
+    "longitude": -73.8853249
+  },
+  {
+    "service_request": "G308551",
+    "address": "24-60 77TH STREET, QUEENS",
+    "created": "2025-10-13",
+    "last_updated": "2025-11-18",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7626592,
+    "longitude": -73.8916511
+  },
+  {
+    "service_request": "G308552",
+    "address": "25-02 76TH ST, QUEENS",
+    "created": "2025-10-13",
+    "last_updated": "2025-11-18",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622774,
+    "longitude": -73.8925434
+  },
+  {
+    "service_request": "G308553",
+    "address": "76-02 25 AVENUE, QUEENS",
+    "created": "2025-10-13",
+    "last_updated": "2025-11-18",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7622425,
+    "longitude": -73.8921173
+  },
+  {
+    "service_request": "G308554",
+    "address": "85-05 ASTORIA BLVD, QUEENS",
+    "created": "2025-10-13",
+    "last_updated": "2025-11-18",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7717671,
+    "longitude": -73.9244072
+  },
+  {
+    "service_request": "G308555",
+    "address": "89-15 ASTORIA BLVD, QUEENS",
+    "created": "2025-10-13",
+    "last_updated": "2025-10-13",
+    "status": "Site to be cleaned.",
+    "latitude": 40.7640067,
+    "longitude": -73.8796239
+  },
+  {
+    "service_request": "G308556",
+    "address": "89-10 ASTORIA BLVD, QUEENS",
+    "created": "2025-10-13",
+    "last_updated": "2025-10-17",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7649166,
+    "longitude": -73.8869905
+  },
+  {
+    "service_request": "G308557",
+    "address": "95-03 ASTORIA BLVD, QUEENS",
+    "created": "2025-10-13",
+    "last_updated": "2025-11-18",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7649166,
+    "longitude": -73.8869905
+  },
+  {
+    "service_request": "G308772",
+    "address": "32-01 82 STREET, QUEENS",
+    "created": "2025-10-19",
+    "last_updated": "2025-11-24",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7575692,
+    "longitude": -73.8854912
+  },
+  {
+    "service_request": "G308942",
+    "address": "62-57 30 AVENUE, QUEENS",
+    "created": "2025-10-20",
+    "last_updated": "2025-10-25",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7679615,
+    "longitude": -73.9236669
+  },
+  {
+    "service_request": "G308943",
+    "address": "25-16 71 STREET, QUEENS",
+    "created": "2025-10-20",
+    "last_updated": "2025-11-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7614579,
+    "longitude": -73.8970752
+  },
+  {
+    "service_request": "G308944",
+    "address": "32-01 75 STREET, QUEENS",
+    "created": "2025-10-20",
+    "last_updated": "2025-11-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7568871,
+    "longitude": -73.8919383
+  },
+  {
+    "service_request": "G308945",
+    "address": "31-54 76TH ST, QUEENS",
+    "created": "2025-10-20",
+    "last_updated": "2025-11-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7572077,
+    "longitude": -73.8915904
+  },
+  {
+    "service_request": "G308946",
+    "address": "32-01 76 STREET, QUEENS",
+    "created": "2025-10-20",
+    "last_updated": "2025-11-07",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7569843,
+    "longitude": -73.8910803
+  },
+  {
+    "service_request": "G308947",
+    "address": "32-01 85 STREET, QUEENS",
+    "created": "2025-10-20",
+    "last_updated": "2025-10-24",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7578628,
+    "longitude": -73.8827076
+  },
+  {
+    "service_request": "G308948",
+    "address": "88-01 32 AVENUE, QUEENS",
+    "created": "2025-10-20",
+    "last_updated": "2025-11-25",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
+    "latitude": 40.7585203,
+    "longitude": -73.8800725
+  },
+  {
+    "service_request": "G310559",
+    "address": "30-05 90TH STREET, QUEENS",
+    "created": "2025-11-02",
+    "last_updated": "2025-11-02",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7617576,
+    "longitude": -73.8787076
+  },
+  {
+    "service_request": "G310560",
+    "address": "87-01 25 AVENUE, QUEENS",
+    "created": "2025-11-02",
+    "last_updated": "2025-11-02",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.763669,
+    "longitude": -73.881928
+  },
+  {
+    "service_request": "G310561",
+    "address": "88-15 ASTORIA BLVD, QUEENS",
+    "created": "2025-11-02",
+    "last_updated": "2025-11-02",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7650237,
+    "longitude": -73.8867149
+  },
+  {
+    "service_request": "G310562",
+    "address": "30-66 85TH ST, QUEENS",
+    "created": "2025-11-02",
+    "last_updated": "2025-11-02",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7596457,
+    "longitude": -73.8834974
+  },
+  {
+    "service_request": "G310563",
+    "address": "30-65 84TH ST, QUEENS",
+    "created": "2025-11-02",
+    "last_updated": "2025-11-02",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7595812,
+    "longitude": -73.8840242
+  },
+  {
+    "service_request": "G311359",
+    "address": "72-05 ASTORIA BLVD N, QUEENS",
+    "created": "2025-11-17",
+    "last_updated": "2025-11-17",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7706819,
+    "longitude": -73.9169993
+  },
+  {
+    "service_request": "G311360",
+    "address": "22-38 73RD ST, QUEENS",
+    "created": "2025-11-17",
+    "last_updated": "2025-11-17",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7670783,
+    "longitude": -73.8961967
+  },
+  {
+    "service_request": "G311361",
+    "address": "22-46 49 STREET, QUEENS",
+    "created": "2025-11-17",
+    "last_updated": "2025-11-17",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7679336,
+    "longitude": -73.9017552
+  },
+  {
+    "service_request": "G311435",
+    "address": "80-02 ASTORIA BLVD, QUEENS",
+    "created": "2025-11-19",
+    "last_updated": "2025-11-19",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7651176,
+    "longitude": -73.8888574
+  },
+  {
+    "service_request": "G311436",
+    "address": "82-01 25 AVENUE, QUEENS",
+    "created": "2025-11-19",
+    "last_updated": "2025-11-19",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7632486,
+    "longitude": -73.8866185
+  },
+  {
+    "service_request": "G311635",
+    "address": "76-02 25 AVENUE, QUEENS",
+    "created": "2025-11-21",
+    "last_updated": "2025-11-21",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7622425,
+    "longitude": -73.8921173
+  },
+  {
+    "service_request": "G311636",
+    "address": "24-60 77TH STREET, QUEENS",
+    "created": "2025-11-21",
+    "last_updated": "2025-11-21",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7626592,
+    "longitude": -73.8916511
+  },
+  {
+    "service_request": "G311637",
+    "address": "88-15 31ST AVE, QUEENS",
+    "created": "2025-11-21",
+    "last_updated": "2025-11-21",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7600036,
+    "longitude": -73.8799324
+  },
+  {
+    "service_request": "G311638",
+    "address": "82-16 31 AVENUE, QUEENS",
+    "created": "2025-11-21",
+    "last_updated": "2025-11-21",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7590972,
+    "longitude": -73.8853249
+  },
+  {
+    "service_request": "G311639",
+    "address": "82-17 ASTORIA BOULEVARD, QUEENS",
+    "created": "2025-11-21",
+    "last_updated": "2025-11-28",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G311640",
+    "address": "30-01 83 STREET, QUEENS",
+    "created": "2025-11-21",
+    "last_updated": "2025-11-21",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7611993,
+    "longitude": -73.8852121
+  },
+  {
+    "service_request": "G311641",
+    "address": "24-36 81 STREET, QUEENS",
+    "created": "2025-11-21",
+    "last_updated": "2025-11-21",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7636819,
+    "longitude": -73.888057
+  },
+  {
+    "service_request": "G315021",
+    "address": "83-13 31ST AVE, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.759579,
+    "longitude": -73.8846223
+  },
+  {
+    "service_request": "G315022",
+    "address": "103-01 ASTORIA BOULEVARD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7616244,
+    "longitude": -73.8660278
+  },
+  {
+    "service_request": "G315023",
+    "address": "102-21 ASTORIA BOULEVARD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-17",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G315024",
+    "address": "102-15 29TH AVE, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7618659,
+    "longitude": -73.8669434
+  },
+  {
+    "service_request": "G315025",
+    "address": "101-15 ASTORIA BOULEVARD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-17",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7618964,
+    "longitude": -73.8676259
+  },
+  {
+    "service_request": "G315026",
+    "address": "101-24 ASTORIA BOULEVARD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-20",
+    "status": "Site to be cleaned.",
+    "latitude": 40.7613951,
+    "longitude": -73.8674151
+  },
+  {
+    "service_request": "G315027",
+    "address": "100-15 ASTORIA BOULEVARD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-16",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7620874,
+    "longitude": -73.8687679
+  },
+  {
+    "service_request": "G315028",
+    "address": "77-03 31 AVENUE, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7594522,
+    "longitude": -73.8839388
+  },
+  {
+    "service_request": "G315029",
+    "address": "77-11 31ST AVE, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7590127,
+    "longitude": -73.8901993
+  },
+  {
+    "service_request": "G315030",
+    "address": "98-15 ASTORIA BOULEVARD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7624445,
+    "longitude": -73.8708509
+  },
+  {
+    "service_request": "G315031",
+    "address": "98-13 ASTORIA BLVD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7627128,
+    "longitude": -73.8731052
+  },
+  {
+    "service_request": "G315032",
+    "address": "98-11 ASTORIA BLVD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7717671,
+    "longitude": -73.9244072
+  },
+  {
+    "service_request": "G315033",
+    "address": "98-09 ASTORIA BLVD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7625141,
+    "longitude": -73.8709993
+  },
+  {
+    "service_request": "G315034",
+    "address": "98-07 ASTORIA BLVD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.762535,
+    "longitude": -73.8710752
+  },
+  {
+    "service_request": "G315035",
+    "address": "98-03 ASTORIA BOULEVARD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7624961,
+    "longitude": -73.8711597
+  },
+  {
+    "service_request": "G315036",
+    "address": "25-74 98 STREET, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-17",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7626538,
+    "longitude": -73.8715437
+  },
+  {
+    "service_request": "G315037",
+    "address": "95-13 ASTORIA BOULEVARD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-17",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7629559,
+    "longitude": -73.8736789
+  },
+  {
+    "service_request": "G315038",
+    "address": "95-03 ASTORIA BLVD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7649166,
+    "longitude": -73.8869905
+  },
+  {
+    "service_request": "G315039",
+    "address": "94-11 ASTORIA BOULEVARD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7632087,
+    "longitude": -73.8747805
+  },
+  {
+    "service_request": "G315040",
+    "address": "94-15 ASTORIA BOULEVARD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7631251,
+    "longitude": -73.8746198
+  },
+  {
+    "service_request": "G315041",
+    "address": "94-09 ASTORIA BOULEVARD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7631801,
+    "longitude": -73.8748488
+  },
+  {
+    "service_request": "G315042",
+    "address": "94-08 ASTORIA BLVD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7626675,
+    "longitude": -73.8748815
+  },
+  {
+    "service_request": "G315043",
+    "address": "91-16 25TH AVE, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G315044",
+    "address": "91-08 25 AVENUE, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7644092,
+    "longitude": -73.8738536
+  },
+  {
+    "service_request": "G315045",
+    "address": "87-12 ASTORIA BLVD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7638929,
+    "longitude": -73.8817035
+  },
+  {
+    "service_request": "G315046",
+    "address": "84-04 ASTORIA BOULEVARD, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-16",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7648953,
+    "longitude": -73.8859673
+  },
+  {
+    "service_request": "G315047",
+    "address": "23-58 83 STREET, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7654943,
+    "longitude": -73.8864449
+  },
+  {
+    "service_request": "G315048",
+    "address": "25-39 BOODY ST, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7611159,
+    "longitude": -73.8974022
+  },
+  {
+    "service_request": "G315049",
+    "address": "25-16 71 STREET, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7614579,
+    "longitude": -73.8970752
+  },
+  {
+    "service_request": "G315050",
+    "address": "75-06 31 AVENUE, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-02-11",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7584468,
+    "longitude": -73.8922739
+  },
+  {
+    "service_request": "G315051",
+    "address": "62-05 30 AVENUE, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7601604,
+    "longitude": -73.900999
+  },
+  {
+    "service_request": "G315052",
+    "address": "61-02 31 AVENUE, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7574601,
+    "longitude": -73.901721
+  },
+  {
+    "service_request": "G315053",
+    "address": "57-07 31ST AVE, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-14",
+    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "latitude": 40.7577364,
+    "longitude": -73.9036164
+  },
+  {
+    "service_request": "G315054",
+    "address": "56-02 31 AVE, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-16",
+    "status": "Cleaning crew dispatched. No graffiti on property.",
+    "latitude": 40.7568392,
+    "longitude": -73.9051885
+  },
+  {
+    "service_request": "G315055",
+    "address": "50-27 31 AVENUE, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-21",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7572375,
+    "longitude": -73.9080539
+  },
+  {
+    "service_request": "G315056",
+    "address": "51-10 31 AVENUE, QUEENS",
+    "created": "2026-01-14",
+    "last_updated": "2026-01-17",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7568352,
+    "longitude": -73.9076183
+  },
+  {
+    "service_request": "G315057",
+    "address": "31-15 51 STREET, QUEENS",
+    "created": "2026-01-15",
+    "last_updated": "2026-02-11",
+    "status": "Cleaning crew dispatched.  Property cleaned.",
+    "latitude": 40.7563374,
+    "longitude": -73.9078327
+  }
+]

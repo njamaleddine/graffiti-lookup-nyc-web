@@ -134,10 +134,10 @@ flowchart TD
    subgraph WORKFLOW["Data Processing Workflow"]
       CLI["graffiti-lookup-nyc CLI"]
       GEOCODE["geocode/geocoder.py"]
+      FILTER["filter_service_requests.py\n(if GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS=True)"]
+      IDS["GRAFFITI_IDS (env var)"]
+      LOOKUPS["graffiti-lookups.json"]
    end
-   FILTER["filter_service_requests.py\n(if GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS=True)"]
-   IDS["GRAFFITI_IDS (env var)"]
-   LOOKUPS["graffiti-lookups.json"]
    CACHE["geocode-cache.json"]
    DATA_CACHE["data-cache branch (Git)"]
    GH_ACTIONS["GitHub Actions"]
@@ -173,68 +173,6 @@ flowchart TD
    style WORKFLOW fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
    style FILTER fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
    style IDS fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
-   style LOOKUPS fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
-
-   %% Caching (gray)
-   style CACHE fill:#eceff1,stroke:#607d8b,stroke-width:2px,color:#263238
-   style DATA_CACHE fill:#eceff1,stroke:#607d8b,stroke-width:2px,color:#263238
-
-   %% Build/Deploy (purple)
-   style GH_ACTIONS fill:#ede7f6,stroke:#5e35b1,stroke-width:2px,color:#311b92
-   style PUBLIC fill:#ede7f6,stroke:#5e35b1,stroke-width:2px,color:#311b92
-   style ASTRO fill:#ede7f6,stroke:#5e35b1,stroke-width:2px,color:#311b92
-   style DIST fill:#ede7f6,stroke:#5e35b1,stroke-width:2px,color:#311b92
-   style GH_PAGES fill:#ede7f6,stroke:#5e35b1,stroke-width:2px,color:#311b92
-
-   %% Frontend (yellow)
-   style USER fill:#fffde7,stroke:#fbc02d,stroke-width:2px,color:#f57c00
-
-   %% Edge styles (grouped)
-   %% Data acquisition (blue)
-   linkStyle 0 stroke:#1976d2,stroke-width:2px
-   linkStyle 1 stroke:#1976d2,stroke-width:2px
-   linkStyle 2 stroke:#1976d2,stroke-width:2px,stroke-dasharray: 5 5
-   linkStyle 3 stroke:#1976d2,stroke-width:2px,stroke-dasharray: 5 5
-   linkStyle 4 stroke:#1976d2,stroke-width:2px
-   linkStyle 5 stroke:#1976d2,stroke-width:2px
-   linkStyle 6 stroke:#1976d2,stroke-width:2px,stroke-dasharray: 2 2
-   linkStyle 7 stroke:#607d8b,stroke-width:2px,stroke-dasharray: 2 2
-   linkStyle 8 stroke:#607d8b,stroke-width:2px,stroke-dasharray: 2 2
-
-   %% Build/Deploy (purple)
-   linkStyle 9 stroke:#5e35b1,stroke-width:2px
-   linkStyle 10 stroke:#5e35b1,stroke-width:2px
-   linkStyle 11 stroke:#5e35b1,stroke-width:2px
-   linkStyle 12 stroke:#5e35b1,stroke-width:2px,stroke-dasharray: 2 2
-   linkStyle 13 stroke:#5e35b1,stroke-width:2px
-   linkStyle 14 stroke:#5e35b1,stroke-width:2px
-   linkStyle 15 stroke:#5e35b1,stroke-width:2px
-
-   %% Frontend (yellow)
-   linkStyle 16 stroke:#fbc02d,stroke-width:2px,stroke-dasharray: 2 2
-```
-   GEOCODE --> CACHE
-   GEOCODE -- update --> LOOKUPS
-   LOOKUPS -.-> DATA_CACHE
-   CACHE -.-> DATA_CACHE
-
-   GH_ACTIONS --> CLI
-   GH_ACTIONS --> GEOCODE
-   GH_ACTIONS --> PUBLIC
-   LOOKUPS -.-> ASTRO
-   PUBLIC --> ASTRO
-   ASTRO --> DIST
-   DIST --> GH_PAGES
-   GH_PAGES --> USER
-   DIST -.-> USER
-
-   %% Node styles
-   %% Grouped node styles
-   %% Data acquisition (blue)
-   style CLI fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
-   style FILTER fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
-   style IDS fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
-   style GEOCODE fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
    style LOOKUPS fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
 
    %% Caching (gray)

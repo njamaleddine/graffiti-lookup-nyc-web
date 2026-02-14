@@ -28,12 +28,28 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r geocode/requirements.txt
 
-      - name: Download graffiti-lookups.json and geocode-cache.json from gh-pages
+      - name: Set git identity for commits
         run: |
-          git fetch origin gh-pages
-          git checkout origin/gh-pages -- graffiti-lookups.json geocode-cache.json
-          mv graffiti-lookups.json public/
-          mv geocode-cache.json public/
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Ensure data-cache branch exists with necessary files
+        run: |
+          if ! git ls-remote --exit-code --heads origin data-cache; then
+            git checkout --orphan data-cache
+            git rm -rf .
+            touch graffiti-lookups.json geocode-cache.json
+            git add graffiti-lookups.json geocode-cache.json
+            git commit -m "Initialize data-cache branch"
+            git push origin data-cache
+            git checkout ${{ github.ref_name }}
+          fi
+
+      - name: Download graffiti-lookups.json and geocode-cache.json from data-cache
+        run: |
+          git fetch origin data-cache
+          git checkout origin/data-cache -- graffiti-lookups.json geocode-cache.json
+          mv graffiti-lookups.json geocode-cache.json public/
 
       - name: Generate graffiti lookup data
         run: |
@@ -58,6 +74,17 @@ jobs:
 
       - name: Geocode addresses
         run: python -m geocode
+
+      - name: Update data-cache branch with new graffiti-lookups.json and geocode-cache.json files
+        run: |
+          git fetch origin data-cache
+          git checkout data-cache
+          cp public/graffiti-lookups.json .
+          cp public/geocode-cache.json .
+          git add graffiti-lookups.json geocode-cache.json
+          git commit -m "Update graffiti-lookups.json and geocode-cache.json"
+          git push origin data-cache
+          git checkout ${{ github.ref_name }}
 
       - name: Upload public artifacts
         uses: actions/upload-artifact@v4
@@ -107,8 +134,11 @@ jobs:
           name: dist-artifact
           path: dist/
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

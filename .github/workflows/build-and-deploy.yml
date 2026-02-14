@@ -38,7 +38,7 @@ jobs:
           if ! git ls-remote --exit-code --heads origin data-cache; then
             git checkout --orphan data-cache
             git rm -rf .
-            echo '{}' > graffiti-lookups.json
+            echo '[]' > graffiti-lookups.json
             echo '{}' > geocode-cache.json
             git add graffiti-lookups.json geocode-cache.json
             git commit -m "Initialize data-cache branch"

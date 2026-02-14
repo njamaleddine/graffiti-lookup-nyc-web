@@ -128,55 +128,54 @@ Below is a high level architecture diagram showing the main data flow and core c
 
 
 ```mermaid
-flowchart LR
+flowchart TD
 
-   subgraph "Data Acquisition & Processing (Python)"
-      CLI["graffiti-lookup-nyc CLI"]
-      FILTER["filter_service_requests.py (if GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS=True)"]
-      GEOCODE["geocode/geocoder.py"]
-      IDS["GRAFFITI_IDS (env var)"]
-      CLI --> FILTER
-      FILTER --> LOOKUPS["graffiti-lookups.json"]
-      IDS --> LOOKUPS
-      CLI --> LOOKUPS
-      LOOKUPS --> GEOCODE
-      GEOCODE --> CACHE["geocode-cache.json"]
-      GEOCODE --> LOOKUPS
-   end
+  CLI["graffiti-lookup-nyc CLI"]
+  FILTER["filter_service_requests.py\n(if GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS=True)"]
+  IDS["GRAFFITI_IDS (env var)"]
+  GEOCODE["geocode/geocoder.py"]
+  LOOKUPS["graffiti-lookups.json"]
+  CACHE["geocode-cache.json"]
+  DATA_CACHE["data-cache branch (Git)"]
+  GH_ACTIONS["GitHub Actions"]
+  PUBLIC["public/ (artifacts)"]
+  ASTRO["Astro Build"]
+  DIST["dist/ (static site)"]
+  GH_PAGES["GitHub Pages"]
+  USER["User (browser)"]
 
+  %% Data flow
+  CLI --> FILTER
+  FILTER --> LOOKUPS
+  IDS --> LOOKUPS
+  CLI --> LOOKUPS
+  LOOKUPS --> GEOCODE
+  GEOCODE --> CACHE
+  GEOCODE --> LOOKUPS
 
-   subgraph "Data Caching & Reuse"
-      LOOKUPS -.->|commit/update| DATA_CACHE["data-cache branch (Git)"]
-      CACHE -.->|commit/update| DATA_CACHE
-   end
+  %% Data caching
+  LOOKUPS -.->|commit/update| DATA_CACHE
+  CACHE -.->|commit/update| DATA_CACHE
 
-   subgraph "Build & Deployment (CI/CD)"
-      GH_ACTIONS["GitHub Actions"]
-      GH_ACTIONS -->|runs| CLI
-      GH_ACTIONS -->|runs| GEOCODE
-      GH_ACTIONS -->|publishes| PUBLIC["public/ (artifacts)"]
-      LOOKUPS -.->|used by| ASTRO["Astro Build"]
-      PUBLIC --> ASTRO
-      ASTRO --> DIST["dist/ (static site)"]
-      DIST --> GH_PAGES["GitHub Pages"]
-   end
+  %% CI/CD and build
+  GH_ACTIONS -->|runs| CLI
+  GH_ACTIONS -->|runs| GEOCODE
+  GH_ACTIONS -->|publishes| PUBLIC
+  LOOKUPS -.->|used by| ASTRO
+  PUBLIC --> ASTRO
+  ASTRO --> DIST
+  DIST --> GH_PAGES
 
-   subgraph "Frontend (Astro + Vue)"
-      GH_PAGES -->|serves| USER["User (browser)"]
-      DIST -->|static assets| USER
-   end
+  %% Frontend
+  GH_PAGES -->|serves| USER
+  DIST -->|static assets| USER
 ```
-
-
-
-
 
 **Legend:**
 - **Data Acquisition & Processing (Python):** CLI and scripts for fetching, filtering, and geocoding graffiti data. If the environment variable `GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS` is `True`, `filter_service_requests.py` filters the graffiti-lookups.json; otherwise, IDs are taken from the `GRAFFITI_IDS` env var.
 - **Data Caching & Reuse:** All data artifacts are cached in a dedicated branch (`data-cache`) to store geocoding results and graffiti lookup data. `geocode-cache.json` is only used by the GitHub Action for geocoding, not by the Astro build.
 - **Build & Deployment (CI/CD):** GitHub Actions orchestrates the pipeline, builds the static site, and deploys to GitHub Pages.
 - **Frontend (Astro + Vue):** Static site served to users, with all data precomputed and embedded.
-
 
 
 > **Note:**

@@ -128,19 +128,46 @@ Below is a high level architecture diagram showing the main data flow and core c
 
 ```mermaid
 flowchart TD
-   A1["Checkout & Setup"] --> A2["Ensure data-cache branch"]
-   A2 --> A3["Download graffiti-lookups.json & geocode-cache.json"]
-   A3 --> A4["Run graffiti-lookup-nyc CLI"]
-   A4 --> A5["Run geocode Python module"]
-   A5 --> A6["Update data-cache branch"]
-   A6 --> A7["Upload public artifacts"]
-   A7 --> N1["Download public artifacts"]
-   N1 --> N2["Astro Build (consumes JSON)"]
-   N2 --> N3["Upload dist artifact"]
-   N3 --> D1["Download dist artifact"]
-   D1 --> D2["Deploy to GitHub Pages"]
-   D2 --> User["User (visits static site)"]
+   subgraph Data_Pipeline
+      CLI["graffiti-lookup-nyc CLI"]
+      FILTER["filter_service_requests.py (optional)"]
+      GEOCODE["geocode/geocoder.py"]
+      CACHE["geocode-cache.json"]
+      LOOKUPS["graffiti-lookups.json"]
+      CLI --> FILTER
+      FILTER --> LOOKUPS
+      CLI --> LOOKUPS
+      LOOKUPS --> GEOCODE
+      GEOCODE --> CACHE
+      GEOCODE --> LOOKUPS
+   end
+
+   subgraph Artifacts
+      LOOKUPS
+      CACHE
+   end
+
+   subgraph CI_CD
+      GH_ACTIONS["GitHub Actions"]
+      GH_ACTIONS --> Data_Pipeline
+      Data_Pipeline --> Artifacts
+      GH_ACTIONS --> ASTRO["Astro Build"]
+      ASTRO --> DIST["Static Site"]
+      DIST --> GH_PAGES["GitHub Pages"]
+   end
+
+   subgraph Frontend
+      GH_PAGES --> ASTRO
+      ASTRO --> VUE["Vue Components"]
+      VUE --> USER["User"]
+   end
 ```
+
+**Legend:**
+- **Data_Pipeline**: Python scripts and CLI for data acquisition, filtering, and geocoding.
+- **Artifacts**: JSON files in `public/`, versioned for reproducibility.
+- **CI_CD**: GitHub Actions jobs for orchestration, build, and deployment.
+- **Frontend**: Astro static site, Vue UI, served via GitHub Pages.
 
 ## License
 

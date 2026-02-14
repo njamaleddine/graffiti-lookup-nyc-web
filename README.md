@@ -124,46 +124,23 @@ You can trigger a manual deployment from the Actions tab by running the "Build a
 
 ## Architecture Diagram
 
-The diagram below shows the high-level architecture: scheduled data generation (GitHub Actions + Python), public data assets, and the Astro/Vue frontend with event flows between the list and map views. 
+Below is a high level architecture diagram showing the main data flow and core components:
 
 ```mermaid
-flowchart LR
-  %% Backend / data pipeline
-  GH[GitHub Actions]
-  CLI["graffiti-lookup-nyc (Python)"]
-  GEOPY["geocode (Python)"]
+flowchart TD
+   subgraph Data_Pipeline
+      GH[GitHub Actions]
+      CLI[graffiti-lookup-nyc (Python)]
+      GEOPY[geocode (Python)]
+      GH --> CLI
+      GH --> GEOPY
+      CLI --> PUBLIC_JSON[graffiti-lookups.json]
+      GEOPY --> GEOCACHE[geocode-cache.json]
+   end
 
-  GH --> CLI
-  GH --> GEOPY
-
-  CLI --> PUBLIC_JSON["public/graffiti-lookups.json"]
-  GEOPY --> GEOCACHE["public/geocode-cache.json"]
-  GEOCACHE -.-> CLI
-
-  %% Site build & deploy
-  GH --> ASTRO["Astro build"]
-  ASTRO --> DIST["dist/ (static site)"]
-  DIST --> GH_PAGES["GitHub Pages"]
-
-  %% Frontend app
-  ASTRO --> PAGE["index.astro"]
-  PAGE --> LAYOUT["Layout.astro"]
-  LAYOUT --> LIST["ListView.vue"]
-  LAYOUT --> MAP["MapView.vue"]
-  LIST --> ITEM["ListItem.vue"]
-  LIST --> SEARCH["SearchBar.vue"]
-  LIST --> FILTER["StatusFilter.vue"]
-  LIST --> CHIP["StatusChip.vue"]
-
-  %% Event flows between list and map
-  LIST -->|filtered-items-changed| MAP
-  LIST -->|visible-items-changed| MAP
-  LIST -->|item-selected-user| MAP
-  MAP -->|marker-selected-click| LIST
-
-  %% Data flow into frontend
-  PUBLIC_JSON --> ASTRO
-  ASTRO --> PAGE
+   PUBLIC_JSON & GEOCACHE --> Astro[Astro Build]
+   Astro --> Frontend[Vue & Astro Frontend]
+   Frontend --> User[User]
 ```
 
 ## License

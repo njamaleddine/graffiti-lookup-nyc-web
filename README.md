@@ -129,19 +129,23 @@ Below is a high level architecture diagram showing the main data flow and core c
 
 ```mermaid
 flowchart LR
+
    subgraph "Data Acquisition & Processing (Python)"
       CLI["graffiti-lookup-nyc CLI"]
-      FILTER["filter_service_requests.py"]
+      FILTER["filter_service_requests.py (if GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS=True)"]
       GEOCODE["geocode/geocoder.py"]
+      IDS["GRAFFITI_IDS (env var)"]
       CLI --> FILTER
       FILTER --> LOOKUPS["graffiti-lookups.json"]
+      IDS --> LOOKUPS
       CLI --> LOOKUPS
       LOOKUPS --> GEOCODE
       GEOCODE --> CACHE["geocode-cache.json"]
       GEOCODE --> LOOKUPS
    end
 
-   subgraph "Artifact Versioning"
+
+   subgraph "Data Caching & Reuse"
       LOOKUPS -.->|commit/update| DATA_CACHE["data-cache branch (Git)"]
       CACHE -.->|commit/update| DATA_CACHE
    end
@@ -164,11 +168,20 @@ flowchart LR
    end
 ```
 
+
+
+
 **Legend:**
-- **Data Acquisition & Processing (Python):** CLI and scripts for fetching, filtering, and geocoding graffiti data.
-- **Artifact Versioning:** All data artifacts are versioned in a dedicated branch for reproducibility.
+- **Data Acquisition & Processing (Python):** CLI and scripts for fetching, filtering, and geocoding graffiti data. If the environment variable `GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS` is `True`, `filter_service_requests.py` filters the graffiti-lookups.json; otherwise, IDs are taken from the `GRAFFITI_IDS` env var.
+- **Data Caching & Reuse:** All data artifacts are cached in a dedicated branch (`data-cache`) to store geocoding results and graffiti lookup data, enabling reproducible builds and efficient filtering without redundant computation.
 - **Build & Deployment (CI/CD):** GitHub Actions orchestrates the pipeline, builds the static site, and deploys to GitHub Pages.
 - **Frontend (Astro + Vue):** Static site served to users, with all data precomputed and embedded.
+
+
+> **Note:**
+> The `data-cache` branch is a persistent cache for both geocode results and graffiti lookup data. This ensures that geocoding is not repeated unnecessarily, and that the same data is available for the Astro build and for filtering operations (e.g., in `filter_service_requests`).
+>
+> The workflow uses `filter_service_requests.py` to filter graffiti-lookups.json only if the environment variable `GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS` is set to `True`. Otherwise, the IDs are taken from the `GRAFFITI_IDS` environment variable.
 
 ## License
 

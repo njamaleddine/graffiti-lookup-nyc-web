@@ -126,6 +126,7 @@ You can trigger a manual deployment from the Actions tab by running the "Build a
 
 Below is a high level architecture diagram showing the main data flow and core components:
 
+
 ```mermaid
 flowchart LR
    subgraph "Data Acquisition & Processing (Python)"
@@ -150,7 +151,9 @@ flowchart LR
       GH_ACTIONS -->|runs| CLI
       GH_ACTIONS -->|runs| GEOCODE
       GH_ACTIONS -->|publishes| PUBLIC["public/ (artifacts)"]
-      PUBLIC --> ASTRO["Astro Build"]
+      LOOKUPS -.->|used by| ASTRO["Astro Build"]
+      CACHE -.->|used by| ASTRO
+      PUBLIC --> ASTRO
       ASTRO --> DIST["dist/ (static site)"]
       DIST --> GH_PAGES["GitHub Pages"]
    end

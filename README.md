@@ -128,31 +128,17 @@ Below is a high level architecture diagram showing the main data flow and core c
 
 ```mermaid
 flowchart TD
-   subgraph GitHub_Actions
-      A1[Checkout & Setup]
-      A2[Ensure data-cache branch]
-      A3[Download graffiti-lookups.json & geocode-cache.json]
-      A4[Run graffiti-lookup-nyc CLI]
-      A5[Run geocode Python module]
-      A6[Update data-cache branch]
-      A7[Upload public artifacts]
-   end
-
-   subgraph Node_Build
-      N1[Download public artifacts]
-      N2[Astro Build (consumes JSON)]
-      N3[Upload dist artifact]
-   end
-
-   subgraph Deploy
-      D1[Download dist artifact]
-      D2[Deploy to GitHub Pages]
-   end
-
-   A1 --> A2 --> A3 --> A4 --> A5 --> A6 --> A7
-   A7 --> N1
-   N1 --> N2 --> N3
-   N3 --> D1 --> D2
+   A1["Checkout & Setup"] --> A2["Ensure data-cache branch"]
+   A2 --> A3["Download graffiti-lookups.json & geocode-cache.json"]
+   A3 --> A4["Run graffiti-lookup-nyc CLI"]
+   A4 --> A5["Run geocode Python module"]
+   A5 --> A6["Update data-cache branch"]
+   A6 --> A7["Upload public artifacts"]
+   A7 --> N1["Download public artifacts"]
+   N1 --> N2["Astro Build (consumes JSON)"]
+   N2 --> N3["Upload dist artifact"]
+   N3 --> D1["Download dist artifact"]
+   D1 --> D2["Deploy to GitHub Pages"]
    D2 --> User["User (visits static site)"]
 ```
 

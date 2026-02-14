@@ -130,45 +130,45 @@ Below is a high level architecture diagram showing the main data flow and core c
 ```mermaid
 flowchart TD
 
-  CLI["graffiti-lookup-nyc CLI"]
-  FILTER["filter_service_requests.py\n(if GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS=True)"]
-  IDS["GRAFFITI_IDS (env var)"]
-  GEOCODE["geocode/geocoder.py"]
-  LOOKUPS["graffiti-lookups.json"]
-  CACHE["geocode-cache.json"]
-  DATA_CACHE["data-cache branch (Git)"]
-  GH_ACTIONS["GitHub Actions"]
-  PUBLIC["public/ (artifacts)"]
-  ASTRO["Astro Build"]
-  DIST["dist/ (static site)"]
-  GH_PAGES["GitHub Pages"]
-  USER["User (browser)"]
+   CLI["graffiti-lookup-nyc CLI"]
+   FILTER["filter_service_requests.py\n(if GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS=True)"]
+   IDS["GRAFFITI_IDS (env var)"]
+   GEOCODE["geocode/geocoder.py"]
+   LOOKUPS["graffiti-lookups.json"]
+   CACHE["geocode-cache.json"]
+   DATA_CACHE["data-cache branch (Git)"]
+   GH_ACTIONS["GitHub Actions"]
+   PUBLIC["public/ (artifacts)"]
+   ASTRO["Astro Build"]
+   DIST["dist/ (static site)"]
+   GH_PAGES["GitHub Pages"]
+   USER["User (browser)"]
 
-  %% Data flow
-  CLI --> FILTER
-  FILTER --> LOOKUPS
-  IDS --> LOOKUPS
-  CLI --> LOOKUPS
-  LOOKUPS --> GEOCODE
-   GEOCODE --> CACHE
-   GEOCODE -->|update| LOOKUPS
+   %% Data flow (rigid lines)
+   CLI ---|""| FILTER
+   FILTER ---|""| LOOKUPS
+   IDS ---|""| LOOKUPS
+   CLI ---|""| LOOKUPS
+   LOOKUPS ---|""| GEOCODE
+   GEOCODE ---|""| CACHE
+   GEOCODE ---|update| LOOKUPS
 
-  %% Data caching
-  LOOKUPS -.->|commit/update| DATA_CACHE
-  CACHE -.->|commit/update| DATA_CACHE
+   %% Data caching
+   LOOKUPS -.->|commit/update| DATA_CACHE
+   CACHE -.->|commit/update| DATA_CACHE
 
-  %% CI/CD and build
-  GH_ACTIONS -->|runs| CLI
-  GH_ACTIONS -->|runs| GEOCODE
-  GH_ACTIONS -->|publishes| PUBLIC
-  LOOKUPS -.->|used by| ASTRO
-  PUBLIC --> ASTRO
-  ASTRO --> DIST
-  DIST --> GH_PAGES
+   %% CI/CD and build
+   GH_ACTIONS ---|runs| CLI
+   GH_ACTIONS ---|runs| GEOCODE
+   GH_ACTIONS ---|publishes| PUBLIC
+   LOOKUPS -.->|used by| ASTRO
+   PUBLIC ---|""| ASTRO
+   ASTRO ---|""| DIST
+   DIST ---|""| GH_PAGES
 
-  %% Frontend
-  GH_PAGES -->|serves| USER
-  DIST -->|static assets| USER
+   %% Frontend
+   GH_PAGES ---|serves| USER
+   DIST ---|static assets| USER
 ```
 
 **Legend:**

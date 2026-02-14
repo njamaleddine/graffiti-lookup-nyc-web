@@ -167,37 +167,50 @@ flowchart TD
    DIST -.-> USER
 
    %% Node styles
+   %% Grouped node styles
+   %% Data acquisition (blue)
    style CLI fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
-   style FILTER fill:#fffde7,stroke:#fbc02d,stroke-width:2px,color:#f57c00
-   style IDS fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px,color:#4a148c
-   style GEOCODE fill:#e8f5e9,stroke:#388e3c,stroke-width:2px,color:#1b5e20
-   style LOOKUPS fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#e65100
-   style CACHE fill:#ede7f6,stroke:#5e35b1,stroke-width:2px,color:#311b92
+   style FILTER fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+   style IDS fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+   style GEOCODE fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+   style LOOKUPS fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+
+   %% Caching (gray)
+   style CACHE fill:#eceff1,stroke:#607d8b,stroke-width:2px,color:#263238
    style DATA_CACHE fill:#eceff1,stroke:#607d8b,stroke-width:2px,color:#263238
-   style GH_ACTIONS fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#01579b
-   style PUBLIC fill:#f9fbe7,stroke:#afb42b,stroke-width:2px,color:#827717
-   style ASTRO fill:#fce4ec,stroke:#d81b60,stroke-width:2px,color:#880e4f
-   style DIST fill:#f1f8e9,stroke:#689f38,stroke-width:2px,color:#33691e
-   style GH_PAGES fill:#e0f2f1,stroke:#00897b,stroke-width:2px,color:#004d40
+
+   %% Build/Deploy (purple)
+   style GH_ACTIONS fill:#ede7f6,stroke:#5e35b1,stroke-width:2px,color:#311b92
+   style PUBLIC fill:#ede7f6,stroke:#5e35b1,stroke-width:2px,color:#311b92
+   style ASTRO fill:#ede7f6,stroke:#5e35b1,stroke-width:2px,color:#311b92
+   style DIST fill:#ede7f6,stroke:#5e35b1,stroke-width:2px,color:#311b92
+   style GH_PAGES fill:#ede7f6,stroke:#5e35b1,stroke-width:2px,color:#311b92
+
+   %% Frontend (yellow)
    style USER fill:#fffde7,stroke:#fbc02d,stroke-width:2px,color:#f57c00
 
-   %% Edge styles
+   %% Edge styles (grouped)
+   %% Data acquisition (blue)
    linkStyle 0 stroke:#1976d2,stroke-width:2px
-   linkStyle 1 stroke:#fbc02d,stroke-width:2px
-   linkStyle 2 stroke:#8e24aa,stroke-width:2px,stroke-dasharray: 5 5
+   linkStyle 1 stroke:#1976d2,stroke-width:2px
+   linkStyle 2 stroke:#1976d2,stroke-width:2px,stroke-dasharray: 5 5
    linkStyle 3 stroke:#1976d2,stroke-width:2px,stroke-dasharray: 5 5
-   linkStyle 4 stroke:#ef6c00,stroke-width:2px
-   linkStyle 5 stroke:#388e3c,stroke-width:2px
-   linkStyle 6 stroke:#388e3c,stroke-width:2px,stroke-dasharray: 2 2
+   linkStyle 4 stroke:#1976d2,stroke-width:2px
+   linkStyle 5 stroke:#1976d2,stroke-width:2px
+   linkStyle 6 stroke:#1976d2,stroke-width:2px,stroke-dasharray: 2 2
    linkStyle 7 stroke:#607d8b,stroke-width:2px,stroke-dasharray: 2 2
-   linkStyle 8 stroke:#5e35b1,stroke-width:2px,stroke-dasharray: 2 2
-   linkStyle 9 stroke:#0288d1,stroke-width:2px
-   linkStyle 10 stroke:#388e3c,stroke-width:2px
-   linkStyle 11 stroke:#afb42b,stroke-width:2px
-   linkStyle 12 stroke:#d81b60,stroke-width:2px,stroke-dasharray: 2 2
-   linkStyle 13 stroke:#d81b60,stroke-width:2px
-   linkStyle 14 stroke:#689f38,stroke-width:2px
-   linkStyle 15 stroke:#00897b,stroke-width:2px
+   linkStyle 8 stroke:#607d8b,stroke-width:2px,stroke-dasharray: 2 2
+
+   %% Build/Deploy (purple)
+   linkStyle 9 stroke:#5e35b1,stroke-width:2px
+   linkStyle 10 stroke:#5e35b1,stroke-width:2px
+   linkStyle 11 stroke:#5e35b1,stroke-width:2px
+   linkStyle 12 stroke:#5e35b1,stroke-width:2px,stroke-dasharray: 2 2
+   linkStyle 13 stroke:#5e35b1,stroke-width:2px
+   linkStyle 14 stroke:#5e35b1,stroke-width:2px
+   linkStyle 15 stroke:#5e35b1,stroke-width:2px
+
+   %% Frontend (yellow)
    linkStyle 16 stroke:#fbc02d,stroke-width:2px,stroke-dasharray: 2 2
 ```
 

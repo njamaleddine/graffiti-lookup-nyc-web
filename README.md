@@ -150,8 +150,8 @@ flowchart TD
   IDS --> LOOKUPS
   CLI --> LOOKUPS
   LOOKUPS --> GEOCODE
-  GEOCODE --> CACHE
-  GEOCODE --> LOOKUPS
+   GEOCODE --> CACHE
+   GEOCODE -->|update| LOOKUPS
 
   %% Data caching
   LOOKUPS -.->|commit/update| DATA_CACHE

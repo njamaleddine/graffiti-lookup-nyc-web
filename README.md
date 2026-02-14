@@ -128,14 +128,32 @@ Below is a high level architecture diagram showing the main data flow and core c
 
 ```mermaid
 flowchart TD
-   GH["GitHub Actions"] --> CLI["graffiti-lookup-nyc (Python)"]
-   GH --> GEOPY["geocode (Python)"]
-   CLI --> PUBLIC_JSON["graffiti-lookups.json"]
-   GEOPY --> GEOCACHE["geocode-cache.json"]
-   PUBLIC_JSON --> Astro["Astro Build"]
-   GEOCACHE --> Astro
-   Astro --> Frontend["Vue & Astro Frontend"]
-   Frontend --> User["User"]
+   subgraph GitHub_Actions
+      A1[Checkout & Setup]
+      A2[Ensure data-cache branch]
+      A3[Download graffiti-lookups.json & geocode-cache.json]
+      A4[Run graffiti-lookup-nyc CLI]
+      A5[Run geocode Python module]
+      A6[Update data-cache branch]
+      A7[Upload public artifacts]
+   end
+
+   subgraph Node_Build
+      N1[Download public artifacts]
+      N2[Astro Build (consumes JSON)]
+      N3[Upload dist artifact]
+   end
+
+   subgraph Deploy
+      D1[Download dist artifact]
+      D2[Deploy to GitHub Pages]
+   end
+
+   A1 --> A2 --> A3 --> A4 --> A5 --> A6 --> A7
+   A7 --> N1
+   N1 --> N2 --> N3
+   N3 --> D1 --> D2
+   D2 --> User["User (visits static site)"]
 ```
 
 ## License

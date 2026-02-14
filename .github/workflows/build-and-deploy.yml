@@ -85,7 +85,7 @@ jobs:
           cp public/graffiti-lookups.json .
           cp public/geocode-cache.json .
           git add graffiti-lookups.json geocode-cache.json
-          git commit -m "Update graffiti-lookups.json and geocode-cache.json"
+          git commit -m "Update graffiti-lookups.json and geocode-cache.json" || true
           git push origin data-cache
           git checkout ${{ github.ref_name }}
 

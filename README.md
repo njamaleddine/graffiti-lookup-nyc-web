@@ -56,23 +56,37 @@ python -m geocode
 
 ## Deployment
 
-This project is configured for GitHub Pages deployment.
+
+## Deployment
+
+This project is configured for automated deployment to GitHub Pages using the latest recommended GitHub Actions workflow.
 
 ### Automatic Deployment
 
 The GitHub Actions workflow (`.github/workflows/build-and-deploy.yml`) runs daily at 12am EST and:
 
-1. Fetches latest graffiti data using the `graffiti-lookup-nyc` CLI
+1. Fetches the latest graffiti data using the `graffiti-lookup-nyc` CLI
 2. Geocodes new addresses
 3. Builds the Astro site
-4. Deploys to GitHub Pages
+4. Deploys to GitHub Pages using the official deployment actions
+
+#### Key Workflow Features
+
+- Uses `actions/configure-pages@v5` to set up the Pages environment (required by GitHub for secure and reliable deployments)
+- Uses `actions/upload-pages-artifact@v3` and `actions/deploy-pages@v4` for artifact upload and deployment
+- The `deploy` job includes:
+  ```yaml
+  environment:
+    name: github-pages
+    url: ${{ steps.deployment.outputs.page_url }}
+  ```
+  This ensures the deployment environment is correctly linked in the GitHub UI.
 
 ### Required Setup
 
 1. **Enable GitHub Pages** in your repository settings:
    - Go to Settings → Pages
-   - Set Source to "Deploy from a branch"
-   - Select the `gh-pages` branch
+   - Set Source to "GitHub Actions"
 
 2. **Add Repository Variable**:
    - Go to Settings → Secrets and variables → Actions → Variables

@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import Mock, patch
-from geocode.geocoder import geocode_address, geocode_addresses
+from graffiti_data_pipeline.geocoder import geocode_address, geocode_addresses
 from geopy.exc import GeocoderTimedOut
 
 

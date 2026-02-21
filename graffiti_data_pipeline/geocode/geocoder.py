@@ -4,10 +4,10 @@ from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
 from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 
-from geocode.logger import get_logger
-from geocode.sanitize import normalize_street_name
-from geocode.storages import JsonFile
-from geocode.config import (
+from graffiti_data_pipeline.logger import get_logger
+from graffiti_data_pipeline.geocode.sanitize import normalize_street_name
+from graffiti_data_pipeline.storages import JsonFile
+from graffiti_data_pipeline.config import (
     GEOCODE_CACHE_FILE,
     REQUEST_USER_AGENT,
     REQUEST_TIMEOUT,
@@ -88,7 +88,6 @@ def geocode_addresses(
     addresses_geocoded = False
 
     for service_request in service_requests:
-        # Only geocode if 'latitude' and 'longitude' are missing
         if (
             isinstance(service_request, dict)
             and "latitude" not in service_request

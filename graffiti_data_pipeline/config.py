@@ -1,8 +1,9 @@
 import os
 
+GRAFFITI_CLEANED_STATUS = "Cleaning crew dispatched.  Property cleaned."
 GRAFFITI_COMPLETE_STATUSES = [
     "CityOwnedIneligible",
-    "Cleaning crew dispatched.  Property cleaned.",
+    GRAFFITI_CLEANED_STATUS,
     "Cleaning crew dispatched. No graffiti on property.",
     "The property owner\u2019s name cannot be determined.",
     "Graffiti is intentional.",
@@ -15,6 +16,8 @@ GRAFFITI_RECENT_REQUEST_DAYS = int(os.environ.get("GRAFFITI_RECENT_REQUEST_DAYS"
 
 GRAFFITI_LOOKUPS_FILE = "public/graffiti-lookups.json"
 GEOCODE_CACHE_FILE = "public/geocode-cache.json"
+
+NYC_BOROUGHS = {"manhattan", "brooklyn", "queens", "bronx", "staten island"}
 
 REQUEST_USER_AGENT = "graffiti-lookup-nyc-web"
 REQUEST_TIMEOUT = int(os.environ.get("REQUEST_TIMEOUT", 10))

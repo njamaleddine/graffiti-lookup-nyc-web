@@ -60,7 +60,7 @@ jobs:
           if [ "${{ vars.GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS }}" = "False" ]; then
             ids="${{ vars.GRAFFITI_IDS }}"
           else
-            ids=$(python -m geocode.filter_service_requests)
+            ids=$(python -m graffiti_data_pipeline.filter_service_requests)
           fi
           timeout=${{ vars.GRAFFITI_LOOKUP_TIMEOUT }}
           if [ -z "$timeout" ]; then
@@ -77,7 +77,10 @@ jobs:
           graffiti-lookup-nyc --ids "$ids" --timeout "$timeout" --max-connections="$max_connections" --max-keepalive-connections="$max_keepalive_connections" --file-path public/graffiti-lookups.json --file-type json
 
       - name: Geocode addresses
-        run: python -m geocode
+        run: python -m graffiti_data_pipeline.geocode
+
+      - name: Predict graffiti recurrence, cleaning likelihood, likely time of next clean, and likely time of recurrence 
+        run: python -m graffiti_data_pipeline.prediction.predict
 
       - name: Update data-cache branch with new graffiti-lookups.json and geocode-cache.json files
         run: |

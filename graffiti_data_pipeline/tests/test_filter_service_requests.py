@@ -1,10 +1,10 @@
 from datetime import datetime
 from unittest.mock import patch
-from geocode.filter_service_requests import (
+from graffiti_data_pipeline.filter_service_requests import (
     was_recently_updated,
     get_active_service_requests,
 )
-from geocode.config import GRAFFITI_COMPLETE_STATUSES
+from graffiti_data_pipeline.config import GRAFFITI_COMPLETE_STATUSES
 
 
 class TestWasRecentlyUpdated:

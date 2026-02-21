@@ -1,5 +1,5 @@
 from unittest.mock import patch, MagicMock
-from geocode.storages.google_sheets import GoogleSheet
+from graffiti_data_pipeline.storages.google_sheets import GoogleSheet
 
 
 def mock_google_sheet():

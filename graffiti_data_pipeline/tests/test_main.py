@@ -1,5 +1,5 @@
 from unittest.mock import patch, Mock
-from geocode.__main__ import main
+from graffiti_data_pipeline.__main__ import main
 
 
 @patch("geocode.__main__.get_logger")
@@ -11,7 +11,7 @@ def test_main_loads_geocodes_and_saves(mock_geocode, mock_jsonfile, mock_logger)
     mock_jsonfile.return_value = mock_cache
     mock_cache.load.return_value = [{"address": "123 MAIN ST"}]
 
-    from geocode import __main__
+    from graffiti_data_pipeline import __main__
 
     with patch.object(__main__, "logger", logger_mock):
         main()
@@ -69,7 +69,7 @@ def test_main_geocode_addresses_raises_exception(
     mock_cache.load.return_value = [{"address": "123 MAIN ST"}]
     mock_geocode.side_effect = Exception("geocode error")
 
-    from geocode import __main__
+    from graffiti_data_pipeline import __main__
 
     with patch.object(__main__, "logger", logger_mock):
         try:
@@ -91,7 +91,7 @@ def test_main_save_fails(mock_geocode, mock_jsonfile, mock_logger):
     mock_cache.load.return_value = [{"address": "123 MAIN ST"}]
     mock_cache.save.side_effect = Exception("save error")
 
-    from geocode import __main__
+    from graffiti_data_pipeline import __main__
 
     with patch.object(__main__, "logger", logger_mock):
         main()

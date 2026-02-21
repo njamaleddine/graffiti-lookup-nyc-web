@@ -4,7 +4,7 @@ import json
 import gspread
 from google.oauth2.service_account import Credentials
 
-from geocode.logger import get_logger
+from graffiti_data_pipeline.logger import get_logger
 
 logger = get_logger(__name__)
 

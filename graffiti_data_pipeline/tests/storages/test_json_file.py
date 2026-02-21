@@ -1,7 +1,7 @@
 import os
 import json
 import tempfile
-from geocode.storages.json import JsonFile
+from graffiti_data_pipeline.storages.json import JsonFile
 
 
 class TestJsonFile:

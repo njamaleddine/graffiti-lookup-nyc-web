@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Main script to geocode graffiti lookup addresses."""
 
-from geocode.geocoder import geocode_addresses
-from geocode.logger import get_logger
-from geocode.config import GRAFFITI_LOOKUPS_FILE
-from geocode.storages.json import JsonFile
+from graffiti_data_pipeline.geocode.geocoder import geocode_addresses
+from graffiti_data_pipeline.logger import get_logger
+from graffiti_data_pipeline.config import GRAFFITI_LOOKUPS_FILE
+from graffiti_data_pipeline.storages.json import JsonFile
 
 logger = get_logger(__name__)
 

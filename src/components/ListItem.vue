@@ -5,12 +5,19 @@
   >
     <div
       class="card-content"
-      @click="$emit('select', item)"
+      @click="() => emit('select', props.item)"
     >
       <header class="card-header">
         <span class="index-badge">{{ index }}</span>
         <span class="id-badge">#{{ item.service_request }}</span>
         <span class="address">{{ item.address }}</span>
+        <button
+          class="predictions-toggle-btn"
+          aria-label="Show predictions"
+          @click.stop="togglePredictions"
+        >
+          <span class="ai-emoji">⋮</span>
+        </button>
       </header>
 
       <div class="card-status">
@@ -22,13 +29,42 @@
         <time>Updated: {{ item.last_updated }}</time>
       </footer>
     </div>
+
+    <transition name="slide-predictions">
+      <div
+        v-if="showPredictions"
+        class="predictions-tab"
+      >
+        <div class="predictions-header">
+          <span class="predictions-title">Predictions</span>
+        </div>
+        <ul class="predictions-list">
+          <li v-if="item.graffiti_likelihood !== undefined">
+            <span>Likelihood of re-tagging:</span> <strong>{{ item.graffiti_likelihood.toFixed(1) }}%</strong>
+          </li>
+          <li v-if="item.cleaning_likelihood !== undefined">
+            <span>Likelihood of cleaning:</span> <strong>{{ item.cleaning_likelihood.toFixed(1) }}%</strong>
+          </li>
+          <li v-if="item.estimated_next_tag">
+            <span>Estimated next tag:</span> <strong>{{ item.estimated_next_tag }}</strong>
+          </li>
+          <li v-if="item.predicted_time_to_next_update">
+            <span>Predicted time to next update:</span> <strong>{{ item.predicted_time_to_next_update }}</strong>
+          </li>
+          <li v-if="item.predicted_cleaning_date">
+            <span>Predicted cleaning date:</span> <strong>{{ item.predicted_cleaning_date }}</strong>
+          </li>
+        </ul>
+      </div>
+    </transition>
   </li>
 </template>
 
 <script setup>
   import StatusChip from './StatusChip.vue';
+  import { ref, watch, toRefs, defineProps, defineEmits } from 'vue';
 
-  defineProps({
+  const props = defineProps({
     item: {
       type: Object,
       required: true,
@@ -44,7 +80,19 @@
     },
   });
 
-  defineEmits(['select']);
+  const { isSelected } = toRefs(props);
+
+  const emit = defineEmits(['select']);
+
+  const showPredictions = ref(false);
+
+  function togglePredictions() {
+    showPredictions.value = !showPredictions.value;
+  }
+
+  watch(isSelected, (val) => {
+    if (!val) showPredictions.value = false;
+  });
 </script>
 
 <style scoped>
@@ -154,6 +202,148 @@
   @media (max-width: 900px) {
     .report-card {
       padding: 10px 12px;
+    }
+  }
+
+  .predictions-tab {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e0e7ff 100%);
+    border-radius: 10px;
+    margin: 12px 0 0 0;
+    padding: 16px 18px;
+    box-shadow: 0 2px 8px rgba(124,77,255,0.08);
+    animation: slideInPredictions 0.4s cubic-bezier(.68,-.55,.27,1.55);
+  }
+
+  .predictions-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .ai-emoji {
+    font-size: 1.6em;
+    vertical-align: middle;
+  }
+
+  .predictions-title {
+    font-weight: 600;
+    font-size: 0.9em;
+    color: #7c4dff;
+  }
+
+  .predictions-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .predictions-list li {
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #333;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  @keyframes slideInPredictions {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .slide-predictions-enter-active, .slide-predictions-leave-active {
+    transition: all 0.4s cubic-bezier(.68,-.55,.27,1.55);
+  }
+
+  .slide-predictions-enter-from, .slide-predictions-leave-to {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  .slide-predictions-enter-to, .slide-predictions-leave-from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .predictions-toggle-btn {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 50%;
+    padding: 0;
+    height: 28px;
+    width: 28px;
+    min-width: 28px;
+    max-width: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    color: #6366f1;
+    font-weight: 500;
+    box-shadow: 0 1px 4px rgba(60,60,100,0.07);
+    cursor: pointer;
+    margin-left: auto;
+    transition: box-shadow 0.15s, border 0.15s, background 0.15s;
+    outline: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    position: relative;
+  }
+  .predictions-toggle-btn:hover, .predictions-toggle-btn:focus {
+    background: #ede9fe;
+    border-color: #a5b4fc;
+    box-shadow: 0 2px 8px rgba(124,77,255,0.10);
+  }
+  .predictions-toggle-btn:active {
+    background: #e0e7ff;
+    border-color: #6366f1;
+    box-shadow: 0 1px 3px rgba(60,60,100,0.04);
+  }
+  .predictions-toggle-btn .ai-emoji {
+    font-size: 1em;
+    margin: -2px 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6366f1;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+  .predictions-toggle-btn .predictions-label {
+    font-size: 0.97em;
+    color: #4f46e5;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    display: inline;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 70px;
+  }
+  @media (max-width: 700px) {
+    .predictions-toggle-btn {
+      padding: 0;
+      height: 32px;
+      width: 32px;
+      min-width: 32px;
+      border-radius: 50%;
+      gap: 0;
+      justify-content: center;
+      max-width: 32px;
+    }
+    .predictions-toggle-btn .ai-emoji {
+      font-size: 1.2em;
+      margin: 0;
+    }
+    .predictions-toggle-btn .predictions-label {
+      display: none;
     }
   }
 </style>

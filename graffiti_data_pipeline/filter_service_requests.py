@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
 import argparse
 
-from geocode.logger import get_logger
-from geocode.storages import JsonFile
-from geocode.config import (
+from graffiti_data_pipeline.logger import get_logger
+from graffiti_data_pipeline.storages import JsonFile
+from graffiti_data_pipeline.config import (
     GRAFFITI_COMPLETE_STATUSES,
     GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS,
     GRAFFITI_LOOKUPS_FILE,

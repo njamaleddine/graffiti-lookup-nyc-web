@@ -2,4 +2,7 @@ geopy==2.4.1
 google-auth==2.48.0
 graffiti-lookup-nyc==1.0.5
 gspread==6.2.1
+pandas==3.0.1
+numpy==2.4.2
 requests==2.28.0
+scikit-learn==1.8.0

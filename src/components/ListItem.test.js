@@ -1,4 +1,3 @@
-
 import { mount } from '@vue/test-utils';
 import ListItem from './ListItem.vue';
 import StatusChip from './StatusChip.vue';
@@ -8,13 +7,13 @@ const item = {
   address: '123 Main St',
   status: 'cleaned',
   created: '2024-01-01',
-  last_updated: '2024-01-02'
+  last_updated: '2024-01-02',
 };
 
 describe('ListItem.vue', () => {
   it('renders all item fields', () => {
     const wrapper = mount(ListItem, {
-      props: { item, index: 1 }
+      props: { item, index: 1 },
     });
     expect(wrapper.find('.index-badge').text()).toBe('1');
     expect(wrapper.find('.id-badge').text()).toContain('SR123');
@@ -25,21 +24,21 @@ describe('ListItem.vue', () => {
 
   it('applies selected class when isSelected is true', () => {
     const wrapper = mount(ListItem, {
-      props: { item, index: 1, isSelected: true }
+      props: { item, index: 1, isSelected: true },
     });
     expect(wrapper.classes()).toContain('selected');
   });
 
   it('does not apply selected class when isSelected is false', () => {
     const wrapper = mount(ListItem, {
-      props: { item, index: 1, isSelected: false }
+      props: { item, index: 1, isSelected: false },
     });
     expect(wrapper.classes()).not.toContain('selected');
   });
 
   it('emits select event with item when clicked', async () => {
     const wrapper = mount(ListItem, {
-      props: { item, index: 1 }
+      props: { item, index: 1 },
     });
     await wrapper.find('.card-content').trigger('click');
     expect(wrapper.emitted('select')).toBeTruthy();
@@ -49,7 +48,7 @@ describe('ListItem.vue', () => {
   it('renders StatusChip with correct status', () => {
     const wrapper = mount(ListItem, {
       props: { item, index: 1 },
-      global: { components: { StatusChip } }
+      global: { components: { StatusChip } },
     });
     const chip = wrapper.findComponent(StatusChip);
     expect(chip.exists()).toBe(true);
@@ -60,7 +59,7 @@ describe('ListItem.vue', () => {
 
   it('accepts isSelected as optional', () => {
     const wrapper = mount(ListItem, {
-      props: { item, index: 1 }
+      props: { item, index: 1 },
     });
     expect(wrapper.props('isSelected')).toBe(false);
   });

@@ -8,7 +8,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest --run",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write ."
   },
   "dependencies": {
     "@astrojs/vue": "^5.0.0",
@@ -24,6 +26,7 @@
     "eslint-plugin-astro": "^1.0.0",
     "eslint-plugin-vue": "^9.0.0",
     "jsdom": "^28.0.0",
+    "prettier": "^3.8.1",
     "vitest": "^4.0.18",
     "vue-tsc": "^3.2.4"
   }

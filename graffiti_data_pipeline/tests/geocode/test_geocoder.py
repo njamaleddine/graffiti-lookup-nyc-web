@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import Mock, patch
-from graffiti_data_pipeline.geocoder import geocode_address, geocode_addresses
+from graffiti_data_pipeline.geocode.geocoder import geocode_address, geocode_addresses
 from geopy.exc import GeocoderTimedOut
 
 
@@ -86,9 +86,9 @@ class TestGeocodeAddress:
 
 
 class TestGeocodeAddresses:
-    @patch("geocode.geocoder.Nominatim")
-    @patch("geocode.geocoder.RateLimiter")
-    @patch("geocode.geocoder.JsonFile")
+    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
+    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
+    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
     def test_empty_service_requests(
         self, mock_jsonfile, mock_rate_limiter, mock_nominatim
     ):
@@ -107,9 +107,9 @@ class TestGeocodeAddresses:
         assert result == []
         mock_jsonfile.return_value.save.assert_not_called()
 
-    @patch("geocode.geocoder.Nominatim")
-    @patch("geocode.geocoder.RateLimiter")
-    @patch("geocode.geocoder.JsonFile")
+    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
+    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
+    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
     def test_malformed_service_requests(
         self, mock_jsonfile, mock_rate_limiter, mock_nominatim
     ):
@@ -130,9 +130,9 @@ class TestGeocodeAddresses:
             assert "latitude" not in r and "longitude" not in r
         mock_jsonfile.return_value.save.assert_not_called()
 
-    @patch("geocode.geocoder.JsonFile")
-    @patch("geocode.geocoder.RateLimiter")
-    @patch("geocode.geocoder.Nominatim")
+    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
+    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
+    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
     def test_multiple_addresses(self, mock_nominatim, mock_rate_limiter, mock_jsonfile):
         mock_cache = {}
         mock_jsonfile.return_value.load.return_value = mock_cache
@@ -157,9 +157,9 @@ class TestGeocodeAddresses:
         assert result[2]["latitude"] == 40.7128
         assert result[2]["longitude"] == -74.0060
 
-    @patch("geocode.geocoder.Nominatim")
-    @patch("geocode.geocoder.RateLimiter")
-    @patch("geocode.geocoder.JsonFile")
+    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
+    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
+    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
     def test_cache_load_exception(
         self, mock_jsonfile, mock_rate_limiter, mock_nominatim
     ):
@@ -177,9 +177,9 @@ class TestGeocodeAddresses:
 
         mock_jsonfile.return_value.save.assert_not_called()
 
-    @patch("geocode.geocoder.Nominatim")
-    @patch("geocode.geocoder.RateLimiter")
-    @patch("geocode.geocoder.JsonFile")
+    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
+    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
+    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
     def test_cache_save_exception(
         self, mock_jsonfile, mock_rate_limiter, mock_nominatim
     ):
@@ -196,9 +196,9 @@ class TestGeocodeAddresses:
                 error_wait_seconds=0,
             )
 
-    @patch("geocode.geocoder.JsonFile")
-    @patch("geocode.geocoder.RateLimiter")
-    @patch("geocode.geocoder.Nominatim")
+    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
+    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
+    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
     def test_cache_save_called_when_address_geocoded(
         self, mock_nominatim, mock_rate_limiter, mock_jsonfile
     ):
@@ -218,9 +218,9 @@ class TestGeocodeAddresses:
 
         mock_jsonfile.return_value.save.assert_called_once_with(mock_cache)
 
-    @patch("geocode.geocoder.Nominatim")
-    @patch("geocode.geocoder.RateLimiter")
-    @patch("geocode.geocoder.JsonFile")
+    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
+    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
+    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
     def test_cache_save_not_called_when_no_address_geocoded(
         self, mock_jsonfile, mock_rate_limiter, mock_nominatim
     ):
@@ -240,8 +240,8 @@ class TestGeocodeAddresses:
 
         mock_jsonfile.return_value.save.assert_not_called()
 
-    @patch("geocode.geocoder.JsonFile")
-    @patch("geocode.geocoder.Nominatim")
+    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
+    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
     def test_skips_service_requests_that_already_have_coordinates(
         self, mock_nominatim, mock_jsonfile
     ):
@@ -262,9 +262,9 @@ class TestGeocodeAddresses:
         assert result[0]["latitude"] == 40.7128
         assert result[0]["longitude"] == -74.0060
 
-    @patch("geocode.geocoder.JsonFile")
-    @patch("geocode.geocoder.RateLimiter")
-    @patch("geocode.geocoder.Nominatim")
+    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
+    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
+    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
     def test_geocodes_service_requests_missing_coordinates(
         self, mock_nominatim, mock_rate_limiter, mock_jsonfile
     ):
@@ -286,9 +286,9 @@ class TestGeocodeAddresses:
         assert result[0]["latitude"] == 40.7128
         assert result[0]["longitude"] == -74.0060
 
-    @patch("geocode.geocoder.JsonFile")
-    @patch("geocode.geocoder.RateLimiter")
-    @patch("geocode.geocoder.Nominatim")
+    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
+    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
+    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
     def test_uses_cached_coordinates_instead_of_calling_geocoder(
         self, mock_nominatim, mock_rate_limiter, mock_jsonfile
     ):
@@ -309,9 +309,9 @@ class TestGeocodeAddresses:
         assert result[0]["latitude"] == 40.7128
         assert result[0]["longitude"] == -74.0060
 
-    @patch("geocode.geocoder.JsonFile")
-    @patch("geocode.geocoder.RateLimiter")
-    @patch("geocode.geocoder.Nominatim")
+    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
+    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
+    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
     def test_saves_newly_geocoded_addresses_to_cache_file(
         self, mock_nominatim, mock_rate_limiter, mock_jsonfile
     ):

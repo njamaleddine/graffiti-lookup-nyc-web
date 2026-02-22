@@ -8,14 +8,14 @@ from graffiti_data_pipeline.config import GRAFFITI_COMPLETE_STATUSES
 
 
 class TestWasRecentlyUpdated:
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_recent_date_returns_true(self, mock_datetime):
         mock_datetime.now.return_value = datetime.strptime("2026-02-05", "%Y-%m-%d")
         mock_datetime.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
 
         assert was_recently_updated("2026-02-04", days=2)
 
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_today_returns_true(self, mock_datetime):
         mock_datetime.now.return_value = datetime.strptime("2026-02-05", "%Y-%m-%d")
         mock_datetime.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
@@ -23,49 +23,49 @@ class TestWasRecentlyUpdated:
 
         assert was_recently_updated(today, days=1)
 
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_future_date_returns_true(self, mock_datetime):
         mock_datetime.now.return_value = datetime.strptime("2026-02-05", "%Y-%m-%d")
         mock_datetime.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
 
         assert was_recently_updated("2026-02-10", days=2)
 
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_leap_year_date(self, mock_datetime):
         mock_datetime.now.return_value = datetime.strptime("2026-02-05", "%Y-%m-%d")
         mock_datetime.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
 
         assert was_recently_updated("2024-02-29", days=1000)
 
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_old_date_returns_false(self, mock_datetime):
         mock_datetime.now.return_value = datetime.strptime("2026-02-05", "%Y-%m-%d")
         mock_datetime.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
 
         assert not was_recently_updated("2020-01-01", days=2)
 
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_invalid_date_returns_false(self, mock_datetime):
         mock_datetime.now.return_value = datetime.strptime("2026-02-05", "%Y-%m-%d")
         mock_datetime.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
 
         assert not was_recently_updated("invalid-date", days=2)
 
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_empty_string_returns_false(self, mock_datetime):
         mock_datetime.now.return_value = datetime.strptime("2026-02-05", "%Y-%m-%d")
         mock_datetime.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
 
         assert not was_recently_updated("", days=2)
 
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_none_returns_false(self, mock_datetime):
         mock_datetime.now.return_value = datetime.strptime("2026-02-05", "%Y-%m-%d")
         mock_datetime.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
 
         assert not was_recently_updated(None, days=2)
 
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_custom_days(self, mock_datetime):
         mock_datetime.now.return_value = datetime.strptime("2026-02-05", "%Y-%m-%d")
         mock_datetime.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
@@ -74,7 +74,7 @@ class TestWasRecentlyUpdated:
 
 
 class TestGetActiveServiceRequests:
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_filters_active_requests(self, mock_datetime):
         mock_datetime.now.return_value = datetime.strptime("2026-02-05", "%Y-%m-%d")
         mock_datetime.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
@@ -94,7 +94,7 @@ class TestGetActiveServiceRequests:
 
         assert active == expected
 
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_missing_last_updated(self, mock_datetime):
         mock_datetime.now.return_value = mock_datetime.strptime(
             "2026-02-05", "%Y-%m-%d"
@@ -106,7 +106,7 @@ class TestGetActiveServiceRequests:
 
         assert get_active_service_requests(requests, days=2) == []
 
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_missing_status(self, mock_datetime):
         mock_datetime.now.return_value = datetime.strptime("2026-02-05", "%Y-%m-%d")
         mock_datetime.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
@@ -117,7 +117,7 @@ class TestGetActiveServiceRequests:
         expected = [{"last_updated": "2026-02-04"}]
         assert get_active_service_requests(requests, days=2) == expected
 
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_irrelevant_fields(self, mock_datetime):
         mock_datetime.now.return_value = datetime.strptime("2026-02-05", "%Y-%m-%d")
         mock_datetime.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
@@ -127,7 +127,7 @@ class TestGetActiveServiceRequests:
         expected = [{"status": "OPEN", "last_updated": "2026-02-04", "foo": "bar"}]
         assert get_active_service_requests(requests, days=2) == expected
 
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_empty_list_returns_empty(self, mock_datetime):
         mock_datetime.now.return_value = mock_datetime.strptime(
             "2026-02-05", "%Y-%m-%d"
@@ -135,7 +135,7 @@ class TestGetActiveServiceRequests:
 
         assert get_active_service_requests([], days=2) == []
 
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_all_complete_statuses_filtered(self, mock_datetime):
         mock_datetime.now.return_value = datetime.strptime("2026-02-05", "%Y-%m-%d")
         requests = [
@@ -145,7 +145,7 @@ class TestGetActiveServiceRequests:
 
         assert get_active_service_requests(requests, days=2) == []
 
-    @patch("geocode.filter_service_requests.datetime")
+    @patch("graffiti_data_pipeline.filter_service_requests.datetime")
     def test_all_recent_and_open(self, mock_datetime):
         mock_datetime.now.return_value = datetime.strptime("2026-02-05", "%Y-%m-%d")
         mock_datetime.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)

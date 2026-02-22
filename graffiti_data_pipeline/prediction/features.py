@@ -19,5 +19,21 @@ def extract_features(
         for req in requests
     ]
     features = pandas.DataFrame(feature_dicts)
+    if features.empty:
+        # Return a DataFrame with all expected columns
+        expected_columns = [
+            "borough",
+            "days_since_last_tag",
+            "total_tags",
+            "response_time",
+            "latitude",
+            "longitude",
+            "status_code",
+            "tagged_again",
+            "cleaned",
+            "time_to_next_update",
+            "index"
+        ]
+        return pandas.DataFrame(columns=expected_columns)
     features["borough"] = features["borough"].astype("category").cat.codes
     return features

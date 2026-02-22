@@ -49,6 +49,8 @@ class GraffitiPredictionModel:
     def train_recurrence_classifier(
         self, features: pandas.DataFrame, targets: pandas.Series
     ):
+        if features.empty or targets.empty:
+            raise ValueError("Features and targets must not be empty.")
         if len(features) > self.min_train_size:
             features_train, features_test, targets_train, targets_test = (
                 train_test_split(features, targets, test_size=0.2, random_state=42)
@@ -63,6 +65,8 @@ class GraffitiPredictionModel:
     def train_cleaning_classifier(
         self, features: pandas.DataFrame, targets: pandas.Series
     ):
+        if features.empty or targets.empty:
+            raise ValueError("Features and targets must not be empty.")
         if len(features) > self.min_train_size:
             features_train, features_test, targets_train, targets_test = (
                 train_test_split(features, targets, test_size=0.2, random_state=42)
@@ -75,6 +79,8 @@ class GraffitiPredictionModel:
             self.cleaning_model.fit(features, targets)
 
     def train_time_regressor(self, features: pandas.DataFrame, targets: pandas.Series):
+        if features.empty or targets.empty:
+            raise ValueError("Features and targets must not be empty.")
         valid_mask = targets.notnull()
         if valid_mask.sum() > self.min_train_size:
             self.time_regressor.fit(features[valid_mask], targets[valid_mask])
@@ -92,9 +98,6 @@ class GraffitiPredictionModel:
         return recurrence_probabilities, cleaning_probabilities, time_predictions
 
     def _get_class_probabilities(self, model, features):
-        """
-        Returns the probability of class 1 for each sample. Handles single-class training gracefully.
-        """
         proba = model.predict_proba(features)
         if proba.shape[1] == 1:
             single_class = model.classes_[0]

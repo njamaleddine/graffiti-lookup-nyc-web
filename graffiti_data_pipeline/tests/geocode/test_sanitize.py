@@ -1,4 +1,7 @@
-from graffiti_data_pipeline.sanitize import get_ordinal_suffix, normalize_street_name
+from graffiti_data_pipeline.geocode.sanitize import (
+    get_ordinal_suffix,
+    normalize_street_name,
+)
 
 
 class TestGetOrdinalSuffix:

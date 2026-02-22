@@ -1,6 +1,6 @@
 import pytest
 import pandas
-from unittest.mock import patch, Mock
+
 from graffiti_data_pipeline.prediction.model import GraffitiPredictionModel
 
 

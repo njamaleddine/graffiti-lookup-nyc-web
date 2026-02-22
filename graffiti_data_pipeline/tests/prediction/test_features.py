@@ -58,7 +58,7 @@ class TestExtractFeatures:
             "tagged_again",
             "cleaned",
             "time_to_next_update",
-            "index"
+            "index",
         }
         assert features_dataframe.empty
         assert expected_columns.issubset(set(features_dataframe.columns))

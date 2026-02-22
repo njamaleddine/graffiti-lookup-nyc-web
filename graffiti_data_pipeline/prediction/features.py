@@ -32,7 +32,7 @@ def extract_features(
             "tagged_again",
             "cleaned",
             "time_to_next_update",
-            "index"
+            "index",
         ]
         return pandas.DataFrame(columns=expected_columns)
     features["borough"] = features["borough"].astype("category").cat.codes

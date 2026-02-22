@@ -240,6 +240,7 @@ flowchart TD
       FILTER["filter_service_requests.py\n(if GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS=True)"]
       IDS["GRAFFITI_IDS (env var)"]
       LOOKUPS["graffiti-lookups.json"]
+      PREDICT["prediction/predict.py"]
    end
    CACHE["geocode-cache.json"]
    DATA_CACHE["data-cache branch (Git)"]
@@ -262,6 +263,8 @@ flowchart TD
    GEOCODE -- update --> LOOKUPS
    LOOKUPS -.-> DATA_CACHE
    CACHE -.-> DATA_CACHE
+   LOOKUPS --> PREDICT
+   PREDICT --> PUBLIC
 
    %% public/ (artifacts) is created after JSONs
    LOOKUPS --> PUBLIC
@@ -269,6 +272,7 @@ flowchart TD
 
    GH_ACTIONS --> CLI
    GH_ACTIONS --> GEOCODE
+   GH_ACTIONS --> PREDICT
    PUBLIC --> ASTRO
    ASTRO --> DIST
    DIST --> GH_PAGES
@@ -281,6 +285,7 @@ flowchart TD
    style FILTER fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
    style IDS fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
    style LOOKUPS fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+   style PREDICT fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
 
    %% Caching (gray)
    style CACHE fill:#eceff1,stroke:#607d8b,stroke-width:2px,color:#263238
@@ -307,18 +312,20 @@ flowchart TD
    linkStyle 6 stroke:#1976d2,stroke-width:2px,stroke-dasharray: 2 2
    linkStyle 7 stroke:#607d8b,stroke-width:2px,stroke-dasharray: 2 2
    linkStyle 8 stroke:#607d8b,stroke-width:2px,stroke-dasharray: 2 2
+   linkStyle 9 stroke:#1976d2,stroke-width:2px
+   linkStyle 10 stroke:#1976d2,stroke-width:2px
 
    %% Build/Deploy (purple)
-   linkStyle 9 stroke:#5e35b1,stroke-width:2px
-   linkStyle 10 stroke:#5e35b1,stroke-width:2px
    linkStyle 11 stroke:#5e35b1,stroke-width:2px
-   linkStyle 12 stroke:#5e35b1,stroke-width:2px,stroke-dasharray: 2 2
+   linkStyle 12 stroke:#5e35b1,stroke-width:2px
    linkStyle 13 stroke:#5e35b1,stroke-width:2px
-   linkStyle 14 stroke:#5e35b1,stroke-width:2px
+   linkStyle 14 stroke:#5e35b1,stroke-width:2px,stroke-dasharray: 2 2
    linkStyle 15 stroke:#5e35b1,stroke-width:2px
+   linkStyle 16 stroke:#5e35b1,stroke-width:2px
+   linkStyle 17 stroke:#5e35b1,stroke-width:2px
 
    %% Frontend (yellow)
-   linkStyle 16 stroke:#fbc02d,stroke-width:2px,stroke-dasharray: 2 2
+   linkStyle 18 stroke:#fbc02d,stroke-width:2px,stroke-dasharray: 2 2
 ```
 
 **Legend:**

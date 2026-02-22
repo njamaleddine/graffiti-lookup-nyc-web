@@ -4,15 +4,15 @@ on:
   push:
     branches: [main]
     paths:
-      - 'geocode/**'
+      - 'graffiti_data_pipeline/**'
       - 'setup.cfg'
-      - '.github/workflows/python.yml'
+      - '.github/workflows/test-python.yml'
   pull_request:
     branches: [main]
     paths:
-      - 'geocode/**'
+      - 'graffiti_data_pipeline/**'
       - 'setup.cfg'
-      - '.github/workflows/python.yml'
+      - '.github/workflows/test-python.yml'
 
 jobs:
   lint:
@@ -26,16 +26,16 @@ jobs:
         with:
           python-version: '3.12'
           cache: 'pip'
-          cache-dependency-path: geocode/requirements-dev.txt
+          cache-dependency-path: graffiti_data_pipeline/requirements-dev.txt
 
       - name: Install dependencies
-        run: pip install -r geocode/requirements-dev.txt
+        run: pip install -r graffiti_data_pipeline/requirements-dev.txt
 
       - name: Check code formatting with Black
-        run: black --check geocode
+        run: black --check graffiti_data_pipeline
 
       - name: Run flake8
-        run: flake8 geocode
+        run: flake8 graffiti_data_pipeline
 
   test:
     name: Test Python
@@ -48,13 +48,13 @@ jobs:
         with:
           python-version: '3.12'
           cache: 'pip'
-          cache-dependency-path: geocode/requirements-dev.txt
+          cache-dependency-path: graffiti_data_pipeline/requirements-dev.txt
 
       - name: Install dependencies
-        run: pip install -r geocode/requirements-dev.txt
+        run: pip install -r graffiti_data_pipeline/requirements-dev.txt
 
       - name: Run tests with coverage
-        run: pytest geocode/tests -v --cov=geocode --cov-report=term-missing
+        run: pytest graffiti_data_pipeline/tests -v --cov=graffiti_data_pipeline --cov-report=term-missing
 
       - name: Check coverage threshold
-        run: pytest geocode/tests --cov=geocode --cov-fail-under=80
+        run: pytest graffiti_data_pipeline/tests --cov=graffiti_data_pipeline --cov-fail-under=80

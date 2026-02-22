@@ -45,13 +45,13 @@ To generate graffiti data and geocode addresses locally:
 
 ```bash
 # Install Python dependencies
-pip install -r geocode/requirements.txt
+pip install -r graffiti_data_pipeline/requirements.txt
 
 # Generate graffiti data (replace with your IDs)
 graffiti-lookup-nyc --ids "G258700,G258801,G258900" --file-path public/graffiti-lookups.json --file-type json
 
 # Geocode addresses
-python -m geocode
+python -m graffiti_data_pipeline.geocode
 ```
 
 ## Deployment
@@ -106,15 +106,44 @@ You can trigger a manual deployment from the Actions tab by running the "Build a
 │       ├── lint-js.yml           # ESLint for Vue/Astro
 │       ├── lint-python.yml       # Black & flake8 for Python
 │       └── test.yml              # Python tests with coverage
-├── geocode/                      # Python geocoding package
+├── graffiti_data_pipeline/
 │   ├── __init__.py
-│   ├── __main__.py               # Entry point (python -m geocode)
-│   ├── geocoder.py               # Geocoding logic with caching
-│   ├── logger.py                 # Logging setup
-│   ├── sanitize.py               # Address normalization
-│   ├── requirements.txt          # Python dependencies
-│   ├── requirements-dev.txt      # Dev dependencies (pytest)
-│   └── tests/                    # Test suite
+│   ├── __main__.py                # CLI entry point
+│   ├── config.py                  # Configuration constants
+│   ├── filter_service_requests.py # Filtering logic for service requests
+│   ├── logger.py                  # Logging setup
+│   ├── requirements.txt           # Python dependencies
+│   ├── requirements-dev.txt       # Dev dependencies (pytest, etc.)
+│   ├── geocode/
+│   │   ├── __init__.py
+│   │   ├── __main__.py            # Geocoding CLI entry point
+│   │   ├── geocoder.py            # Geocoding logic
+│   │   ├── sanitize.py            # Address normalization
+│   ├── prediction/
+│   │   ├── __init__.py
+│   │   ├── features.py            # Feature engineering
+│   │   ├── model.py               # ML model training & inference
+│   │   ├── predict.py             # Prediction pipeline CLI
+│   │   ├── request.py             # Service request data model
+│   ├── storages/
+│   │   ├── __init__.py
+│   │   ├── google_sheets.py       # Google Sheets integration
+│   │   ├── json.py                # JSON file storage
+│   ├── tests/
+│   │   ├── __init__.py
+│   │   ├── test_filter_service_requests.py
+│   │   ├── geocode/
+│   │   │   ├── test_geocoder.py
+│   │   │   ├── test_main.py
+│   │   │   ├── test_sanitize.py
+│   │   ├── prediction/
+│   │   │   ├── test_features.py
+│   │   │   ├── test_model.py
+│   │   │   ├── test_predict.py
+│   │   │   ├── test_request.py
+│   │   ├── storages/
+│   │   │   ├── test_google_sheets.py
+│   │   │   ├── test_json_file.py
 ├── public/
 │   ├── geocode-cache.json        # Cached geocoding results
 │   └── graffiti-lookups.json     # Generated graffiti data
@@ -135,6 +164,66 @@ You can trigger a manual deployment from the Actions tab by running the "Build a
 ├── setup.cfg                     # Python tool config (flake8, pytest)
 └── package.json
 ```
+# Graffiti Data Pipeline
+
+This package provides a modular pipeline for fetching, filtering, geocoding, predicting, and storing NYC graffiti removal service requests. It is designed for integration with the Graffiti Lookup NYC web application and for standalone data processing.
+
+## Pipeline Usage
+
+### Install dependencies
+
+```bash
+pip install -r graffiti_data_pipeline/requirements.txt
+```
+
+### Run the pipeline
+
+#### Fetch & Filter Service Requests
+
+```bash
+python -m graffiti_data_pipeline.filter_service_requests  # Custom CLI entry point
+```
+
+#### Geocode Addresses
+
+```bash
+python -m graffiti_data_pipeline.geocode   # Geocoding pipeline
+```
+
+#### Predict Graffiti Recurrence & Cleaning
+
+```bash
+python -m graffiti_data_pipeline.prediction.predict
+```
+
+### Storage
+
+- JSON file storage is handled via `storages/json.py`.
+- Google Sheets integration is available via `storages/google_sheets.py`.
+
+### Testing
+
+```bash
+pytest graffiti_data_pipeline/tests
+```
+
+## Key Pipeline Modules
+
+- **config.py**: Centralized configuration (constants, file paths, status keywords)
+- **filter_service_requests.py**: Filtering logic for active/completed requests
+- **geocode/**: Geocoding and address normalization
+- **prediction/**: Feature engineering, ML model training, prediction
+- **storages/**: Data storage abstractions (JSON, Google Sheets)
+- **tests/**: Unit tests for all modules
+
+## Example Pipeline Workflow
+
+1. Fetch raw graffiti service requests (via CLI or API)
+2. Filter requests for active/completed status
+3. Geocode addresses and cache results
+4. Engineer features and train ML models
+5. Predict recurrence, cleaning likelihood, and time-to-next-update
+6. Store results in JSON or Google Sheets
 
 ## Architecture Diagram
 

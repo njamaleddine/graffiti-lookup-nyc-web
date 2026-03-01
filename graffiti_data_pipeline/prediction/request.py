@@ -6,7 +6,11 @@ Represents a single graffiti service request and provides methods to extract fea
 
 from typing import List, Dict, Any
 import pandas
-from graffiti_data_pipeline.config import GRAFFITI_COMPLETE_STATUSES, NYC_BOROUGHS
+from graffiti_data_pipeline.config import (
+    GRAFFITI_CLEANED_STATUS,
+    GRAFFITI_COMPLETE_STATUSES,
+    NYC_BOROUGHS,
+)
 
 
 class GraffitiServiceRequest:
@@ -50,11 +54,15 @@ class GraffitiServiceRequest:
     def get_times_cleaned(
         self, address_index: Dict[str, List["GraffitiServiceRequest"]]
     ) -> int:
-        """Count how many times this address has been cleaned."""
+        """Count how many times this address was actually cleaned.
+
+        Only counts requests with the specific cleaned status, not other
+        complete statuses like 'No graffiti on property'.
+        """
         same_address = address_index.get(self.address, [])
         return sum(
             1 for req in same_address
-            if req.status in GRAFFITI_COMPLETE_STATUSES
+            if req.status == GRAFFITI_CLEANED_STATUS
         )
 
     def get_resolution_velocity(

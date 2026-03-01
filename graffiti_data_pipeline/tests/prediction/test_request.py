@@ -1,6 +1,9 @@
 import pytest
 import pandas
-from graffiti_data_pipeline.config import GRAFFITI_COMPLETE_STATUSES
+from graffiti_data_pipeline.config import (
+    GRAFFITI_CLEANED_STATUS,
+    GRAFFITI_COMPLETE_STATUSES,
+)
 from graffiti_data_pipeline.prediction.request import GraffitiServiceRequest
 
 
@@ -185,20 +188,20 @@ class TestGraffitiServiceRequest:
         features = request.to_feature_dict({}, [], address_index)
         assert features["times_reported"] == 1
 
-    def test_times_cleaned_counts_complete_statuses(self):
-        complete_status = GRAFFITI_COMPLETE_STATUSES[0]
+    def test_times_cleaned_counts_only_cleaned_status(self):
+        cleaned = GRAFFITI_CLEANED_STATUS
         records = [
             {
                 "address": "10 ELM ST, Bronx",
                 "created": "2026-01-01",
                 "last_updated": "2026-01-15",
-                "status": complete_status,
+                "status": cleaned,
             },
             {
                 "address": "10 ELM ST, Bronx",
                 "created": "2026-02-01",
                 "last_updated": "2026-02-20",
-                "status": complete_status,
+                "status": "Cleaning crew dispatched. No graffiti on property.",
             },
             {
                 "address": "10 ELM ST, Bronx",
@@ -209,9 +212,9 @@ class TestGraffitiServiceRequest:
         ]
         requests = [GraffitiServiceRequest(r) for r in records]
         address_index = {"10 ELM ST, Bronx": requests}
-        # Two completed requests at this address
-        assert requests[2].get_times_cleaned(address_index) == 2
-        assert requests[0].get_times_cleaned(address_index) == 2
+        # Only the first request was actually cleaned; "No graffiti" doesn't count
+        assert requests[2].get_times_cleaned(address_index) == 1
+        assert requests[0].get_times_cleaned(address_index) == 1
 
     def test_times_cleaned_zero_when_none_completed(self, sample_requests):
         address_index = {"123 MAIN ST, Manhattan": sample_requests}

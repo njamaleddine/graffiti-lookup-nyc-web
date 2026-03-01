@@ -207,7 +207,8 @@ class GraffitiPredictionModel:
         time_predictions,
         recurrence_window_predictions=None,
         resolution_time_predictions=None,
-        cleaning_cycle_counts=None,
+        times_reported=None,
+        times_cleaned=None,
     ):
         """Enrich each request record with prediction fields."""
         prediction_count = len(requests)
@@ -227,8 +228,10 @@ class GraffitiPredictionModel:
             recurrence_window_predictions = [None] * prediction_count
         if resolution_time_predictions is None:
             resolution_time_predictions = [None] * prediction_count
-        if cleaning_cycle_counts is None:
-            cleaning_cycle_counts = [0] * prediction_count
+        if times_reported is None:
+            times_reported = [0] * prediction_count
+        if times_cleaned is None:
+            times_cleaned = [0] * prediction_count
 
         for idx, request in enumerate(requests):
             rec_prob = float(recurrence_probabilities[idx])
@@ -262,8 +265,11 @@ class GraffitiPredictionModel:
                 else None
             )
 
-            request.record["cleaning_cycle_count"] = int(
-                cleaning_cycle_counts[idx]
+            request.record["times_reported"] = int(
+                times_reported[idx]
+            )
+            request.record["times_cleaned"] = int(
+                times_cleaned[idx]
             )
 
             # Ground truth replaces predictions when the outcome is known.

@@ -47,34 +47,15 @@ class GraffitiServiceRequest:
         """Month the report was created (1-12)."""
         return self.get_created_tag_date().month
 
-    def get_cleaning_cycle_count(
+    def get_times_cleaned(
         self, address_index: Dict[str, List["GraffitiServiceRequest"]]
     ) -> int:
-        """Count full report→clean→report cycles at this address.
-
-        A cycle is counted each time a completed request is followed by
-        a new report created *after* that completion.  This captures how
-        many times graffiti has returned after being cleaned — the true
-        repeat-offender score.
-        """
+        """Count how many times this address has been cleaned."""
         same_address = address_index.get(self.address, [])
-        completed = sorted(
-            (
-                req
-                for req in same_address
-                if req.status in GRAFFITI_COMPLETE_STATUSES
-            ),
-            key=lambda r: pandas.to_datetime(r.last_updated),
+        return sum(
+            1 for req in same_address
+            if req.status in GRAFFITI_COMPLETE_STATUSES
         )
-        cycles = 0
-        for comp in completed:
-            comp_date = pandas.to_datetime(comp.last_updated)
-            if any(
-                pandas.to_datetime(req.created) > comp_date
-                for req in same_address
-            ):
-                cycles += 1
-        return cycles
 
     def get_resolution_velocity(
         self, address_index: Dict[str, List["GraffitiServiceRequest"]]
@@ -202,7 +183,8 @@ class GraffitiServiceRequest:
             "response_time": self.get_response_time_days(),
             "created_day_of_week": self.get_created_day_of_week(),
             "created_month": self.get_created_month(),
-            "cleaning_cycle_count": self.get_cleaning_cycle_count(address_index),
+            "times_reported": self.get_tag_count_at_location(address_index),
+            "times_cleaned": self.get_times_cleaned(address_index),
             "resolution_velocity": self.get_resolution_velocity(address_index),
             "latitude": self.latitude,
             "longitude": self.longitude,

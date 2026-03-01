@@ -101,7 +101,8 @@ class TestGraffitiServiceRequest:
             "response_time",
             "created_day_of_week",
             "created_month",
-            "cleaning_cycle_count",
+            "times_reported",
+            "times_cleaned",
             "resolution_velocity",
             "latitude",
             "longitude",
@@ -156,14 +157,14 @@ class TestGraffitiServiceRequest:
         request = GraffitiServiceRequest(sample_record)
         assert request.get_created_month() == 1
 
-    def test_cleaning_cycle_count_with_complete_status(self):
-        complete_status = GRAFFITI_COMPLETE_STATUSES[0]
+    def test_times_reported_equals_total_count(self):
+        """times_reported should equal the total number of reports at the address."""
         records = [
             {
                 "address": "10 ELM ST, Bronx",
                 "created": "2026-01-01",
                 "last_updated": "2026-01-15",
-                "status": complete_status,
+                "status": "Open",
             },
             {
                 "address": "10 ELM ST, Bronx",
@@ -174,32 +175,17 @@ class TestGraffitiServiceRequest:
         ]
         requests = [GraffitiServiceRequest(r) for r in records]
         address_index = {"10 ELM ST, Bronx": requests}
-        # The completed request (Jan 15) is followed by a new report (Feb 1)
-        # so there is 1 full report→clean→report cycle.
-        assert requests[1].get_cleaning_cycle_count(address_index) == 1
+        features = requests[0].to_feature_dict({}, [], address_index)
+        assert features["times_reported"] == 2
+        assert features["times_reported"] == features["total_tags"]
 
-    def test_cleaning_cycle_count_no_completions(self, sample_requests):
-        address_index = {"123 MAIN ST, Manhattan": sample_requests}
-        # "Site to be cleaned." is NOT in GRAFFITI_COMPLETE_STATUSES
-        assert sample_requests[0].get_cleaning_cycle_count(address_index) == 0
+    def test_times_reported_single_report(self, sample_record):
+        request = GraffitiServiceRequest(sample_record)
+        address_index = {"123 MAIN ST, Manhattan": [request]}
+        features = request.to_feature_dict({}, [], address_index)
+        assert features["times_reported"] == 1
 
-    def test_cleaning_cycle_count_completed_without_followup(self):
-        """A completed request with no subsequent report = 0 cycles."""
-        complete_status = GRAFFITI_COMPLETE_STATUSES[0]
-        records = [
-            {
-                "address": "10 ELM ST, Bronx",
-                "created": "2026-01-01",
-                "last_updated": "2026-01-15",
-                "status": complete_status,
-            },
-        ]
-        requests = [GraffitiServiceRequest(r) for r in records]
-        address_index = {"10 ELM ST, Bronx": requests}
-        assert requests[0].get_cleaning_cycle_count(address_index) == 0
-
-    def test_cleaning_cycle_count_multiple_cycles(self):
-        """Two clean→re-report cycles should return 2."""
+    def test_times_cleaned_counts_complete_statuses(self):
         complete_status = GRAFFITI_COMPLETE_STATUSES[0]
         records = [
             {
@@ -223,8 +209,13 @@ class TestGraffitiServiceRequest:
         ]
         requests = [GraffitiServiceRequest(r) for r in records]
         address_index = {"10 ELM ST, Bronx": requests}
-        # Both completed requests are followed by later reports
-        assert requests[2].get_cleaning_cycle_count(address_index) == 2
+        # Two completed requests at this address
+        assert requests[2].get_times_cleaned(address_index) == 2
+        assert requests[0].get_times_cleaned(address_index) == 2
+
+    def test_times_cleaned_zero_when_none_completed(self, sample_requests):
+        address_index = {"123 MAIN ST, Manhattan": sample_requests}
+        assert sample_requests[0].get_times_cleaned(address_index) == 0
 
     def test_recurrence_window_returns_days(self):
         records = [

@@ -34,7 +34,8 @@ def main():
             "response_time",
             "created_day_of_week",
             "created_month",
-            "cleaning_cycle_count",
+            "times_reported",
+            "times_cleaned",
             "resolution_velocity",
             "latitude",
             "longitude",
@@ -73,7 +74,8 @@ def main():
         time_predictions,
         recurrence_window_predictions,
         resolution_time_predictions,
-        cleaning_cycle_counts=features["cleaning_cycle_count"],
+        times_reported=features["times_reported"],
+        times_cleaned=features["times_cleaned"],
     )
     JsonFile(GRAFFITI_LOOKUPS_FILE).save(enriched_data)
     logger.info("Prediction enrichment complete.")

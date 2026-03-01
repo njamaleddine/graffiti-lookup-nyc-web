@@ -99,6 +99,7 @@ class TestGraffitiPredictionModel:
         recurrence_window_predictions = [30, 60]
         resolution_time_predictions = [7, 14]
         cleaning_cycle_counts = [2, 0]
+        times_cleaned_values = [1, 0]
         enriched = model.enrich_requests(
             requests,
             recurrence_probabilities,
@@ -106,7 +107,8 @@ class TestGraffitiPredictionModel:
             time_predictions,
             recurrence_window_predictions,
             resolution_time_predictions,
-            cleaning_cycle_counts,
+            times_reported=cleaning_cycle_counts,
+            times_cleaned=times_cleaned_values,
         )
         assert isinstance(enriched, list)
         for record in enriched:
@@ -120,13 +122,16 @@ class TestGraffitiPredictionModel:
                     "predicted_time_to_next_update",
                     "predicted_recurrence_days",
                     "predicted_resolution_days",
-                    "cleaning_cycle_count",
+                    "times_reported",
+                    "times_cleaned",
                 ]
             )
         assert enriched[0]["predicted_recurrence_days"] == 30
         assert enriched[1]["predicted_resolution_days"] == 14
-        assert enriched[0]["cleaning_cycle_count"] == 2
-        assert enriched[1]["cleaning_cycle_count"] == 0
+        assert enriched[0]["times_reported"] == 2
+        assert enriched[1]["times_reported"] == 0
+        assert enriched[0]["times_cleaned"] == 1
+        assert enriched[1]["times_cleaned"] == 0
 
     def test_enrich_requests_with_empty(self):
         model = GraffitiPredictionModel(min_train_size=1)

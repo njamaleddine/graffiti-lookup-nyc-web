@@ -35,26 +35,39 @@
         v-if="showPredictions"
         class="predictions-tab"
       >
-        <div class="predictions-header">
-          <span class="predictions-title">Predictions</span>
+        <div class="section-group" v-if="hasStats">
+          <div class="section-header">
+            <span class="section-title">Location Stats</span>
+          </div>
+          <ul class="section-list">
+            <li>
+              <span>Times reported:</span> <strong>{{ item.times_reported }}</strong>
+            </li>
+            <li>
+              <span>Times cleaned:</span> <strong>{{ item.times_cleaned }}</strong>
+            </li>
+          </ul>
         </div>
-        <ul class="predictions-list">
-          <li v-if="item.graffiti_likelihood !== undefined">
-            <span>Retagging risk:</span> <strong>{{ item.graffiti_likelihood.toFixed(1) }}%</strong>
-          </li>
-          <li v-if="item.cleaning_likelihood !== undefined">
-            <span>Cleaning likelihood:</span> <strong>{{ item.cleaning_likelihood.toFixed(1) }}%</strong>
-          </li>
-          <li v-if="item.cleaning_cycle_count > 0">
-            <span>Repeat offender:</span> <strong>{{ item.cleaning_cycle_count }} {{ item.cleaning_cycle_count === 1 ? 'cycle' : 'cycles' }}</strong>
-          </li>
-          <li v-if="estimatedRetagDate">
-            <span>Est. next tag:</span> <strong>{{ estimatedRetagDate }}</strong>
-          </li>
-          <li v-if="estimatedCleaningDate">
-            <span>Est. cleaning:</span> <strong>{{ estimatedCleaningDate }}</strong>
-          </li>
-        </ul>
+
+        <div class="section-group" v-if="hasPredictions">
+          <div class="section-header">
+            <span class="section-title">Predictions</span>
+          </div>
+          <ul class="section-list">
+            <li v-if="item.graffiti_likelihood !== undefined">
+              <span>Retagging risk:</span> <strong>{{ item.graffiti_likelihood.toFixed(1) }}%</strong>
+            </li>
+            <li v-if="item.cleaning_likelihood !== undefined">
+              <span>Cleaning likelihood:</span> <strong>{{ item.cleaning_likelihood.toFixed(1) }}%</strong>
+            </li>
+            <li v-if="estimatedRetagDate">
+              <span>Est. next tag:</span> <strong>{{ estimatedRetagDate }}</strong>
+            </li>
+            <li v-if="estimatedCleaningDate">
+              <span>Est. cleaning:</span> <strong>{{ estimatedCleaningDate }}</strong>
+            </li>
+          </ul>
+        </div>
       </div>
     </transition>
   </li>
@@ -118,6 +131,17 @@
       return addDays(created, predicted_resolution_days);
     }
     return isValidDate(predicted_cleaning_date) ? predicted_cleaning_date : null;
+  });
+
+  const hasStats = computed(() => {
+    return (props.item.times_reported ?? 0) > 0 || (props.item.times_cleaned ?? 0) > 0;
+  });
+
+  const hasPredictions = computed(() => {
+    return props.item.graffiti_likelihood !== undefined
+      || props.item.cleaning_likelihood !== undefined
+      || estimatedRetagDate.value
+      || estimatedCleaningDate.value;
   });
 </script>
 
@@ -266,6 +290,42 @@
 
   .predictions-list li {
     margin-bottom: 8px;
+    font-size: 13px;
+    color: #333;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .section-group + .section-group {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(124, 77, 255, 0.12);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-weight: 600;
+    font-size: 0.85em;
+    color: #7c4dff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .section-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .section-list li {
+    margin-bottom: 6px;
     font-size: 13px;
     color: #333;
     display: flex;

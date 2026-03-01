@@ -5,9 +5,10 @@ from graffiti_data_pipeline.prediction.model import GraffitiPredictionModel
 
 
 class DummyRequest:
-    def __init__(self, last_updated="2026-02-01"):
+    def __init__(self, last_updated="2026-02-01", status="Open"):
         self.record = {"last_updated": last_updated}
         self.last_updated = last_updated
+        self.status = status
 
 
 class TestGraffitiPredictionModel:
@@ -44,15 +45,21 @@ class TestGraffitiPredictionModel:
         model.train_recurrence_classifier(features, recurrence_targets)
         model.train_cleaning_classifier(features, cleaning_targets)
         model.train_time_regressor(features, time_targets)
-        recurrence_probabilities, cleaning_probabilities, time_predictions = (
-            model.predict(features)
-        )
+        (
+            recurrence_probabilities,
+            cleaning_probabilities,
+            time_predictions,
+            recurrence_window_predictions,
+            resolution_time_predictions,
+        ) = model.predict(features)
         assert all(
             len(lst) == 2
             for lst in [
                 recurrence_probabilities,
                 cleaning_probabilities,
                 time_predictions,
+                recurrence_window_predictions,
+                resolution_time_predictions,
             ]
         )
 
@@ -67,6 +74,10 @@ class TestGraffitiPredictionModel:
             model.train_cleaning_classifier(features, targets)
         with pytest.raises(ValueError):
             model.train_time_regressor(features, targets)
+        with pytest.raises(ValueError):
+            model.train_recurrence_window_regressor(features, targets)
+        with pytest.raises(ValueError):
+            model.train_resolution_time_regressor(features, targets)
 
     def test_predict_with_invalid_features(self):
         model = GraffitiPredictionModel(min_train_size=1)
@@ -85,8 +96,17 @@ class TestGraffitiPredictionModel:
         recurrence_probabilities = [0.5, 0.7]
         cleaning_probabilities = [0.8, 0.2]
         time_predictions = [5, 10]
+        recurrence_window_predictions = [30, 60]
+        resolution_time_predictions = [7, 14]
+        cleaning_cycle_counts = [2, 0]
         enriched = model.enrich_requests(
-            requests, recurrence_probabilities, cleaning_probabilities, time_predictions
+            requests,
+            recurrence_probabilities,
+            cleaning_probabilities,
+            time_predictions,
+            recurrence_window_predictions,
+            resolution_time_predictions,
+            cleaning_cycle_counts,
         )
         assert isinstance(enriched, list)
         for record in enriched:
@@ -98,13 +118,51 @@ class TestGraffitiPredictionModel:
                     "cleaning_likelihood",
                     "predicted_cleaning_date",
                     "predicted_time_to_next_update",
+                    "predicted_recurrence_days",
+                    "predicted_resolution_days",
+                    "cleaning_cycle_count",
                 ]
             )
+        assert enriched[0]["predicted_recurrence_days"] == 30
+        assert enriched[1]["predicted_resolution_days"] == 14
+        assert enriched[0]["cleaning_cycle_count"] == 2
+        assert enriched[1]["cleaning_cycle_count"] == 0
 
     def test_enrich_requests_with_empty(self):
         model = GraffitiPredictionModel(min_train_size=1)
         enriched = model.enrich_requests([], [], [], [])
         assert isinstance(enriched, list) and len(enriched) == 0
+
+    def test_enrich_uses_last_updated_for_cleaned_status(self):
+        model = GraffitiPredictionModel(min_train_size=1)
+        cleaned_status = "Cleaning crew dispatched.  Property cleaned."
+        request = DummyRequest(
+            last_updated="2026-02-10", status=cleaned_status
+        )
+        enriched = model.enrich_requests(
+            [request], [0.9], [0.9], [5]
+        )
+        record = enriched[0]
+        # Ground truth overrides for known cleaning outcome
+        assert record["cleaning_likelihood"] == 100.0
+        assert record["predicted_cleaning_date"] == "2026-02-10"
+        # Model predictions still used for these fields
+        assert "graffiti_likelihood" in record
+        assert "estimated_next_tag" in record
+        assert "predicted_time_to_next_update" in record
+
+    def test_enrich_non_cleaned_complete_status_uses_model(self):
+        model = GraffitiPredictionModel(min_train_size=1)
+        request = DummyRequest(
+            last_updated="2026-02-10", status="CityOwnedIneligible"
+        )
+        enriched = model.enrich_requests(
+            [request], [0.5], [0.3], [5]
+        )
+        record = enriched[0]
+        # Not specifically cleaned — model predictions used
+        assert record["cleaning_likelihood"] == 30.0
+        assert record["predicted_cleaning_date"] == "Unknown"
 
     def test_enrich_requests_mismatched_lengths(self):
         model = GraffitiPredictionModel(min_train_size=1)
@@ -112,27 +170,27 @@ class TestGraffitiPredictionModel:
         recurrence_probabilities = [0.5, 0.7]
         cleaning_probabilities = [0.8]
         time_predictions = [5]
-        try:
+        with pytest.raises(ValueError, match="Length mismatch"):
             model.enrich_requests(
                 requests,
                 recurrence_probabilities,
                 cleaning_probabilities,
                 time_predictions,
             )
-            assert False, "Expected an exception due to mismatched lengths"
-        except Exception:
-            assert True
 
     def test_predict_cleaning_date_edge_cases(self):
         model = GraffitiPredictionModel(min_train_size=1)
-        # cleaning_prob > 0.5
+        # cleaning_prob > 0.5 with valid predicted_days
+        date = model.predict_cleaning_date("2026-02-01", 0.6, predicted_days=5)
+        assert date == "2026-02-06"
+        # cleaning_prob > 0.5 but no predicted_days
         date = model.predict_cleaning_date("2026-02-01", 0.6)
-        assert isinstance(date, str) and date != "Unknown"
+        assert date == "Unknown"
         # cleaning_prob <= 0.5
-        date = model.predict_cleaning_date("2026-02-01", 0.4)
+        date = model.predict_cleaning_date("2026-02-01", 0.4, predicted_days=5)
         assert date == "Unknown"
         # invalid date
-        date = model.predict_cleaning_date("invalid-date", 0.6)
+        date = model.predict_cleaning_date("invalid-date", 0.6, predicted_days=5)
         assert date == "Unknown"
 
     def test_compute_predicted_time_to_next_update_edge_cases(self):

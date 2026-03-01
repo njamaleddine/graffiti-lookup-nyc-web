@@ -40,19 +40,19 @@
         </div>
         <ul class="predictions-list">
           <li v-if="item.graffiti_likelihood !== undefined">
-            <span>Likelihood of re-tagging:</span> <strong>{{ item.graffiti_likelihood.toFixed(1) }}%</strong>
+            <span>Retagging risk:</span> <strong>{{ item.graffiti_likelihood.toFixed(1) }}%</strong>
           </li>
           <li v-if="item.cleaning_likelihood !== undefined">
-            <span>Likelihood of cleaning:</span> <strong>{{ item.cleaning_likelihood.toFixed(1) }}%</strong>
+            <span>Cleaning likelihood:</span> <strong>{{ item.cleaning_likelihood.toFixed(1) }}%</strong>
           </li>
-          <li v-if="item.estimated_next_tag">
-            <span>Estimated next tag:</span> <strong>{{ item.estimated_next_tag }}</strong>
+          <li v-if="item.cleaning_cycle_count > 0">
+            <span>Repeat offender:</span> <strong>{{ item.cleaning_cycle_count }} {{ item.cleaning_cycle_count === 1 ? 'cycle' : 'cycles' }}</strong>
           </li>
-          <li v-if="item.predicted_time_to_next_update">
-            <span>Predicted time to next update:</span> <strong>{{ item.predicted_time_to_next_update }}</strong>
+          <li v-if="estimatedRetagDate">
+            <span>Est. next tag:</span> <strong>{{ estimatedRetagDate }}</strong>
           </li>
-          <li v-if="item.predicted_cleaning_date">
-            <span>Predicted cleaning date:</span> <strong>{{ item.predicted_cleaning_date }}</strong>
+          <li v-if="estimatedCleaningDate">
+            <span>Est. cleaning:</span> <strong>{{ estimatedCleaningDate }}</strong>
           </li>
         </ul>
       </div>
@@ -62,7 +62,17 @@
 
 <script setup>
   import StatusChip from './StatusChip.vue';
-  import { ref, watch, toRefs, defineProps, defineEmits } from 'vue';
+  import { ref, computed, watch, toRefs, defineProps, defineEmits } from 'vue';
+
+  function addDays(dateStr, days) {
+    const date = new Date(dateStr + 'T00:00:00');
+    date.setDate(date.getDate() + days);
+    return date.toISOString().slice(0, 10);
+  }
+
+  function isValidDate(value) {
+    return value && value !== 'Unknown';
+  }
 
   const props = defineProps({
     item: {
@@ -92,6 +102,22 @@
 
   watch(isSelected, (val) => {
     if (!val) showPredictions.value = false;
+  });
+
+  const estimatedRetagDate = computed(() => {
+    const { predicted_recurrence_days, last_updated, estimated_next_tag } = props.item;
+    if (predicted_recurrence_days > 0 && last_updated) {
+      return addDays(last_updated, predicted_recurrence_days);
+    }
+    return isValidDate(estimated_next_tag) ? estimated_next_tag : null;
+  });
+
+  const estimatedCleaningDate = computed(() => {
+    const { predicted_resolution_days, created, predicted_cleaning_date } = props.item;
+    if (predicted_resolution_days > 0 && created) {
+      return addDays(created, predicted_resolution_days);
+    }
+    return isValidDate(predicted_cleaning_date) ? predicted_cleaning_date : null;
   });
 </script>
 

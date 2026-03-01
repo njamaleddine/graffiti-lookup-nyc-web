@@ -6,7 +6,7 @@ Represents a single graffiti service request and provides methods to extract fea
 
 from typing import List, Dict, Any
 import pandas
-from graffiti_data_pipeline.config import NYC_BOROUGHS
+from graffiti_data_pipeline.config import GRAFFITI_COMPLETE_STATUSES, NYC_BOROUGHS
 
 
 class GraffitiServiceRequest:
@@ -39,13 +39,127 @@ class GraffitiServiceRequest:
     def get_response_time_days(self) -> int:
         return (self.get_last_tag_date() - self.get_created_tag_date()).days
 
-    def get_tag_count_at_location(
-        self, all_requests: List["GraffitiServiceRequest"]
-    ) -> int:
-        return sum(1 for req in all_requests if req.address == self.address)
+    def get_created_day_of_week(self) -> int:
+        """Day of week the report was created (0=Monday, 6=Sunday)."""
+        return self.get_created_tag_date().dayofweek
 
-    def get_tagged_again(self, all_requests: List["GraffitiServiceRequest"]) -> int:
-        return 1 if self.get_tag_count_at_location(all_requests) > 1 else 0
+    def get_created_month(self) -> int:
+        """Month the report was created (1-12)."""
+        return self.get_created_tag_date().month
+
+    def get_cleaning_cycle_count(
+        self, address_index: Dict[str, List["GraffitiServiceRequest"]]
+    ) -> int:
+        """Count full report→clean→report cycles at this address.
+
+        A cycle is counted each time a completed request is followed by
+        a new report created *after* that completion.  This captures how
+        many times graffiti has returned after being cleaned — the true
+        repeat-offender score.
+        """
+        same_address = address_index.get(self.address, [])
+        completed = sorted(
+            (
+                req
+                for req in same_address
+                if req.status in GRAFFITI_COMPLETE_STATUSES
+            ),
+            key=lambda r: pandas.to_datetime(r.last_updated),
+        )
+        cycles = 0
+        for comp in completed:
+            comp_date = pandas.to_datetime(comp.last_updated)
+            if any(
+                pandas.to_datetime(req.created) > comp_date
+                for req in same_address
+            ):
+                cycles += 1
+        return cycles
+
+    def get_resolution_velocity(
+        self, address_index: Dict[str, List["GraffitiServiceRequest"]]
+    ) -> Any:
+        """Average days to resolve past completed requests at this address.
+
+        Returns the mean resolution time (created→last_updated) across
+        completed requests whose completion date is *before* this
+        request's created date.  ``None`` if there is no prior history.
+        """
+        created_date = self.get_created_tag_date()
+        same_address = address_index.get(self.address, [])
+        past_completed = [
+            req
+            for req in same_address
+            if req.status in GRAFFITI_COMPLETE_STATUSES
+            and pandas.to_datetime(req.last_updated) < created_date
+        ]
+        if not past_completed:
+            return None
+        total_days = sum(
+            (
+                pandas.to_datetime(req.last_updated)
+                - pandas.to_datetime(req.created)
+            ).days
+            for req in past_completed
+        )
+        return round(total_days / len(past_completed))
+
+    def get_recurrence_window(
+        self, address_index: Dict[str, List["GraffitiServiceRequest"]]
+    ) -> Any:
+        """Days until the next report at this address, or None.
+
+        Unlike the binary ``tagged_again``, this gives a continuous
+        target the regressor can learn from.
+        """
+        created_date = self.get_created_tag_date()
+        same_address = address_index.get(self.address, [])
+        later_reports = [
+            req for req in same_address
+            if pandas.to_datetime(req.created) > created_date
+        ]
+        if later_reports:
+            next_report = min(
+                later_reports, key=lambda x: pandas.to_datetime(x.created)
+            )
+            return (pandas.to_datetime(next_report.created) - created_date).days
+        return None
+
+    def get_resolution_time(
+        self, address_index: Dict[str, List["GraffitiServiceRequest"]]
+    ) -> Any:
+        """Days from created to the first complete status at this address.
+
+        Returns None if no request at this address has reached a
+        complete status yet.
+        """
+        same_address = address_index.get(self.address, [])
+        completed = [
+            req for req in same_address
+            if req.status in GRAFFITI_COMPLETE_STATUSES
+            and pandas.to_datetime(req.last_updated) >= self.get_created_tag_date()
+        ]
+        if completed:
+            earliest = min(
+                completed, key=lambda x: pandas.to_datetime(x.last_updated)
+            )
+            days = (
+                pandas.to_datetime(earliest.last_updated)
+                - self.get_created_tag_date()
+            ).days
+            return max(days, 0)
+        return None
+
+    def get_tag_count_at_location(
+        self, address_index: Dict[str, List["GraffitiServiceRequest"]]
+    ) -> int:
+        """Count requests at this address using a pre-built index."""
+        return len(address_index.get(self.address, []))
+
+    def get_tagged_again(
+        self, address_index: Dict[str, List["GraffitiServiceRequest"]]
+    ) -> int:
+        return 1 if self.get_tag_count_at_location(address_index) > 1 else 0
 
     def get_status_code(self, status_categories: Dict[str, int]) -> int:
         if self.status not in status_categories:
@@ -53,43 +167,50 @@ class GraffitiServiceRequest:
         return status_categories[self.status]
 
     def is_cleaned(self, cleaned_keywords: List[str]) -> int:
-        # Boost cleaning probability for 'Site to be cleaned.'
-        if "Site to be cleaned." in self.status:
-            return 1
+        """Return 1 if the status contains any of the cleaned keywords."""
         return int(any(keyword in self.status for keyword in cleaned_keywords))
 
     def get_time_to_next_update(
-        self, all_requests: List["GraffitiServiceRequest"]
+        self, address_index: Dict[str, List["GraffitiServiceRequest"]]
     ) -> Any:
+        """Days until the next request at this address, or None."""
         last_tag_date = self.get_last_tag_date()
+        same_address_requests = address_index.get(self.address, [])
         next_updates = [
             req
-            for req in all_requests
-            if req.address == self.address
-            and pandas.to_datetime(req.created) > last_tag_date
+            for req in same_address_requests
+            if pandas.to_datetime(req.created) > last_tag_date
         ]
         if next_updates:
-            next_update = min(next_updates, key=lambda x: pandas.to_datetime(x.created))
+            next_update = min(
+                next_updates, key=lambda x: pandas.to_datetime(x.created)
+            )
             return (pandas.to_datetime(next_update.created) - last_tag_date).days
-        else:
-            return None
+        return None
 
     def to_feature_dict(
         self,
         status_categories: Dict[str, int],
         cleaned_keywords: List[str],
-        all_requests: List["GraffitiServiceRequest"],
+        address_index: Dict[str, List["GraffitiServiceRequest"]],
     ) -> Dict[str, Any]:
+        """Build a feature dictionary using a pre-built address index."""
         return {
             "days_since_last_tag": self.get_days_since_last_tag(),
             "borough": self.get_borough(),
-            "total_tags": self.get_tag_count_at_location(all_requests),
+            "total_tags": self.get_tag_count_at_location(address_index),
             "response_time": self.get_response_time_days(),
+            "created_day_of_week": self.get_created_day_of_week(),
+            "created_month": self.get_created_month(),
+            "cleaning_cycle_count": self.get_cleaning_cycle_count(address_index),
+            "resolution_velocity": self.get_resolution_velocity(address_index),
             "latitude": self.latitude,
             "longitude": self.longitude,
             "status_code": self.get_status_code(status_categories),
-            "tagged_again": self.get_tagged_again(all_requests),
+            "tagged_again": self.get_tagged_again(address_index),
             "cleaned": self.is_cleaned(cleaned_keywords),
-            "time_to_next_update": self.get_time_to_next_update(all_requests),
+            "time_to_next_update": self.get_time_to_next_update(address_index),
+            "recurrence_window": self.get_recurrence_window(address_index),
+            "resolution_time": self.get_resolution_time(address_index),
             "index": self.unique_key,
         }

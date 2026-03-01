@@ -32,6 +32,10 @@ def main():
             "borough",
             "total_tags",
             "response_time",
+            "created_day_of_week",
+            "created_month",
+            "cleaning_cycle_count",
+            "resolution_velocity",
             "latitude",
             "longitude",
             "status_code",
@@ -40,21 +44,36 @@ def main():
     recurrence_targets = features["tagged_again"]
     cleaning_targets = features["cleaned"]
     time_to_next_update_targets = features["time_to_next_update"]
+    recurrence_window_targets = features["recurrence_window"]
+    resolution_time_targets = features["resolution_time"]
 
     predictor = GraffitiPredictionModel()
     predictor.train_recurrence_classifier(feature_matrix, recurrence_targets)
     predictor.train_cleaning_classifier(feature_matrix, cleaning_targets)
     predictor.train_time_regressor(feature_matrix, time_to_next_update_targets)
+    predictor.train_recurrence_window_regressor(
+        feature_matrix, recurrence_window_targets
+    )
+    predictor.train_resolution_time_regressor(
+        feature_matrix, resolution_time_targets
+    )
 
     logger.info("Making predictions and enriching data...")
-    recurrence_probabilities, cleaning_probabilities, time_predictions = (
-        predictor.predict(feature_matrix)
-    )
+    (
+        recurrence_probabilities,
+        cleaning_probabilities,
+        time_predictions,
+        recurrence_window_predictions,
+        resolution_time_predictions,
+    ) = predictor.predict(feature_matrix)
     enriched_data = predictor.enrich_requests(
         graffiti_requests,
         recurrence_probabilities,
         cleaning_probabilities,
         time_predictions,
+        recurrence_window_predictions,
+        resolution_time_predictions,
+        cleaning_cycle_counts=features["cleaning_cycle_count"],
     )
     JsonFile(GRAFFITI_LOOKUPS_FILE).save(enriched_data)
     logger.info("Prediction enrichment complete.")

@@ -1,333 +1,169 @@
-import pytest
-from unittest.mock import Mock, patch
-from graffiti_data_pipeline.geocode.geocoder import geocode_address, geocode_addresses
+from unittest.mock import Mock
 from geopy.exc import GeocoderTimedOut
 
+from graffiti_data_pipeline.geocode.geocoder import (
+    Coordinates,
+    Geocoder,
+    geocode_service_requests,
+)
 
-class TestGeocodeAddress:
-    def test_empty_service_requests(self):
-        cache = {}
+
+class TestGeocoderGeocode:
+    def test_returns_none_for_empty_string(self):
+        geocoder = Geocoder(Mock())
+
+        assert geocoder.geocode("") is None
+
+    def test_returns_none_for_non_string_input(self):
+        geocoder = Geocoder(Mock())
+
+        assert geocoder.geocode(None) is None
+        assert geocoder.geocode(123) is None
+
+    def test_returns_cached_coordinates_without_calling_service(self):
         geocode_fn = Mock()
-
-        result = geocode_address("", geocode_fn, cache)
-
-        assert result == (None, None)
-
-    def test_malformed_service_requests(self):
-        cache = {}
-        geocode_fn = Mock()
-
-        result = geocode_address(None, geocode_fn, cache)
-
-        assert result == (None, None)
-
-        result = geocode_address(123, geocode_fn, cache)
-
-        assert result == (None, None)
-
-    def test_geocoder_exception(self):
-        cache = {}
-
-        def raise_timeout(address):
-            raise GeocoderTimedOut("timeout")
-
-        geocode_fn = Mock()
-        geocode_fn.side_effect = raise_timeout
-
-        # geocode_fn itself should raise
-        with pytest.raises(Exception):
-            geocode_fn("123 MAIN ST")
-
-        # geocode_address should handle the exception and return (None, None)
-        result = geocode_address("123 MAIN ST", geocode_fn, cache)
-        assert result == (None, None)
-
-    def test_returns_cached_coordinates_without_calling_geocoder(self):
         cache = {"123 MAIN ST": (40.7128, -74.0060)}
-        geocode_fn = Mock()
+        geocoder = Geocoder(geocode_fn, cache)
 
-        result = geocode_address("123 MAIN ST", geocode_fn, cache)
+        result = geocoder.geocode("123 MAIN ST")
 
-        assert result == (40.7128, -74.0060)
+        assert result == Coordinates(40.7128, -74.0060)
         geocode_fn.assert_not_called()
 
-    def test_calls_geocoder_and_caches_result_on_cache_miss(self):
-        cache = {}
-        mock_location = Mock()
-        mock_location.latitude = 40.7128
-        mock_location.longitude = -74.0060
-        geocode_fn = Mock(return_value=mock_location)
+    def test_queries_service_and_caches_result_on_miss(self):
+        location = Mock(latitude=40.7128, longitude=-74.0060)
+        geocode_fn = Mock(return_value=location)
+        geocoder = Geocoder(geocode_fn)
 
-        result = geocode_address("123 MAIN ST", geocode_fn, cache)
+        result = geocoder.geocode("123 MAIN ST")
 
-        assert result == (40.7128, -74.0060)
-        assert cache["123 MAIN ST"] == (40.7128, -74.0060)
+        assert result == Coordinates(40.7128, -74.0060)
+        assert geocoder.cache["123 MAIN ST"] == (40.7128, -74.0060)
 
-    def test_returns_none_tuple_when_geocoder_finds_no_result(self):
-        cache = {}
+    def test_returns_none_when_service_finds_no_result(self):
         geocode_fn = Mock(return_value=None)
+        geocoder = Geocoder(geocode_fn)
 
-        result = geocode_address("UNKNOWN ADDRESS", geocode_fn, cache)
+        assert geocoder.geocode("UNKNOWN ADDRESS") is None
+        assert "UNKNOWN ADDRESS" not in geocoder.cache
 
-        assert result == (None, None)
-        assert "UNKNOWN ADDRESS" not in cache
+    def test_returns_none_on_geocoder_timeout(self):
+        geocode_fn = Mock(side_effect=GeocoderTimedOut("timeout"))
+        geocoder = Geocoder(geocode_fn)
+
+        assert geocoder.geocode("123 MAIN ST") is None
 
     def test_normalizes_numbered_street_names_before_geocoding(self):
-        cache = {}
-        mock_location = Mock()
-        mock_location.latitude = 40.7128
-        mock_location.longitude = -74.0060
-        geocode_fn = Mock(return_value=mock_location)
+        location = Mock(latitude=40.7128, longitude=-74.0060)
+        geocode_fn = Mock(return_value=location)
+        geocoder = Geocoder(geocode_fn)
 
-        geocode_address("3 STREET", geocode_fn, cache)
+        geocoder.geocode("3 STREET")
 
         call_args = geocode_fn.call_args[0][0]
         assert "3RD STREET" in call_args
 
 
-class TestGeocodeAddresses:
-    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
-    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
-    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
-    def test_empty_service_requests(
-        self, mock_jsonfile, mock_rate_limiter, mock_nominatim
-    ):
-        mock_cache = {}
-        mock_jsonfile.return_value.load.return_value = mock_cache
-        mock_jsonfile.return_value.save = Mock()
-        service_requests = []
+class TestGeocodeServiceRequests:
+    def test_returns_false_for_empty_list(self):
+        geocoder = Geocoder(Mock())
 
-        result = geocode_addresses(
-            service_requests,
-            cache_file="fake_geocode_cache.json",
-            min_delay_seconds=0,
-            error_wait_seconds=0,
-        )
+        assert geocode_service_requests([], geocoder) is False
 
-        assert result == []
-        mock_jsonfile.return_value.save.assert_not_called()
+    def test_skips_malformed_requests(self):
+        geocoder = Geocoder(Mock())
+        requests = [{}, {"foo": "bar"}, {"address": None}]
 
-    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
-    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
-    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
-    def test_malformed_service_requests(
-        self, mock_jsonfile, mock_rate_limiter, mock_nominatim
-    ):
-        mock_cache = {}
-        mock_jsonfile.return_value.load.return_value = mock_cache
-        mock_jsonfile.return_value.save = Mock()
-        service_requests = [{}, {"foo": "bar"}, {"address": None}]
+        assert geocode_service_requests(requests, geocoder) is False
+        for r in requests:
+            assert "latitude" not in r
+            assert "longitude" not in r
 
-        result = geocode_addresses(
-            service_requests,
-            cache_file="fake_geocode_cache.json",
-            min_delay_seconds=0,
-            error_wait_seconds=0,
-        )
-
-        # Should not add latitude/longitude to malformed requests
-        for r in result:
-            assert "latitude" not in r and "longitude" not in r
-        mock_jsonfile.return_value.save.assert_not_called()
-
-    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
-    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
-    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
-    def test_multiple_addresses(self, mock_nominatim, mock_rate_limiter, mock_jsonfile):
-        mock_cache = {}
-        mock_jsonfile.return_value.load.return_value = mock_cache
-        mock_jsonfile.return_value.save = Mock()
-        mock_rate_limiter.return_value.return_value.latitude = 40.7128
-        mock_rate_limiter.return_value.return_value.longitude = -74.0060
-        service_requests = [
+    def test_geocodes_multiple_addresses(self):
+        location = Mock(latitude=40.7128, longitude=-74.0060)
+        geocode_fn = Mock(return_value=location)
+        geocoder = Geocoder(geocode_fn)
+        requests = [
             {"address": "123 MAIN ST"},
             {"address": "456 BROADWAY"},
-            {"address": "123 MAIN ST"},
         ]
 
-        result = geocode_addresses(
-            service_requests,
-            cache_file="fake_geocode_cache.json",
-            min_delay_seconds=0,
-            error_wait_seconds=0,
-        )
+        result = geocode_service_requests(requests, geocoder)
 
-        assert result[0]["latitude"] == 40.7128
-        assert result[0]["longitude"] == -74.0060
-        assert result[2]["latitude"] == 40.7128
-        assert result[2]["longitude"] == -74.0060
+        assert result is True
+        assert requests[0]["latitude"] == 40.7128
+        assert requests[1]["longitude"] == -74.0060
 
-    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
-    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
-    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
-    def test_cache_load_exception(
-        self, mock_jsonfile, mock_rate_limiter, mock_nominatim
-    ):
-        mock_jsonfile.return_value.load.side_effect = Exception("load error")
-        mock_jsonfile.return_value.save = Mock()
-        service_requests = [{"address": "123 MAIN ST"}]
-
-        with pytest.raises(Exception):
-            geocode_addresses(
-                service_requests,
-                cache_file="fake_geocode_cache.json",
-                min_delay_seconds=0,
-                error_wait_seconds=0,
-            )
-
-        mock_jsonfile.return_value.save.assert_not_called()
-
-    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
-    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
-    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
-    def test_cache_save_exception(
-        self, mock_jsonfile, mock_rate_limiter, mock_nominatim
-    ):
-        mock_cache = {}
-        mock_jsonfile.return_value.load.return_value = mock_cache
-        mock_jsonfile.return_value.save.side_effect = Exception("save error")
-        service_requests = [{"address": "123 MAIN ST"}]
-
-        with pytest.raises(Exception):
-            geocode_addresses(
-                service_requests,
-                cache_file="fake_geocode_cache.json",
-                min_delay_seconds=0,
-                error_wait_seconds=0,
-            )
-
-    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
-    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
-    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
-    def test_cache_save_called_when_address_geocoded(
-        self, mock_nominatim, mock_rate_limiter, mock_jsonfile
-    ):
-        mock_cache = {}
-        mock_jsonfile.return_value.load.return_value = mock_cache
-        mock_jsonfile.return_value.save = Mock()
-        mock_rate_limiter.return_value.return_value.latitude = 40.7128
-        mock_rate_limiter.return_value.return_value.longitude = -74.0060
-        service_requests = [{"address": "123 MAIN ST"}]
-
-        geocode_addresses(
-            service_requests,
-            cache_file="fake_geocode_cache.json",
-            min_delay_seconds=0,
-            error_wait_seconds=0,
-        )
-
-        mock_jsonfile.return_value.save.assert_called_once_with(mock_cache)
-
-    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
-    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
-    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
-    def test_cache_save_not_called_when_no_address_geocoded(
-        self, mock_jsonfile, mock_rate_limiter, mock_nominatim
-    ):
-        mock_cache = {}
-        mock_jsonfile.return_value.load.return_value = mock_cache
-        mock_jsonfile.return_value.save = Mock()
-        service_requests = [
+    def test_skips_requests_that_already_have_coordinates(self):
+        geocode_fn = Mock()
+        geocoder = Geocoder(geocode_fn)
+        requests = [
             {"address": "123 MAIN ST", "latitude": 40.7128, "longitude": -74.0060}
         ]
 
-        geocode_addresses(
-            service_requests,
-            cache_file="fake_geocode_cache.json",
-            min_delay_seconds=0,
-            error_wait_seconds=0,
-        )
+        result = geocode_service_requests(requests, geocoder)
 
-        mock_jsonfile.return_value.save.assert_not_called()
+        assert result is False
+        geocode_fn.assert_not_called()
 
-    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
-    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
-    def test_skips_service_requests_that_already_have_coordinates(
-        self, mock_nominatim, mock_jsonfile
-    ):
-        mock_cache = {}
-        mock_jsonfile.return_value.load.return_value = mock_cache
-        mock_jsonfile.return_value.save = Mock()
-        service_requests = [
-            {"address": "123 MAIN ST", "latitude": 40.7128, "longitude": -74.0060}
+    def test_returns_true_when_new_coordinates_resolved(self):
+        location = Mock(latitude=40.7128, longitude=-74.0060)
+        geocode_fn = Mock(return_value=location)
+        geocoder = Geocoder(geocode_fn)
+        requests = [{"address": "123 MAIN ST"}]
+
+        assert geocode_service_requests(requests, geocoder) is True
+
+    def test_returns_false_when_no_coordinates_resolved(self):
+        geocode_fn = Mock(return_value=None)
+        geocoder = Geocoder(geocode_fn)
+        requests = [{"address": "UNKNOWN"}]
+
+        assert geocode_service_requests(requests, geocoder) is False
+
+    def test_uses_cached_coordinates(self):
+        geocode_fn = Mock()
+        cache = {"123 MAIN ST": (40.7128, -74.0060)}
+        geocoder = Geocoder(geocode_fn, cache)
+        requests = [{"address": "123 MAIN ST"}]
+
+        geocode_service_requests(requests, geocoder)
+
+        assert requests[0]["latitude"] == 40.7128
+        assert requests[0]["longitude"] == -74.0060
+        geocode_fn.assert_not_called()
+
+    def test_backfills_cache_from_existing_coordinates(self):
+        geocode_fn = Mock()
+        geocoder = Geocoder(geocode_fn, cache={})
+        requests = [
+            {
+                "address": "123 MAIN ST",
+                "latitude": 40.7128,
+                "longitude": -74.0060,
+            }
         ]
 
-        result = geocode_addresses(
-            service_requests,
-            cache_file="fake_geocode_cache.json",
-            min_delay_seconds=0,
-            error_wait_seconds=0,
-        )
+        result = geocode_service_requests(requests, geocoder)
 
-        assert result[0]["latitude"] == 40.7128
-        assert result[0]["longitude"] == -74.0060
+        assert result is True
+        assert geocoder.cache["123 MAIN ST"] == (40.7128, -74.0060)
+        geocode_fn.assert_not_called()
 
-    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
-    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
-    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
-    def test_geocodes_service_requests_missing_coordinates(
-        self, mock_nominatim, mock_rate_limiter, mock_jsonfile
-    ):
-        mock_cache = {}
-        mock_jsonfile.return_value.load.return_value = mock_cache
-        mock_jsonfile.return_value.save = Mock()
-        service_requests = [{"address": "123 MAIN ST"}]
+    def test_does_not_backfill_when_cache_already_has_address(self):
+        geocode_fn = Mock()
+        existing_coords = (40.0, -73.0)
+        cache = {"123 MAIN ST": existing_coords}
+        geocoder = Geocoder(geocode_fn, cache)
+        requests = [
+            {
+                "address": "123 MAIN ST",
+                "latitude": 40.7128,
+                "longitude": -74.0060,
+            }
+        ]
 
-        mock_rate_limiter.return_value.return_value.latitude = 40.7128
-        mock_rate_limiter.return_value.return_value.longitude = -74.0060
+        result = geocode_service_requests(requests, geocoder)
 
-        result = geocode_addresses(
-            service_requests,
-            cache_file="fake_geocode_cache.json",
-            min_delay_seconds=0,
-            error_wait_seconds=0,
-        )
-
-        assert result[0]["latitude"] == 40.7128
-        assert result[0]["longitude"] == -74.0060
-
-    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
-    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
-    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
-    def test_uses_cached_coordinates_instead_of_calling_geocoder(
-        self, mock_nominatim, mock_rate_limiter, mock_jsonfile
-    ):
-        mock_cache = {"123 MAIN ST": [40.7128, -74.0060]}
-        mock_jsonfile.return_value.load.return_value = mock_cache
-        mock_jsonfile.return_value.save = Mock()
-        service_requests = [{"address": "123 MAIN ST"}]
-
-        mock_rate_limiter.return_value.return_value = None
-
-        result = geocode_addresses(
-            service_requests,
-            cache_file="fake_geocode_cache.json",
-            min_delay_seconds=0,
-            error_wait_seconds=0,
-        )
-
-        assert result[0]["latitude"] == 40.7128
-        assert result[0]["longitude"] == -74.0060
-
-    @patch("graffiti_data_pipeline.geocode.geocoder.JsonFile")
-    @patch("graffiti_data_pipeline.geocode.geocoder.RateLimiter")
-    @patch("graffiti_data_pipeline.geocode.geocoder.Nominatim")
-    def test_saves_newly_geocoded_addresses_to_cache_file(
-        self, mock_nominatim, mock_rate_limiter, mock_jsonfile
-    ):
-        mock_cache = {}
-        mock_jsonfile.return_value.load.return_value = mock_cache
-        mock_jsonfile.return_value.save = Mock()
-        service_requests = [{"address": "123 MAIN ST"}]
-
-        mock_rate_limiter.return_value.return_value.latitude = 40.7128
-        mock_rate_limiter.return_value.return_value.longitude = -74.0060
-
-        geocode_addresses(
-            service_requests,
-            cache_file="fake_geocode_cache.json",
-            min_delay_seconds=0,
-            error_wait_seconds=0,
-        )
-
-        mock_jsonfile.return_value.save.assert_called_once_with(mock_cache)
+        assert result is False
+        assert geocoder.cache["123 MAIN ST"] == existing_coords

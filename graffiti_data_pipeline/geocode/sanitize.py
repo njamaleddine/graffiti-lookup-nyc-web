@@ -1,28 +1,38 @@
-"""Address sanitization and normalization utilities."""
+"""Address normalization utilities for NYC street names."""
 
 import re
 
-STREET_TYPES = r"(STREET|ST|AVENUE|AVE|ROAD|RD|DRIVE|DR|PLACE|PL|BOULEVARD|BLVD|LANE|LN|COURT|CT|WAY|TERRACE|TER)"  # noqa: E501
+_STREET_TYPES = (
+    r"(STREET|ST|AVENUE|AVE|ROAD|RD|DRIVE|DR|PLACE|PL"
+    r"|BOULEVARD|BLVD|LANE|LN|COURT|CT|WAY|TERRACE|TER)"
+)
+
+_NUMBERED_STREET = re.compile(
+    rf"(?<![\d]-)(\b\d+)\s+{_STREET_TYPES}",
+    re.IGNORECASE,
+)
+
+ORDINAL_SUFFIXES = {1: "ST", 2: "ND", 3: "RD"}
 
 
 def get_ordinal_suffix(number):
-    """Convert a number to its ordinal suffix (1->1st, 2->2nd, 3->3rd, etc.)"""
-    number = int(number)
-    if 11 <= number % 100 <= 13:
-        return f"{number}TH"
-    suffix = {1: "ST", 2: "ND", 3: "RD"}.get(number % 10, "TH")
-    return f"{number}{suffix}"
+    """Return the ordinal form of *number* (1 -> '1ST', 12 -> '12TH')."""
+    value = int(number)
+    if 11 <= value % 100 <= 13:
+        return f"{value}TH"
+    return f"{value}{ORDINAL_SUFFIXES.get(value % 10, 'TH')}"
 
 
 def normalize_street_name(address):
-    """Convert '3 STREET' to '3RD STREET', etc."""
-    # Only match numbers that are not part of a house number with a dash (e.g., 21-83)
-    # Use negative lookbehind to ensure the number is not preceded by a dash and more digits
-    pattern = rf"(?<![\d]-)(\b\d+)\s+{STREET_TYPES}"
+    """Convert bare numbered streets to ordinal form.
 
-    def replace_match(match):
+    ``'3 STREET'`` becomes ``'3RD STREET'``, while house numbers
+    like ``'21-83'`` and named streets like ``'BROADWAY'`` are
+    left unchanged.
+    """
+    def _ordinalize(match):
         number = match.group(1)
         street_type = match.group(2)
         return f"{get_ordinal_suffix(number)} {street_type}"
 
-    return re.sub(pattern, replace_match, address, flags=re.IGNORECASE)
+    return _NUMBERED_STREET.sub(_ordinalize, address)

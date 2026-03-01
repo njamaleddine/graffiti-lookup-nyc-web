@@ -1,106 +1,176 @@
-"""Geocoding functionality using Nominatim."""
+"""Geocoding service for NYC addresses."""
 
-from geopy.geocoders import Nominatim
+from typing import NamedTuple
+
 from geopy.extra.rate_limiter import RateLimiter
 from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
+from geopy.geocoders import Nominatim
 
-from graffiti_data_pipeline.logger import get_logger
-from graffiti_data_pipeline.geocode.sanitize import normalize_street_name
-from graffiti_data_pipeline.storages import JsonFile
 from graffiti_data_pipeline.config import (
-    GEOCODE_CACHE_FILE,
-    REQUEST_USER_AGENT,
-    REQUEST_TIMEOUT,
-    REQUEST_MIN_DELAY_SECONDS,
-    REQUEST_MAX_RETRIES,
     REQUEST_ERROR_WAIT_SECONDS,
+    REQUEST_MAX_RETRIES,
+    REQUEST_MIN_DELAY_SECONDS,
+    REQUEST_TIMEOUT,
+    REQUEST_USER_AGENT,
 )
+from graffiti_data_pipeline.geocode.sanitize import normalize_street_name
+from graffiti_data_pipeline.logger import get_logger
 
 logger = get_logger(__name__)
 
 
-def geocode_address(address, geocode_fn, cache):
-    """Geocode a single address, using cache if available."""
-    if not isinstance(address, str) or not address.strip():
-        return (None, None)
+class Coordinates(NamedTuple):
+    """A geographic coordinate pair."""
 
-    if address in cache:
-        cached = cache[address]
-        logger.debug(f"Cache hit: {address} -> {cached}")
-        return cached
+    latitude: float
+    longitude: float
 
-    try:
-        normalized_address = normalize_street_name(address)
-        # Append NY to improve geocoding accuracy for NYC addresses
-        full_address = f"{normalized_address}, NY, USA"
+
+class Geocoder:
+    """Resolves addresses to geographic coordinates.
+
+    Wraps a geocoding callable with an in-memory cache to avoid
+    redundant network calls.  Addresses are normalized for NYC
+    street-naming conventions before lookup.
+
+    The :attr:`cache` property exposes the underlying dict so
+    callers can persist it between runs.
+
+    Usage::
+
+        geocoder = Geocoder.from_config()
+        coords = geocoder.geocode("123 MAIN ST")
+        if coords:
+            print(coords.latitude, coords.longitude)
+    """
+
+    def __init__(self, geocode_fn, cache=None):
+        self._geocode_fn = geocode_fn
+        self._cache = cache if cache is not None else {}
+
+    def __repr__(self):
+        return f"{type(self).__name__}(cache_size={len(self._cache)})"
+
+    @classmethod
+    def from_config(
+        cls,
+        cache=None,
+        user_agent=REQUEST_USER_AGENT,
+        timeout=REQUEST_TIMEOUT,
+        min_delay_seconds=REQUEST_MIN_DELAY_SECONDS,
+        max_retries=REQUEST_MAX_RETRIES,
+        error_wait_seconds=REQUEST_ERROR_WAIT_SECONDS,
+    ):
+        """Create a production Geocoder from project configuration.
+
+        Pass *cache* to seed the geocoder with previously persisted
+        results.  When omitted, starts with an empty cache.
+        """
+        geolocator = Nominatim(user_agent=user_agent, timeout=timeout)
+        geocode_fn = RateLimiter(
+            geolocator.geocode,
+            min_delay_seconds=min_delay_seconds,
+            max_retries=max_retries,
+            error_wait_seconds=error_wait_seconds,
+        )
+        return cls(geocode_fn, cache)
+
+    @property
+    def cache(self):
+        """The current in-memory geocode cache."""
+        return self._cache
+
+    def geocode(self, address):
+        """Resolve *address* to :class:`Coordinates`, or ``None``.
+
+        Returns cached coordinates on a hit.  On a cache miss the
+        street name is normalized, the geocoding service is queried,
+        and the result is stored in the cache.
+        """
+        if not isinstance(address, str) or not address.strip():
+            logger.warning(f"Invalid address input: {address!r}")
+            return None
+
+        cached = self._cache.get(address)
+        if cached is not None:
+            logger.debug(f"Cache hit: {address} -> {cached}")
+            return Coordinates(*cached)
+
+        return self._resolve(address)
+
+    def _resolve(self, address):
+        """Query the geocoding service and cache a successful result."""
+        full_address = f"{normalize_street_name(address)}, NY, USA"
         logger.info(f"Geocoding: {full_address}")
-        location = geocode_fn(full_address)
 
-        if location:
-            cache[address] = (location.latitude, location.longitude)
-            logger.info(
-                f"Found coordinates for {full_address}: {location.latitude}, {location.longitude}"
-            )
-            return cache[address]
-        else:
+        try:
+            location = self._geocode_fn(full_address)
+        except (GeocoderTimedOut, GeocoderUnavailable) as exc:
+            logger.error(f"Geocoding error: {exc}")
+            return None
+
+        if location is None:
             logger.warning(f"No coordinates found for {full_address}")
-    except (GeocoderTimedOut, GeocoderUnavailable) as error:
-        logger.error(f"Geocoding error: {error}")
+            return None
 
-    return (None, None)
+        coords = Coordinates(location.latitude, location.longitude)
+        self._cache[address] = (coords.latitude, coords.longitude)
+        logger.info(
+            f"Found: {full_address} -> ({coords.latitude}, {coords.longitude})"
+        )
+        return coords
 
 
-def geocode_addresses(
-    service_requests,
-    cache_file=GEOCODE_CACHE_FILE,
-    user_agent=REQUEST_USER_AGENT,
-    timeout=REQUEST_TIMEOUT,
-    min_delay_seconds=REQUEST_MIN_DELAY_SECONDS,
-    max_retries=REQUEST_MAX_RETRIES,
-    error_wait_seconds=REQUEST_ERROR_WAIT_SECONDS,
-):
+def geocode_service_requests(service_requests, geocoder):
+    """Add coordinates to service requests that are missing them.
+
+    .. warning::
+
+        Mutates each dict in *service_requests* **in place**,
+        inserting ``latitude`` and ``longitude`` keys for every
+        successfully geocoded address.
+
+    Also backfills the geocoder's cache from service requests that
+    already have coordinates, keeping the cache in sync without
+    extra network calls.
+
+    Returns ``True`` if the cache was modified (new geocoding or
+    backfill), ``False`` otherwise.
     """
-    Geocode addresses in a list of service request dictionaries.
+    cache_changed = False
 
-    Args:
-        service_requests: List of dictionaries with 'address' key
-        cache_file: Path to geocode cache file
-        user_agent: User agent for Nominatim
-        timeout: Request timeout in seconds
-        min_delay_seconds: Minimum delay between requests
-        max_retries: Number of retries on failure
-        error_wait_seconds: Wait time after error
+    for request in service_requests:
+        if not isinstance(request, dict):
+            continue
 
-    Returns:
-        Updated service_requests with latitude/longitude added
-    """
-    geocode_cache = JsonFile(cache_file)
-    geocode_data = geocode_cache.load()
+        address = request.get("address")
+        if _needs_geocoding(request):
+            coords = geocoder.geocode(address)
+            if coords is not None:
+                request["latitude"] = coords.latitude
+                request["longitude"] = coords.longitude
+                cache_changed = True
+        elif _can_backfill_cache(request, address, geocoder.cache):
+            geocoder.cache[address] = (
+                request["latitude"],
+                request["longitude"],
+            )
+            cache_changed = True
 
-    geolocator = Nominatim(user_agent=user_agent, timeout=timeout)
-    geocode_fn = RateLimiter(
-        geolocator.geocode,
-        min_delay_seconds=min_delay_seconds,
-        max_retries=max_retries,
-        error_wait_seconds=error_wait_seconds,
+    return cache_changed
+
+
+def _needs_geocoding(request):
+    """Return True if the request dict lacks coordinate keys."""
+    return "latitude" not in request and "longitude" not in request
+
+
+def _can_backfill_cache(request, address, cache):
+    """Return True if the request has coords but the cache doesn't."""
+    return (
+        isinstance(address, str)
+        and address.strip()
+        and "latitude" in request
+        and "longitude" in request
+        and address not in cache
     )
-
-    addresses_geocoded = False
-
-    for service_request in service_requests:
-        if (
-            isinstance(service_request, dict)
-            and "latitude" not in service_request
-            and "longitude" not in service_request
-        ):
-            address = service_request.get("address")
-            latitude, longitude = geocode_address(address, geocode_fn, geocode_data)
-
-            if latitude is not None and longitude is not None:
-                service_request["latitude"] = latitude
-                service_request["longitude"] = longitude
-                addresses_geocoded = True
-
-    if addresses_geocoded:
-        geocode_cache.save(geocode_data)
-    return service_requests

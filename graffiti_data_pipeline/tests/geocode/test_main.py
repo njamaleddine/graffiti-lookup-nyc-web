@@ -2,99 +2,98 @@ from unittest.mock import patch, Mock
 from graffiti_data_pipeline.geocode.__main__ import main
 
 
-@patch("graffiti_data_pipeline.geocode.__main__.get_logger")
-@patch("graffiti_data_pipeline.geocode.__main__.JsonFile")
-@patch("graffiti_data_pipeline.geocode.__main__.geocode_addresses")
-def test_main_loads_geocodes_and_saves(mock_geocode, mock_jsonfile, mock_logger):
-    logger_mock = Mock()
-    mock_cache = Mock()
-    mock_jsonfile.return_value = mock_cache
-    mock_cache.load.return_value = [{"address": "123 MAIN ST"}]
+class TestMain:
+    @patch("graffiti_data_pipeline.geocode.__main__.geocode_service_requests")
+    @patch("graffiti_data_pipeline.geocode.__main__.Geocoder")
+    @patch("graffiti_data_pipeline.geocode.__main__.JsonFile")
+    def test_loads_geocodes_and_saves(
+        self, mock_jsonfile, mock_geocoder_cls, mock_geocode_svc
+    ):
+        lookups_store = Mock()
+        cache_store = Mock()
+        mock_jsonfile.side_effect = [lookups_store, cache_store]
+        lookups_store.load.return_value = [{"address": "123 MAIN ST"}]
+        cache_store.load.return_value = {}
+        mock_geocode_svc.return_value = True
+        geocoder = mock_geocoder_cls.from_config.return_value
 
-    from graffiti_data_pipeline.geocode import __main__
-
-    with patch.object(__main__, "logger", logger_mock):
         main()
 
-    mock_cache.load.assert_called_once()
-    mock_geocode.assert_called_once_with(mock_cache.load.return_value)
-    mock_cache.save.assert_called_once_with(mock_cache.load.return_value)
-    logger_mock.info.assert_any_call("Starting geocoding process")
-    logger_mock.info.assert_any_call("Loaded 1 service requests")
-    logger_mock.info.assert_any_call("Geocoding complete")
+        lookups_store.load.assert_called_once()
+        mock_geocode_svc.assert_called_once_with(
+            [{"address": "123 MAIN ST"}], geocoder
+        )
+        cache_store.save.assert_called_once_with(geocoder.cache)
+        lookups_store.save.assert_called_once()
 
+    @patch("graffiti_data_pipeline.geocode.__main__.geocode_service_requests")
+    @patch("graffiti_data_pipeline.geocode.__main__.Geocoder")
+    @patch("graffiti_data_pipeline.geocode.__main__.JsonFile")
+    def test_skips_cache_save_when_nothing_geocoded(
+        self, mock_jsonfile, mock_geocoder_cls, mock_geocode_svc
+    ):
+        lookups_store = Mock()
+        cache_store = Mock()
+        mock_jsonfile.side_effect = [lookups_store, cache_store]
+        lookups_store.load.return_value = []
+        cache_store.load.return_value = {}
+        mock_geocode_svc.return_value = False
 
-@patch("graffiti_data_pipeline.geocode.__main__.get_logger")
-@patch("graffiti_data_pipeline.geocode.__main__.JsonFile")
-@patch("graffiti_data_pipeline.geocode.__main__.geocode_addresses")
-def test_main_handles_empty_service_requests(mock_geocode, mock_jsonfile, mock_logger):
-    mock_logger.return_value = Mock()
-    mock_cache = Mock()
-    mock_jsonfile.return_value = mock_cache
-    mock_cache.load.return_value = []
-
-    main()
-
-    mock_geocode.assert_called_once_with([])
-    mock_cache.save.assert_called_once_with([])
-
-
-@patch("graffiti_data_pipeline.geocode.__main__.get_logger")
-@patch("graffiti_data_pipeline.geocode.__main__.JsonFile")
-@patch("graffiti_data_pipeline.geocode.__main__.geocode_addresses")
-def test_main_handles_malformed_service_requests(
-    mock_geocode, mock_jsonfile, mock_logger
-):
-    mock_logger.return_value = Mock()
-    mock_cache = Mock()
-    mock_jsonfile.return_value = mock_cache
-    malformed = [{"foo": "bar"}]
-    mock_cache.load.return_value = malformed
-
-    main()
-
-    mock_geocode.assert_called_once_with(malformed)
-    mock_cache.save.assert_called_once_with(malformed)
-
-
-@patch("graffiti_data_pipeline.geocode.__main__.get_logger")
-@patch("graffiti_data_pipeline.geocode.__main__.JsonFile")
-@patch("graffiti_data_pipeline.geocode.__main__.geocode_addresses")
-def test_main_geocode_addresses_raises_exception(
-    mock_geocode, mock_jsonfile, mock_logger
-):
-    logger_mock = Mock()
-    mock_cache = Mock()
-    mock_jsonfile.return_value = mock_cache
-    mock_cache.load.return_value = [{"address": "123 MAIN ST"}]
-    mock_geocode.side_effect = Exception("geocode error")
-
-    from graffiti_data_pipeline.geocode import __main__
-
-    with patch.object(__main__, "logger", logger_mock):
-        try:
-            main()
-        except Exception:
-            pass
-
-    logger_mock.info.assert_any_call("Starting geocoding process")
-    logger_mock.info.assert_any_call("Loaded 1 service requests")
-
-
-@patch("graffiti_data_pipeline.geocode.__main__.get_logger")
-@patch("graffiti_data_pipeline.geocode.__main__.JsonFile")
-@patch("graffiti_data_pipeline.geocode.__main__.geocode_addresses")
-def test_main_save_fails(mock_geocode, mock_jsonfile, mock_logger):
-    logger_mock = Mock()
-    mock_cache = Mock()
-    mock_jsonfile.return_value = mock_cache
-    mock_cache.load.return_value = [{"address": "123 MAIN ST"}]
-    mock_cache.save.side_effect = Exception("save error")
-
-    from graffiti_data_pipeline.geocode import __main__
-
-    with patch.object(__main__, "logger", logger_mock):
         main()
 
-    logger_mock.info.assert_any_call("Starting geocoding process")
-    logger_mock.info.assert_any_call("Loaded 1 service requests")
+        cache_store.save.assert_not_called()
+        lookups_store.save.assert_called_once()
+
+    @patch("graffiti_data_pipeline.geocode.__main__.geocode_service_requests")
+    @patch("graffiti_data_pipeline.geocode.__main__.Geocoder")
+    @patch("graffiti_data_pipeline.geocode.__main__.JsonFile")
+    def test_handles_empty_service_requests(
+        self, mock_jsonfile, mock_geocoder_cls, mock_geocode_svc
+    ):
+        lookups_store = Mock()
+        cache_store = Mock()
+        mock_jsonfile.side_effect = [lookups_store, cache_store]
+        lookups_store.load.return_value = []
+        cache_store.load.return_value = {}
+        mock_geocode_svc.return_value = False
+
+        main()
+
+        mock_geocode_svc.assert_called_once_with(
+            [], mock_geocoder_cls.from_config.return_value
+        )
+
+    @patch("graffiti_data_pipeline.geocode.__main__.geocode_service_requests")
+    @patch("graffiti_data_pipeline.geocode.__main__.Geocoder")
+    @patch("graffiti_data_pipeline.geocode.__main__.JsonFile")
+    def test_handles_geocoding_exception(
+        self, mock_jsonfile, mock_geocoder_cls, mock_geocode_svc
+    ):
+        lookups_store = Mock()
+        cache_store = Mock()
+        mock_jsonfile.side_effect = [lookups_store, cache_store]
+        lookups_store.load.return_value = [{"address": "123 MAIN ST"}]
+        cache_store.load.return_value = {}
+        mock_geocode_svc.side_effect = Exception("geocode error")
+
+        # Should not raise — main() catches exceptions
+        main()
+
+        lookups_store.save.assert_not_called()
+
+    @patch("graffiti_data_pipeline.geocode.__main__.geocode_service_requests")
+    @patch("graffiti_data_pipeline.geocode.__main__.Geocoder")
+    @patch("graffiti_data_pipeline.geocode.__main__.JsonFile")
+    def test_handles_save_exception(
+        self, mock_jsonfile, mock_geocoder_cls, mock_geocode_svc
+    ):
+        lookups_store = Mock()
+        cache_store = Mock()
+        mock_jsonfile.side_effect = [lookups_store, cache_store]
+        lookups_store.load.return_value = [{"address": "123 MAIN ST"}]
+        cache_store.load.return_value = {}
+        mock_geocode_svc.return_value = True
+        lookups_store.save.side_effect = Exception("save error")
+
+        # Should not raise — main() catches exceptions
+        main()

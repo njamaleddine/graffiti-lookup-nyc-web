@@ -20,9 +20,7 @@ class TestMain:
         main()
 
         lookups_store.load.assert_called_once()
-        mock_geocode_svc.assert_called_once_with(
-            [{"address": "123 MAIN ST"}], geocoder
-        )
+        mock_geocode_svc.assert_called_once_with([{"address": "123 MAIN ST"}], geocoder)
         cache_store.save.assert_called_once_with(geocoder.cache)
         lookups_store.save.assert_called_once()
 

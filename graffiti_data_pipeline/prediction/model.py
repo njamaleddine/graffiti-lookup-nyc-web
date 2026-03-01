@@ -111,9 +111,7 @@ class GraffitiPredictionModel:
                 features[valid_mask], targets[valid_mask]
             )
         else:
-            logger.warning(
-                "Not enough data to train recurrence window regressor"
-            )
+            logger.warning("Not enough data to train recurrence window regressor")
 
     def train_resolution_time_regressor(
         self, features: pandas.DataFrame, targets: pandas.Series
@@ -127,9 +125,7 @@ class GraffitiPredictionModel:
                 features[valid_mask], targets[valid_mask]
             )
         else:
-            logger.warning(
-                "Not enough data to train resolution time regressor"
-            )
+            logger.warning("Not enough data to train resolution time regressor")
 
     def predict(self, features: pandas.DataFrame):
         recurrence_probabilities = self._get_class_probabilities(
@@ -192,9 +188,7 @@ class GraffitiPredictionModel:
             return "Unknown"
         try:
             last_date = datetime.datetime.strptime(last_updated, "%Y-%m-%d")
-            cleaning_date = last_date + datetime.timedelta(
-                days=int(predicted_days)
-            )
+            cleaning_date = last_date + datetime.timedelta(days=int(predicted_days))
             return cleaning_date.strftime("%Y-%m-%d")
         except (ValueError, OverflowError):
             return "Unknown"
@@ -238,11 +232,11 @@ class GraffitiPredictionModel:
             clean_prob = float(cleaning_probabilities[idx])
             predicted_days = time_predictions[idx]
 
-            request.record["graffiti_likelihood"] = (
-                self.compute_graffiti_likelihood(rec_prob)
+            request.record["graffiti_likelihood"] = self.compute_graffiti_likelihood(
+                rec_prob
             )
-            request.record["estimated_next_tag"] = (
-                self.compute_estimated_next_tag(request.last_updated, rec_prob)
+            request.record["estimated_next_tag"] = self.compute_estimated_next_tag(
+                request.last_updated, rec_prob
             )
             request.record["predicted_time_to_next_update"] = (
                 self.compute_predicted_time_to_next_update(
@@ -265,27 +259,19 @@ class GraffitiPredictionModel:
                 else None
             )
 
-            request.record["times_reported"] = int(
-                times_reported[idx]
-            )
-            request.record["times_cleaned"] = int(
-                times_cleaned[idx]
-            )
+            request.record["times_reported"] = int(times_reported[idx])
+            request.record["times_cleaned"] = int(times_cleaned[idx])
 
             # Ground truth replaces predictions when the outcome is known.
             if request.status == GRAFFITI_CLEANED_STATUS:
                 request.record["cleaning_likelihood"] = 100.0
-                request.record["predicted_cleaning_date"] = (
-                    request.last_updated
-                )
+                request.record["predicted_cleaning_date"] = request.last_updated
             else:
                 request.record["cleaning_likelihood"] = (
                     self.compute_cleaning_likelihood(clean_prob)
                 )
-                request.record["predicted_cleaning_date"] = (
-                    self.predict_cleaning_date(
-                        request.last_updated, clean_prob, predicted_days
-                    )
+                request.record["predicted_cleaning_date"] = self.predict_cleaning_date(
+                    request.last_updated, clean_prob, predicted_days
                 )
         return [request.record for request in requests]
 
@@ -310,9 +296,7 @@ class GraffitiPredictionModel:
             return "Unknown"
         try:
             last_date = datetime.datetime.strptime(last_updated, "%Y-%m-%d")
-            predicted_date = last_date + datetime.timedelta(
-                days=int(predicted_days)
-            )
+            predicted_date = last_date + datetime.timedelta(days=int(predicted_days))
             return predicted_date.strftime("%Y-%m-%d")
         except (ValueError, OverflowError):
             return "Unknown"

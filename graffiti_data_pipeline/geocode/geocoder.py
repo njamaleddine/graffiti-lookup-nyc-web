@@ -115,9 +115,7 @@ class Geocoder:
 
         coords = Coordinates(location.latitude, location.longitude)
         self._cache[address] = (coords.latitude, coords.longitude)
-        logger.info(
-            f"Found: {full_address} -> ({coords.latitude}, {coords.longitude})"
-        )
+        logger.info(f"Found: {full_address} -> ({coords.latitude}, {coords.longitude})")
         return coords
 
 

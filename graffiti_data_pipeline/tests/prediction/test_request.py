@@ -79,9 +79,7 @@ class TestGraffitiServiceRequest:
             "status": "Cleaning crew dispatched.  Property cleaned.",
         }
         request = GraffitiServiceRequest(record)
-        assert request.is_cleaned(
-            ["Cleaning crew dispatched.  Property cleaned."]
-        ) == 1
+        assert request.is_cleaned(["Cleaning crew dispatched.  Property cleaned."]) == 1
 
     def test_get_time_to_next_update(self, sample_requests):
         request = sample_requests[0]

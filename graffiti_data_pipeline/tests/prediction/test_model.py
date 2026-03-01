@@ -141,12 +141,8 @@ class TestGraffitiPredictionModel:
     def test_enrich_uses_last_updated_for_cleaned_status(self):
         model = GraffitiPredictionModel(min_train_size=1)
         cleaned_status = "Cleaning crew dispatched.  Property cleaned."
-        request = DummyRequest(
-            last_updated="2026-02-10", status=cleaned_status
-        )
-        enriched = model.enrich_requests(
-            [request], [0.9], [0.9], [5]
-        )
+        request = DummyRequest(last_updated="2026-02-10", status=cleaned_status)
+        enriched = model.enrich_requests([request], [0.9], [0.9], [5])
         record = enriched[0]
         # Ground truth overrides for known cleaning outcome
         assert record["cleaning_likelihood"] == 100.0
@@ -158,12 +154,8 @@ class TestGraffitiPredictionModel:
 
     def test_enrich_non_cleaned_complete_status_uses_model(self):
         model = GraffitiPredictionModel(min_train_size=1)
-        request = DummyRequest(
-            last_updated="2026-02-10", status="CityOwnedIneligible"
-        )
-        enriched = model.enrich_requests(
-            [request], [0.5], [0.3], [5]
-        )
+        request = DummyRequest(last_updated="2026-02-10", status="CityOwnedIneligible")
+        enriched = model.enrich_requests([request], [0.5], [0.3], [5])
         record = enriched[0]
         # Not specifically cleaned — model predictions used
         assert record["cleaning_likelihood"] == 30.0

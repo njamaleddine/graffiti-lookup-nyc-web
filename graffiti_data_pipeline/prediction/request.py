@@ -60,10 +60,7 @@ class GraffitiServiceRequest:
         complete statuses like 'No graffiti on property'.
         """
         same_address = address_index.get(self.address, [])
-        return sum(
-            1 for req in same_address
-            if req.status == GRAFFITI_CLEANED_STATUS
-        )
+        return sum(1 for req in same_address if req.status == GRAFFITI_CLEANED_STATUS)
 
     def get_resolution_velocity(
         self, address_index: Dict[str, List["GraffitiServiceRequest"]]
@@ -86,8 +83,7 @@ class GraffitiServiceRequest:
             return None
         total_days = sum(
             (
-                pandas.to_datetime(req.last_updated)
-                - pandas.to_datetime(req.created)
+                pandas.to_datetime(req.last_updated) - pandas.to_datetime(req.created)
             ).days
             for req in past_completed
         )
@@ -104,7 +100,8 @@ class GraffitiServiceRequest:
         created_date = self.get_created_tag_date()
         same_address = address_index.get(self.address, [])
         later_reports = [
-            req for req in same_address
+            req
+            for req in same_address
             if pandas.to_datetime(req.created) > created_date
         ]
         if later_reports:
@@ -124,17 +121,15 @@ class GraffitiServiceRequest:
         """
         same_address = address_index.get(self.address, [])
         completed = [
-            req for req in same_address
+            req
+            for req in same_address
             if req.status in GRAFFITI_COMPLETE_STATUSES
             and pandas.to_datetime(req.last_updated) >= self.get_created_tag_date()
         ]
         if completed:
-            earliest = min(
-                completed, key=lambda x: pandas.to_datetime(x.last_updated)
-            )
+            earliest = min(completed, key=lambda x: pandas.to_datetime(x.last_updated))
             days = (
-                pandas.to_datetime(earliest.last_updated)
-                - self.get_created_tag_date()
+                pandas.to_datetime(earliest.last_updated) - self.get_created_tag_date()
             ).days
             return max(days, 0)
         return None
@@ -171,9 +166,7 @@ class GraffitiServiceRequest:
             if pandas.to_datetime(req.created) > last_tag_date
         ]
         if next_updates:
-            next_update = min(
-                next_updates, key=lambda x: pandas.to_datetime(x.created)
-            )
+            next_update = min(next_updates, key=lambda x: pandas.to_datetime(x.created))
             return (pandas.to_datetime(next_update.created) - last_tag_date).days
         return None
 

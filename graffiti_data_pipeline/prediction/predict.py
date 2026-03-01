@@ -55,9 +55,7 @@ def main():
     predictor.train_recurrence_window_regressor(
         feature_matrix, recurrence_window_targets
     )
-    predictor.train_resolution_time_regressor(
-        feature_matrix, resolution_time_targets
-    )
+    predictor.train_resolution_time_regressor(feature_matrix, resolution_time_targets)
 
     logger.info("Making predictions and enriching data...")
     (

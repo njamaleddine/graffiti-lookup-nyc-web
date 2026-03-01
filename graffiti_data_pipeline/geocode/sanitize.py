@@ -30,6 +30,7 @@ def normalize_street_name(address):
     like ``'21-83'`` and named streets like ``'BROADWAY'`` are
     left unchanged.
     """
+
     def _ordinalize(match):
         number = match.group(1)
         street_type = match.group(2)

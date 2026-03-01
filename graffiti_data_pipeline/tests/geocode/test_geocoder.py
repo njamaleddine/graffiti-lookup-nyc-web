@@ -96,9 +96,12 @@ class TestGeocodeServiceRequests:
 
     def test_skips_geocoding_when_coordinates_exist(self):
         geocode_fn = Mock()
-        geocoder = Geocoder(geocode_fn, cache={
-            "123 MAIN ST": [40.7128, -74.0060],
-        })
+        geocoder = Geocoder(
+            geocode_fn,
+            cache={
+                "123 MAIN ST": [40.7128, -74.0060],
+            },
+        )
         requests = [
             {"address": "123 MAIN ST", "latitude": 40.7128, "longitude": -74.0060}
         ]

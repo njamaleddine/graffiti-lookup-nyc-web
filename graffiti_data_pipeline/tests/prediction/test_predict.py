@@ -72,15 +72,11 @@ class TestPredictMain:
 
     @patch("graffiti_data_pipeline.prediction.predict.JsonFile")
     @patch("graffiti_data_pipeline.prediction.predict.get_logger")
-    def test_main_enrich_failure(self, mock_logger, mock_jsonfile):
+    def test_main_handles_incomplete_record(self, mock_logger, mock_jsonfile):
         mock_logger.return_value = MagicMock()
         mock_cache = MagicMock()
         mock_jsonfile.return_value = mock_cache
-        # Record with missing required fields
         mock_cache.load.return_value = [{"address": "no fields"}]
         mock_cache.save.return_value = None
-        try:
-            predict.main()
-            assert False, "Expected an exception due to missing fields"
-        except Exception:
-            assert True
+        predict.main()
+        mock_cache.save.assert_called_once()

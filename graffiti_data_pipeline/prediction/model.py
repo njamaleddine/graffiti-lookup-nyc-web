@@ -6,11 +6,17 @@ and time-to-next-update using machine learning models.
 """
 
 import datetime
-import pandas
+
 import numpy as np
-from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
-from sklearn.model_selection import train_test_split
+import pandas
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
+
+from graffiti_data_pipeline.config import GRAFFITI_CLEANED_STATUS
+from graffiti_data_pipeline.logger import get_logger
+
+logger = get_logger(__name__)
 
 MIN_TRAIN_SIZE = 10
 
@@ -21,6 +27,12 @@ class GraffitiPredictionModel:
         self.recurrence_model = RandomForestClassifier(n_estimators=50, random_state=42)
         self.cleaning_model = RandomForestClassifier(n_estimators=50, random_state=42)
         self.time_regressor = RandomForestRegressor(n_estimators=50, random_state=42)
+        self.recurrence_window_regressor = RandomForestRegressor(
+            n_estimators=50, random_state=42
+        )
+        self.resolution_time_regressor = RandomForestRegressor(
+            n_estimators=50, random_state=42
+        )
 
     @staticmethod
     def estimate_next_tag_date(last_updated: str, likelihood_percent: float) -> str:
@@ -58,7 +70,7 @@ class GraffitiPredictionModel:
             self.recurrence_model.fit(features_train, targets_train)
             predictions = self.recurrence_model.predict(features_test)
             accuracy = accuracy_score(targets_test, predictions)
-            print(f"Recurrence model accuracy: {accuracy:.3f}")
+            logger.info(f"Recurrence model accuracy: {accuracy:.3f}")
         else:
             self.recurrence_model.fit(features, targets)
 
@@ -74,7 +86,7 @@ class GraffitiPredictionModel:
             self.cleaning_model.fit(features_train, targets_train)
             predictions = self.cleaning_model.predict(features_test)
             accuracy = accuracy_score(targets_test, predictions)
-            print(f"Cleaning model accuracy: {accuracy:.3f}")
+            logger.info(f"Cleaning model accuracy: {accuracy:.3f}")
         else:
             self.cleaning_model.fit(features, targets)
 
@@ -85,7 +97,39 @@ class GraffitiPredictionModel:
         if valid_mask.sum() > self.min_train_size:
             self.time_regressor.fit(features[valid_mask], targets[valid_mask])
         else:
-            print("Not enough data to train time regressor.")
+            logger.warning("Not enough data to train time regressor")
+
+    def train_recurrence_window_regressor(
+        self, features: pandas.DataFrame, targets: pandas.Series
+    ):
+        """Train regressor that predicts days until next report at address."""
+        if features.empty or targets.empty:
+            raise ValueError("Features and targets must not be empty.")
+        valid_mask = targets.notnull()
+        if valid_mask.sum() > self.min_train_size:
+            self.recurrence_window_regressor.fit(
+                features[valid_mask], targets[valid_mask]
+            )
+        else:
+            logger.warning(
+                "Not enough data to train recurrence window regressor"
+            )
+
+    def train_resolution_time_regressor(
+        self, features: pandas.DataFrame, targets: pandas.Series
+    ):
+        """Train regressor that predicts days from report to resolution."""
+        if features.empty or targets.empty:
+            raise ValueError("Features and targets must not be empty.")
+        valid_mask = targets.notnull()
+        if valid_mask.sum() > self.min_train_size:
+            self.resolution_time_regressor.fit(
+                features[valid_mask], targets[valid_mask]
+            )
+        else:
+            logger.warning(
+                "Not enough data to train resolution time regressor"
+            )
 
     def predict(self, features: pandas.DataFrame):
         recurrence_probabilities = self._get_class_probabilities(
@@ -95,7 +139,19 @@ class GraffitiPredictionModel:
             self.cleaning_model, features
         )
         time_predictions = self._get_time_predictions(features)
-        return recurrence_probabilities, cleaning_probabilities, time_predictions
+        recurrence_window_predictions = self._get_regressor_predictions(
+            self.recurrence_window_regressor, features
+        )
+        resolution_time_predictions = self._get_regressor_predictions(
+            self.resolution_time_regressor, features
+        )
+        return (
+            recurrence_probabilities,
+            cleaning_probabilities,
+            time_predictions,
+            recurrence_window_predictions,
+            resolution_time_predictions,
+        )
 
     def _get_class_probabilities(self, model, features):
         proba = model.predict_proba(features)
@@ -114,19 +170,33 @@ class GraffitiPredictionModel:
         except Exception:
             return [None] * len(features)
 
-    def predict_cleaning_date(self, last_updated: str, cleaning_prob: float) -> str:
+    @staticmethod
+    def _get_regressor_predictions(regressor, features):
+        """Safely predict from a regressor, returning None on failure."""
+        try:
+            return regressor.predict(features)
+        except Exception:
+            return [None] * len(features)
+
+    def predict_cleaning_date(
+        self, last_updated: str, cleaning_prob: float, predicted_days=None
+    ) -> str:
+        """Predict the cleaning date using probability and time prediction.
+
+        Returns a date string when cleaning is likely (>50%) and the time
+        regressor produced a valid prediction, otherwise 'Unknown'.
         """
-        Predict the cleaning date if the cleaning probability is high enough.
-        Returns a date string or 'Unknown'.
-        """
-        if cleaning_prob > 0.5:
-            try:
-                last_date = datetime.datetime.strptime(last_updated, "%Y-%m-%d")
-                cleaning_date = last_date + datetime.timedelta(days=1)
-                return cleaning_date.strftime("%Y-%m-%d")
-            except Exception:
-                return "Unknown"
-        else:
+        if cleaning_prob <= 0.5:
+            return "Unknown"
+        if not _is_valid_day_count(predicted_days):
+            return "Unknown"
+        try:
+            last_date = datetime.datetime.strptime(last_updated, "%Y-%m-%d")
+            cleaning_date = last_date + datetime.timedelta(
+                days=int(predicted_days)
+            )
+            return cleaning_date.strftime("%Y-%m-%d")
+        except (ValueError, OverflowError):
             return "Unknown"
 
     def enrich_requests(
@@ -135,29 +205,82 @@ class GraffitiPredictionModel:
         recurrence_probabilities,
         cleaning_probabilities,
         time_predictions,
+        recurrence_window_predictions=None,
+        resolution_time_predictions=None,
+        cleaning_cycle_counts=None,
     ):
+        """Enrich each request record with prediction fields."""
+        prediction_count = len(requests)
+        if (
+            len(recurrence_probabilities) != prediction_count
+            or len(cleaning_probabilities) != prediction_count
+            or len(time_predictions) != prediction_count
+        ):
+            raise ValueError(
+                f"Length mismatch: {prediction_count} requests, "
+                f"{len(recurrence_probabilities)} recurrence, "
+                f"{len(cleaning_probabilities)} cleaning, "
+                f"{len(time_predictions)} time predictions"
+            )
+
+        if recurrence_window_predictions is None:
+            recurrence_window_predictions = [None] * prediction_count
+        if resolution_time_predictions is None:
+            resolution_time_predictions = [None] * prediction_count
+        if cleaning_cycle_counts is None:
+            cleaning_cycle_counts = [0] * prediction_count
+
         for idx, request in enumerate(requests):
             rec_prob = float(recurrence_probabilities[idx])
             clean_prob = float(cleaning_probabilities[idx])
             predicted_days = time_predictions[idx]
 
-            request.record["graffiti_likelihood"] = self.compute_graffiti_likelihood(
-                rec_prob
+            request.record["graffiti_likelihood"] = (
+                self.compute_graffiti_likelihood(rec_prob)
             )
-            request.record["estimated_next_tag"] = self.compute_estimated_next_tag(
-                request.last_updated, rec_prob
-            )
-            request.record["cleaning_likelihood"] = self.compute_cleaning_likelihood(
-                clean_prob
-            )
-            request.record["predicted_cleaning_date"] = self.predict_cleaning_date(
-                request.last_updated, clean_prob
+            request.record["estimated_next_tag"] = (
+                self.compute_estimated_next_tag(request.last_updated, rec_prob)
             )
             request.record["predicted_time_to_next_update"] = (
                 self.compute_predicted_time_to_next_update(
                     request.last_updated, predicted_days
                 )
             )
+
+            # New continuous predictions
+            recurrence_window = recurrence_window_predictions[idx]
+            request.record["predicted_recurrence_days"] = (
+                round(float(recurrence_window))
+                if _is_valid_day_count(recurrence_window)
+                else None
+            )
+
+            resolution_days = resolution_time_predictions[idx]
+            request.record["predicted_resolution_days"] = (
+                round(float(resolution_days))
+                if _is_valid_day_count(resolution_days)
+                else None
+            )
+
+            request.record["cleaning_cycle_count"] = int(
+                cleaning_cycle_counts[idx]
+            )
+
+            # Ground truth replaces predictions when the outcome is known.
+            if request.status == GRAFFITI_CLEANED_STATUS:
+                request.record["cleaning_likelihood"] = 100.0
+                request.record["predicted_cleaning_date"] = (
+                    request.last_updated
+                )
+            else:
+                request.record["cleaning_likelihood"] = (
+                    self.compute_cleaning_likelihood(clean_prob)
+                )
+                request.record["predicted_cleaning_date"] = (
+                    self.predict_cleaning_date(
+                        request.last_updated, clean_prob, predicted_days
+                    )
+                )
         return [request.record for request in requests]
 
     def compute_graffiti_likelihood(self, recurrence_probability: float) -> float:
@@ -176,18 +299,24 @@ class GraffitiPredictionModel:
     def compute_predicted_time_to_next_update(
         self, last_updated: str, predicted_days
     ) -> str:
-        if (
-            predicted_days is not None
-            and predicted_days == predicted_days
-            and predicted_days > 0
-        ):
-            try:
-                last_date = datetime.datetime.strptime(last_updated, "%Y-%m-%d")
-                predicted_date = last_date + datetime.timedelta(
-                    days=int(predicted_days)
-                )
-                return predicted_date.strftime("%Y-%m-%d")
-            except Exception:
-                return "Unknown"
-        else:
+        """Convert a day-count prediction into a date string."""
+        if not _is_valid_day_count(predicted_days):
             return "Unknown"
+        try:
+            last_date = datetime.datetime.strptime(last_updated, "%Y-%m-%d")
+            predicted_date = last_date + datetime.timedelta(
+                days=int(predicted_days)
+            )
+            return predicted_date.strftime("%Y-%m-%d")
+        except (ValueError, OverflowError):
+            return "Unknown"
+
+
+def _is_valid_day_count(value) -> bool:
+    """Return True if *value* is a positive, finite number."""
+    if value is None:
+        return False
+    try:
+        return float(value) > 0
+    except (TypeError, ValueError):
+        return False

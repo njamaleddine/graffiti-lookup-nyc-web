@@ -98,7 +98,7 @@ class TestGraffitiPredictionModel:
         time_predictions = [5, 10]
         recurrence_window_predictions = [30, 60]
         resolution_time_predictions = [7, 14]
-        cleaning_cycle_counts = [2, 0]
+        times_reported_values = [2, 0]
         times_cleaned_values = [1, 0]
         enriched = model.enrich_requests(
             requests,
@@ -107,7 +107,7 @@ class TestGraffitiPredictionModel:
             time_predictions,
             recurrence_window_predictions,
             resolution_time_predictions,
-            times_reported=cleaning_cycle_counts,
+            times_reported=times_reported_values,
             times_cleaned=times_cleaned_values,
         )
         assert isinstance(enriched, list)

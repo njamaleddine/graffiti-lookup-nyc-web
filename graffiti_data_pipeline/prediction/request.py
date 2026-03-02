@@ -24,6 +24,12 @@ class GraffitiServiceRequest:
         self.longitude = record.get("longitude", 0.0)
         self.unique_key = record.get("unique_key", self.address)
 
+    def __repr__(self) -> str:
+        return (
+            f"GraffitiServiceRequest(address={self.address!r}, "
+            f"status={self.status!r}, created={self.created!r})"
+        )
+
     def get_borough(self) -> str:
         address_lower = self.address.lower()
         for borough in NYC_BOROUGHS:

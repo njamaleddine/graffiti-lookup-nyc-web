@@ -34,7 +34,6 @@ def main():
             "response_time",
             "created_day_of_week",
             "created_month",
-            "times_reported",
             "times_cleaned",
             "resolution_velocity",
             "latitude",

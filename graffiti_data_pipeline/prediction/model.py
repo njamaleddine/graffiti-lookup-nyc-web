@@ -6,6 +6,8 @@ and time-to-next-update using machine learning models.
 """
 
 import datetime
+import math
+from typing import NamedTuple, List, Optional
 
 import numpy as np
 import pandas
@@ -19,6 +21,16 @@ from graffiti_data_pipeline.logger import get_logger
 logger = get_logger(__name__)
 
 MIN_TRAIN_SIZE = 10
+
+
+class PredictionResult(NamedTuple):
+    """Container for the five arrays returned by ``predict()``."""
+
+    recurrence_probabilities: np.ndarray
+    cleaning_probabilities: np.ndarray
+    time_predictions: np.ndarray
+    recurrence_window_predictions: np.ndarray
+    resolution_time_predictions: np.ndarray
 
 
 class GraffitiPredictionModel:
@@ -38,7 +50,7 @@ class GraffitiPredictionModel:
     def estimate_next_tag_date(last_updated: str, likelihood_percent: float) -> str:
         """
         Estimate the next expected tag date based on last updated and likelihood.
-        Higher likelihood means sooner next tag, with a minimum of 1 day and a maximum of 365 days.
+        Higher likelihood means sooner next tag, with a minimum of 1 day and a maximum of 366 days.
         Args:
             last_updated (str): Last updated date as YYYY-MM-DD.
             likelihood_percent (float): Likelihood percentage (0-100).
@@ -127,7 +139,7 @@ class GraffitiPredictionModel:
         else:
             logger.warning("Not enough data to train resolution time regressor")
 
-    def predict(self, features: pandas.DataFrame):
+    def predict(self, features: pandas.DataFrame) -> PredictionResult:
         recurrence_probabilities = self._get_class_probabilities(
             self.recurrence_model, features
         )
@@ -141,7 +153,7 @@ class GraffitiPredictionModel:
         resolution_time_predictions = self._get_regressor_predictions(
             self.resolution_time_regressor, features
         )
-        return (
+        return PredictionResult(
             recurrence_probabilities,
             cleaning_probabilities,
             time_predictions,
@@ -204,7 +216,12 @@ class GraffitiPredictionModel:
         times_reported=None,
         times_cleaned=None,
     ):
-        """Enrich each request record with prediction fields."""
+        """Enrich each request record with prediction fields.
+
+        .. warning::
+            Mutates each ``request.record`` in place and returns the
+            list of mutated record dicts.
+        """
         prediction_count = len(requests)
         if (
             len(recurrence_probabilities) != prediction_count
@@ -232,9 +249,7 @@ class GraffitiPredictionModel:
             clean_prob = float(cleaning_probabilities[idx])
             predicted_days = time_predictions[idx]
 
-            request.record["graffiti_likelihood"] = self.compute_graffiti_likelihood(
-                rec_prob
-            )
+            request.record["graffiti_likelihood"] = self._to_percent(rec_prob)
             request.record["estimated_next_tag"] = self.compute_estimated_next_tag(
                 request.last_updated, rec_prob
             )
@@ -267,16 +282,16 @@ class GraffitiPredictionModel:
                 request.record["cleaning_likelihood"] = 100.0
                 request.record["predicted_cleaning_date"] = request.last_updated
             else:
-                request.record["cleaning_likelihood"] = (
-                    self.compute_cleaning_likelihood(clean_prob)
-                )
+                request.record["cleaning_likelihood"] = self._to_percent(clean_prob)
                 request.record["predicted_cleaning_date"] = self.predict_cleaning_date(
                     request.last_updated, clean_prob, predicted_days
                 )
         return [request.record for request in requests]
 
-    def compute_graffiti_likelihood(self, recurrence_probability: float) -> float:
-        return float(recurrence_probability) * 100
+    @staticmethod
+    def _to_percent(probability: float) -> float:
+        """Convert a 0-1 probability to a 0-100 percentage."""
+        return float(probability) * 100
 
     def compute_estimated_next_tag(
         self, last_updated: str, recurrence_probability: float
@@ -284,9 +299,6 @@ class GraffitiPredictionModel:
         return self.estimate_next_tag_date(
             last_updated, float(recurrence_probability) * 100
         )
-
-    def compute_cleaning_likelihood(self, cleaning_probability: float) -> float:
-        return float(cleaning_probability) * 100
 
     def compute_predicted_time_to_next_update(
         self, last_updated: str, predicted_days
@@ -307,6 +319,7 @@ def _is_valid_day_count(value) -> bool:
     if value is None:
         return False
     try:
-        return float(value) > 0
+        num = float(value)
+        return math.isfinite(num) and num > 0
     except (TypeError, ValueError):
         return False

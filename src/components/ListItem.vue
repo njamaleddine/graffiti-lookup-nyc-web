@@ -218,6 +218,7 @@
 
   .report-card:hover {
     background: #f8faff;
+    box-shadow: inset 3px 0 0 rgba(99, 102, 241, 0.25);
   }
 
   .report-card.selected {

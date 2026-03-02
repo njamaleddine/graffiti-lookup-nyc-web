@@ -3,6 +3,7 @@ import ListView from '../components/ListView.vue';
 import MapView from '../components/MapView.vue';
 import Layout from '../layouts/Layout.astro';
 import graffitiLookups from '../../public/graffiti-lookups.json';
+import brandLogo from '../assets/favicon.svg';
 
 const items = [...graffitiLookups].sort((a, b) => 
   new Date(b.last_updated).getTime() - new Date(a.last_updated).getTime()
@@ -10,7 +11,10 @@ const items = [...graffitiLookups].sort((a, b) =>
 ---
 <Layout>
   <header class="page-header">
-    <h1>NYC Graffiti Lookup</h1>
+    <div class="title-row">
+      <img src={brandLogo.src} alt="" class="brand-logo" width="32" height="32" />
+      <h1>NYC Graffiti Lookup</h1>
+    </div>
     <p>Explore recent graffiti removal requests across New York City</p>
   </header>
   <div class="content-layout">
@@ -30,12 +34,24 @@ const items = [...graffitiLookups].sort((a, b) =>
     border-bottom: 1px solid var(--border, rgba(0, 0, 0, 0.06));
     flex-shrink: 0;
   }
+  .title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-logo {
+    flex-shrink: 0;
+    border-radius: 8px;
+  }
   .page-header h1 {
     font-size: 28px;
     font-weight: 700;
     letter-spacing: -0.04em;
     margin: 0 0 4px 0;
-    color: var(--text-primary, #0f172a);
+    background: linear-gradient(135deg, #4f46e5 0%, #0891b2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   .page-header p {
     font-size: 14px;

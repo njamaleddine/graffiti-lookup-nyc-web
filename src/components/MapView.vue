@@ -79,7 +79,7 @@
       ? `<span style="background:linear-gradient(135deg,#6366f1,#818cf8);color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;min-width:22px;text-align:center;display:inline-block;">${item._index}</span>`
       : '';
 
-    const idBadge = `<span style="background:rgba(0,0,0,0.04);color:#94a3b8;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:500;font-family:ui-monospace,monospace;">#${item.service_request}</span>`;
+    const idBadge = `<span style="background:rgba(0,0,0,0.04);color:#64748b;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:500;font-family:ui-monospace,monospace;">#${item.service_request}</span>`;
 
     // Ensure address includes 'NY, USA'
     let address = item.address || '';
@@ -108,7 +108,7 @@
       </a>
     </div>
     <div style="font-weight:600;font-size:13px;margin-bottom:3px;color:#0f172a;">${item.address}</div>
-    <div style="color:#94a3b8;font-size:11px;">${item.status}</div>
+    <div style="color:#64748b;font-size:11px;">${item.status}</div>
   `.trim();
   }
 

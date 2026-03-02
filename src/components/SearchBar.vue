@@ -1,6 +1,6 @@
 <template>
   <div class="search-container">
-    <span class="search-icon">🔍</span>
+    <span class="search-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
     <input
       :value="modelValue"
       type="text"
@@ -39,14 +39,17 @@
     left: 12px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 14px;
     pointer-events: none;
-    opacity: 0.6;
-    transition: opacity 0.2s;
+    color: var(--text-tertiary, #94a3b8);
+    opacity: 0.7;
+    transition: all var(--transition-normal, 250ms cubic-bezier(0.16, 1, 0.3, 1));
+    display: flex;
+    align-items: center;
   }
 
   .search-container:focus-within .search-icon {
     opacity: 1;
+    color: var(--primary, #6366f1);
   }
 
   .search-input {
@@ -54,25 +57,32 @@
     padding: 10px 36px 10px 38px;
     font-size: 14px;
     font-family: inherit;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    background: #fff;
-    color: #1f2937;
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.06));
+    border-radius: var(--radius-md, 12px);
+    background: var(--surface, rgba(255, 255, 255, 0.7));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--text-primary, #0f172a);
     outline: none;
-    transition: all 0.2s ease;
+    transition: all var(--transition-normal, 250ms cubic-bezier(0.16, 1, 0.3, 1));
     box-sizing: border-box;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.03));
   }
 
   .search-input::placeholder {
-    color: #9ca3af;
+    color: var(--text-tertiary, #94a3b8);
+  }
+
+  .search-input:hover {
+    border-color: var(--border-hover, rgba(0, 0, 0, 0.1));
+    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
   }
 
   .search-input:focus {
-    border-color: #7c4dff;
+    border-color: var(--primary, #6366f1);
     box-shadow:
-      0 0 0 3px rgba(124, 77, 255, 0.12),
-      0 1px 2px rgba(0, 0, 0, 0.04);
+      0 0 0 3px rgba(99, 102, 241, 0.1),
+      var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
   }
 
   .clear-button {
@@ -80,23 +90,23 @@
     right: 8px;
     top: 50%;
     transform: translateY(-50%);
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     border: none;
-    background: #e5e7eb;
+    background: rgba(0, 0, 0, 0.06);
     border-radius: 50%;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1;
-    color: #6b7280;
+    color: var(--text-secondary, #475569);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.15s ease;
+    transition: all var(--transition-fast, 150ms cubic-bezier(0.16, 1, 0.3, 1));
   }
 
   .clear-button:hover {
-    background: #d1d5db;
+    background: rgba(0, 0, 0, 0.1);
     transform: translateY(-50%) scale(1.1);
   }
 
@@ -104,10 +114,6 @@
     .search-input {
       padding: 8px 32px 8px 34px;
       font-size: 13px;
-    }
-    .search-icon {
-      font-size: 12px;
-      left: 10px;
     }
   }
 </style>

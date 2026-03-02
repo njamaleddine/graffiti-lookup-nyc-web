@@ -72,73 +72,86 @@
 
 <style scoped>
   .status-chip {
-    border-radius: 6px;
-    padding: 3px 8px;
+    border-radius: 20px;
+    padding: 4px 10px;
     font-size: 11px;
     font-weight: 500;
     white-space: normal;
     word-break: break-word;
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    transition: transform 0.15s ease;
+    gap: 5px;
+    transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid transparent;
   }
 
   .status-chip:hover {
-    transform: scale(1.02);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
   }
 
   .status-emoji {
     font-size: 10px;
+    flex-shrink: 0;
   }
 
   .status-cleaned {
-    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    background: rgba(209, 250, 229, 0.65);
     color: #065f46;
+    border-color: rgba(16, 185, 129, 0.2);
   }
 
   .status-no-graffiti {
-    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    background: rgba(209, 250, 229, 0.65);
     color: #047857;
+    border-color: rgba(16, 185, 129, 0.2);
   }
 
   .status-pending {
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    background: rgba(254, 243, 199, 0.65);
     color: #92400e;
+    border-color: rgba(245, 158, 11, 0.2);
   }
 
   .status-notice {
-    background: linear-gradient(135deg, #fef9c3 0%, #fde047 100%);
+    background: rgba(254, 249, 195, 0.65);
     color: #854d0e;
+    border-color: rgba(234, 179, 8, 0.2);
   }
 
   .status-notified {
-    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    background: rgba(219, 234, 254, 0.65);
     color: #1e40af;
+    border-color: rgba(59, 130, 246, 0.2);
   }
 
   .status-inaccessible {
-    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    background: rgba(254, 226, 226, 0.65);
     color: #b91c1c;
+    border-color: rgba(239, 68, 68, 0.2);
   }
 
   .status-intentional {
-    background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+    background: rgba(243, 232, 255, 0.65);
     color: #7c3aed;
+    border-color: rgba(139, 92, 246, 0.2);
   }
 
   .status-ineligible {
-    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    background: rgba(241, 245, 249, 0.65);
     color: #475569;
+    border-color: rgba(100, 116, 139, 0.15);
   }
 
   .status-scheduled {
-    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    background: rgba(224, 242, 254, 0.65);
     color: #0369a1;
+    border-color: rgba(14, 165, 233, 0.2);
   }
 
   .status-default {
-    background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+    background: rgba(237, 233, 254, 0.65);
     color: #6d28d9;
+    border-color: rgba(139, 92, 246, 0.2);
   }
 </style>

@@ -26,26 +26,27 @@ const items = [...graffitiLookups].sort((a, b) =>
 <style>
   .page-header {
     margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border, rgba(0, 0, 0, 0.06));
     flex-shrink: 0;
   }
   .page-header h1 {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
-    letter-spacing: -0.03em;
-    color: #1f2937;
-    margin: 0 0 6px 0;
+    letter-spacing: -0.04em;
+    margin: 0 0 4px 0;
+    color: var(--text-primary, #0f172a);
   }
   .page-header p {
-    font-size: 15px;
-    color: #6b7280;
+    font-size: 14px;
+    color: var(--text-tertiary, #94a3b8);
     margin: 0;
     font-weight: 400;
+    letter-spacing: -0.01em;
   }
   .content-layout {
     display: flex;
-    gap: 24px;
+    gap: 20px;
     align-items: stretch;
     flex: 1;
     min-height: 0;
@@ -82,7 +83,7 @@ const items = [...graffitiLookups].sort((a, b) =>
       min-height: 0;
     }
     .page-header {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       padding-bottom: 8px;
     }
     .page-header h1 {

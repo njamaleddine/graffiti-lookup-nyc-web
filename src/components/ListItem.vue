@@ -13,10 +13,11 @@
         <span class="address">{{ item.address }}</span>
         <button
           class="predictions-toggle-btn"
+          :class="{ active: showPredictions }"
           aria-label="Show predictions"
           @click.stop="togglePredictions"
         >
-          <span class="ai-emoji">⋮</span>
+          <svg class="toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </button>
       </header>
 
@@ -39,14 +40,16 @@
           <div class="section-header">
             <span class="section-title">Location Stats</span>
           </div>
-          <ul class="section-list">
-            <li>
-              <span>Times reported:</span> <strong>{{ item.times_reported }}</strong>
-            </li>
-            <li>
-              <span>Times cleaned:</span> <strong>{{ item.times_cleaned }}</strong>
-            </li>
-          </ul>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-number">{{ item.times_reported }}</span>
+              <span class="stat-label">Reported</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">{{ item.times_cleaned }}</span>
+              <span class="stat-label">Cleaned</span>
+            </div>
+          </div>
         </div>
 
         <div class="section-group" v-if="hasPredictions">
@@ -54,17 +57,39 @@
             <span class="section-title">Predictions</span>
           </div>
           <ul class="section-list">
-            <li v-if="item.graffiti_likelihood !== undefined">
-              <span>Retagging risk:</span> <strong>{{ item.graffiti_likelihood.toFixed(1) }}%</strong>
+            <li v-if="item.graffiti_likelihood !== undefined" class="metric-row">
+              <span class="metric-label">Retagging risk</span>
+              <div class="metric-visual">
+                <div class="progress-track">
+                  <div
+                    class="progress-fill"
+                    :class="riskLevel"
+                    :style="{ width: Math.min(item.graffiti_likelihood, 100).toFixed(1) + '%' }"
+                  ></div>
+                </div>
+                <strong class="metric-number" :class="riskLevel">{{ item.graffiti_likelihood.toFixed(1) }}%</strong>
+              </div>
             </li>
-            <li v-if="item.cleaning_likelihood !== undefined">
-              <span>Cleaning likelihood:</span> <strong>{{ item.cleaning_likelihood.toFixed(1) }}%</strong>
+            <li v-if="item.cleaning_likelihood !== undefined" class="metric-row">
+              <span class="metric-label">Cleaning likelihood</span>
+              <div class="metric-visual">
+                <div class="progress-track">
+                  <div
+                    class="progress-fill"
+                    :class="cleaningLevel"
+                    :style="{ width: Math.min(item.cleaning_likelihood, 100).toFixed(1) + '%' }"
+                  ></div>
+                </div>
+                <strong class="metric-number" :class="cleaningLevel">{{ item.cleaning_likelihood.toFixed(1) }}%</strong>
+              </div>
             </li>
-            <li v-if="estimatedRetagDate">
-              <span>Est. next tag:</span> <strong>{{ estimatedRetagDate }}</strong>
+            <li v-if="estimatedRetagDate" class="date-row">
+              <span class="metric-label">Estimated next tag</span>
+              <strong class="date-value">{{ estimatedRetagDate }}</strong>
             </li>
-            <li v-if="estimatedCleaningDate">
-              <span>Est. cleaning:</span> <strong>{{ estimatedCleaningDate }}</strong>
+            <li v-if="estimatedCleaningDate" class="date-row">
+              <span class="metric-label">Estimated cleaning</span>
+              <strong class="date-value">{{ estimatedCleaningDate }}</strong>
             </li>
           </ul>
         </div>
@@ -143,46 +168,61 @@
       || estimatedRetagDate.value
       || estimatedCleaningDate.value;
   });
+
+  const riskLevel = computed(() => {
+    const val = props.item.graffiti_likelihood ?? 0;
+    if (val >= 70) return 'level-high';
+    if (val >= 40) return 'level-medium';
+    return 'level-low';
+  });
+
+  const cleaningLevel = computed(() => {
+    const val = props.item.cleaning_likelihood ?? 0;
+    if (val >= 70) return 'level-success';
+    if (val >= 40) return 'level-moderate';
+    return 'level-muted';
+  });
 </script>
 
 <style scoped>
   .report-card {
-    background: #fff;
-    padding: 12px 14px;
+    background: var(--surface-solid, #fff);
+    padding: 14px 16px;
     display: flex;
     flex-direction: column;
-    transition: all 0.2s ease;
+    transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
-    animation: slideIn 0.3s ease-out;
+    animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     animation-fill-mode: backwards;
+    position: relative;
   }
 
   @keyframes slideIn {
     from {
       opacity: 0;
-      transform: translateX(-8px);
+      transform: translateY(6px);
     }
     to {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
   }
 
   .report-card:first-child {
-    border-radius: 10px 10px 0 0;
+    border-radius: var(--radius-lg, 16px) var(--radius-lg, 16px) 0 0;
   }
 
   .report-card:last-child {
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 var(--radius-lg, 16px) var(--radius-lg, 16px);
   }
 
   .report-card:hover {
-    background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 100%);
+    background: #f8faff;
   }
 
   .report-card.selected {
-    background: linear-gradient(135deg, #ede9fe 0%, #e0e7ff 100%);
-    box-shadow: inset 3px 0 0 #7c4dff;
+    background: linear-gradient(135deg, rgba(237, 233, 254, 0.5) 0%, rgba(224, 231, 255, 0.5) 100%);
+    box-shadow: inset 3px 0 0 var(--primary, #6366f1);
   }
 
   .card-content {
@@ -193,14 +233,14 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     gap: 8px;
   }
 
   .index-badge {
-    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-    color: #1d4ed8;
-    border-radius: 6px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.06) 100%);
+    color: var(--primary, #6366f1);
+    border-radius: var(--radius-sm, 8px);
     min-width: 26px;
     height: 22px;
     display: inline-flex;
@@ -210,157 +250,50 @@
     font-weight: 600;
     flex-shrink: 0;
     padding: 0 6px;
-    transition: transform 0.15s ease;
+    transition: all var(--transition-fast, 150ms cubic-bezier(0.16, 1, 0.3, 1));
   }
 
   .report-card:hover .index-badge {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(99, 102, 241, 0.1) 100%);
     transform: scale(1.05);
   }
 
   .id-badge {
-    background: #f3f4f6;
-    color: #6b7280;
-    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-secondary, #475569);
+    border-radius: 6px;
     padding: 3px 7px;
     font-size: 10px;
     font-weight: 500;
     white-space: nowrap;
     flex-shrink: 0;
-    font-family: ui-monospace, monospace;
+    font-family: ui-monospace, 'SF Mono', monospace;
   }
 
   .address {
     font-weight: 500;
     font-size: 13px;
-    color: #1f2937;
+    color: var(--text-primary, #0f172a);
     line-height: 1.4;
     flex: 1;
   }
 
   .card-status {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .card-meta {
     display: flex;
-    gap: 12px;
+    gap: 14px;
     font-size: 11px;
-    color: #5f6368;
+    color: var(--text-tertiary, #94a3b8);
     flex-wrap: wrap;
   }
 
-  @media (max-width: 900px) {
-    .report-card {
-      padding: 10px 12px;
-    }
-  }
-
-  .predictions-tab {
-    background: linear-gradient(135deg, #f3f4f6 0%, #e0e7ff 100%);
-    border-radius: 10px;
-    margin: 12px 0 0 0;
-    padding: 16px 18px;
-    box-shadow: 0 2px 8px rgba(124,77,255,0.08);
-    animation: slideInPredictions 0.4s cubic-bezier(.68,-.55,.27,1.55);
-  }
-
-  .predictions-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-
-  .ai-emoji {
-    font-size: 1.6em;
-    vertical-align: middle;
-  }
-
-  .predictions-title {
-    font-weight: 600;
-    font-size: 0.9em;
-    color: #7c4dff;
-  }
-
-  .predictions-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .predictions-list li {
-    margin-bottom: 8px;
-    font-size: 13px;
-    color: #333;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .section-group + .section-group {
-    margin-top: 14px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(124, 77, 255, 0.12);
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-  }
-
-  .section-title {
-    font-weight: 600;
-    font-size: 0.85em;
-    color: #7c4dff;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .section-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .section-list li {
-    margin-bottom: 6px;
-    font-size: 13px;
-    color: #333;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
-  @keyframes slideInPredictions {
-    from {
-      opacity: 0;
-      transform: translateX(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  .slide-predictions-enter-active, .slide-predictions-leave-active {
-    transition: all 0.4s cubic-bezier(.68,-.55,.27,1.55);
-  }
-
-  .slide-predictions-enter-from, .slide-predictions-leave-to {
-    opacity: 0;
-    transform: translateX(40px);
-  }
-
-  .slide-predictions-enter-to, .slide-predictions-leave-from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
+  /* --- Toggle Button --- */
   .predictions-toggle-btn {
-    background: #f8fafc;
-    border: 1px solid #e5e7eb;
+    background: transparent;
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.06));
     border-radius: 50%;
     padding: 0;
     height: 28px;
@@ -370,66 +303,254 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1em;
-    color: #6366f1;
-    font-weight: 500;
-    box-shadow: 0 1px 4px rgba(60,60,100,0.07);
+    color: var(--text-tertiary, #94a3b8);
     cursor: pointer;
     margin-left: auto;
-    transition: box-shadow 0.15s, border 0.15s, background 0.15s;
+    transition: all var(--transition-normal, 250ms cubic-bezier(0.16, 1, 0.3, 1));
     outline: none;
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     position: relative;
   }
-  .predictions-toggle-btn:hover, .predictions-toggle-btn:focus {
-    background: #ede9fe;
-    border-color: #a5b4fc;
-    box-shadow: 0 2px 8px rgba(124,77,255,0.10);
+
+  .predictions-toggle-btn:hover {
+    background: rgba(99, 102, 241, 0.06);
+    border-color: rgba(99, 102, 241, 0.2);
+    color: var(--primary, #6366f1);
   }
-  .predictions-toggle-btn:active {
-    background: #e0e7ff;
-    border-color: #6366f1;
-    box-shadow: 0 1px 3px rgba(60,60,100,0.04);
+
+  .predictions-toggle-btn.active {
+    background: rgba(99, 102, 241, 0.08);
+    border-color: rgba(99, 102, 241, 0.25);
+    color: var(--primary, #6366f1);
   }
-  .predictions-toggle-btn .ai-emoji {
-    font-size: 1em;
-    margin: -2px 0 0 0;
+
+  .toggle-chevron {
+    transition: transform var(--transition-spring, 400ms cubic-bezier(0.34, 1.56, 0.64, 1));
+  }
+
+  .predictions-toggle-btn.active .toggle-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* --- Predictions Panel --- */
+  .predictions-tab {
+    background: rgba(248, 250, 252, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.06));
+    border-radius: var(--radius-md, 12px);
+    margin: 12px 0 0 0;
+    padding: 16px;
+    animation: expandIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes expandIn {
+    from {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .slide-predictions-enter-active,
+  .slide-predictions-leave-active {
+    transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .slide-predictions-enter-from,
+  .slide-predictions-leave-to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  .slide-predictions-enter-to,
+  .slide-predictions-leave-from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- Section Groups --- */
+  .section-group + .section-group {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border, rgba(0, 0, 0, 0.06));
+  }
+
+  .section-header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: #6366f1;
-    opacity: 0.85;
-    pointer-events: none;
+    gap: 8px;
+    margin-bottom: 10px;
   }
-  .predictions-toggle-btn .predictions-label {
-    font-size: 0.97em;
-    color: #4f46e5;
+
+  .section-title {
     font-weight: 600;
-    letter-spacing: 0.01em;
-    display: inline;
-    white-space: nowrap;
-    overflow: hidden;
-    max-width: 70px;
+    font-size: 10px;
+    color: var(--text-tertiary, #94a3b8);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
   }
-  @media (max-width: 700px) {
-    .predictions-toggle-btn {
-      padding: 0;
-      height: 32px;
-      width: 32px;
-      min-width: 32px;
-      border-radius: 50%;
-      gap: 0;
-      justify-content: center;
-      max-width: 32px;
-    }
-    .predictions-toggle-btn .ai-emoji {
-      font-size: 1.2em;
-      margin: 0;
-    }
-    .predictions-toggle-btn .predictions-label {
-      display: none;
+
+  /* --- Stats Grid --- */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .stat-card {
+    background: var(--surface-solid, #fff);
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.06));
+    border-radius: var(--radius-sm, 8px);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    transition: all var(--transition-fast, 150ms cubic-bezier(0.16, 1, 0.3, 1));
+  }
+
+  .stat-card:hover {
+    border-color: rgba(99, 102, 241, 0.15);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.06);
+  }
+
+  .stat-number {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary, #0f172a);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-tertiary, #94a3b8);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* --- Predictions List --- */
+  .section-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* --- Metric Row with Progress Bar --- */
+  .metric-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary, #475569);
+  }
+
+  .metric-visual {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .progress-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    min-width: 2px;
+  }
+
+  .progress-fill.level-high {
+    background: linear-gradient(90deg, #f97316, #ef4444);
+  }
+
+  .progress-fill.level-medium {
+    background: linear-gradient(90deg, #eab308, #f97316);
+  }
+
+  .progress-fill.level-low {
+    background: linear-gradient(90deg, #22c55e, #10b981);
+  }
+
+  .progress-fill.level-success {
+    background: linear-gradient(90deg, #10b981, #06b6d4);
+  }
+
+  .progress-fill.level-moderate {
+    background: linear-gradient(90deg, #06b6d4, #6366f1);
+  }
+
+  .progress-fill.level-muted {
+    background: rgba(0, 0, 0, 0.12);
+  }
+
+  .metric-number {
+    font-size: 13px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    min-width: 48px;
+    text-align: right;
+  }
+
+  .metric-number.level-high {
+    color: #ef4444;
+  }
+
+  .metric-number.level-medium {
+    color: #f59e0b;
+  }
+
+  .metric-number.level-low {
+    color: #10b981;
+  }
+
+  .metric-number.level-success {
+    color: #10b981;
+  }
+
+  .metric-number.level-moderate {
+    color: #06b6d4;
+  }
+
+  .metric-number.level-muted {
+    color: var(--text-tertiary, #94a3b8);
+  }
+
+  /* --- Date Rows --- */
+  .date-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .date-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary, #0f172a);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 900px) {
+    .report-card {
+      padding: 10px 12px;
     }
   }
 </style>

@@ -26,16 +26,16 @@
 
   const ICON_CONFIG = {
     default: {
-      radius: 8,
-      fillColor: '#1a73e8',
-      color: '#fff',
-      weight: 1,
+      radius: 7,
+      fillColor: '#6366f1',
+      color: 'rgba(255,255,255,0.9)',
+      weight: 1.5,
       opacity: 1,
-      fillOpacity: 0.9,
+      fillOpacity: 0.85,
     },
     highlighted: {
       radius: 10,
-      fillColor: '#7c4dff',
+      fillColor: '#4f46e5',
       color: '#fff',
       weight: 2,
       opacity: 1,
@@ -76,10 +76,10 @@
 
   function createPopupContent(item) {
     const indexBadge = item._index
-      ? `<span style="background:#e8f0fe;color:#1a73e8;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;min-width:24px;text-align:center;display:inline-block;">${item._index}</span>`
+      ? `<span style="background:linear-gradient(135deg,#6366f1,#818cf8);color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;min-width:22px;text-align:center;display:inline-block;">${item._index}</span>`
       : '';
 
-    const idBadge = `<span style="background:#f1f3f4;color:#5f6368;border-radius:4px;padding:2px 6px;font-size:11px;font-weight:500;">#${item.service_request}</span>`;
+    const idBadge = `<span style="background:rgba(0,0,0,0.04);color:#94a3b8;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:500;font-family:ui-monospace,monospace;">#${item.service_request}</span>`;
 
     // Ensure address includes 'NY, USA'
     let address = item.address || '';
@@ -95,21 +95,20 @@
     const googleMapsUrl = `https://www.google.com/maps/place/${encodeURIComponent(address)}`;
 
     return `
-    <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
       ${indexBadge}
       ${idBadge}
       <a
         href="${googleMapsUrl}"
         target="_blank"
         rel="noopener"
-        style="align-items:center;padding:2px 6px;background:linear-gradient(135deg,#e0f2fe 0%,#bae6fd 100%);color:#0369a1;border-radius:5px;font-size:11px;font-weight:500;text-decoration:none;box-shadow:0 1px 4px rgba(26,115,232,0.08);transition:background 0.2s;min-width:0;"
+        style="display:inline-flex;align-items:center;gap:3px;padding:2px 8px;background:rgba(99,102,241,0.08);color:#6366f1;border-radius:8px;font-size:10px;font-weight:500;text-decoration:none;transition:background 0.2s;"
       >
-        <span style="font-size:11px;">Google Maps</span> <span style="font-size:11px;">↗️</span>
+        <span>Maps</span> <span style="font-size:10px;">↗</span>
       </a>
-
     </div>
-    <div style="font-weight:600;margin-bottom:4px;">${item.address}</div>
-    <div style="color:#5f6368;font-size:12px;">${item.status}</div>
+    <div style="font-weight:600;font-size:13px;margin-bottom:3px;color:#0f172a;">${item.address}</div>
+    <div style="color:#94a3b8;font-size:11px;">${item.status}</div>
   `.trim();
   }
 
@@ -291,12 +290,12 @@
   }
 
   .map-title {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 12px;
-    color: #6b7280;
+    color: var(--text-tertiary, #94a3b8);
     flex-shrink: 0;
   }
 
@@ -305,32 +304,41 @@
     min-width: 0;
     flex: 1;
     min-height: 0;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
+    border-radius: var(--radius-lg, 16px);
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.06));
     overflow: hidden;
-    background: #f9fafb;
+    background: var(--bg, #f8fafc);
     box-sizing: border-box;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-    animation: fadeIn 0.4s ease-out;
+    box-shadow:
+      var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04)),
+      0 0 0 1px var(--border, rgba(0, 0, 0, 0.06));
+    animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @keyframes fadeIn {
     from {
       opacity: 0;
+      transform: scale(0.99);
     }
     to {
       opacity: 1;
+      transform: scale(1);
     }
   }
 
   :deep(.leaflet-popup-content-wrapper) {
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    border-radius: var(--radius-md, 12px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.04);
   }
 
   :deep(.leaflet-popup-content) {
     margin: 12px 14px;
-    font-family: inherit;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  :deep(.leaflet-popup-tip) {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
 
   @media (max-width: 900px) {
@@ -343,7 +351,7 @@
       width: 100%;
       flex: 1;
       min-height: 0;
-      border-radius: 10px;
+      border-radius: var(--radius-md, 12px);
     }
 
     .map-title {

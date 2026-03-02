@@ -241,7 +241,7 @@
     background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.06) 100%);
     color: var(--primary, #6366f1);
     border-radius: var(--radius-sm, 8px);
-    min-width: 26px;
+    min-width: 28px;
     height: 22px;
     display: inline-flex;
     align-items: center;

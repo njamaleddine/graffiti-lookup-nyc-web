@@ -7,7 +7,7 @@ and time-to-next-update using machine learning models.
 
 import datetime
 import math
-from typing import NamedTuple, List, Optional
+from typing import NamedTuple
 
 import numpy as np
 import pandas

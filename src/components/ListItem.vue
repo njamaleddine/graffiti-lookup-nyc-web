@@ -23,7 +23,17 @@
           aria-label="Show predictions"
           @click.stop="togglePredictions"
         >
-          <svg class="toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          <svg
+            class="toggle-chevron"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ><polyline points="6 9 12 15 18 9" /></svg>
         </button>
       </header>
 
@@ -35,11 +45,34 @@
         <time>Created: {{ item.created }}</time>
         <time>Updated: {{ item.last_updated }}</time>
         <span
-          v-if="sparklineSvg"
+          v-if="sparklineData"
           class="sparkline"
           title="Report timeline at this address"
-          v-html="sparklineSvg"
-        />
+        >
+          <svg
+            :width="sparklineData.w"
+            :height="sparklineData.h"
+            :viewBox="`0 0 ${sparklineData.w} ${sparklineData.h}`"
+          >
+            <line
+              :x1="sparklineData.px"
+              :y1="sparklineData.h / 2"
+              :x2="sparklineData.w - sparklineData.px"
+              :y2="sparklineData.h / 2"
+              stroke="rgba(0,0,0,0.08)"
+              stroke-width="1"
+            />
+            <circle
+              v-for="(x, pointIndex) in sparklineData.points"
+              :key="pointIndex"
+              :cx="x"
+              :cy="sparklineData.h / 2"
+              r="2"
+              fill="#6366f1"
+              opacity="0.6"
+            />
+          </svg>
+        </span>
       </footer>
     </div>
 
@@ -48,7 +81,10 @@
         v-if="showPredictions"
         class="predictions-tab"
       >
-        <div class="section-group" v-if="hasStats">
+        <div
+          v-if="hasStats"
+          class="section-group"
+        >
           <div class="section-header">
             <span class="section-title">Location Stats</span>
           </div>
@@ -64,12 +100,18 @@
           </div>
         </div>
 
-        <div class="section-group" v-if="hasPredictions">
+        <div
+          v-if="hasPredictions"
+          class="section-group"
+        >
           <div class="section-header">
             <span class="section-title">Predictions</span>
           </div>
           <ul class="section-list">
-            <li v-if="item.graffiti_likelihood !== undefined" class="metric-row">
+            <li
+              v-if="item.graffiti_likelihood !== undefined"
+              class="metric-row"
+            >
               <span class="metric-label">Retagging likelihood</span>
               <div class="metric-visual">
                 <div class="progress-track">
@@ -77,12 +119,18 @@
                     class="progress-fill"
                     :class="riskLevel"
                     :style="{ width: Math.min(item.graffiti_likelihood, 100).toFixed(1) + '%' }"
-                  ></div>
+                  />
                 </div>
-                <strong class="metric-number" :class="riskLevel">{{ item.graffiti_likelihood.toFixed(1) }}%</strong>
+                <strong
+                  class="metric-number"
+                  :class="riskLevel"
+                >{{ item.graffiti_likelihood.toFixed(1) }}%</strong>
               </div>
             </li>
-            <li v-if="item.cleaning_likelihood !== undefined" class="metric-row">
+            <li
+              v-if="item.cleaning_likelihood !== undefined"
+              class="metric-row"
+            >
               <span class="metric-label">Cleaning likelihood</span>
               <div class="metric-visual">
                 <div class="progress-track">
@@ -90,16 +138,25 @@
                     class="progress-fill"
                     :class="cleaningLevel"
                     :style="{ width: Math.min(item.cleaning_likelihood, 100).toFixed(1) + '%' }"
-                  ></div>
+                  />
                 </div>
-                <strong class="metric-number" :class="cleaningLevel">{{ item.cleaning_likelihood.toFixed(1) }}%</strong>
+                <strong
+                  class="metric-number"
+                  :class="cleaningLevel"
+                >{{ item.cleaning_likelihood.toFixed(1) }}%</strong>
               </div>
             </li>
-            <li v-if="estimatedRetagDate" class="date-row">
+            <li
+              v-if="estimatedRetagDate"
+              class="date-row"
+            >
               <span class="metric-label">Estimated next tag</span>
               <strong class="date-value">{{ estimatedRetagDate }}</strong>
             </li>
-            <li v-if="estimatedCleaningDate" class="date-row">
+            <li
+              v-if="estimatedCleaningDate"
+              class="date-row"
+            >
               <span class="metric-label">Estimated cleaning</span>
               <strong class="date-value">{{ estimatedCleaningDate }}</strong>
             </li>
@@ -112,7 +169,7 @@
 
 <script setup>
   import StatusChip from './StatusChip.vue';
-  import { ref, computed, watch, toRefs, defineProps, defineEmits } from 'vue';
+  import { ref, computed, watch, toRefs } from 'vue';
 
   function addDays(dateStr, days) {
     const date = new Date(dateStr + 'T00:00:00');
@@ -207,7 +264,7 @@
     window.dispatchEvent(new CustomEvent('filter-by-address', { detail: props.item.address }));
   }
 
-  const sparklineSvg = computed(() => {
+  const sparklineData = computed(() => {
     const dates = props.addressDates;
     if (!dates || dates.length <= 1) return null;
 
@@ -219,14 +276,12 @@
     const h = 14;
     const px = 4;
 
-    const dots = timestamps
-      .map((t) => {
-        const x = px + ((t - min) / range) * (w - px * 2);
-        return `<circle cx="${x.toFixed(1)}" cy="${h / 2}" r="2" fill="#6366f1" opacity="0.6"/>`;
-      })
-      .join('');
+    const points = timestamps.map((t) => {
+      const x = px + ((t - min) / range) * (w - px * 2);
+      return Number(x.toFixed(1));
+    });
 
-    return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><line x1="${px}" y1="${h / 2}" x2="${w - px}" y2="${h / 2}" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>${dots}</svg>`;
+    return { w, h, px, points };
   });
 </script>
 

@@ -12,7 +12,7 @@ const items = [...graffitiLookups].sort((a, b) =>
 const uniqueAddresses = new Set(items.map((i) => i.address)).size;
 const avgRisk = (items.reduce((s, i) => s + (i.graffiti_likelihood ?? 0), 0) / items.length).toFixed(1);
 const avgRiskClass = parseFloat(avgRisk) >= 70 ? 'recurrence-high' : parseFloat(avgRisk) >= 40 ? 'recurrence-medium' : 'recurrence-low';
-const addrCounts: Record<string, number> = {};
+const addrCounts = {};
 items.forEach((i) => { addrCounts[i.address] = (addrCounts[i.address] || 0) + 1; });
 let hotspotAddr = '';
 let hotspotCount = 0;

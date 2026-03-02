@@ -38,7 +38,7 @@
   const INIT_DELAY_MS = 100;
   const VISIBLE_ITEMS_DEBOUNCE_MS = 150;
 
-  const RISK_COLORS = { high: '#ef4444', medium: '#f59e0b', low: '#22c55e' };
+  const RISK_COLORS = { high: '#f87171', medium: '#fbbf24', low: '#4ade80' };
 
   let map = null;
   let leaflet = null;
@@ -435,15 +435,15 @@
   }
 
   .legend-high {
-    background: #ef4444;
+    background: #f87171;
   }
 
   .legend-medium {
-    background: #f59e0b;
+    background: #fbbf24;
   }
 
   .legend-low {
-    background: #22c55e;
+    background: #4ade80;
   }
 
   @media (max-width: 900px) {

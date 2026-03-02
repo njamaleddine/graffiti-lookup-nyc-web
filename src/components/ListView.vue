@@ -190,10 +190,10 @@
   function onMarkerSelected(event) {
     const item = event.detail;
     selectedItem.value = item;
-    ensureItemVisibleAndScroll(item);
+    ensureItemVisibleAndScroll(item, 'instant');
   }
 
-  function ensureItemVisibleAndScroll(item) {
+  function ensureItemVisibleAndScroll(item, behavior = 'smooth') {
     const itemIndex = filteredItems.value.findIndex(
       (i) => i.service_request === item.service_request
     );
@@ -202,16 +202,16 @@
 
     if (itemIndex >= displayCount.value) {
       displayCount.value = itemIndex + PAGE_SIZE;
-      nextTick(() => scrollToItem(item));
+      nextTick(() => scrollToItem(item, behavior));
     } else {
-      scrollToItem(item);
+      scrollToItem(item, behavior);
     }
   }
 
-  function scrollToItem(item) {
+  function scrollToItem(item, behavior = 'smooth') {
     const el = itemRefs.value[item.service_request];
     if (el && listRef.value) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.scrollIntoView({ behavior, block: 'center' });
     }
   }
 

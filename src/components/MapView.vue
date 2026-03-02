@@ -23,6 +23,7 @@
   const BOUNDS_PADDING = 0.1;
   const PAGE_SIZE = 50;
   const INIT_DELAY_MS = 100;
+  const VISIBLE_ITEMS_DEBOUNCE_MS = 150;
 
   const ICON_CONFIG = {
     default: {
@@ -47,6 +48,8 @@
   let leaflet = null;
   let markerMap = {};
   let currentFilteredItems = null; // Track filtered items when filtering is active
+  let previousHighlightId = null;
+  let visibleItemsTimer = null;
 
   const visibleItems = ref([]);
   const selectedItem = ref(null);
@@ -117,19 +120,31 @@
     markerMap = {};
   }
 
-  function addMarkers(items) {
+  function updateMarkers(items, shouldFitBounds = false) {
     if (!map || !leaflet || !items) return;
 
-    clearMarkers();
+    const validItems = items.filter((item) => item.latitude && item.longitude);
+    const newIds = new Set(validItems.map((item) => item.service_request));
 
-    items
-      .filter((item) => item.latitude && item.longitude)
-      .forEach((item) => {
+    // Remove markers no longer in the new set
+    for (const id of Object.keys(markerMap)) {
+      if (!newIds.has(id)) {
+        markerMap[id].remove();
+        delete markerMap[id];
+      }
+    }
+
+    // Add only markers that don't already exist
+    validItems.forEach((item) => {
+      if (!markerMap[item.service_request]) {
         const isSelected = selectedItem.value?.service_request === item.service_request;
         markerMap[item.service_request] = createMarker(item, isSelected);
-      });
+      }
+    });
 
-    fitBoundsToMarkers();
+    if (shouldFitBounds) {
+      fitBoundsToMarkers();
+    }
   }
 
   function fitBoundsToMarkers() {
@@ -141,29 +156,37 @@
   }
 
   function highlightMarker(item) {
-    Object.entries(markerMap).forEach(([id, marker]) => {
-      const isTarget = id === item.service_request;
-      const config = isTarget ? ICON_CONFIG.highlighted : ICON_CONFIG.default;
+    // Reset only the previously highlighted marker
+    if (previousHighlightId && markerMap[previousHighlightId]) {
+      const prevMarker = markerMap[previousHighlightId];
+      prevMarker.setStyle(ICON_CONFIG.default);
+      prevMarker.setRadius(ICON_CONFIG.default.radius);
+      prevMarker.closePopup();
+    }
 
-      marker.setStyle(config);
-      marker.setRadius(config.radius);
-
-      if (isTarget) {
-        marker.bringToFront();
-        marker.openPopup();
-        if (item.latitude && item.longitude) {
-          map.panTo([item.latitude, item.longitude]);
-        }
+    // Highlight only the target marker
+    const marker = markerMap[item.service_request];
+    if (marker) {
+      marker.setStyle(ICON_CONFIG.highlighted);
+      marker.setRadius(ICON_CONFIG.highlighted.radius);
+      marker.bringToFront();
+      marker.openPopup();
+      if (item.latitude && item.longitude) {
+        map.panTo([item.latitude, item.longitude]);
       }
-    });
+    }
+
+    previousHighlightId = item.service_request;
   }
 
   function clearHighlight() {
-    Object.values(markerMap).forEach((marker) => {
+    if (previousHighlightId && markerMap[previousHighlightId]) {
+      const marker = markerMap[previousHighlightId];
       marker.setStyle(ICON_CONFIG.default);
       marker.setRadius(ICON_CONFIG.default.radius);
       marker.closePopup();
-    });
+    }
+    previousHighlightId = null;
   }
 
   function getWindowedItems(centerItems) {
@@ -227,18 +250,22 @@
       .slice(0, PAGE_SIZE)
       .map((item, i) => ({ ...item, _index: i + 1 }));
 
-    addMarkers(initialItems);
+    updateMarkers(initialItems, true);
   }
 
   function onVisibleItemsChanged(event) {
-    visibleItems.value = event.detail;
-    const windowed = getWindowedItems(visibleItems.value);
-    addMarkers(windowed);
+    if (visibleItemsTimer) clearTimeout(visibleItemsTimer);
+    visibleItemsTimer = setTimeout(() => {
+      visibleItems.value = event.detail;
+      const windowed = getWindowedItems(visibleItems.value);
+      updateMarkers(windowed);
+    }, VISIBLE_ITEMS_DEBOUNCE_MS);
   }
 
   function onFilteredItemsChanged(event) {
     currentFilteredItems = event.detail;
-    addMarkers(currentFilteredItems.slice(0, PAGE_SIZE));
+    clearMarkers();
+    updateMarkers(currentFilteredItems.slice(0, PAGE_SIZE), true);
   }
 
   function onItemSelected(event) {

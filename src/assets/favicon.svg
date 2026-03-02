@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded square background -->
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <!-- Spray can body -->
+  <rect x="46" y="42" width="36" height="56" rx="4" fill="white"/>
+  <!-- Spray can cap -->
+  <rect x="52" y="30" width="24" height="16" rx="3" fill="white"/>
+  <!-- Nozzle -->
+  <rect x="60" y="22" width="8" height="10" rx="2" fill="white"/>
+  <!-- Can band / label line -->
+  <rect x="46" y="64" width="36" height="8" rx="0" fill="url(#bg)" opacity="0.35"/>
+  <!-- Spray dots -->
+  <circle cx="90" cy="36" r="4" fill="white" opacity="0.9"/>
+  <circle cx="98" cy="28" r="2.5" fill="white" opacity="0.7"/>
+  <circle cx="96" cy="42" r="2" fill="white" opacity="0.5"/>
+  <circle cx="86" cy="26" r="1.5" fill="white" opacity="0.5"/>
+  <circle cx="102" cy="36" r="1.5" fill="white" opacity="0.4"/>
+  <!-- Bottom highlight -->
+  <rect x="46" y="90" width="36" height="8" rx="4" fill="white" opacity="0.15"/>
+</svg>

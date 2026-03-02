@@ -1,10 +1,50 @@
 ---
+import faviconSvg from '../assets/favicon.svg';
+import faviconIco from '../assets/favicon.ico';
+import ogImage from '../assets/og-image.png';
+import appleTouchIcon from '../assets/apple-touch-icon.png';
+
+const siteOrigin = 'https://njamaleddine.github.io';
+const siteUrl = `${siteOrigin}/graffiti-lookup-nyc-web`;
+const ogImageUrl = `${siteOrigin}${ogImage.src}`;
 ---
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>NYC Graffiti Lookup</title>
+    <meta name="description" content="Explore and track graffiti removal requests across New York City. View status updates, locations, and details on an interactive map." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#6366f1" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={siteUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="NYC Graffiti Lookup" />
+    <meta property="og:description" content="Explore and track graffiti removal requests across New York City. View status updates, locations, and details on an interactive map." />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="NYC Graffiti Lookup" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="NYC Graffiti Lookup" />
+    <meta name="twitter:description" content="Explore and track graffiti removal requests across New York City." />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="icon" type="image/svg+xml" href={faviconSvg.src} />
+    <link rel="icon" type="image/x-icon" href={faviconIco} />
+    <link rel="apple-touch-icon" href={appleTouchIcon.src} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "NYC Graffiti Lookup",
+      "url": siteUrl,
+      "description": "Explore and track graffiti removal requests across New York City. View status updates, locations, and details on an interactive map."
+    })} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />

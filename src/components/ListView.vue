@@ -18,6 +18,37 @@
           class="status-filter"
         />
       </div>
+      <div class="controls-row">
+        <div class="sort-container">
+          <select
+            v-model="sortBy"
+            class="sort-select"
+            aria-label="Sort by"
+          >
+            <option
+              v-for="opt in SORT_OPTIONS"
+              :key="opt.value"
+              :value="opt.value"
+            >
+              {{ opt.label }}
+            </option>
+          </select>
+          <span class="sort-icon">
+            <svg
+              width="10"
+              height="10"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </span>
+        </div>
+      </div>
     </header>
 
     <ul
@@ -32,6 +63,8 @@
         :item="item"
         :index="index + 1"
         :is-selected="selectedItem?.service_request === item.service_request"
+        :address-count="addressCounts[item.address] || 1"
+        :address-dates="addressDates[item.address] || []"
         @select="onItemSelect"
       />
 
@@ -67,6 +100,15 @@
   const VIEWPORT_DEBOUNCE_MS = 50;
   const INITIAL_DELAY_MS = 100;
 
+  const SORT_OPTIONS = [
+    { value: 'last_updated', label: 'Last Updated' },
+    { value: 'created', label: 'Date Created' },
+    { value: 'risk_high', label: 'Risk: High → Low' },
+    { value: 'risk_low', label: 'Risk: Low → High' },
+    { value: 'times_reported', label: 'Most Reported' },
+    { value: 'address', label: 'Address (A–Z)' },
+  ];
+
   const listRef = ref(null);
   const displayCount = ref(PAGE_SIZE);
   const itemRefs = ref({});
@@ -74,6 +116,7 @@
   const selectedItem = ref(null);
   const searchQuery = ref('');
   const selectedStatus = ref('');
+  const sortBy = ref('last_updated');
 
   function initFromUrlParams() {
     if (typeof window === 'undefined') return;
@@ -83,6 +126,8 @@
     const id = params.get('id');
     if (search) searchQuery.value = search;
     if (status) selectedStatus.value = status;
+    const sort = params.get('sort');
+    if (sort) sortBy.value = sort;
     if (id) {
       const item = props.items.find((i) => i.service_request === id);
       if (item) {
@@ -103,6 +148,9 @@
     }
     if (selectedItem.value?.service_request) {
       params.set('id', selectedItem.value.service_request);
+    }
+    if (sortBy.value && sortBy.value !== 'last_updated') {
+      params.set('sort', sortBy.value);
     }
     const newUrl = params.toString()
       ? `${window.location.pathname}?${params.toString()}`
@@ -141,9 +189,47 @@
     return items;
   });
 
-  const visibleItems = computed(() => filteredItems.value.slice(0, displayCount.value));
+  const sortedItems = computed(() => {
+    const items = [...filteredItems.value];
+    switch (sortBy.value) {
+      case 'last_updated':
+        return items.sort((a, b) => new Date(b.last_updated) - new Date(a.last_updated));
+      case 'created':
+        return items.sort((a, b) => new Date(b.created) - new Date(a.created));
+      case 'risk_high':
+        return items.sort((a, b) => (b.graffiti_likelihood ?? 0) - (a.graffiti_likelihood ?? 0));
+      case 'risk_low':
+        return items.sort((a, b) => (a.graffiti_likelihood ?? 0) - (b.graffiti_likelihood ?? 0));
+      case 'times_reported':
+        return items.sort((a, b) => (b.times_reported ?? 0) - (a.times_reported ?? 0));
+      case 'address':
+        return items.sort((a, b) => (a.address ?? '').localeCompare(b.address ?? ''));
+      default:
+        return items;
+    }
+  });
 
-  const hasMore = computed(() => displayCount.value < filteredItems.value.length);
+  const addressCounts = computed(() => {
+    const counts = {};
+    (props.items ?? []).forEach((item) => {
+      counts[item.address] = (counts[item.address] || 0) + 1;
+    });
+    return counts;
+  });
+
+  const addressDates = computed(() => {
+    const dates = {};
+    (props.items ?? []).forEach((item) => {
+      if (!dates[item.address]) dates[item.address] = [];
+      dates[item.address].push(item.created);
+    });
+    Object.values(dates).forEach((arr) => arr.sort());
+    return dates;
+  });
+
+  const visibleItems = computed(() => sortedItems.value.slice(0, displayCount.value));
+
+  const hasMore = computed(() => displayCount.value < sortedItems.value.length);
 
   function registerItemRef(id, el) {
     if (el?.$el) {
@@ -194,7 +280,7 @@
   }
 
   function ensureItemVisibleAndScroll(item, behavior = 'smooth') {
-    const itemIndex = filteredItems.value.findIndex(
+    const itemIndex = sortedItems.value.findIndex(
       (i) => i.service_request === item.service_request
     );
 
@@ -236,21 +322,31 @@
     itemRefs.value = {};
   }
 
+  function onFilterByAddress(event) {
+    searchQuery.value = event.detail;
+  }
+
   function emitFilteredItems() {
     if (!isMounted.value || typeof window === 'undefined') return;
 
-    const allFiltered = filteredItems.value.map((item, i) => ({ ...item, _index: i + 1 }));
+    const allSorted = sortedItems.value.map((item, i) => ({ ...item, _index: i + 1 }));
 
     window.dispatchEvent(
       new CustomEvent('filtered-items-changed', {
-        detail: allFiltered,
+        detail: allSorted,
       })
     );
   }
 
-  watch(filteredItems, emitFilteredItems);
+  watch(sortedItems, emitFilteredItems);
 
-  watch([searchQuery, selectedStatus, selectedItem], updateUrlParams);
+  watch([searchQuery, selectedStatus, selectedItem, sortBy], updateUrlParams);
+
+  watch(sortBy, () => {
+    displayCount.value = PAGE_SIZE;
+    itemRefs.value = {};
+    if (listRef.value) listRef.value.scrollTop = 0;
+  });
 
   watch(
     () => props.items,
@@ -269,10 +365,12 @@
     isMounted.value = true;
     setTimeout(emitViewportItems, INITIAL_DELAY_MS);
     window.addEventListener('marker-selected', onMarkerSelected);
+    window.addEventListener('filter-by-address', onFilterByAddress);
   });
 
   onUnmounted(() => {
     window.removeEventListener('marker-selected', onMarkerSelected);
+    window.removeEventListener('filter-by-address', onFilterByAddress);
   });
 </script>
 
@@ -400,25 +498,93 @@
     background-size: 20px;
   }
 
+  .controls-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    align-items: center;
+  }
+
+  .sort-container {
+    position: relative;
+    width: 100%;
+  }
+
+  .sort-select {
+    width: 100%;
+    padding: 10px 32px 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.06));
+    border-radius: var(--radius-md, 12px);
+    background: var(--surface, rgba(255, 255, 255, 0.7));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--text-secondary, #475569);
+    outline: none;
+    cursor: pointer;
+    transition: all var(--transition-normal, 250ms cubic-bezier(0.16, 1, 0.3, 1));
+    box-shadow: var(--shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.03));
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .sort-select:hover {
+    border-color: var(--border-hover, rgba(0, 0, 0, 0.1));
+    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+  }
+
+  .sort-select:focus {
+    border-color: var(--primary, #6366f1);
+    box-shadow:
+      0 0 0 3px rgba(99, 102, 241, 0.1),
+      var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+  }
+
+  .sort-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-tertiary, #94a3b8);
+    pointer-events: none;
+    transition: all var(--transition-normal, 250ms cubic-bezier(0.16, 1, 0.3, 1));
+    display: flex;
+    align-items: center;
+  }
+
+  .sort-container:focus-within .sort-icon {
+    color: var(--primary, #6366f1);
+    transform: translateY(-50%) rotate(180deg);
+  }
+
   @media (max-width: 900px) {
     .list-container {
       height: 100%;
     }
     .list-title {
-      margin-bottom: 8px;
+      display: none;
     }
     .filter-row {
       flex-direction: row;
-      gap: 8px;
-      margin-bottom: 8px;
+      gap: 6px;
+      margin-bottom: 6px;
     }
     .search-bar {
       flex: 2;
-      min-width: 100px;
+      min-width: 0;
     }
     .status-filter {
       flex: 1;
+      min-width: 0;
       max-width: 120px;
+    }
+    .controls-row {
+      margin-bottom: 6px;
+    }
+    .sort-select {
+      padding: 8px 10px;
+      font-size: 13px;
     }
   }
 </style>

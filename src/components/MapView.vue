@@ -1,8 +1,21 @@
 <template>
   <section class="map-section">
-    <h2 class="map-title">
-      Map View
-    </h2>
+    <div class="map-header">
+      <h2 class="map-title">
+        Map View
+      </h2>
+      <div class="legend">
+        <span class="legend-item">
+          <span class="legend-dot legend-high" />High
+        </span>
+        <span class="legend-item">
+          <span class="legend-dot legend-medium" />Medium
+        </span>
+        <span class="legend-item">
+          <span class="legend-dot legend-low" />Low
+        </span>
+      </div>
+    </div>
     <div
       id="map"
       class="map-root"
@@ -25,40 +38,45 @@
   const INIT_DELAY_MS = 100;
   const VISIBLE_ITEMS_DEBOUNCE_MS = 150;
 
-  const ICON_CONFIG = {
-    default: {
-      radius: 7,
-      fillColor: '#6366f1',
-      color: 'rgba(255,255,255,0.9)',
-      weight: 1.5,
-      opacity: 1,
-      fillOpacity: 0.85,
-    },
-    highlighted: {
-      radius: 10,
-      fillColor: '#4f46e5',
-      color: '#fff',
-      weight: 2,
-      opacity: 1,
-      fillOpacity: 1,
-    },
-  };
+  const RISK_COLORS = { high: '#ef4444', medium: '#f59e0b', low: '#22c55e' };
 
   let map = null;
   let leaflet = null;
   let markerMap = {};
-  let currentFilteredItems = null; // Track filtered items when filtering is active
+  let itemDataMap = {};
+  let currentFilteredItems = null;
   let previousHighlightId = null;
   let visibleItemsTimer = null;
 
   const visibleItems = ref([]);
   const selectedItem = ref(null);
 
-  function createMarker(item, isSelected = false) {
-    const config = isSelected ? ICON_CONFIG.highlighted : ICON_CONFIG.default;
+  function getRiskColor(likelihood) {
+    if (likelihood >= 70) return RISK_COLORS.high;
+    if (likelihood >= 40) return RISK_COLORS.medium;
+    return RISK_COLORS.low;
+  }
 
+  function createDotIcon(item, isHighlighted = false) {
+    const color = getRiskColor(item.graffiti_likelihood ?? 0);
+    const size = isHighlighted ? 20 : 14;
+    const border = isHighlighted ? '2.5px solid #fff' : '1.5px solid rgba(255,255,255,0.9)';
+    const shadow = isHighlighted ? '0 2px 8px rgba(0,0,0,0.3)' : '0 1px 4px rgba(0,0,0,0.15)';
+
+    return leaflet.divIcon({
+      className: '',
+      html: `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${color};border:${border};box-shadow:${shadow};"></div>`,
+      iconSize: [size, size],
+      iconAnchor: [size / 2, size / 2],
+      popupAnchor: [0, -(size / 2)],
+    });
+  }
+
+  function createMarker(item, isSelected = false) {
     const marker = leaflet
-      .circleMarker([item.latitude, item.longitude], config)
+      .marker([item.latitude, item.longitude], {
+        icon: createDotIcon(item, isSelected),
+      })
       .addTo(map)
       .bindPopup(createPopupContent(item))
       .on('click', () => onMarkerClick(item));
@@ -118,6 +136,7 @@
   function clearMarkers() {
     Object.values(markerMap).forEach((marker) => marker.remove());
     markerMap = {};
+    itemDataMap = {};
   }
 
   function updateMarkers(items, shouldFitBounds = false) {
@@ -131,6 +150,7 @@
       if (!newIds.has(id)) {
         markerMap[id].remove();
         delete markerMap[id];
+        delete itemDataMap[id];
       }
     }
 
@@ -138,7 +158,9 @@
     validItems.forEach((item) => {
       if (!markerMap[item.service_request]) {
         const isSelected = selectedItem.value?.service_request === item.service_request;
-        markerMap[item.service_request] = createMarker(item, isSelected);
+        const marker = createMarker(item, isSelected);
+        markerMap[item.service_request] = marker;
+        itemDataMap[item.service_request] = item;
       }
     });
 
@@ -150,7 +172,6 @@
   function fitBoundsToMarkers() {
     const markers = Object.values(markerMap);
     if (markers.length === 0) return;
-
     const group = leaflet.featureGroup(markers);
     map.fitBounds(group.getBounds().pad(BOUNDS_PADDING));
   }
@@ -158,22 +179,27 @@
   function highlightMarker(item) {
     // Reset only the previously highlighted marker
     if (previousHighlightId && markerMap[previousHighlightId]) {
-      const prevMarker = markerMap[previousHighlightId];
-      prevMarker.setStyle(ICON_CONFIG.default);
-      prevMarker.setRadius(ICON_CONFIG.default.radius);
-      prevMarker.closePopup();
+      const prevItem = itemDataMap[previousHighlightId];
+      if (prevItem) {
+        markerMap[previousHighlightId].setIcon(createDotIcon(prevItem, false));
+      }
+      markerMap[previousHighlightId].closePopup();
     }
 
     // Highlight only the target marker
     const marker = markerMap[item.service_request];
     if (marker) {
-      marker.setStyle(ICON_CONFIG.highlighted);
-      marker.setRadius(ICON_CONFIG.highlighted.radius);
-      marker.bringToFront();
-      marker.openPopup();
-      if (item.latitude && item.longitude) {
-        map.panTo([item.latitude, item.longitude]);
-      }
+      marker.setIcon(createDotIcon(item, true));
+      itemDataMap[item.service_request] = item;
+
+      const openAndPan = () => {
+        marker.openPopup();
+        if (item.latitude && item.longitude) {
+          map.panTo([item.latitude, item.longitude]);
+        }
+      };
+
+      openAndPan();
     }
 
     previousHighlightId = item.service_request;
@@ -181,10 +207,11 @@
 
   function clearHighlight() {
     if (previousHighlightId && markerMap[previousHighlightId]) {
-      const marker = markerMap[previousHighlightId];
-      marker.setStyle(ICON_CONFIG.default);
-      marker.setRadius(ICON_CONFIG.default.radius);
-      marker.closePopup();
+      const prevItem = itemDataMap[previousHighlightId];
+      if (prevItem) {
+        markerMap[previousHighlightId].setIcon(createDotIcon(prevItem, false));
+      }
+      markerMap[previousHighlightId].closePopup();
     }
     previousHighlightId = null;
   }
@@ -368,6 +395,57 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
 
+  :deep(.leaflet-div-icon) {
+    background: none;
+    border: none;
+  }
+
+  .map-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+  }
+
+  .map-header .map-title {
+    margin-bottom: 0;
+  }
+
+  .legend {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--text-tertiary, #94a3b8);
+    font-weight: 500;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .legend-high {
+    background: #ef4444;
+  }
+
+  .legend-medium {
+    background: #f59e0b;
+  }
+
+  .legend-low {
+    background: #22c55e;
+  }
+
   @media (max-width: 900px) {
     .map-section {
       width: 100%;
@@ -381,8 +459,27 @@
       border-radius: var(--radius-md, 12px);
     }
 
+    .map-header {
+      margin-bottom: 4px;
+    }
+
     .map-title {
-      margin-bottom: 8px;
+      font-size: 0;
+      margin-bottom: 0;
+    }
+
+    .legend {
+      gap: 8px;
+    }
+
+    .legend-item {
+      font-size: 10px;
+      gap: 3px;
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
     }
   }
 </style>

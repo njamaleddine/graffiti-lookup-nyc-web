@@ -11,6 +11,12 @@
         <span class="index-badge">{{ index }}</span>
         <span class="id-badge">#{{ item.service_request }}</span>
         <span class="address">{{ item.address }}</span>
+        <span
+          v-if="addressCount > 1"
+          class="address-badge"
+          :title="`View all ${addressCount} reports at this address`"
+          @click.stop="filterByAddress"
+        >{{ addressCount }} reports</span>
         <button
           class="predictions-toggle-btn"
           :class="{ active: showPredictions }"
@@ -28,6 +34,12 @@
       <footer class="card-meta">
         <time>Created: {{ item.created }}</time>
         <time>Updated: {{ item.last_updated }}</time>
+        <span
+          v-if="sparklineSvg"
+          class="sparkline"
+          title="Report timeline at this address"
+          v-html="sparklineSvg"
+        />
       </footer>
     </div>
 
@@ -58,7 +70,7 @@
           </div>
           <ul class="section-list">
             <li v-if="item.graffiti_likelihood !== undefined" class="metric-row">
-              <span class="metric-label">Retagging risk</span>
+              <span class="metric-label">Retagging likelihood</span>
               <div class="metric-visual">
                 <div class="progress-track">
                   <div
@@ -126,6 +138,14 @@
       type: Boolean,
       default: false,
     },
+    addressCount: {
+      type: Number,
+      default: 1,
+    },
+    addressDates: {
+      type: Array,
+      default: () => [],
+    },
   });
 
   const { isSelected } = toRefs(props);
@@ -181,6 +201,32 @@
     if (val >= 70) return 'level-success';
     if (val >= 40) return 'level-moderate';
     return 'level-muted';
+  });
+
+  function filterByAddress() {
+    window.dispatchEvent(new CustomEvent('filter-by-address', { detail: props.item.address }));
+  }
+
+  const sparklineSvg = computed(() => {
+    const dates = props.addressDates;
+    if (!dates || dates.length <= 1) return null;
+
+    const timestamps = dates.map((d) => new Date(d + 'T00:00:00').getTime());
+    const min = Math.min(...timestamps);
+    const max = Math.max(...timestamps);
+    const range = max - min || 1;
+    const w = 80;
+    const h = 14;
+    const px = 4;
+
+    const dots = timestamps
+      .map((t) => {
+        const x = px + ((t - min) / range) * (w - px * 2);
+        return `<circle cx="${x.toFixed(1)}" cy="${h / 2}" r="2" fill="#6366f1" opacity="0.6"/>`;
+      })
+      .join('');
+
+    return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><line x1="${px}" y1="${h / 2}" x2="${w - px}" y2="${h / 2}" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>${dots}</svg>`;
   });
 </script>
 
@@ -549,9 +595,72 @@
     font-variant-numeric: tabular-nums;
   }
 
+  .address-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    background: rgba(99, 102, 241, 0.08);
+    color: var(--primary, #6366f1);
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all var(--transition-fast, 150ms cubic-bezier(0.16, 1, 0.3, 1));
+  }
+
+  .address-badge:hover {
+    background: rgba(99, 102, 241, 0.15);
+    transform: scale(1.05);
+  }
+
+  .sparkline {
+    display: inline-flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
   @media (max-width: 900px) {
     .report-card {
-      padding: 10px 12px;
+      padding: 8px 10px;
+    }
+
+    .card-header {
+      margin-bottom: 4px;
+      gap: 4px;
+    }
+
+    .id-badge {
+      display: none;
+    }
+
+    .index-badge {
+      min-width: 24px;
+      height: 20px;
+      font-size: 10px;
+    }
+
+    .address {
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .predictions-toggle-btn {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      max-width: 22px;
+    }
+
+    .card-status {
+      margin-bottom: 4px;
+    }
+
+    .card-meta {
+      gap: 8px;
+      font-size: 10px;
     }
   }
 </style>

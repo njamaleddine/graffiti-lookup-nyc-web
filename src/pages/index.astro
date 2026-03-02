@@ -8,15 +8,50 @@ import brandLogo from '../assets/favicon.svg';
 const items = [...graffitiLookups].sort((a, b) => 
   new Date(b.last_updated).getTime() - new Date(a.last_updated).getTime()
 );
+
+const uniqueAddresses = new Set(items.map((i) => i.address)).size;
+const avgRisk = (items.reduce((s, i) => s + (i.graffiti_likelihood ?? 0), 0) / items.length).toFixed(1);
+const avgRiskClass = parseFloat(avgRisk) >= 70 ? 'recurrence-high' : parseFloat(avgRisk) >= 40 ? 'recurrence-medium' : 'recurrence-low';
+const addrCounts: Record<string, number> = {};
+items.forEach((i) => { addrCounts[i.address] = (addrCounts[i.address] || 0) + 1; });
+let hotspotAddr = '';
+let hotspotCount = 0;
+for (const [addr, cnt] of Object.entries(addrCounts)) {
+  if (cnt > hotspotCount) { hotspotAddr = addr; hotspotCount = cnt; }
+}
+const hotspotShort = hotspotAddr.length > 22 ? hotspotAddr.slice(0, 22) + '…' : hotspotAddr;
 ---
 <Layout>
-  <header class="page-header">
-    <div class="title-row">
-      <img src={brandLogo.src} alt="" class="brand-logo" width="32" height="32" />
-      <h1>NYC Graffiti Lookup</h1>
+  <div class="top-bar">
+    <header class="page-header">
+      <div class="title-row">
+        <img src={brandLogo.src} alt="" class="brand-logo" width="32" height="32" />
+        <h1>NYC Graffiti Lookup</h1>
+      </div>
+      <p>Explore recent graffiti removal requests across New York City</p>
+    </header>
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-value">{items.length}</span>
+        <span class="stat-label">Reports</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value">{uniqueAddresses}</span>
+        <span class="stat-label">Locations</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class={`stat-value ${avgRiskClass}`}>{avgRisk}%</span>
+        <span class="stat-label">Average Recurrence</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item hotspot-item">
+        <span class="stat-value hotspot-value" title={hotspotAddr}>{hotspotShort}</span>
+        <span class="stat-label">Hotspot ({hotspotCount}×)</span>
+      </div>
     </div>
-    <p>Explore recent graffiti removal requests across New York City</p>
-  </header>
+  </div>
   <div class="content-layout">
     <aside class="sidebar">
       <ListView items={items} client:load />
@@ -28,10 +63,17 @@ const items = [...graffitiLookups].sort((a, b) =>
 </Layout>
 
 <style>
-  .page-header {
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
     margin-bottom: 16px;
     padding-bottom: 14px;
     border-bottom: 1px solid var(--border, rgba(0, 0, 0, 0.06));
+    flex-shrink: 0;
+  }
+  .page-header {
     flex-shrink: 0;
   }
   .title-row {
@@ -82,10 +124,69 @@ const items = [...graffitiLookups].sort((a, b) =>
     display: flex;
     flex-direction: column;
   }
+  .stats-bar {
+    display: flex;
+    align-items: center;
+    padding: 8px 14px;
+    background: var(--surface, rgba(255, 255, 255, 0.7));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.06));
+    border-radius: var(--radius-md, 12px);
+    flex-shrink: 0;
+    box-shadow: var(--shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.03));
+  }
+  .stat-item {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 0 12px;
+  }
+  .stat-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--border, rgba(0, 0, 0, 0.06));
+    flex-shrink: 0;
+  }
+  .stat-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary, #0f172a);
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-tertiary, #64748b);
+    white-space: nowrap;
+  }
+  .stat-value.recurrence-high { color: #ef4444; }
+  .stat-value.recurrence-medium { color: #f59e0b; }
+  .stat-value.recurrence-low { color: #22c55e; }
+  .hotspot-item {
+    flex: 1;
+    min-width: 0;
+  }
+  .hotspot-value {
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    display: inline-block;
+  }
   @media (max-width: 900px) {
+    .top-bar {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+      margin-bottom: 6px;
+      padding-bottom: 6px;
+    }
     .content-layout {
       flex-direction: column;
-      gap: 12px;
+      gap: 8px;
       width: 100%;
     }
     .sidebar {
@@ -99,14 +200,43 @@ const items = [...graffitiLookups].sort((a, b) =>
       min-height: 0;
     }
     .page-header {
-      margin-bottom: 10px;
-      padding-bottom: 8px;
+    }
+    .title-row {
+      gap: 8px;
+    }
+    .brand-logo {
+      width: 24px;
+      height: 24px;
     }
     .page-header h1 {
-      font-size: 20px;
+      font-size: 18px;
+      margin-bottom: 0;
     }
     .page-header p {
+      display: none;
+    }
+    .stats-bar {
+      gap: 0;
+      padding: 2px 4px;
+      margin-bottom: 2px;
+    }
+    .stat-item {
+      padding: 0 5px;
+    }
+    .stat-divider {
+      height: 14px;
+    }
+    .stat-value {
       font-size: 13px;
+    }
+    .stat-label {
+      font-size: 10px;
+    }
+    .hotspot-item {
+      display: none;
+    }
+    .stat-divider:has(+ .hotspot-item) {
+      display: none;
     }
   }
 </style>

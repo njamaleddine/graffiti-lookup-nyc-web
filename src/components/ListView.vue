@@ -300,10 +300,9 @@
 
   .list-title .count {
     font-weight: 400;
-    color: var(--text-tertiary, #94a3b8);
+    color: var(--text-tertiary, #64748b);
     text-transform: none;
     letter-spacing: normal;
-    opacity: 0.7;
   }
 
   .filter-row {

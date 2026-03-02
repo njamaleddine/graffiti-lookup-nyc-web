@@ -221,7 +221,7 @@
   }
 
   .report-card.selected {
-    background: linear-gradient(135deg, rgba(237, 233, 254, 0.5) 0%, rgba(224, 231, 255, 0.5) 100%);
+    background: linear-gradient(135deg, #f3f4ff 0%, #f5f8ff 100%);
     box-shadow: inset 3px 0 0 var(--primary, #6366f1);
   }
 

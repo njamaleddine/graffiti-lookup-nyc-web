@@ -41,8 +41,27 @@ def get_active_service_requests(service_requests, days=GRAFFITI_RECENT_REQUEST_D
     return active_service_requests
 
 
+def get_new_service_request_ids(active_requests: list, all_service_request_ids: list):
+    """
+    Returns a list of new service request IDs that are in all_service_request_ids
+    but not in service_request_ids.
+    """
+
+    if not all_service_request_ids:
+        return []
+
+    service_request_ids = {
+        request["service_request"]
+        for request in active_requests
+        if "service_request" in request
+    }
+
+    return list(set(all_service_request_ids) - set(service_request_ids))
+
+
 def print_graffiti_service_request_ids(
     json_path,
+    all_service_request_ids,
     enable_filter=False,
     days=GRAFFITI_RECENT_REQUEST_DAYS,
 ):
@@ -50,6 +69,10 @@ def print_graffiti_service_request_ids(
     Prints active graffiti service_request IDs as a comma-separated string.
     """
     active_requests = JsonFile(json_path).load()
+
+    new_service_request_ids = get_new_service_request_ids(
+        active_requests, all_service_request_ids
+    )
 
     if enable_filter:
         active_requests = get_active_service_requests(active_requests, days)
@@ -59,6 +82,9 @@ def print_graffiti_service_request_ids(
         for request in active_requests
         if "service_request" in request
     ]
+
+    if new_service_request_ids:
+        ids.extend(new_service_request_ids)
 
     print(",".join(ids), end="")
 
@@ -84,10 +110,20 @@ if __name__ == "__main__":
         default=GRAFFITI_LOOKUPS_FILE,
         help="Path to graffiti service requests JSON file",
     )
+    parser.add_argument(
+        "--all-service-request-ids",
+        type=str,
+        help="A list of all service request IDs, to be concatenated with the json list",
+    )
     args = parser.parse_args()
+
+    all_service_request_ids = (
+        args.all_service_request_ids.split(",") if args.all_service_request_ids else []
+    )
 
     print_graffiti_service_request_ids(
         args.json_path,
+        all_service_request_ids,
         enable_filter=args.filter_active,
         days=args.days,
     )

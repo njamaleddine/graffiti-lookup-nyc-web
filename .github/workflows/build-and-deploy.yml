@@ -56,12 +56,8 @@ jobs:
           mv graffiti-lookups.json geocode-cache.json public/
 
       - name: Generate graffiti lookup data
-        run: |
-          if [ "${{ vars.GRAFFITI_FILTER_ACTIVE_SERVICE_REQUESTS }}" = "False" ]; then
-            ids="${{ vars.GRAFFITI_IDS }}"
-          else
-            ids=$(python -m graffiti_data_pipeline.filter_service_requests)
-          fi
+        run: |    
+          ids=$(python -m graffiti_data_pipeline.filter_service_requests --all-service-request-ids="${{ vars.GRAFFITI_IDS }}")
           timeout=${{ vars.GRAFFITI_LOOKUP_TIMEOUT }}
           if [ -z "$timeout" ]; then
             timeout=10

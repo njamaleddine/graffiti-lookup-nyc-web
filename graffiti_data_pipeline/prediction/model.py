@@ -15,7 +15,10 @@ from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
-from graffiti_data_pipeline.config import GRAFFITI_CLEANED_STATUS
+from graffiti_data_pipeline.config import (
+    GRAFFITI_CLEANED_STATUS,
+    GRAFFITI_SITE_TO_BE_CLEANED_STATUS,
+)
 from graffiti_data_pipeline.logger import get_logger
 
 logger = get_logger(__name__)
@@ -281,6 +284,9 @@ class GraffitiPredictionModel:
             if request.status == GRAFFITI_CLEANED_STATUS:
                 request.record["cleaning_likelihood"] = 100.0
                 request.record["predicted_cleaning_date"] = request.last_updated
+            elif request.status == GRAFFITI_SITE_TO_BE_CLEANED_STATUS:
+                request.record["cleaning_likelihood"] = 90.0
+                request.record["predicted_cleaning_date"] = "Unknown"
             else:
                 request.record["cleaning_likelihood"] = self._to_percent(clean_prob)
                 request.record["predicted_cleaning_date"] = self.predict_cleaning_date(

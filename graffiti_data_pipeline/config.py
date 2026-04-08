@@ -1,6 +1,7 @@
 import os
 
 GRAFFITI_CLEANED_STATUS = "Cleaning crew dispatched.  Property cleaned."
+GRAFFITI_SITE_TO_BE_CLEANED_STATUS = "Site to be cleaned."
 GRAFFITI_COMPLETE_STATUSES = [
     "CityOwnedIneligible",
     GRAFFITI_CLEANED_STATUS,

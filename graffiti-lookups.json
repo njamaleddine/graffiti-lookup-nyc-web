@@ -9356,7 +9356,7 @@
     "predicted_resolution_days": 2,
     "times_reported": 4,
     "times_cleaned": 1,
-    "cleaning_likelihood": 4.0,
+    "cleaning_likelihood": 90.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -9950,7 +9950,7 @@
     "predicted_resolution_days": 6,
     "times_reported": 4,
     "times_cleaned": 0,
-    "cleaning_likelihood": 0.0,
+    "cleaning_likelihood": 90.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -10544,7 +10544,7 @@
     "predicted_resolution_days": 28,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 0.0,
+    "cleaning_likelihood": 90.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -10814,7 +10814,7 @@
     "predicted_resolution_days": 2,
     "times_reported": 2,
     "times_cleaned": 1,
-    "cleaning_likelihood": 8.0,
+    "cleaning_likelihood": 90.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -10832,7 +10832,7 @@
     "predicted_resolution_days": 1,
     "times_reported": 10,
     "times_cleaned": 4,
-    "cleaning_likelihood": 2.0,
+    "cleaning_likelihood": 90.0,
     "predicted_cleaning_date": "Unknown"
   }
 ]

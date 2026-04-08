@@ -6,13 +6,13 @@
       </h2>
       <div class="legend">
         <span class="legend-item">
-          <span class="legend-dot legend-high" />High
+          <span class="legend-dot legend-cleaned" />Cleaned
         </span>
         <span class="legend-item">
-          <span class="legend-dot legend-medium" />Medium
+          <span class="legend-dot legend-scheduled" />Scheduled
         </span>
         <span class="legend-item">
-          <span class="legend-dot legend-low" />Low
+          <span class="legend-dot legend-open" />Open
         </span>
       </div>
     </div>
@@ -38,7 +38,12 @@
   const INIT_DELAY_MS = 100;
   const VISIBLE_ITEMS_DEBOUNCE_MS = 150;
 
-  const RISK_COLORS = { high: '#f87171', medium: '#fbbf24', low: '#4ade80' };
+  const STATUS_COLORS = { cleaned: '#6ee7b7', scheduled: '#fcd34d', open: '#fca5a5' };
+  const CLEAN_STATUSES = [
+    'Cleaning crew dispatched.  Property cleaned.',
+    'Cleaning crew dispatched. No graffiti on property.',
+  ];
+  const IN_PROGRESS_STATUSES = ['Site to be cleaned.'];
 
   let map = null;
   let leaflet = null;
@@ -51,14 +56,14 @@
   const visibleItems = ref([]);
   const selectedItem = ref(null);
 
-  function getRiskColor(likelihood) {
-    if (likelihood >= 70) return RISK_COLORS.high;
-    if (likelihood >= 40) return RISK_COLORS.medium;
-    return RISK_COLORS.low;
+  function getStatusColor(status) {
+    if (CLEAN_STATUSES.includes(status)) return STATUS_COLORS.cleaned;
+    if (IN_PROGRESS_STATUSES.includes(status)) return STATUS_COLORS.scheduled;
+    return STATUS_COLORS.open;
   }
 
   function createDotIcon(item, isHighlighted = false) {
-    const color = getRiskColor(item.graffiti_likelihood ?? 0);
+    const color = getStatusColor(item.status ?? '');
     const size = isHighlighted ? 20 : 14;
     const border = isHighlighted ? '2.5px solid #fff' : '1.5px solid rgba(255,255,255,0.9)';
     const shadow = isHighlighted ? '0 2px 8px rgba(0,0,0,0.3)' : '0 1px 4px rgba(0,0,0,0.15)';
@@ -434,16 +439,16 @@
     flex-shrink: 0;
   }
 
-  .legend-high {
-    background: #f87171;
+  .legend-cleaned {
+    background: #6ee7b7;
   }
 
-  .legend-medium {
-    background: #fbbf24;
+  .legend-scheduled {
+    background: #fcd34d;
   }
 
-  .legend-low {
-    background: #4ade80;
+  .legend-open {
+    background: #fca5a5;
   }
 
   @media (max-width: 900px) {

@@ -229,9 +229,15 @@
 
   const estimatedCleaningDate = computed(() => {
     const { predicted_resolution_days, created, predicted_cleaning_date } = props.item;
+
+    if (predicted_cleaning_date === "N/A") {
+      return "N/A";
+    }
+
     if (predicted_resolution_days > 0 && created) {
       return addDays(created, predicted_resolution_days);
     }
+
     return isValidDate(predicted_cleaning_date) ? predicted_cleaning_date : null;
   });
 

@@ -146,7 +146,7 @@ class TestGraffitiPredictionModel:
         record = enriched[0]
         # Ground truth overrides for known cleaning outcome
         assert record["cleaning_likelihood"] == 100.0
-        assert record["predicted_cleaning_date"] == "2026-02-10"
+        assert record["predicted_cleaning_date"] == "N/A"
         # Model predictions still used for these fields
         assert "graffiti_likelihood" in record
         assert "estimated_next_tag" in record

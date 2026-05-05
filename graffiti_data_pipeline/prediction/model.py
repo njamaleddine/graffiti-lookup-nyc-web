@@ -283,7 +283,7 @@ class GraffitiPredictionModel:
             # Ground truth replaces predictions when the outcome is known.
             if request.status == GRAFFITI_CLEANED_STATUS:
                 request.record["cleaning_likelihood"] = 100.0
-                request.record["predicted_cleaning_date"] = request.last_updated
+                request.record["predicted_cleaning_date"] = "N/A"
             elif request.status == GRAFFITI_SITE_TO_BE_CLEANED_STATUS:
                 request.record["cleaning_likelihood"] = 90.0
                 request.record["predicted_cleaning_date"] = "Unknown"

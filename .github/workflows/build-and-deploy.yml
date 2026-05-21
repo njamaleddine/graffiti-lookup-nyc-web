@@ -118,6 +118,8 @@ jobs:
         run: npm ci
 
       - name: Build site
+        env:
+          LAST_MODIFIED: ${{ github.run_timestamp }}
         run: npm run build
 
       - name: Upload dist artifact

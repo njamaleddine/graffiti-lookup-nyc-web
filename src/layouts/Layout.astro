@@ -7,6 +7,10 @@ import appleTouchIcon from '../assets/apple-touch-icon.png';
 const siteOrigin = 'https://njamaleddine.github.io';
 const siteUrl = `${siteOrigin}/graffiti-lookup-nyc-web`;
 const ogImageUrl = `${siteOrigin}${ogImage.src}`;
+const authorName = 'Nabil Jamaleddine';
+const siteTitle = 'NYC Graffiti Map & Removal Tracker';
+const siteDescription = 'Explore and track graffiti removal requests across New York City. View status updates, locations, and details on an interactive map.';
+const pageTitle = `${siteTitle} | Look Up 311 Status`;
 
 const lastModified = import.meta.env.LAST_MODIFIED
   ? new Date(import.meta.env.LAST_MODIFIED).toISOString()
@@ -17,24 +21,24 @@ const coordinates = { lat: 40.7142, lng: -73.8981 };
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>NYC Graffiti Map & Removal Tracker | Look Up 311 Status</title>
-    <meta name="description" content="Explore and track graffiti removal requests across New York City. View status updates, locations, and details on an interactive map." />
+    <title>{pageTitle}</title>
+    <meta name="description" content={siteDescription} />
     <meta name="keywords" content="graffiti, NYC, removal, tracking, New York City, Bronx, Brooklyn, Manhattan, Queens, Staten Island, service requests, 311" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#6366f1" />
     <meta name="robots" content="index, follow" />
-    <meta name="author" content="Nabil Jamaleddine" />
+    <meta name="author" content={authorName} />
     <link rel="canonical" href={siteUrl} />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="NYC Graffiti Map & Removal Tracker" />
-    <meta property="og:description" content="Explore and track graffiti removal requests across New York City. View status updates, locations, and details on an interactive map." />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={siteDescription} />
     <meta property="og:url" content={siteUrl} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:site_name" content="NYC Graffiti Map & Removal Tracker" />
+    <meta property="og:site_name" content={siteTitle} />
 
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -48,7 +52,7 @@ const coordinates = { lat: 40.7142, lng: -73.8981 };
         {
           "@type": "Person",
           "@id": `${siteOrigin}/#person`,
-          "name": "Nabil Jamaleddine",
+          "name": authorName,
           "url": siteOrigin,
           "sameAs": [
             "https://github.com/njamaleddine"
@@ -57,9 +61,9 @@ const coordinates = { lat: 40.7142, lng: -73.8981 };
         {
           "@type": "WebSite",
           "@id": `${siteUrl}/#website`,
-          "name": "NYC Graffiti Map & Removal Tracker",
+          "name": siteTitle,
           "url": siteUrl,
-          "description": "Explore and track graffiti removal requests across New York City. View status updates, locations, and details on an interactive map.",
+          "description": siteDescription,
           "publisher": {
             "@id": `${siteOrigin}/#person`
           },
@@ -91,9 +95,9 @@ const coordinates = { lat: 40.7142, lng: -73.8981 };
         {
           "@type": "WebApplication",
           "@id": `${siteUrl}/#webapp`,
-          "name": "NYC Graffiti Map & Removal Tracker",
+          "name": siteTitle,
           "url": siteUrl,
-          "description": "Interactive map and lookup tool for 311 graffiti removal requests in New York City.",
+          "description": siteDescription,
           "applicationCategory": "UtilitiesApplication",
           "operatingSystem": "All",
           "browserRequirements": "Requires JavaScript",

@@ -56,9 +56,6 @@ python -m graffiti_data_pipeline.geocode
 
 ## Deployment
 
-
-## Deployment
-
 This project is configured for automated deployment to GitHub Pages using the latest recommended GitHub Actions workflow.
 
 ### Automatic Deployment

@@ -626,7 +626,7 @@
     "predicted_resolution_days": 5,
     "times_reported": 2,
     "times_cleaned": 0,
-    "cleaning_likelihood": 2.0,
+    "cleaning_likelihood": 0.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -644,7 +644,7 @@
     "predicted_resolution_days": 5,
     "times_reported": 2,
     "times_cleaned": 0,
-    "cleaning_likelihood": 4.0,
+    "cleaning_likelihood": 2.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -1562,7 +1562,7 @@
     "predicted_resolution_days": 5,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 4.0,
+    "cleaning_likelihood": 2.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -1580,7 +1580,7 @@
     "predicted_resolution_days": 216,
     "times_reported": 2,
     "times_cleaned": 0,
-    "cleaning_likelihood": 2.0,
+    "cleaning_likelihood": 4.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -1760,7 +1760,7 @@
     "predicted_resolution_days": 11,
     "times_reported": 2,
     "times_cleaned": 0,
-    "cleaning_likelihood": 2.0,
+    "cleaning_likelihood": 0.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -1958,7 +1958,7 @@
     "predicted_resolution_days": 2,
     "times_reported": 4,
     "times_cleaned": 3,
-    "cleaning_likelihood": 10.0,
+    "cleaning_likelihood": 8.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -2084,7 +2084,7 @@
     "predicted_resolution_days": 31,
     "times_reported": 3,
     "times_cleaned": 1,
-    "cleaning_likelihood": 4.0,
+    "cleaning_likelihood": 2.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -2138,7 +2138,7 @@
     "predicted_resolution_days": 4,
     "times_reported": 5,
     "times_cleaned": 3,
-    "cleaning_likelihood": 28.000000000000004,
+    "cleaning_likelihood": 30.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -2534,7 +2534,7 @@
     "predicted_resolution_days": 7,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 0.0,
+    "cleaning_likelihood": 2.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -2678,7 +2678,7 @@
     "predicted_resolution_days": 7,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 4.0,
+    "cleaning_likelihood": 2.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -3164,7 +3164,7 @@
     "predicted_resolution_days": 7,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 0.0,
+    "cleaning_likelihood": 2.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -3182,7 +3182,7 @@
     "predicted_resolution_days": 410,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 2.0,
+    "cleaning_likelihood": 0.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -3200,7 +3200,7 @@
     "predicted_resolution_days": 7,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 0.0,
+    "cleaning_likelihood": 2.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -3434,7 +3434,7 @@
     "predicted_resolution_days": 1,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 2.0,
+    "cleaning_likelihood": 0.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -4208,7 +4208,7 @@
     "predicted_resolution_days": 10,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 4.0,
+    "cleaning_likelihood": 2.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -4676,7 +4676,7 @@
     "predicted_resolution_days": 14,
     "times_reported": 2,
     "times_cleaned": 1,
-    "cleaning_likelihood": 6.0,
+    "cleaning_likelihood": 4.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -4928,7 +4928,7 @@
     "predicted_resolution_days": 26,
     "times_reported": 5,
     "times_cleaned": 0,
-    "cleaning_likelihood": 2.0,
+    "cleaning_likelihood": 0.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -4946,7 +4946,7 @@
     "predicted_resolution_days": 3,
     "times_reported": 5,
     "times_cleaned": 2,
-    "cleaning_likelihood": 12.0,
+    "cleaning_likelihood": 14.000000000000002,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -5594,7 +5594,7 @@
     "predicted_resolution_days": 7,
     "times_reported": 2,
     "times_cleaned": 0,
-    "cleaning_likelihood": 2.0,
+    "cleaning_likelihood": 0.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -6044,7 +6044,7 @@
     "predicted_resolution_days": 105,
     "times_reported": 10,
     "times_cleaned": 4,
-    "cleaning_likelihood": 4.0,
+    "cleaning_likelihood": 6.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -6656,7 +6656,7 @@
     "predicted_resolution_days": 3,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 2.0,
+    "cleaning_likelihood": 0.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -7196,7 +7196,7 @@
     "predicted_resolution_days": 2,
     "times_reported": 2,
     "times_cleaned": 1,
-    "cleaning_likelihood": 8.0,
+    "cleaning_likelihood": 6.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -7736,7 +7736,7 @@
     "predicted_resolution_days": 13,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 4.0,
+    "cleaning_likelihood": 2.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -8024,7 +8024,7 @@
     "predicted_resolution_days": 7,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 2.0,
+    "cleaning_likelihood": 0.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -8312,7 +8312,7 @@
     "predicted_resolution_days": 190,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 2.0,
+    "cleaning_likelihood": 0.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -8528,7 +8528,7 @@
     "predicted_resolution_days": 4,
     "times_reported": 5,
     "times_cleaned": 2,
-    "cleaning_likelihood": 10.0,
+    "cleaning_likelihood": 12.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -9518,7 +9518,7 @@
     "predicted_resolution_days": 4,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 2.0,
+    "cleaning_likelihood": 4.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -10562,7 +10562,7 @@
     "predicted_resolution_days": 2,
     "times_reported": 2,
     "times_cleaned": 1,
-    "cleaning_likelihood": 12.0,
+    "cleaning_likelihood": 14.000000000000002,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -10688,7 +10688,7 @@
     "predicted_resolution_days": 2,
     "times_reported": 1,
     "times_cleaned": 0,
-    "cleaning_likelihood": 0.0,
+    "cleaning_likelihood": 2.0,
     "predicted_cleaning_date": "Unknown"
   },
   {
@@ -10857,15 +10857,15 @@
     "service_request": "G325670",
     "address": "25-16 71 STREET, QUEENS",
     "created": "2026-06-30",
-    "last_updated": "2026-06-30",
-    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "last_updated": "2026-08-05",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
     "latitude": 40.7614579,
     "longitude": -73.8970752,
     "graffiti_likelihood": 100.0,
-    "estimated_next_tag": "2026-07-01",
-    "predicted_time_to_next_update": "2026-08-29",
-    "predicted_recurrence_days": 142,
-    "predicted_resolution_days": 1,
+    "estimated_next_tag": "2026-08-06",
+    "predicted_time_to_next_update": "2026-09-16",
+    "predicted_recurrence_days": 138,
+    "predicted_resolution_days": 139,
     "times_reported": 7,
     "times_cleaned": 0,
     "cleaning_likelihood": 0.0,
@@ -10875,15 +10875,15 @@
     "service_request": "G325674",
     "address": "22-46 49 STREET, QUEENS",
     "created": "2026-06-30",
-    "last_updated": "2026-06-30",
-    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "last_updated": "2026-08-05",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
     "latitude": 40.7679336,
     "longitude": -73.9017552,
     "graffiti_likelihood": 100.0,
-    "estimated_next_tag": "2026-07-01",
-    "predicted_time_to_next_update": "2026-08-17",
-    "predicted_recurrence_days": 174,
-    "predicted_resolution_days": 1,
+    "estimated_next_tag": "2026-08-06",
+    "predicted_time_to_next_update": "2026-09-04",
+    "predicted_recurrence_days": 180,
+    "predicted_resolution_days": 118,
     "times_reported": 5,
     "times_cleaned": 0,
     "cleaning_likelihood": 0.0,
@@ -10893,15 +10893,15 @@
     "service_request": "G325673",
     "address": "72-05 ASTORIA BLVD N, QUEENS",
     "created": "2026-06-30",
-    "last_updated": "2026-06-30",
-    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "last_updated": "2026-08-05",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
     "latitude": 40.7677135,
     "longitude": -73.9013744,
     "graffiti_likelihood": 100.0,
-    "estimated_next_tag": "2026-07-01",
-    "predicted_time_to_next_update": "2026-08-17",
-    "predicted_recurrence_days": 175,
-    "predicted_resolution_days": 1,
+    "estimated_next_tag": "2026-08-06",
+    "predicted_time_to_next_update": "2026-09-04",
+    "predicted_recurrence_days": 181,
+    "predicted_resolution_days": 123,
     "times_reported": 6,
     "times_cleaned": 0,
     "cleaning_likelihood": 0.0,
@@ -10911,15 +10911,15 @@
     "service_request": "G325669",
     "address": "25-39 BOODY ST, QUEENS",
     "created": "2026-06-30",
-    "last_updated": "2026-06-30",
-    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "last_updated": "2026-08-05",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
     "latitude": 40.7611159,
     "longitude": -73.8974022,
     "graffiti_likelihood": 100.0,
-    "estimated_next_tag": "2026-07-01",
-    "predicted_time_to_next_update": "2026-08-26",
-    "predicted_recurrence_days": 162,
-    "predicted_resolution_days": 1,
+    "estimated_next_tag": "2026-08-06",
+    "predicted_time_to_next_update": "2026-09-11",
+    "predicted_recurrence_days": 160,
+    "predicted_resolution_days": 139,
     "times_reported": 7,
     "times_cleaned": 0,
     "cleaning_likelihood": 0.0,
@@ -10929,15 +10929,15 @@
     "service_request": "G325667",
     "address": "80-02 ASTORIA BLVD, QUEENS",
     "created": "2026-06-30",
-    "last_updated": "2026-06-30",
-    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "last_updated": "2026-08-05",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
     "latitude": 40.7651176,
     "longitude": -73.8888574,
     "graffiti_likelihood": 100.0,
-    "estimated_next_tag": "2026-07-01",
-    "predicted_time_to_next_update": "2026-07-26",
-    "predicted_recurrence_days": 75,
-    "predicted_resolution_days": 1,
+    "estimated_next_tag": "2026-08-06",
+    "predicted_time_to_next_update": "2026-08-24",
+    "predicted_recurrence_days": 71,
+    "predicted_resolution_days": 119,
     "times_reported": 15,
     "times_cleaned": 0,
     "cleaning_likelihood": 0.0,
@@ -10947,15 +10947,15 @@
     "service_request": "G325672",
     "address": "22-34 73RD ST, QUEENS",
     "created": "2026-06-30",
-    "last_updated": "2026-06-30",
-    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "last_updated": "2026-08-05",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
     "latitude": 40.7671656,
     "longitude": -73.8962662,
     "graffiti_likelihood": 10.0,
-    "estimated_next_tag": "2027-05-25",
-    "predicted_time_to_next_update": "2026-09-24",
-    "predicted_recurrence_days": 140,
-    "predicted_resolution_days": 1,
+    "estimated_next_tag": "2027-06-30",
+    "predicted_time_to_next_update": "2026-09-27",
+    "predicted_recurrence_days": 142,
+    "predicted_resolution_days": 98,
     "times_reported": 1,
     "times_cleaned": 0,
     "cleaning_likelihood": 0.0,
@@ -10965,15 +10965,15 @@
     "service_request": "G325671",
     "address": "22-38 73RD ST, QUEENS",
     "created": "2026-06-30",
-    "last_updated": "2026-06-30",
-    "status": "Notice of Intent to Clean and Forever graffiti free form sent",
+    "last_updated": "2026-08-05",
+    "status": "Graffiti free waiver was mailed out. No response within 35 days has been received.",
     "latitude": 40.7670783,
     "longitude": -73.8961967,
     "graffiti_likelihood": 100.0,
-    "estimated_next_tag": "2026-07-01",
-    "predicted_time_to_next_update": "2026-08-16",
-    "predicted_recurrence_days": 153,
-    "predicted_resolution_days": 1,
+    "estimated_next_tag": "2026-08-06",
+    "predicted_time_to_next_update": "2026-08-31",
+    "predicted_recurrence_days": 155,
+    "predicted_resolution_days": 123,
     "times_reported": 6,
     "times_cleaned": 0,
     "cleaning_likelihood": 0.0,

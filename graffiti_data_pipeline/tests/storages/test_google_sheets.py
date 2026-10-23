@@ -20,7 +20,7 @@ def mock_google_sheet():
 @patch("os.getenv", return_value='{"dummy": "creds"}')
 @patch("google.oauth2.service_account.Credentials.from_service_account_info")
 @patch("gspread.authorize")
-def test_read_returns_records(mock_authorize, mock_creds, mock_getenv):
+def test_load_returns_records(mock_authorize, mock_creds, mock_getenv):
     mock_client = MagicMock()
     mock_sheet = MagicMock()
     mock_worksheet = MagicMock()
@@ -31,7 +31,7 @@ def test_read_returns_records(mock_authorize, mock_creds, mock_getenv):
     mock_creds.return_value = MagicMock()
 
     google_sheet = GoogleSheet("sheet_id", "worksheet", "ENV_VAR")
-    result = google_sheet.read()
+    result = google_sheet.load()
 
     assert result == [{"foo": "bar"}]
 
@@ -39,7 +39,7 @@ def test_read_returns_records(mock_authorize, mock_creds, mock_getenv):
 @patch("os.getenv", return_value='{"dummy": "creds"}')
 @patch("google.oauth2.service_account.Credentials.from_service_account_info")
 @patch("gspread.authorize")
-def test_update_calls_clear_and_update(mock_authorize, mock_creds, mock_getenv):
+def test_save_calls_clear_and_update(mock_authorize, mock_creds, mock_getenv):
     mock_client = MagicMock()
     mock_sheet = MagicMock()
     mock_worksheet = MagicMock()
@@ -50,7 +50,7 @@ def test_update_calls_clear_and_update(mock_authorize, mock_creds, mock_getenv):
 
     google_sheet = GoogleSheet("sheet_id", "worksheet", "ENV_VAR")
     service_requests = [{"a": 1, "b": 2}]
-    google_sheet.update(service_requests)
+    google_sheet.save(service_requests)
 
     mock_worksheet.clear.assert_called_once()
     mock_worksheet.update.assert_called_once()
@@ -59,7 +59,7 @@ def test_update_calls_clear_and_update(mock_authorize, mock_creds, mock_getenv):
 @patch("os.getenv", return_value='{"dummy": "creds"}')
 @patch("google.oauth2.service_account.Credentials.from_service_account_info")
 @patch("gspread.authorize")
-def test_update_warns_on_empty(mock_authorize, mock_creds, mock_getenv):
+def test_save_warns_on_empty(mock_authorize, mock_creds, mock_getenv):
     mock_client = MagicMock()
     mock_sheet = MagicMock()
     mock_worksheet = MagicMock()
@@ -70,7 +70,7 @@ def test_update_warns_on_empty(mock_authorize, mock_creds, mock_getenv):
 
     google_sheet = GoogleSheet("sheet_id", "worksheet", "ENV_VAR")
     # Should not call clear or update
-    google_sheet.update([])
+    google_sheet.save([])
 
     mock_worksheet.clear.assert_not_called()
     mock_worksheet.update.assert_not_called()

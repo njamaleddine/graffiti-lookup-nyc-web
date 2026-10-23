@@ -1,8 +1,10 @@
 import json
 import os
 
+from graffiti_data_pipeline.storages.base import Storage
 
-class JsonFile:
+
+class JsonFile(Storage):
     def __init__(self, file_name: str, default_data=None):
         self.file_name = file_name
         self.default_data = default_data if default_data is not None else {}

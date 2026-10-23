@@ -5,11 +5,12 @@ import gspread
 from google.oauth2.service_account import Credentials
 
 from graffiti_data_pipeline.logger import get_logger
+from graffiti_data_pipeline.storages.base import Storage
 
 logger = get_logger(__name__)
 
 
-class GoogleSheet:
+class GoogleSheet(Storage):
     def __init__(self, sheet_identifier, worksheet_name, creds_env_var):
         self._creds_env_var = creds_env_var
         credentials_json = os.getenv(creds_env_var)
@@ -30,12 +31,12 @@ class GoogleSheet:
         self._google_sheet = self._google_client.open_by_key(sheet_identifier)
         self.worksheet = self._google_sheet.worksheet(worksheet_name)
 
-    def read(self):
+    def load(self):
         """Reads all graffiti service requests from the worksheet as a list of dicts."""
         return self.worksheet.get_all_records()
 
-    def update(self, service_requests: list[dict]):
-        """Updates the worksheet with graffiti service requests from a JSON file."""
+    def save(self, service_requests: list[dict]):
+        """Updates the worksheet with graffiti service requests from a list of dicts."""
         if not service_requests:
             logger.warning("No service requests to update.")
             return
